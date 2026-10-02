@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,30 +6,117 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Offer Booking | Nail Muse</title>
+    <title>Offer Booking | Nail Studio</title>
 
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-
     <style>
 
-        /* ==========================================
-           OFFER BOOKING PAGE
-        ========================================== */
+        /* =================================
+           BODY
+        ================================= */
 
-        .offer-booking-section {
+        body {
 
-            min-height: calc(100vh - 150px);
+            margin: 0;
 
-            padding: 70px 6% 80px;
+            font-family: 'Poppins', sans-serif;
+
+            background: #fffaf8;
+
+            color: #333;
+
+        }
+
+
+        /* =================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 8%;
+
+            background: white;
+
+            box-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        .logo {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            color: #333;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 25px;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #444;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #c89b3c;
+
+        }
+
+
+        /* =================================
+           BOOKING SECTION
+        ================================= */
+
+        .booking-section {
+
+            min-height: calc(100vh - 160px);
+
+            padding: 70px 20px;
 
             display: flex;
 
@@ -40,41 +128,43 @@
                 linear-gradient(
                     135deg,
                     #fffaf8,
-                    #fff6f0
+                    #fff4ef
                 );
 
         }
 
 
-        /* ==========================================
+        /* =================================
            BOOKING CONTAINER
-        ========================================== */
+        ================================= */
 
-        .offer-booking-container {
+        .booking-container {
 
             width: 100%;
 
             max-width: 650px;
 
-            background: #ffffff;
+            background: white;
 
             padding: 45px;
 
-            border-radius: 18px;
-
-            border: 1px solid #eee2d7;
+            border-radius: 22px;
 
             box-shadow:
-                0 10px 35px rgba(80, 50, 30, 0.08);
+                0 10px 40px
+                rgba(0, 0, 0, 0.10);
+
+            border:
+                1px solid #f1dfd8;
 
         }
 
 
-        /* ==========================================
+        /* =================================
            HEADING
-        ========================================== */
+        ================================= */
 
-        .offer-booking-heading {
+        .booking-heading {
 
             text-align: center;
 
@@ -83,73 +173,50 @@
         }
 
 
-        .booking-label {
-
-            display: block;
-
-            font-size: 11px;
-
-            font-weight: 600;
-
-            letter-spacing: 3px;
-
-            color: #b8860b;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .offer-booking-heading h1 {
+        .booking-heading h1 {
 
             font-family:
                 'Cormorant Garamond',
                 serif;
 
-            font-size: 50px;
-
-            font-weight: 600;
-
-            color: #333;
+            font-size: 48px;
 
             margin: 0 0 8px;
 
+            color: #333;
+
         }
 
 
-        .offer-booking-heading p {
+        .booking-heading p {
 
             color: #777;
 
-            font-size: 13px;
+            font-size: 14px;
 
-            line-height: 1.7;
-
-            margin: 0 auto 15px;
+            margin-bottom: 12px;
 
         }
 
 
-        .selected-offer {
+        .booking-heading h2 {
 
             font-family:
                 'Cormorant Garamond',
                 serif;
 
-            font-size: 31px;
+            font-size: 30px;
 
-            font-weight: 600;
+            color: #c89b3c;
 
-            color: #b8860b;
-
-            margin: 0;
+            margin: 10px 0 0;
 
         }
 
 
-        /* ==========================================
+        /* =================================
            FORM
-        ========================================== */
+        ================================= */
 
         #offerBookingForm {
 
@@ -171,11 +238,11 @@
 
             margin-bottom: 8px;
 
-            color: #444;
-
-            font-size: 13px;
+            font-size: 14px;
 
             font-weight: 500;
+
+            color: #444;
 
         }
 
@@ -185,25 +252,38 @@
 
             width: 100%;
 
-            box-sizing: border-box;
-
             padding: 13px 15px;
 
-            border: 1px solid #e3d6cb;
+            box-sizing: border-box;
 
-            border-radius: 8px;
+            border:
+                1px solid #e5d4cc;
+
+            border-radius: 10px;
 
             outline: none;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 14px;
 
             background: #fff;
 
             color: #333;
 
-            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
 
-            font-size: 13px;
+        }
 
-            transition: 0.3s ease;
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #c89b3c;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(200, 155, 60, 0.10);
 
         }
 
@@ -215,20 +295,9 @@
         }
 
 
-        .form-group input:focus,
-        .form-group select:focus {
-
-            border-color: #c89b3c;
-
-            box-shadow:
-                0 0 0 3px rgba(200, 155, 60, 0.10);
-
-        }
-
-
-        /* ==========================================
+        /* =================================
            BOOK BUTTON
-        ========================================== */
+        ================================= */
 
         .gold-btn {
 
@@ -238,90 +307,114 @@
 
             padding: 14px 25px;
 
-            margin-top: 5px;
+            border-radius: 30px;
 
-            border-radius: 4px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
 
-            background: #b8860b;
-
-            color: #ffffff;
+            color: white;
 
             font-family: 'Poppins', sans-serif;
 
-            font-size: 13px;
+            font-size: 14px;
 
             font-weight: 500;
 
-            letter-spacing: .5px;
-
             cursor: pointer;
 
-            transition: 0.3s ease;
+            transition: 0.3s;
+
+            margin-top: 5px;
 
         }
 
 
         .gold-btn:hover {
 
-            background: #9f7308;
-
             transform: translateY(-2px);
 
             box-shadow:
-                0 7px 18px rgba(184, 134, 11, 0.22);
+                0 8px 20px
+                rgba(200, 155, 60, 0.30);
 
         }
 
 
         .gold-btn:disabled {
 
-            opacity: .65;
+            opacity: 0.7;
 
             cursor: not-allowed;
 
             transform: none;
 
-            box-shadow: none;
-
         }
 
 
-        /* ==========================================
+        /* =================================
            BACK LINK
-        ========================================== */
+        ================================= */
 
         .back-link {
 
             text-align: center;
 
-            margin-top: 24px;
+            margin-top: 25px;
 
         }
 
 
         .back-link a {
 
-            color: #b8860b;
-
             text-decoration: none;
 
-            font-size: 12px;
+            color: #b8860b;
 
-            transition: 0.3s ease;
+            font-size: 13px;
+
+            transition: 0.3s;
 
         }
 
 
         .back-link a:hover {
 
-            color: #8f6808;
+            color: #c89b3c;
 
         }
 
 
-        /* ==========================================
+        /* =================================
            FOOTER
-        ========================================== */
+        ================================= */
+
+        footer {
+
+            background: #222;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+        }
+
+
+        footer h2 {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            margin-bottom: 8px;
+
+        }
+
 
         footer h2 a {
 
@@ -329,7 +422,7 @@
 
             text-decoration: none;
 
-            transition: 0.3s ease;
+            transition: 0.3s;
 
         }
 
@@ -341,19 +434,42 @@
         }
 
 
-        /* ==========================================
+        footer p {
+
+            font-size: 13px;
+
+            color: #ddd;
+
+            margin: 5px 0;
+
+        }
+
+
+        /* =================================
            RESPONSIVE
-        ========================================== */
+        ================================= */
 
-        @media (max-width: 800px) {
+        @media (max-width: 1000px) {
 
-            .offer-booking-section {
+            .nav-links {
 
-                padding: 55px 5% 65px;
+                gap: 15px;
 
             }
 
-            .offer-booking-container {
+        }
+
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+            .booking-container {
 
                 padding: 35px 25px;
 
@@ -364,29 +480,32 @@
 
         @media (max-width: 500px) {
 
-            .offer-booking-section {
+            .booking-section {
 
-                padding: 40px 15px 55px;
+                padding: 40px 15px;
 
             }
 
-            .offer-booking-container {
+
+            .booking-container {
 
                 padding: 30px 20px;
 
-                border-radius: 14px;
+                border-radius: 15px;
 
             }
 
-            .offer-booking-heading h1 {
+
+            .booking-heading h1 {
 
                 font-size: 40px;
 
             }
 
-            .selected-offer {
 
-                font-size: 27px;
+            .booking-heading h2 {
+
+                font-size: 26px;
 
             }
 
@@ -400,122 +519,100 @@
 <body>
 
 
-    <!-- ==========================================
-         HEADER
-    ========================================== -->
+    <!-- =================================
+         NAVBAR
+    ================================= -->
 
-    <header>
+    <nav class="navbar">
 
-        <nav class="navbar">
+        <div class="logo">
 
+            💅 Nail Studio
 
-            <!-- CLICKABLE LOGO -->
-
-            <a href="index.html" class="logo">
-                Nail Muse
-            </a>
+        </div>
 
 
-            <!-- NAVIGATION -->
+        <ul class="nav-links">
 
-            <ul class="nav-links">
-
-                <li>
-                    <a href="index.html">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="about.html">
-                        About
-                    </a>
-                </li>
-
-                <li>
-                    <a href="services.html">
-                        Services
-                    </a>
-                </li>
-
-                <li>
-                    <a href="offer.html">
-                        Offers
-                    </a>
-                </li>
-
-                <li>
-                    <a href="faqs.html">
-                        FAQs
-                    </a>
-                </li>
-
-                <li>
-                    <a href="gallery.html">
-                        Gallery
-                    </a>
-                </li>
-
-                <li>
-                    <a href="booking.html">
-                        Booking
-                    </a>
-                </li>
-
-                <li>
-                    <a href="contact.html">
-                        Contact
-                    </a>
-                </li>
-
-            </ul>
-
-
-            <!-- BOOK BUTTON -->
-
-            <div class="nav-buttons">
-
-                <a href="booking.html" class="signup">
-                    Book Now
+            <li>
+                <a href="index.html">
+                    Home
                 </a>
+            </li>
 
-            </div>
+            <li>
+                <a href="about.html">
+                    About
+                </a>
+            </li>
 
-        </nav>
+            <li>
+                <a href="services.html">
+                    Services
+                </a>
+            </li>
 
-    </header>
+            <li>
+                <a href="offer.html">
+                    Offers
+                </a>
+            </li>
+
+            <li>
+                <a href="faqs.html">
+                    FAQs
+                </a>
+            </li>
+
+            <li>
+                <a href="gallery.html">
+                    Gallery
+                </a>
+            </li>
+
+            <li>
+                <a href="booking.html">
+                    Booking
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
 
 
-    <!-- ==========================================
-         OFFER BOOKING SECTION
-    ========================================== -->
+    <!-- =================================
+         OFFER BOOKING
+    ================================= -->
 
-    <section class="offer-booking-section">
+    <section class="booking-section">
+
+        <div class="booking-container">
 
 
-        <div class="offer-booking-container">
-
-
-            <!-- HEADING -->
-
-            <div class="offer-booking-heading">
-
-                <span class="booking-label">
-                    NAIL MUSE
-                </span>
+            <div class="booking-heading">
 
                 <h1>
-                    Offer Booking
+
+                    ✨ Offer Booking
+
                 </h1>
 
+
                 <p>
-                    Reserve your appointment and enjoy
-                    your selected special offer.
+
+                    Book your special offer appointment with us.
+
                 </p>
 
-                <h2
-                    id="offerName"
-                    class="selected-offer">
+
+                <h2 id="offerName">
 
                     Special Offer
 
@@ -524,9 +621,9 @@
             </div>
 
 
-            <!-- ======================================
-                 FORM
-            ======================================= -->
+            <!-- =================================
+                 OFFER BOOKING FORM
+            ================================= -->
 
             <form id="offerBookingForm">
 
@@ -536,8 +633,11 @@
                 <div class="form-group">
 
                     <label for="offerNameInput">
+
                         Full Name
+
                     </label>
+
 
                     <input
                         type="text"
@@ -553,8 +653,11 @@
                 <div class="form-group">
 
                     <label for="offerEmail">
+
                         Email Address
+
                     </label>
+
 
                     <input
                         type="email"
@@ -570,13 +673,16 @@
                 <div class="form-group">
 
                     <label for="offerPhone">
+
                         Phone Number
+
                     </label>
+
 
                     <input
                         type="tel"
                         id="offerPhone"
-                        placeholder="Enter 10-digit phone number"
+                        placeholder="Enter your phone number"
                         pattern="[0-9]{10}"
                         maxlength="10"
                         inputmode="numeric"
@@ -590,8 +696,11 @@
                 <div class="form-group">
 
                     <label for="offerDate">
+
                         Appointment Date
+
                     </label>
+
 
                     <input
                         type="date"
@@ -606,15 +715,20 @@
                 <div class="form-group">
 
                     <label for="offerTime">
-                        Appointment Time
+
+                        🕒 Appointment Time
+
                     </label>
+
 
                     <select
                         id="offerTime"
                         required>
 
                         <option value="">
+
                             Select a time
+
                         </option>
 
                         <option value="11:00 AM">
@@ -673,19 +787,20 @@
                     class="gold-btn"
                     id="bookButton">
 
-                    Book Appointment
+                    Book Appointment 💅
 
                 </button>
+
 
             </form>
 
 
-            <!-- BACK -->
-
             <div class="back-link">
 
                 <a href="offer.html">
+
                     ← Back to Offers
+
                 </a>
 
             </div>
@@ -696,36 +811,42 @@
     </section>
 
 
-    <!-- ==========================================
+    <!-- =================================
          FOOTER
-    ========================================== -->
+    ================================= -->
 
     <footer>
 
         <h2>
 
             <a href="index.html">
-                Nail Muse
+
+                💅 Nail Studio
+
             </a>
 
         </h2>
 
-        <p>
-            Luxury Nails |
-            Modern Technology |
-            Perfect Experience
-        </p>
 
         <p>
-            © 2026 Nail Muse
+
+            Luxury Nails | Modern Technology | Perfect Experience
+
+        </p>
+
+
+        <p>
+
+            © 2026 Nail Studio
+
         </p>
 
     </footer>
 
 
-    <!-- ==========================================
+    <!-- =================================
          JAVASCRIPT
-    ========================================== -->
+    ================================= -->
 
     <script>
 
@@ -887,21 +1008,6 @@
                         }
 
 
-                        const emailPattern =
-                            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-                        if (!emailPattern.test(email)) {
-
-                            alert(
-                                "Please enter a valid email address."
-                            );
-
-                            return;
-
-                        }
-
-
                         if (!/^[0-9]{10}$/.test(phone)) {
 
                             alert(
@@ -1006,7 +1112,7 @@
 
 
                         /* =================================
-                           SEND TO BACKEND
+                           SEND TO RENDER BACKEND
                         ================================= */
 
                         try {
@@ -1044,7 +1150,7 @@
                             if (response.ok) {
 
                                 alert(
-                                    "Offer appointment booked successfully!"
+                                    "Offer Appointment Booked Successfully! 💅✨"
                                 );
 
 
@@ -1096,7 +1202,9 @@
 
                                     }
 
-                                } else {
+                                }
+
+                                else {
 
                                     const errorText =
                                         await response.text();
@@ -1111,7 +1219,9 @@
 
                                 }
 
-                            } catch (error) {
+                            }
+
+                            catch (error) {
 
                                 console.log(
                                     "Unable to read server error response."
@@ -1153,17 +1263,14 @@
                         }
 
 
-                        /* =================================
-                           ENABLE BUTTON
-                        ================================= */
-
                         finally {
 
                             bookButton.disabled =
                                 false;
 
+
                             bookButton.textContent =
-                                "Book Appointment";
+                                "Book Appointment 💅";
 
                         }
 
@@ -1175,6 +1282,8 @@
 
     </script>
 
+
 </body>
 
 </html>
+

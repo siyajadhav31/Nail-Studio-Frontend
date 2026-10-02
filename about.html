@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>About Us | Nail Muse</title>
+    <title>About Us | Nail Studio</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -54,42 +54,17 @@
         }
 
 
-        /* CLICKABLE LOGO */
-
         .logo {
-            display: inline-block;
-
             font-family: 'Cormorant Garamond', serif;
 
             font-size: 30px;
-            font-weight: 600;
+            font-weight: 700;
 
             color: #333;
 
-            letter-spacing: .2px;
-
             white-space: nowrap;
-
-            text-decoration: none;
-
-            cursor: pointer;
-
-            flex-shrink: 0;
-
-            transition: 0.3s ease;
         }
 
-
-        .logo:hover {
-            color: #b8860b;
-
-            text-decoration: none;
-        }
-
-
-        /* ==========================================
-           NAV LINKS
-        ========================================== */
 
         .nav-links {
             display: flex;
@@ -105,8 +80,6 @@
 
 
         .nav-links a {
-            position: relative;
-
             text-decoration: none;
 
             color: #444;
@@ -114,8 +87,6 @@
             font-size: 13px;
 
             transition: 0.3s ease;
-
-            padding-bottom: 5px;
         }
 
 
@@ -123,34 +94,6 @@
             color: #b8860b;
         }
 
-
-        /* ACTIVE NAV LINK */
-
-        .nav-links a.active {
-            color: #b8860b;
-
-            font-weight: 600;
-        }
-
-
-        .nav-links a.active::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            bottom: 0;
-
-            width: 100%;
-            height: 1.5px;
-
-            background: #b8860b;
-        }
-
-
-        /* ==========================================
-           BOOK NOW BUTTON
-        ========================================== */
 
         .nav-buttons {
             display: flex;
@@ -261,11 +204,12 @@
         }
 
 
-        /* REMOVE GOLD LINE */
+        /* ==========================================
+           REMOVE GOLD LINE BELOW H1
+        ========================================== */
 
         .about-page-text h1::after {
             content: none !important;
-
             display: none !important;
         }
 
@@ -282,10 +226,6 @@
             max-width: 600px;
         }
 
-
-        /* ==========================================
-           GOLD BUTTON
-        ========================================== */
 
         .about-page-text .gold-btn {
             display: inline-block;
@@ -339,6 +279,12 @@
         }
 
 
+        /*
+        IMPORTANT:
+        No ::before box is used here.
+        */
+
+
         .about-page-image img {
             position: relative;
 
@@ -366,7 +312,7 @@
 
 
         /* ==========================================
-           OUR MISSION
+           MISSION
         ========================================== */
 
         .about-mission {
@@ -523,6 +469,7 @@
             position: absolute;
 
             top: 0;
+
             left: 0;
 
             width: 100%;
@@ -664,6 +611,13 @@
             }
 
 
+            .about-page-text h1::after {
+                content: none !important;
+
+                display: none !important;
+            }
+
+
             .about-page-text p {
                 margin-left: auto;
 
@@ -711,6 +665,13 @@
 
             .about-page-text h1 {
                 font-size: 40px;
+            }
+
+
+            .about-page-text h1::after {
+                content: none !important;
+
+                display: none !important;
             }
 
 
@@ -762,11 +723,11 @@
         <nav class="navbar">
 
 
-            <!-- CLICKABLE LOGO -->
+            <!-- LOGO -->
 
-            <a href="index.html" class="logo">
-                Nail Muse
-            </a>
+            <div class="logo">
+                💅 Nail Studio
+            </div>
 
 
             <!-- NAVIGATION -->
@@ -779,11 +740,13 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="about.html">
                         About
                     </a>
                 </li>
+
 
                 <li>
                     <a href="services.html">
@@ -791,11 +754,13 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="offer.html">
                         Offers
                     </a>
                 </li>
+
 
                 <li>
                     <a href="faqs.html">
@@ -803,17 +768,20 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="gallery.html">
                         Gallery
                     </a>
                 </li>
 
+
                 <li>
                     <a href="booking.html">
                         Booking
                     </a>
                 </li>
+
 
                 <li>
                     <a href="contact.html">
@@ -823,8 +791,6 @@
 
             </ul>
 
-
-            <!-- BOOK NOW -->
 
             <div class="nav-buttons">
 
@@ -856,34 +822,43 @@
             <div class="about-page-text">
 
                 <span class="booking-subtitle">
-                    ABOUT NAIL MUSE
+
+                    ✨ ABOUT NAIL STUDIO
+
                 </span>
 
 
                 <h1>
+
                     Where Beauty
-                    Meets Creativity
+                    Meets Technology
+
                 </h1>
 
 
                 <p>
-                    At Nail Muse, we believe that beautiful nails
-                    are more than just a style — they are a form
-                    of self-expression.
+
+                    At Nail Studio, we believe that beautiful nails are more
+                    than just a style — they are a form of self-expression.
+
                 </p>
 
 
                 <p>
+
                     Our studio combines professional nail artists,
-                    premium products and modern techniques to provide
+                    premium products and modern technology to provide
                     a luxurious and personalized nail experience.
+
                 </p>
 
 
                 <p>
-                    From elegant everyday designs to glamorous
-                    bridal nail art, our experts are dedicated
-                    to creating the perfect look for every occasion.
+
+                    From elegant everyday designs to glamorous bridal nail art,
+                    our experts are dedicated to creating the perfect look
+                    for every occasion.
+
                 </p>
 
 
@@ -903,7 +878,7 @@
 
                 <img
                     src="images/list.jpg"
-                    alt="Nail Muse Price List">
+                    alt="Nail Studio Price List">
 
             </div>
 
@@ -919,14 +894,18 @@
     <section class="about-mission">
 
         <h2>
+
             Our Mission
+
         </h2>
 
 
         <p>
-            Our mission is to provide a premium, relaxing and
-            creative nail experience where every client feels
-            confident, beautiful and valued.
+
+            Our mission is to provide a premium, relaxing and creative
+            nail experience where every client feels confident, beautiful
+            and valued.
+
         </p>
 
     </section>
@@ -939,7 +918,9 @@
     <section class="why-us">
 
         <h2>
+
             Why Our Clients Love Us
+
         </h2>
 
 
@@ -951,13 +932,16 @@
             <div class="card">
 
                 <h3>
-                    Expert Artists
+
+                    💅 Expert Artists
+
                 </h3>
 
 
                 <p>
-                    Skilled professionals creating beautiful
-                    nail designs with attention to every detail.
+
+                    Skilled professionals creating beautiful nail designs.
+
                 </p>
 
             </div>
@@ -968,13 +952,16 @@
             <div class="card">
 
                 <h3>
-                    Premium Products
+
+                    🌸 Premium Products
+
                 </h3>
 
 
                 <p>
-                    High-quality products selected to give you
-                    beautiful and long-lasting results.
+
+                    High-quality products for healthy and beautiful nails.
+
                 </p>
 
             </div>
@@ -985,13 +972,16 @@
             <div class="card">
 
                 <h3>
-                    Modern Experience
+
+                    ✨ Modern Experience
+
                 </h3>
 
 
                 <p>
-                    Creativity, modern techniques and personalized
-                    service combined for your perfect look.
+
+                    Technology and creativity combined for your perfect look.
+
                 </p>
 
             </div>
@@ -1009,17 +999,23 @@
     <footer>
 
         <h2>
-            Nail Muse
+
+            💅 Nail Studio
+
         </h2>
 
 
         <p>
-            Luxury Nails | Modern Techniques | Perfect Experience
+
+            Luxury Nails | Modern Technology | Perfect Experience
+
         </p>
 
 
         <p>
-            © 2026 Nail Muse
+
+            © 2026 Nail Studio
+
         </p>
 
     </footer>

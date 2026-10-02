@@ -8,405 +8,19 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Gallery | Nail Muse</title>
+    <title>Gallery | Nail Studio</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
 
     <!-- GOOGLE FONTS -->
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-
-
-    <!-- GALLERY PAGE CSS -->
-
-    <style>
-
-        /* ==========================================
-           GALLERY SECTION
-        ========================================== */
-
-        .gallery-section {
-            padding: 70px 7% 80px;
-            background: #fffaf8;
-            min-height: 70vh;
-        }
-
-
-        /* ==========================================
-           GALLERY HEADER
-        ========================================== */
-
-        .gallery-header {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto 48px;
-        }
-
-        .gallery-label {
-            display: block;
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 11px;
-            font-weight: 600;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            color: #b8860b;
-
-            margin-bottom: 10px;
-        }
-
-        .gallery-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 50px;
-            font-weight: 600;
-
-            color: #333;
-
-            line-height: 1.1;
-
-            margin: 0 0 12px;
-        }
-
-        .gallery-header p {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 13px;
-            font-weight: 300;
-
-            color: #777;
-
-            line-height: 1.8;
-
-            margin: 0;
-        }
-
-
-        /* ==========================================
-           GALLERY GRID
-        ========================================== */
-
-        .gallery-cards {
-            max-width: 1250px;
-
-            margin: 0 auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 22px;
-        }
-
-
-        /* ==========================================
-           GALLERY CARD
-        ========================================== */
-
-        .gallery-card {
-            background: #ffffff;
-
-            border: 1px solid #eadfce;
-
-            overflow: hidden;
-
-            transition:
-                transform 0.35s ease,
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-6px);
-
-            border-color: #c89b3c;
-
-            box-shadow:
-                0 12px 28px rgba(0, 0, 0, 0.08);
-        }
-
-
-        /* ==========================================
-           GALLERY IMAGE
-        ========================================== */
-
-        .gallery-card img {
-            width: 100%;
-
-            height: 285px;
-
-            display: block;
-
-            object-fit: cover;
-
-            transition:
-                transform 0.5s ease;
-        }
-
-        .gallery-card:hover img {
-            transform: scale(1.04);
-        }
-
-
-        /* ==========================================
-           GALLERY CARD TITLE
-        ========================================== */
-
-        .gallery-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 23px;
-
-            font-weight: 600;
-
-            color: #3d3834;
-
-            text-align: center;
-
-            margin: 0;
-
-            padding: 17px 10px 19px;
-
-            background: #fff;
-        }
-
-
-        /* ==========================================
-           GOLD LINE
-        ========================================== */
-
-        .gallery-card h3::after {
-            content: "";
-
-            display: block;
-
-            width: 28px;
-
-            height: 1px;
-
-            background: #c89b3c;
-
-            margin: 9px auto 0;
-        }
-
-
-        /* ==========================================
-           CTA
-        ========================================== */
-
-        .gallery-cta {
-            padding: 65px 20px;
-
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fffdf8,
-                    #f9f1df
-                );
-
-            border-top: 1px solid #eadfce;
-        }
-
-        .gallery-cta-label {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 10px;
-
-            font-weight: 600;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            color: #b8860b;
-
-            margin-bottom: 9px;
-        }
-
-        .gallery-cta h2 {
-            font-family: 'Cormorant Garamond', serif;
-
-            font-size: 38px;
-
-            font-weight: 600;
-
-            color: #333;
-
-            margin: 0 0 9px;
-        }
-
-        .gallery-cta p {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 13px;
-
-            font-weight: 300;
-
-            color: #666;
-
-            margin: 0 0 23px;
-        }
-
-
-        /* ==========================================
-           CTA BUTTON
-        ========================================== */
-
-        .gallery-btn {
-            display: inline-block;
-
-            text-decoration: none;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #c89b3c,
-                    #b8860b
-                );
-
-            color: #fff;
-
-            padding: 12px 28px;
-
-            border-radius: 2px;
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 11px;
-
-            font-weight: 500;
-
-            letter-spacing: .5px;
-
-            transition: 0.3s ease;
-        }
-
-        .gallery-btn:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 7px 17px
-                rgba(184, 134, 11, 0.25);
-        }
-
-
-        /* ==========================================
-           ACTIVE NAVBAR
-        ========================================== */
-
-        .nav-links a.active {
-            color: #b8860b !important;
-
-            font-weight: 600 !important;
-        }
-
-        .nav-links a.active::after {
-            width: 100% !important;
-
-            background: #b8860b !important;
-        }
-
-
-        /* ==========================================
-           RESPONSIVE - TABLET
-        ========================================== */
-
-        @media (max-width: 1050px) {
-
-            .gallery-cards {
-                grid-template-columns:
-                    repeat(3, 1fr);
-            }
-
-            .gallery-card img {
-                height: 270px;
-            }
-
-        }
-
-
-        /* ==========================================
-           RESPONSIVE - MOBILE
-        ========================================== */
-
-        @media (max-width: 750px) {
-
-            .gallery-section {
-                padding: 50px 5% 60px;
-            }
-
-            .gallery-header h1 {
-                font-size: 40px;
-            }
-
-            .gallery-cards {
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                gap: 15px;
-            }
-
-            .gallery-card img {
-                height: 230px;
-            }
-
-            .gallery-card h3 {
-                font-size: 20px;
-
-                padding: 14px 7px 16px;
-            }
-
-        }
-
-
-        /* ==========================================
-           RESPONSIVE - SMALL MOBILE
-        ========================================== */
-
-        @media (max-width: 480px) {
-
-            .gallery-header h1 {
-                font-size: 36px;
-            }
-
-            .gallery-header p {
-                font-size: 12px;
-            }
-
-            .gallery-cards {
-                grid-template-columns: 1fr;
-
-                gap: 18px;
-            }
-
-            .gallery-card img {
-                height: 330px;
-            }
-
-            .gallery-card h3 {
-                font-size: 22px;
-            }
-
-            .gallery-cta {
-                padding: 50px 18px;
-            }
-
-            .gallery-cta h2 {
-                font-size: 32px;
-            }
-
-        }
-
-    </style>
 
 </head>
 
@@ -414,23 +28,18 @@
 <body>
 
 
-    <!-- ==========================================
+    <!-- =================================
          HEADER
-    ========================================== -->
+    ================================= -->
 
     <header>
 
         <nav class="navbar">
 
+            <div class="logo">
+                💅 Nail Studio
+            </div>
 
-            <!-- LOGO -->
-
-            <a href="index.html" class="logo">
-                Nail Muse
-            </a>
-
-
-            <!-- NAVIGATION -->
 
             <ul class="nav-links">
 
@@ -485,8 +94,6 @@
             </ul>
 
 
-            <!-- BOOK NOW -->
-
             <div class="nav-buttons">
 
                 <a href="booking.html" class="signup">
@@ -500,20 +107,16 @@
     </header>
 
 
-
-    <!-- ==========================================
-         GALLERY
-    ========================================== -->
+    <!-- =================================
+         GALLERY PAGE
+    ================================= -->
 
     <section class="gallery-section">
 
-
-        <!-- HEADER -->
-
         <div class="gallery-header">
 
-            <span class="gallery-label">
-                Our Gallery
+            <span class="gallery-subtitle">
+                ✨ OUR GALLERY
             </span>
 
             <h1>
@@ -521,18 +124,17 @@
             </h1>
 
             <p>
-                Discover elegant finishes, creative details
-                and beautiful nail designs made to inspire
-                your next Nail Muse experience.
+                Discover stunning nail art, elegant finishes,
+                and creative designs made to inspire your
+                next luxury nail experience.
             </p>
 
         </div>
 
 
-
-        <!-- ==========================================
+        <!-- =================================
              GALLERY CARDS
-        ========================================== -->
+        ================================= -->
 
         <div class="gallery-cards">
 
@@ -547,7 +149,7 @@
                     loading="lazy">
 
                 <h3>
-                    Butterfly Nails
+                    🦋 Butterfly Nails
                 </h3>
 
             </div>
@@ -563,7 +165,7 @@
                     loading="lazy">
 
                 <h3>
-                    Glitter Nails
+                    ✨ Glitter Nails
                 </h3>
 
             </div>
@@ -579,7 +181,7 @@
                     loading="lazy">
 
                 <h3>
-                    Coquette Nails
+                    🎀 Coquette Nails
                 </h3>
 
             </div>
@@ -595,7 +197,7 @@
                     loading="lazy">
 
                 <h3>
-                    Aura Nails
+                    🌸 Aura Nails
                 </h3>
 
             </div>
@@ -611,7 +213,7 @@
                     loading="lazy">
 
                 <h3>
-                    Minimalist Nails
+                    🤍 Minimalist Nails
                 </h3>
 
             </div>
@@ -627,7 +229,7 @@
                     loading="lazy">
 
                 <h3>
-                    Red Glam Nails
+                    💋 Red Glam Nails
                 </h3>
 
             </div>
@@ -643,7 +245,7 @@
                     loading="lazy">
 
                 <h3>
-                    Black French Nails
+                    🖤 Black French Nails
                 </h3>
 
             </div>
@@ -659,7 +261,7 @@
                     loading="lazy">
 
                 <h3>
-                    Pearl Nails
+                    🫧 Pearl Nails
                 </h3>
 
             </div>
@@ -675,7 +277,7 @@
                     loading="lazy">
 
                 <h3>
-                    Mirror Nails
+                    🪞 Mirror Nails
                 </h3>
 
             </div>
@@ -691,7 +293,7 @@
                     loading="lazy">
 
                 <h3>
-                    Chrome Nails
+                    🪩 Chrome Nails
                 </h3>
 
             </div>
@@ -707,7 +309,7 @@
                     loading="lazy">
 
                 <h3>
-                    Tortoiseshell Nails
+                    🐢 Tortoiseshell Nails
                 </h3>
 
             </div>
@@ -723,7 +325,7 @@
                     loading="lazy">
 
                 <h3>
-                    Glazed Donut Nails
+                    🍩 Glazed Donut Nails
                 </h3>
 
             </div>
@@ -739,7 +341,7 @@
                     loading="lazy">
 
                 <h3>
-                    Cat Eye Nails
+                    🐱 Cat Eye Nails
                 </h3>
 
             </div>
@@ -755,7 +357,7 @@
                     loading="lazy">
 
                 <h3>
-                    3D Bow Nails
+                    🎀 3D Bow Nails
                 </h3>
 
             </div>
@@ -771,7 +373,7 @@
                     loading="lazy">
 
                 <h3>
-                    3D Flower Nails
+                    🌼 3D Flower Nails
                 </h3>
 
             </div>
@@ -787,7 +389,7 @@
                     loading="lazy">
 
                 <h3>
-                    Cherry Nails
+                    🍒 Cherry Nails
                 </h3>
 
             </div>
@@ -798,45 +400,39 @@
     </section>
 
 
-
-    <!-- ==========================================
+    <!-- =================================
          CALL TO ACTION
-    ========================================== -->
+    ================================= -->
 
-    <section class="gallery-cta">
-
-        <div class="gallery-cta-label">
-            Your Next Look
-        </div>
+    <section class="services-cta">
 
         <h2>
             Love What You See?
         </h2>
 
         <p>
-            Choose your favorite design and book
-            your Nail Muse experience today.
+            Choose your favorite design and book your
+            luxury nail experience today.
         </p>
 
         <a href="booking.html"
-            class="gallery-btn">
+            class="gold-btn">
 
-            Book Your Appointment
+            ✨ Book Your Appointment
 
         </a>
 
     </section>
 
 
-
-    <!-- ==========================================
+    <!-- =================================
          FOOTER
-    ========================================== -->
+    ================================= -->
 
     <footer>
 
         <h2>
-            Nail Muse
+            💅 Nail Studio
         </h2>
 
         <p>
@@ -846,57 +442,13 @@
         </p>
 
         <p>
-            © 2026 Nail Muse
+            © 2026 Nail Studio
         </p>
 
     </footer>
 
 
-
-    <!-- MAIN JS -->
-
     <script src="js/main.js"></script>
-
-
-    <!-- ==========================================
-         GALLERY ACTIVE NAV
-    ========================================== -->
-
-    <script>
-
-        const currentPage =
-            window.location.pathname
-                .split("/")
-                .pop()
-                .toLowerCase() || "index.html";
-
-        const navLinks =
-            document.querySelectorAll(".nav-links a");
-
-        navLinks.forEach(function(link) {
-
-            const href = link.getAttribute("href");
-
-            if (!href) return;
-
-            const linkPage =
-                href
-                    .split("/")
-                    .pop()
-                    .split("?")[0]
-                    .split("#")[0]
-                    .toLowerCase();
-
-            link.classList.remove("active");
-
-            if (linkPage === currentPage) {
-                link.classList.add("active");
-            }
-
-        });
-
-    </script>
-
 
 </body>
 
