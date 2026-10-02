@@ -565,14 +565,16 @@ a{
 
 .card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
     display: block;
+    background: #fffaf8;
     transition: .4s ease;
 }
 
 .card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 
@@ -678,6 +680,10 @@ a{
         gap: 20px;
     }
 
+    .card img {
+        height: 220px;
+    }
+
 }
 
 
@@ -705,7 +711,8 @@ a{
     }
 
     .card img {
-        height: 210px;
+        height: 220px;
+        object-fit: contain;
     }
 
     .card h3 {
@@ -722,7 +729,6 @@ a{
     }
 
 }
-
 /* ==========================================
    GALLERY
 ========================================== */
