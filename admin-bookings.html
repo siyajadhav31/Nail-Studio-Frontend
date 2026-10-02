@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Bookings | Nail Studio</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* ==========================================
+           ADMIN NAVBAR
+        ========================================== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background: #ffffff;
+            border-bottom: 1px solid #eee5df;
+            min-height: 72px;
+            box-sizing: border-box;
+        }
+
+        .navbar .logo {
+            text-decoration: none;
+            color: #49393e;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #49393e;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #b8860b;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #49393e;
+            color: #49393e;
+            padding: 7px 10px;
+            border-radius: 3px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #49393e;
+            color: white;
+        }
+
+
+        /* ==========================================
+           FILTER SECTION
+        ========================================== */
+
+        .booking-filter {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .booking-filter label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .booking-filter select {
+            padding: 10px 15px;
+            border: 1px solid #e5d4cc;
+            border-radius: 10px;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .booking-filter select:focus {
+            border-color: #c89b3c;
+        }
+
+
+        /* ==========================================
+           BOOKING TYPE BADGES
+        ========================================== */
+
+        .offer-badge,
+        .service-badge,
+        .virtual-badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .offer-badge {
+            background: #fff4ef;
+            color: #b8860b;
+        }
+
+        .service-badge {
+            background: #f5f5f5;
+            color: #555;
+        }
+
+        .virtual-badge {
+            background: #f5edff;
+            color: #8a4db8;
+        }
+
+
+        /* ==========================================
+           ADMIN DASHBOARD STATS
+        ========================================== */
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            border: 1px solid #f0e3dd;
+            box-shadow: 0 8px 25px rgba(80, 50, 40, 0.08);
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            transition: 0.3s ease;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(80, 50, 40, 0.12);
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+
+            background: #fff4ef;
+        }
+
+        .stat-info h3 {
+            margin: 0 0 5px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #777;
+        }
+
+        .stat-info p {
+            margin: 0;
+            font-size: 27px;
+            font-weight: 600;
+            color: #333;
+        }
+
+
+        /* ==========================================
+           TABLE
+        ========================================== */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        #bookingTable {
+            min-width: 1000px;
+        }
+
+
+        /* ==========================================
+           ACTION BUTTONS
+        ========================================== */
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            border: none;
+            padding: 7px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            transition: 0.3s ease;
+        }
+
+        .edit-btn {
+            background: #fff4ef;
+            color: #b8860b;
+        }
+
+        .edit-btn:hover {
+            background: #c89b3c;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #fff0f0;
+            color: #c0392b;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+            color: white;
+        }
+
+
+        /* ==========================================
+           EDIT MODAL
+        ========================================== */
+
+        .admin-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .admin-modal-content {
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+
+            background: #fffaf8;
+            padding: 30px;
+            border-radius: 18px;
+
+            position: relative;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .admin-modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+
+            font-family: 'Cormorant Garamond', serif;
+            color: #49393e;
+            font-size: 30px;
+        }
+
+        .admin-close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+
+            font-size: 28px;
+            color: #777;
+
+            cursor: pointer;
+        }
+
+        .admin-close-modal:hover {
+            color: #49393e;
+        }
+
+        .edit-form-group {
+            margin-bottom: 18px;
+        }
+
+        .edit-form-group label {
+            display: block;
+            margin-bottom: 7px;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #49393e;
+        }
+
+        .edit-form-group input,
+        .edit-form-group select {
+            width: 100%;
+            padding: 11px 13px;
+
+            border: 1px solid #e5d4cc;
+            border-radius: 8px;
+
+            background: white;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .edit-form-group input:focus,
+        .edit-form-group select:focus {
+            border-color: #c89b3c;
+        }
+
+        .update-btn {
+            width: 100%;
+            padding: 12px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #c89b3c;
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .update-btn:hover {
+            background: #b8860b;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE DASHBOARD
+        ========================================== */
+
+        @media (max-width: 1200px) {
+
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo {
+                font-size: 25px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .logout-btn {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            .booking-filter {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="admin-bookings.html" class="logo">
+            💅 Nail Studio
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="admin-bookings.html">
+                    Customer Bookings
+                </a>
+            </li>
+
+
+            <li>
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- ==========================================
+     ADMIN BOOKINGS
+========================================== -->
+
+<section class="admin-bookings">
+
+    <div class="admin-container">
+
+
+        <!-- ADMIN TITLE -->
+
+        <div class="admin-title">
+
+            <span>
+                ✨ Nail Studio Administration
+            </span>
+
+            <h1>
+                Customer Bookings
+            </h1>
+
+            <p>
+                Manage all customer appointments from one place.
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             ADMIN DASHBOARD STATS
+        ========================================== -->
+
+        <div class="admin-stats">
+
+
+            <!-- TOTAL BOOKINGS -->
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <div class="stat-info">
+
+                    <h3>
+                        Total Bookings
+                    </h3>
+
+                    <p id="totalBookings">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- OFFER BOOKINGS -->
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon">
+                    🎁
+                </div>
+
+                <div class="stat-info">
+
+                    <h3>
+                        Offer Bookings
+                    </h3>
+
+                    <p id="offerBookings">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICE BOOKINGS -->
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon">
+                    💅
+                </div>
+
+                <div class="stat-info">
+
+                    <h3>
+                        Service Bookings
+                    </h3>
+
+                    <p id="serviceBookings">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VIRTUAL BOOKINGS -->
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon">
+                    ✨
+                </div>
+
+                <div class="stat-info">
+
+                    <h3>
+                        Virtual Bookings
+                    </h3>
+
+                    <p id="virtualBookings">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BOOKING FILTER
+        ========================================== -->
+
+        <div class="booking-filter">
+
+            <label for="bookingFilter">
+                Show:
+            </label>
+
+            <select id="bookingFilter">
+
+                <option value="all">
+                    All Bookings
+                </option>
+
+                <option value="offer">
+                    🎁 Offer Bookings
+                </option>
+
+                <option value="service">
+                    💅 Service Bookings
+                </option>
+
+                <option value="virtual">
+                    ✨ Virtual Bookings
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ==========================================
+             BOOKING TABLE
+        ========================================== -->
+
+        <div class="table-container">
+
+            <div id="loadingMessage" class="loading">
+                Loading bookings...
+            </div>
+
+
+            <table id="bookingTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Booking Type</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="bookingTableBody">
+                </tbody>
+
+            </table>
+
+
+            <div
+                id="emptyMessage"
+                class="empty-message"
+                style="display:none;">
+
+                No bookings found.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     EDIT MODAL
+========================================== -->
+
+<div id="editModal" class="admin-modal">
+
+    <div class="admin-modal-content">
+
+
+        <span
+            class="admin-close-modal"
+            id="closeModal">
+
+            &times;
+
+        </span>
+
+
+        <h2>
+            ✨ Edit Booking
+        </h2>
+
+
+        <form id="editBookingForm">
+
+
+            <!-- NAME -->
+
+            <div class="edit-form-group">
+
+                <label for="editName">
+                    👤 Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    required>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="edit-form-group">
+
+                <label for="editEmail">
+                    📧 Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="editEmail"
+                    required>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="edit-form-group">
+
+                <label for="editPhone">
+                    📱 Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="editPhone"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    required>
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div class="edit-form-group">
+
+                <label for="editDate">
+                    📅 Appointment Date
+                </label>
+
+                <input
+                    type="date"
+                    id="editDate"
+                    required>
+
+            </div>
+
+
+            <!-- TIME -->
+
+            <div class="edit-form-group">
+
+                <label for="editTime">
+                    🕒 Appointment Time
+                </label>
+
+                <select id="editTime" required>
+
+                    <option value="">
+                        Select a time
+                    </option>
+
+                    <option value="11:00 AM">
+                        11:00 AM
+                    </option>
+
+                    <option value="12:00 PM">
+                        12:00 PM
+                    </option>
+
+                    <option value="1:00 PM">
+                        1:00 PM
+                    </option>
+
+                    <option value="2:00 PM">
+                        2:00 PM
+                    </option>
+
+                    <option value="3:00 PM">
+                        3:00 PM
+                    </option>
+
+                    <option value="4:00 PM">
+                        4:00 PM
+                    </option>
+
+                    <option value="5:00 PM">
+                        5:00 PM
+                    </option>
+
+                    <option value="6:00 PM">
+                        6:00 PM
+                    </option>
+
+                    <option value="7:00 PM">
+                        7:00 PM
+                    </option>
+
+                    <option value="8:00 PM">
+                        8:00 PM
+                    </option>
+
+                    <option value="9:00 PM">
+                        9:00 PM
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- UPDATE BUTTON -->
+
+            <button
+                type="submit"
+                class="update-btn">
+
+                ✨ Update Booking
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+// ==========================================
+// API URL
+// ==========================================
+
+const API_URL =
+    "http://127.0.0.1:8080/api/bookings";
+
+
+let bookingsData = [];
+
+let selectedBookingId = null;
+
+
+// ==========================================
+// CHECK ADMIN LOGIN
+// ==========================================
+
+async function checkAdminLogin() {
+
+    try {
+
+        const response =
+            await fetch(
+                "http://127.0.0.1:8080/api/admin/check",
+                {
+                    method: "GET",
+                    credentials: "include"
+                }
+            );
+
+
+        const result =
+            await response.text();
+
+
+        console.log(
+            "Admin Check:",
+            result
+        );
+
+
+        if (result !== "Admin authenticated") {
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Admin authentication error:",
+            error
+        );
+
+
+        window.location.href =
+            "admin-login.html";
+
+
+        return false;
+
+    }
+
+}
+
+
+// ==========================================
+// CHECK BOOKING TYPE
+// ==========================================
+
+function getBookingType(booking) {
+
+    if (!booking) {
+        return "SERVICE";
+    }
+
+
+    const type =
+        String(booking.bookingType || "")
+            .trim()
+            .toUpperCase();
+
+
+    if (type === "VIRTUAL") {
+        return "VIRTUAL";
+    }
+
+
+    if (type === "OFFER") {
+        return "OFFER";
+    }
+
+
+    if (type === "SERVICE") {
+        return "SERVICE";
+    }
+
+
+    if (isOldOfferBooking(booking)) {
+        return "OFFER";
+    }
+
+
+    return "SERVICE";
+
+}
+
+
+// ==========================================
+// OLD OFFER BOOKING CHECK
+// ==========================================
+
+function isOldOfferBooking(booking) {
+
+    if (!booking || !booking.service) {
+        return false;
+    }
+
+
+    const service =
+        booking.service
+            .trim()
+            .toLowerCase();
+
+
+    return (
+
+        service === "first visit offer" ||
+
+        service === "birthday offer" ||
+
+        service === "nail art combo" ||
+
+        service === "festive special" ||
+
+        service === "loyalty rewards"
+
+    );
+
+}
+
+
+// ==========================================
+// BOOKING TYPE CHECKS
+// ==========================================
+
+function isOfferBooking(booking) {
+    return getBookingType(booking) === "OFFER";
+}
+
+
+function isVirtualBooking(booking) {
+    return getBookingType(booking) === "VIRTUAL";
+}
+
+
+function isServiceBooking(booking) {
+    return getBookingType(booking) === "SERVICE";
+}
+
+
+// ==========================================
+// UPDATE DASHBOARD STATS
+// ==========================================
+
+function updateDashboardStats() {
+
+    const totalBookings =
+        document.getElementById("totalBookings");
+
+
+    const offerBookings =
+        document.getElementById("offerBookings");
+
+
+    const serviceBookings =
+        document.getElementById("serviceBookings");
+
+
+    const virtualBookings =
+        document.getElementById("virtualBookings");
+
+
+    totalBookings.textContent =
+        bookingsData.length;
+
+
+    const offerCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isOfferBooking(booking);
+
+            }
+        ).length;
+
+
+    offerBookings.textContent =
+        offerCount;
+
+
+    const serviceCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isServiceBooking(booking);
+
+            }
+        ).length;
+
+
+    serviceBookings.textContent =
+        serviceCount;
+
+
+    const virtualCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isVirtualBooking(booking);
+
+            }
+        ).length;
+
+
+    virtualBookings.textContent =
+        virtualCount;
+
+}
+
+
+// ==========================================
+// LOAD BOOKINGS
+// ==========================================
+
+async function loadBookings() {
+
+    const tableBody =
+        document.getElementById(
+            "bookingTableBody"
+        );
+
+
+    const loadingMessage =
+        document.getElementById(
+            "loadingMessage"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    loadingMessage.style.display =
+        "block";
+
+
+    loadingMessage.textContent =
+        "Loading bookings...";
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "?_=" +
+                new Date().getTime(),
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load bookings"
+            );
+
+        }
+
+
+        bookingsData =
+            await response.json();
+
+
+        console.log(
+            "All bookings received:",
+            bookingsData
+        );
+
+
+        bookingsData.sort(
+            function (a, b) {
+
+                return Number(b.id) -
+                       Number(a.id);
+
+            }
+        );
+
+
+        loadingMessage.style.display =
+            "none";
+
+
+        displayBookings();
+
+        updateDashboardStats();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error loading bookings:",
+            error
+        );
+
+
+        loadingMessage.innerHTML =
+            "❌ Unable to load bookings. Make sure Spring Boot is running.";
+
+    }
+
+}
+
+
+// ==========================================
+// DISPLAY BOOKINGS
+// ==========================================
+
+function displayBookings() {
+
+    const tableBody =
+        document.getElementById(
+            "bookingTableBody"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    const filter =
+        document.getElementById(
+            "bookingFilter"
+        ).value;
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    let filteredBookings =
+        bookingsData.slice();
+
+
+    if (filter === "offer") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isOfferBooking(booking);
+
+                }
+            );
+
+    }
+
+
+    else if (filter === "service") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isServiceBooking(booking);
+
+                }
+            );
+
+    }
+
+
+    else if (filter === "virtual") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isVirtualBooking(booking);
+
+                }
+            );
+
+    }
+
+
+    if (filteredBookings.length === 0) {
+
+        emptyMessage.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    filteredBookings.forEach(
+        function (booking) {
+
+            const bookingType =
+                getBookingType(booking);
+
+
+            let bookingTypeText = "";
+
+            let badgeClass = "";
+
+
+            if (bookingType === "OFFER") {
+
+                bookingTypeText =
+                    "🎁 Offer Booking";
+
+                badgeClass =
+                    "offer-badge";
+
+            }
+
+            else if (bookingType === "VIRTUAL") {
+
+                bookingTypeText =
+                    "✨ Virtual Booking";
+
+                badgeClass =
+                    "virtual-badge";
+
+            }
+
+            else {
+
+                bookingTypeText =
+                    "💅 Service Booking";
+
+                badgeClass =
+                    "service-badge";
+
+            }
+
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${booking.id || ""}
+                </td>
+
+                <td>
+                    ${booking.name || ""}
+                </td>
+
+                <td>
+                    ${booking.email || ""}
+                </td>
+
+                <td>
+                    ${booking.phone || ""}
+                </td>
+
+                <td>
+
+                    <span class="${badgeClass}">
+                        ${bookingTypeText}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${booking.bookingDate || ""}
+                </td>
+
+                <td>
+                    ${booking.bookingTime || ""}
+                </td>
+
+                <td>
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="edit-btn"
+                            onclick="openEditModal(${booking.id})">
+
+                            ✏️ Edit
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteBooking(${booking.id})">
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(row);
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// FILTER CHANGE
+// ==========================================
+
+document
+    .getElementById("bookingFilter")
+    .addEventListener(
+        "change",
+        function () {
+
+            displayBookings();
+
+        }
+    );
+
+
+// ==========================================
+// OPEN EDIT MODAL
+// ==========================================
+
+function openEditModal(id) {
+
+    const booking =
+        bookingsData.find(
+            function (item) {
+
+                return Number(item.id) ===
+                       Number(id);
+
+            }
+        );
+
+
+    if (!booking) {
+
+        alert(
+            "❌ Booking not found."
+        );
+
+        return;
+
+    }
+
+
+    selectedBookingId =
+        id;
+
+
+    document.getElementById(
+        "editName"
+    ).value =
+        booking.name || "";
+
+
+    document.getElementById(
+        "editEmail"
+    ).value =
+        booking.email || "";
+
+
+    document.getElementById(
+        "editPhone"
+    ).value =
+        booking.phone || "";
+
+
+    document.getElementById(
+        "editDate"
+    ).value =
+        booking.bookingDate || "";
+
+
+    document.getElementById(
+        "editTime"
+    ).value =
+        booking.bookingTime || "";
+
+
+    document.getElementById(
+        "editModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+// ==========================================
+// CLOSE MODAL
+// ==========================================
+
+document
+    .getElementById("closeModal")
+    .addEventListener(
+        "click",
+        function () {
+
+            document.getElementById(
+                "editModal"
+            ).style.display =
+                "none";
+
+        }
+    );
+
+
+// ==========================================
+// CLOSE MODAL OUTSIDE CLICK
+// ==========================================
+
+window.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "editModal"
+            );
+
+
+        if (event.target === modal) {
+
+            modal.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// UPDATE BOOKING
+// ==========================================
+
+document
+    .getElementById("editBookingForm")
+    .addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            if (!selectedBookingId) {
+
+                alert(
+                    "❌ Booking ID not found."
+                );
+
+                return;
+
+            }
+
+
+            const originalBooking =
+                bookingsData.find(
+                    function (booking) {
+
+                        return Number(booking.id) ===
+                               Number(selectedBookingId);
+
+                    }
+                );
+
+
+            const bookingData = {
+
+                name:
+                    document.getElementById(
+                        "editName"
+                    ).value.trim(),
+
+
+                email:
+                    document.getElementById(
+                        "editEmail"
+                    ).value.trim(),
+
+
+                phone:
+                    document.getElementById(
+                        "editPhone"
+                    ).value.trim(),
+
+
+                bookingDate:
+                    document.getElementById(
+                        "editDate"
+                    ).value,
+
+
+                bookingTime:
+                    document.getElementById(
+                        "editTime"
+                    ).value,
+
+
+                bookingType:
+                    originalBooking
+                        ? originalBooking.bookingType
+                        : "SERVICE"
+
+            };
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/${selectedBookingId}`,
+                        {
+
+                            method: "PUT",
+
+                            credentials:
+                                "include",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    bookingData
+                                )
+
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Update failed"
+                    );
+
+                }
+
+
+                alert(
+                    "✅ Booking Updated Successfully!"
+                );
+
+
+                document.getElementById(
+                    "editModal"
+                ).style.display =
+                    "none";
+
+
+                selectedBookingId =
+                    null;
+
+
+                loadBookings();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Update error:",
+                    error
+                );
+
+
+                alert(
+                    "❌ Failed to update booking."
+                );
+
+            }
+
+        }
+    );
+
+
+// ==========================================
+// DELETE BOOKING
+// ==========================================
+
+async function deleteBooking(id) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this booking?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/${id}`,
+                {
+
+                    method: "DELETE",
+
+                    credentials:
+                        "include"
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Delete failed"
+            );
+
+        }
+
+
+        alert(
+            "🗑️ Booking Deleted Successfully!"
+        );
+
+
+        loadBookings();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete error:",
+            error
+        );
+
+
+        alert(
+            "❌ Failed to delete booking."
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// ADMIN LOGOUT
+// ==========================================
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+            try {
+
+                await fetch(
+                    "http://127.0.0.1:8080/api/admin/logout",
+                    {
+
+                        method: "POST",
+
+                        credentials:
+                            "include"
+
+                    }
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+            }
+
+
+            localStorage.removeItem(
+                "loggedIn"
+            );
+
+
+            localStorage.removeItem(
+                "userToken"
+            );
+
+
+            localStorage.removeItem(
+                "adminToken"
+            );
+
+
+            localStorage.removeItem(
+                "virtualBooking"
+            );
+
+
+            localStorage.removeItem(
+                "selectedService"
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+    );
+
+
+// ==========================================
+// START
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const isAdmin =
+            await checkAdminLogin();
+
+
+        if (isAdmin) {
+
+            loadBookings();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

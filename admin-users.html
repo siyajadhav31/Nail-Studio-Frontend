@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registered Users | Nail Studio</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* ==========================================
+           USER PAGE HEADER
+        ========================================== */
+
+        .users-page-header {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+
+        }
+
+
+        /* ==========================================
+           USER COUNT
+        ========================================== */
+
+        .registered-count {
+
+            font-size: 15px;
+            font-weight: 500;
+            color: #555;
+
+        }
+
+
+        .registered-count span {
+
+            color: #b8860b;
+            font-weight: 600;
+
+        }
+
+
+        /* ==========================================
+           USER SEARCH
+        ========================================== */
+
+        .user-search {
+
+            position: relative;
+            width: 280px;
+
+        }
+
+
+        .user-search input {
+
+            width: 100%;
+            padding: 11px 15px 11px 40px;
+
+            border: 1px solid #e5d4cc;
+            border-radius: 12px;
+
+            background: #fff;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .user-search input:focus {
+
+            border-color: #c89b3c;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(200, 155, 60, 0.10);
+
+        }
+
+
+        .user-search span {
+
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 16px;
+
+        }
+
+
+        /* ==========================================
+           REFRESH BUTTON
+        ========================================== */
+
+        .refresh-btn {
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .refresh-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(184, 134, 11, 0.25);
+
+        }
+
+
+        /* ==========================================
+           USER TABLE
+        ========================================== */
+
+        .users-table-wrapper {
+
+            overflow-x: auto;
+            width: 100%;
+
+        }
+
+
+        #usersTable {
+
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+
+        #usersTable th {
+
+            white-space: nowrap;
+
+        }
+
+
+        #usersTable td {
+
+            vertical-align: middle;
+
+        }
+
+
+        /* ==========================================
+           USER NAME
+        ========================================== */
+
+        .user-name {
+
+            font-weight: 500;
+            color: #333;
+
+        }
+
+
+        /* ==========================================
+           USER EMAIL
+        ========================================== */
+
+        .user-email {
+
+            color: #666;
+            font-size: 13px;
+
+        }
+
+
+        /* ==========================================
+           USER ID
+        ========================================== */
+
+        .user-id {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 34px;
+            height: 30px;
+
+            padding: 0 8px;
+
+            border-radius: 9px;
+
+            background: #fff4ef;
+
+            color: #b8860b;
+
+            font-size: 12px;
+            font-weight: 600;
+
+        }
+
+
+        /* ==========================================
+           USER ACTION
+        ========================================== */
+
+        .user-action {
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==========================================
+           EMPTY STATE
+        ========================================== */
+
+        .user-empty {
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+
+        .user-empty-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 800px) {
+
+            .users-page-header {
+
+                align-items: stretch;
+
+            }
+
+
+            .user-search {
+
+                width: 100%;
+
+            }
+
+
+            .refresh-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .users-page-header {
+
+                flex-direction: column;
+
+            }
+
+
+            .registered-count {
+
+                text-align: left;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="admin-bookings.html"
+           class="logo">
+
+            💅 Nail Studio
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+
+                <a href="admin-bookings.html">
+
+                    Customer Bookings
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="admin-users.html">
+
+                    Registered Users
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn">
+
+                    Logout
+
+                </button>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- ==========================================
+     REGISTERED USERS
+========================================== -->
+
+<section class="admin-bookings">
+
+    <div class="admin-container">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="admin-title">
+
+            <span>
+
+                ✨ Nail Studio Administration
+
+            </span>
+
+
+            <h1>
+
+                Registered Users
+
+            </h1>
+
+
+            <p>
+
+                Manage all registered customers from one place.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             USER CONTROLS
+        ========================================== -->
+
+        <div class="users-page-header">
+
+
+            <!-- USER COUNT -->
+
+            <div
+                class="registered-count"
+                id="userCount">
+
+                Registered Users
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="user-search">
+
+                <span>
+
+                    🔍
+
+                </span>
+
+                <input
+                    type="text"
+                    id="searchUser"
+                    placeholder="Search by name or email...">
+
+            </div>
+
+
+            <!-- REFRESH -->
+
+            <button
+                id="refreshBtn"
+                class="refresh-btn">
+
+                ↻ Refresh Users
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+             USER TABLE
+        ========================================== -->
+
+        <div class="table-container">
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading">
+
+                Loading registered users...
+
+            </div>
+
+
+            <div class="users-table-wrapper">
+
+
+                <table
+                    id="usersTable"
+                    style="display:none;">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+
+                                ID
+
+                            </th>
+
+
+                            <th>
+
+                                Name
+
+                            </th>
+
+
+                            <th>
+
+                                Email
+
+                            </th>
+
+
+                            <th>
+
+                                Action
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="usersTableBody">
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                id="emptyMessage"
+                class="empty-message"
+                style="display:none;">
+
+                No registered users found.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+
+// ==========================================
+// API URL
+// ==========================================
+
+const API_URL =
+    "http://127.0.0.1:8080/api/users";
+
+
+let usersData = [];
+
+
+// ==========================================
+// CHECK ADMIN LOGIN
+// ==========================================
+
+async function checkAdminLogin() {
+
+    try {
+
+        const response =
+            await fetch(
+                "http://127.0.0.1:8080/api/admin/check",
+                {
+
+                    method: "GET",
+
+                    credentials: "include"
+
+                }
+            );
+
+
+        const result =
+            await response.text();
+
+
+        console.log(
+            "Admin Check:",
+            result
+        );
+
+
+        if (
+            result !==
+            "Admin authenticated"
+        ) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Admin authentication error:",
+            error
+        );
+
+
+        window.location.href =
+            "admin-login.html";
+
+
+        return false;
+
+    }
+
+}
+
+
+// ==========================================
+// LOAD USERS
+// ==========================================
+
+async function loadUsers() {
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const table =
+        document.getElementById(
+            "usersTable"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    const tableBody =
+        document.getElementById(
+            "usersTableBody"
+        );
+
+
+    loading.style.display =
+        "block";
+
+
+    table.style.display =
+        "none";
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/all?_=" +
+                new Date().getTime(),
+                {
+
+                    method: "GET",
+
+                    credentials:
+                        "include",
+
+                    cache:
+                        "no-store"
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load users"
+            );
+
+        }
+
+
+        usersData =
+            await response.json();
+
+
+        console.log(
+            "Registered Users:",
+            usersData
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        updateUserCount();
+
+
+        displayUsers();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "User loading error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        table.style.display =
+            "none";
+
+
+        document.getElementById(
+            "userCount"
+        ).innerHTML =
+            "Registered Users";
+
+
+        emptyMessage.style.display =
+            "block";
+
+
+        emptyMessage.innerHTML = `
+
+            <div class="user-empty">
+
+                <div class="user-empty-icon">
+
+                    ⚠️
+
+                </div>
+
+                Unable to load users.
+
+                <br>
+
+                Make sure Spring Boot is running.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// ==========================================
+// UPDATE USER COUNT
+// ==========================================
+
+function updateUserCount() {
+
+    const userCount =
+        document.getElementById(
+            "userCount"
+        );
+
+
+    userCount.innerHTML = `
+
+        Registered Users
+
+        <span>
+
+            (${usersData.length})
+
+        </span>
+
+    `;
+
+}
+
+
+// ==========================================
+// DISPLAY USERS
+// ==========================================
+
+function displayUsers() {
+
+    const table =
+        document.getElementById(
+            "usersTable"
+        );
+
+
+    const tableBody =
+        document.getElementById(
+            "usersTableBody"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "searchUser"
+        );
+
+
+    const searchText =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    const filteredUsers =
+        usersData.filter(
+            function (user) {
+
+                const name =
+                    user.name
+                        ? user.name.toLowerCase()
+                        : "";
+
+
+                const email =
+                    user.email
+                        ? user.email.toLowerCase()
+                        : "";
+
+
+                return (
+                    name.includes(searchText) ||
+                    email.includes(searchText)
+                );
+
+            }
+        );
+
+
+    if (
+        filteredUsers.length === 0
+    ) {
+
+        table.style.display =
+            "none";
+
+
+        emptyMessage.style.display =
+            "block";
+
+
+        if (
+            usersData.length === 0
+        ) {
+
+            emptyMessage.innerHTML = `
+
+                <div class="user-empty">
+
+                    <div class="user-empty-icon">
+
+                        👥
+
+                    </div>
+
+                    No registered users found.
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+            emptyMessage.innerHTML = `
+
+                <div class="user-empty">
+
+                    <div class="user-empty-icon">
+
+                        🔍
+
+                    </div>
+
+                    No users found for your search.
+
+                </div>
+
+            `;
+
+        }
+
+
+        return;
+
+    }
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    table.style.display =
+        "table";
+
+
+    filteredUsers.forEach(
+        function (user) {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <span class="user-id">
+
+                        ${user.id}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="user-name">
+
+                        ${user.name || ""}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="user-email">
+
+                        ${user.email || ""}
+
+                    </span>
+
+                </td>
+
+
+                <td class="user-action">
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteUser(${user.id}, '${escapeName(user.name)}')">
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// ESCAPE USER NAME
+// ==========================================
+
+function escapeName(name) {
+
+    return String(name || "")
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"');
+
+}
+
+
+// ==========================================
+// DELETE USER
+// ==========================================
+
+async function deleteUser(
+    id,
+    name
+) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete " +
+            name +
+            "?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/" + id,
+                {
+
+                    method: "DELETE",
+
+                    credentials:
+                        "include"
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Delete failed"
+            );
+
+        }
+
+
+        const message =
+            await response.text();
+
+
+        alert(
+            "🗑️ " +
+            message
+        );
+
+
+        loadUsers();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete user error:",
+            error
+        );
+
+
+        alert(
+            "❌ Unable to delete user."
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// SEARCH USERS
+// ==========================================
+
+document
+    .getElementById("searchUser")
+    .addEventListener(
+        "input",
+        function () {
+
+            displayUsers();
+
+        }
+    );
+
+
+// ==========================================
+// REFRESH USERS
+// ==========================================
+
+document
+    .getElementById("refreshBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            loadUsers();
+
+        }
+    );
+
+
+// ==========================================
+// ADMIN LOGOUT
+// ==========================================
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+            try {
+
+                await fetch(
+                    "http://127.0.0.1:8080/api/admin/logout",
+                    {
+
+                        method: "POST",
+
+                        credentials:
+                            "include"
+
+                    }
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+            }
+
+
+            localStorage.removeItem(
+                "loggedIn"
+            );
+
+
+            localStorage.removeItem(
+                "userToken"
+            );
+
+
+            localStorage.removeItem(
+                "adminToken"
+            );
+
+
+            localStorage.removeItem(
+                "virtualBooking"
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+    );
+
+
+// ==========================================
+// START
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const isAdmin =
+            await checkAdminLogin();
+
+
+        if (isAdmin) {
+
+            loadUsers();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

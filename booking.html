@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment | Nail Studio</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- LOGIN CHECK -->
+    <script>
+
+        const loggedIn = localStorage.getItem("loggedIn");
+
+        if (loggedIn !== "true") {
+            window.location.href = "welcome.html";
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            💅 Nail Studio
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="services.html">Services</a>
+            </li>
+
+            <li>
+                <a href="offer.html">Offers</a>
+            </li>
+
+            <li>
+                <a href="faqs.html">FAQs</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">Gallery</a>
+            </li>
+
+            <li>
+                <a href="booking.html" class="active">Booking</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+        </ul>
+
+        <a href="booking.html" class="nav-book-btn"
+           style="background:#c89b3c; color:white; padding:10px 10px; border-radius:5px; text-decoration:none; font-size:13px; font-weight:600;">
+                 Book Now
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==========================================
+     BOOKING SECTION
+========================================== -->
+
+<section class="booking">
+
+    <div class="booking-layout">
+
+
+        <!-- ======================================
+             LEFT SIDE - BOOK APPOINTMENT
+        ======================================= -->
+
+        <div class="booking-container">
+
+            <span class="booking-subtitle">
+                ✨ Luxury Nail Experience
+            </span>
+
+            <h1>
+                Book Appointment
+            </h1>
+
+            <p class="booking-required">
+                All fields marked <span>*</span> are required.
+            </p>
+
+
+            <form id="bookingForm">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- MOBILE + EMAIL -->
+
+                <div class="booking-row">
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Mobile Number <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10-digit number"
+                            maxlength="10"
+                            required
+                        >
+
+                        <small>
+                            WhatsApp number preferred for booking confirmation
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- DATE + TIME -->
+
+
+       <div class="booking-row">
+
+                 <!-- DATE -->
+
+        <div class="form-group">
+
+            <label for="bookingDate">
+            Preferred Date <span>*</span>
+            </label>
+
+                 <input
+                    type="date"
+                    id="bookingDate"
+                    name="bookingDate"
+                    required
+                                     >
+
+         </div>
+
+
+                     <!-- TIME -->
+
+        <div class="form-group">
+
+            <label for="bookingTime">
+            🕒 Appointment Time <span>*</span>
+             </label>
+
+        <select
+            id="bookingTime"
+            name="bookingTime"
+            required>
+
+            <option value="">
+                Select a time
+            </option>
+
+            <option value="11:00 AM">
+                11:00 AM
+            </option>
+
+            <option value="12:00 PM">
+                12:00 PM
+            </option>
+
+            <option value="1:00 PM">
+                1:00 PM
+            </option>
+
+            <option value="2:00 PM">
+                2:00 PM
+            </option>
+
+            <option value="3:00 PM">
+                3:00 PM
+            </option>
+
+            <option value="4:00 PM">
+                4:00 PM
+            </option>
+
+            <option value="5:00 PM">
+                5:00 PM
+            </option>
+
+            <option value="6:00 PM">
+                6:00 PM
+            </option>
+
+            <option value="7:00 PM">
+                7:00 PM
+            </option>
+
+            <option value="8:00 PM">
+                8:00 PM
+            </option>
+
+            <option value="9:00 PM">
+                9:00 PM
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+
+                <!-- BACKEND COMPATIBILITY -->
+
+                <input
+                    type="hidden"
+                    id="service"
+                    name="service"
+                    value="Appointment"
+                >
+
+                <input
+                    type="hidden"
+                    id="design"
+                    name="design"
+                    value="Not Selected"
+                >
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="booking-submit-btn"
+                >
+                    Confirm Appointment
+                </button>
+
+
+            </form>
+
+
+            <!-- BOOKING MESSAGE -->
+
+            <div
+                id="bookingMessage"
+                class="booking-message"
+            ></div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             RIGHT SIDE - STUDIO INFORMATION
+        ======================================= -->
+
+        <div class="studio-info-box">
+
+
+            <div class="studio-heading">
+
+                <span>
+                    ✨
+                </span>
+
+                <h2>
+                    Studio Info
+                </h2>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="studio-detail">
+
+                <div class="studio-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Location
+                    </h3>
+
+                    <p>
+                        Shop No. 3, Bhavani Plaza,<br>
+                        Ashok Nagar Road, Datar Colony,<br>
+                        Bhandup East, Mumbai – 400042.
+                    </p>
+
+                    <a
+                     href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
+                     target="_blank"
+>
+                     Get Directions →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUSINESS HOURS -->
+
+            <div class="studio-detail">
+
+                <div class="studio-icon">
+                    ⏰
+                </div>
+
+                <div>
+
+                    <h3>
+                        Business Hours
+                    </h3>
+
+                    <p>
+                        Monday – Saturday<br>
+                        11:00 AM – 9:30 PM
+                    </p>
+
+                    <span class="closed-text">
+                        Sunday Closed
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="studio-detail">
+
+                <div class="studio-icon">
+                    📞
+                </div>
+
+                <div>
+
+                    <h3>
+                        Contact
+                    </h3>
+
+                    <p>
+                        +91 7715053174
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WHATSAPP -->
+
+            <div class="studio-whatsapp">
+
+                <h3>
+                    💬 WhatsApp Us
+                </h3>
+
+                <p>
+                    Have questions about your appointment?
+                    Contact us directly on WhatsApp.
+                </p>
+
+                <a
+                    href="https://wa.me/91XXXXXXXXXX"
+                    target="_blank"
+                >
+                    Chat on WhatsApp
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <p>
+        © 2026 Nail Studio. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- ==========================================
+     BOOKING PAGE JS
+========================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* ==========================================
+       SET MINIMUM DATE = TODAY
+    ========================================== */
+
+    const dateInput =
+        document.getElementById("bookingDate");
+
+
+    if (dateInput) {
+
+        const today = new Date();
+
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(
+                today.getMonth() + 1
+            ).padStart(2, "0");
+
+        const day =
+            String(
+                today.getDate()
+            ).padStart(2, "0");
+
+
+        dateInput.min =
+            `${year}-${month}-${day}`;
+
+
+
+        /* ==========================================
+           SUNDAY CLOSED
+        ========================================== */
+
+        dateInput.addEventListener(
+            "change",
+            function () {
+
+                const selectedDate =
+                    new Date(
+                        this.value + "T00:00:00"
+                    );
+
+
+                const dayOfWeek =
+                    selectedDate.getDay();
+
+
+                if (dayOfWeek === 0) {
+
+                    alert(
+                        "Sorry! We are closed on Sundays. Please select another date."
+                    );
+
+                    this.value = "";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* ==========================================
+       MOBILE NUMBER VALIDATION
+    ========================================== */
+
+    const phoneInput =
+        document.getElementById("phone");
+
+
+    if (phoneInput) {
+
+        phoneInput.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value.replace(
+                        /[^0-9]/g,
+                        ""
+                    );
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+
+
+<!-- MAIN JS -->
+
+<script src="js/main.js"></script>
+
+
+</body>
+
+</html>
+

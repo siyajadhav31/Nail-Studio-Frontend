@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Offers | Nail Studio</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <!-- LOGIN CHECK -->
+
+    <script>
+
+        const loggedIn =
+            localStorage.getItem("loggedIn");
+
+        if (loggedIn !== "true") {
+
+            window.location.href =
+                "welcome.html";
+
+        }
+
+    </script>
+
+
+    <style>
+
+        /* ==========================================
+           OFFERS PAGE
+        ========================================== */
+
+        .offers-section {
+
+            padding: 40px 8%;
+
+            background: #fffaf8;
+
+            text-align: center;
+
+        }
+
+
+        .offers-title {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 50px;
+
+            color: #333;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .offers-subtitle {
+
+            color: #777;
+
+            font-size: 15px;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        /* ==========================================
+           OFFER CARDS
+        ========================================== */
+
+        .offers-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+
+        .offer-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 35px 25px;
+
+            box-shadow:
+                0 5px 25px rgba(0, 0, 0, 0.08);
+
+            border:
+                1px solid #f1dfd8;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .offer-card:hover {
+
+            transform:
+                translateY(-10px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        /* ==========================================
+           OFFER ICON
+        ========================================== */
+
+        .offer-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ==========================================
+           OFFER DISCOUNT
+        ========================================== */
+
+        .offer-discount {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 45px;
+
+            font-weight: 700;
+
+            color: #c89b3c;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        /* ==========================================
+           OFFER CARD TITLE
+        ========================================== */
+
+        .offer-card h3 {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 30px;
+
+            color: #333;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ==========================================
+           OFFER DESCRIPTION
+        ========================================== */
+
+        .offer-card p {
+
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* ==========================================
+           OFFER BUTTON
+        ========================================== */
+
+        .offer-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        .offer-btn:hover {
+
+            transform:
+                scale(1.05);
+
+            box-shadow:
+                0 5px 15px
+                rgba(200, 155, 60, 0.3);
+
+        }
+
+
+        /* ==========================================
+           MEMBERSHIP SECTION
+        ========================================== */
+
+        .membership-offer {
+
+            max-width: 900px;
+
+            margin: 70px auto 0;
+
+            padding: 45px 30px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff4ef,
+                    #fffaf8
+                );
+
+            border:
+                1px solid #ecd9d0;
+
+        }
+
+
+        .membership-offer h2 {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 40px;
+
+            color: #333;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .membership-offer p {
+
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            max-width: 650px;
+
+            margin:
+                0 auto 25px;
+
+        }
+
+
+        /* ==========================================
+           FOOTER LOGO
+        ========================================== */
+
+        footer h2 a {
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+
+        }
+
+
+        footer h2 a:hover {
+
+            color: #c89b3c;
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .offers-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .offers-section {
+
+                padding:
+                    60px 5%;
+
+            }
+
+
+            .offers-title {
+
+                font-size: 42px;
+
+            }
+
+
+            .offers-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .membership-offer h2 {
+
+                font-size: 32px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+
+            <div class="logo">
+
+                💅 Nail Studio
+
+            </div>
+
+
+            <ul class="nav-links">
+
+
+                <li>
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="about.html">
+                        About
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="services.html">
+                        Services
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="offer.html">
+                        Offers
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="faqs.html">
+                        FAQs
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="booking.html">
+                        Booking
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+           <div class="nav-buttons">
+
+                <a href="booking.html" class="signup">
+                    Book Now
+                </a>
+
+            </div>
+
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         OFFERS SECTION
+    ========================================== -->
+
+    <section class="offers-section">
+
+
+        <h1 class="offers-title">
+
+            Special Offers
+
+        </h1>
+
+
+        <p class="offers-subtitle">
+
+            Treat yourself to beautiful nails with
+            our exclusive offers and special deals.
+
+        </p>
+
+
+
+        <!-- ======================================
+             OFFER CARDS
+        ======================================= -->
+
+        <div class="offers-container">
+
+
+            <!-- ======================================
+                 OFFER 1
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    🎉
+                </div>
+
+
+                <div class="offer-discount">
+                    10% OFF
+                </div>
+
+
+                <h3>
+                    First Visit
+                </h3>
+
+
+                <p>
+
+                    New to Nail Studio?
+                    Enjoy 10% off on your first
+                    nail service and discover
+                    your perfect nail style.
+
+                </p>
+
+
+                <a
+                    href="offer-booking.html?offer=First%20Visit%20Offer"
+                    class="offer-btn">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 OFFER 2
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    🎂
+                </div>
+
+
+                <div class="offer-discount">
+                    SPECIAL
+                </div>
+
+
+                <h3>
+                    Birthday Offer
+                </h3>
+
+
+                <p>
+
+                    Celebrate your special day
+                    with beautiful nails and enjoy
+                    a special birthday offer
+                    during your birthday month.
+
+                </p>
+
+
+                <a
+                    href="offer-booking.html?offer=Birthday%20Offer"
+                    class="offer-btn">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 OFFER 3
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    👯
+                </div>
+
+
+                <div class="offer-discount">
+                    2X REWARD
+                </div>
+
+
+                <h3>
+                    Refer a Friend
+                </h3>
+
+
+                <p>
+
+                    Bring your nail bestie!
+                    Refer a friend and receive
+                    special rewards on your
+                    next visit.
+
+                </p>
+
+
+                <a
+                    href="offer-details.html"
+                    class="offer-btn">
+
+                    Know More
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 OFFER 4
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    💅
+                </div>
+
+
+                <div class="offer-discount">
+                    SAVE MORE
+                </div>
+
+
+                <h3>
+                    Nail Art Combo
+                </h3>
+
+
+                <p>
+
+                    Combine your favourite nail
+                    service with beautiful nail art
+                    and enjoy a special combo price.
+
+                </p>
+
+
+                <a
+                    href="offer-booking.html?offer=Nail%20Art%20Combo"
+                    class="offer-btn">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 OFFER 5
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    ✨
+                </div>
+
+
+                <div class="offer-discount">
+                    FESTIVE
+                </div>
+
+
+                <h3>
+                    Festive Special
+                </h3>
+
+
+                <p>
+
+                    Get ready for celebrations with
+                    gorgeous festive nail designs
+                    created specially for you.
+
+                </p>
+
+
+                <a
+                    href="offer-booking.html?offer=Festive%20Special"
+                    class="offer-btn">
+
+                    Explore
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 OFFER 6
+            ======================================= -->
+
+            <div class="offer-card">
+
+                <div class="offer-icon">
+                    👑
+                </div>
+
+
+                <div class="offer-discount">
+                    VIP
+                </div>
+
+
+                <h3>
+                    Loyalty Rewards
+                </h3>
+
+
+                <p>
+
+                    Keep coming back for more!
+                    Enjoy exclusive rewards and
+                    special benefits as a loyal
+                    Nail Studio customer.
+
+                </p>
+
+
+                <a
+                    href="offer-details.html"
+                    class="offer-btn">
+
+                    Know More
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             MEMBERSHIP OFFER
+        ======================================= -->
+
+        <div class="membership-offer">
+
+
+            <h2>
+
+                💖 Nail Studio Membership
+
+            </h2>
+
+
+            <p>
+
+                Become a part of our Nail Studio
+                family and enjoy exclusive offers,
+                special discounts, priority booking
+                and exciting rewards throughout
+                the year.
+
+            </p>
+
+
+            <a
+                href="offer-details.html"
+                class="offer-btn">
+
+                Join Us
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+
+        <h2>
+
+            <a href="index.html">
+
+                💅 Nail Studio
+
+            </a>
+
+        </h2>
+
+
+        <p>
+
+            Luxury Nails |
+            Modern Technology |
+            Perfect Experience
+
+        </p>
+
+
+        <p>
+
+            © 2026 Nail Studio
+
+        </p>
+
+
+    </footer>
+
+
+</body>
+
+</html>

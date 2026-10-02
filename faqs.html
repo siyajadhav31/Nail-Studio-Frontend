@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAQs | Nail Studio</title>
+
+
+    <!-- ==========================================
+         CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- ==========================================
+         GOOGLE FONTS
+    =========================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ==========================================
+         LOGIN CHECK
+    =========================================== -->
+
+    <script>
+
+        const loggedIn =
+            localStorage.getItem("loggedIn");
+
+        if (loggedIn !== "true") {
+
+            window.location.href =
+                "welcome.html";
+
+        }
+
+    </script>
+
+
+    <!-- ==========================================
+         FAQ PAGE CSS
+    =========================================== -->
+
+    <style>
+
+        /* ==========================================
+           FAQ SECTION
+        ========================================== */
+
+        .faq-section {
+
+            padding: 60px 8% 70px;
+
+            background: #fffaf8;
+
+            min-height: 70vh;
+
+        }
+
+
+        /* ==========================================
+           FAQ HEADING
+        ========================================== */
+
+        .faq-header {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .faq-title {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 42px;
+
+            font-weight: 600;
+
+            color: #333;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .faq-subtitle {
+
+            font-family:
+                'Poppins',
+                sans-serif;
+
+            font-size: 13px;
+
+            color: #777;
+
+            margin: 0;
+
+        }
+
+
+        /* ==========================================
+           FAQ CONTAINER
+        ========================================== */
+
+        .faq-container {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+        }
+
+
+        /* ==========================================
+           FAQ ITEM
+        ========================================== */
+
+        .faq-item {
+
+            background: white;
+
+            border: 1px solid #ecd9d0;
+
+            border-radius: 10px;
+
+            margin-bottom: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.04);
+
+            transition:
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .faq-item:hover {
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.07);
+
+        }
+
+
+        /* ==========================================
+           FAQ QUESTION
+        ========================================== */
+
+        .faq-question {
+
+            width: 100%;
+
+            border: none;
+
+            background: white;
+
+            padding: 17px 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            font-family:
+                'Poppins',
+                sans-serif;
+
+        }
+
+
+        .faq-text {
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            color: #444;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* ==========================================
+           PLUS ICON
+        ========================================== */
+
+        .faq-icon {
+
+            flex-shrink: 0;
+
+            width: 24px;
+
+            height: 24px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: #c89b3c;
+
+            font-size: 19px;
+
+            font-weight: 400;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        /* ==========================================
+           FAQ ANSWER
+        ========================================== */
+
+        .faq-answer {
+
+            display: none;
+
+            padding: 0 20px 18px;
+
+        }
+
+
+        .faq-answer p {
+
+            margin: 0;
+
+            color: #666;
+
+            font-family:
+                'Poppins',
+                sans-serif;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* ==========================================
+           ACTIVE FAQ
+        ========================================== */
+
+        .faq-item.active
+        .faq-answer {
+
+            display: block;
+
+        }
+
+
+        .faq-item.active
+        .faq-icon {
+
+            transform:
+                rotate(45deg);
+
+        }
+
+
+        /* ==========================================
+           FAQ CTA
+        ========================================== */
+
+        .faq-cta {
+
+            max-width: 850px;
+
+            margin: 40px auto 0;
+
+            padding: 28px 25px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff4ef,
+                    #fffaf8
+                );
+
+            border:
+                1px solid #ecd9d0;
+
+            border-radius: 15px;
+
+        }
+
+
+        .faq-cta h2 {
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 30px;
+
+            font-weight: 600;
+
+            color: #333;
+
+            margin: 0 0 8px;
+
+        }
+
+
+        .faq-cta p {
+
+            font-family:
+                'Poppins',
+                sans-serif;
+
+            font-size: 13px;
+
+            color: #666;
+
+            margin: 0 0 18px;
+
+        }
+
+
+        /* ==========================================
+           CONTACT BUTTON
+        ========================================== */
+
+        .faq-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: white;
+
+            padding: 10px 22px;
+
+            border-radius: 22px;
+
+            font-family:
+                'Poppins',
+                sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .faq-btn:hover {
+
+            transform:
+                scale(1.04);
+
+            box-shadow:
+                0 4px 12px
+                rgba(200, 155, 60, 0.25);
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            .faq-section {
+
+                padding:
+                    45px 5% 55px;
+
+            }
+
+
+            .faq-title {
+
+                font-size: 34px;
+
+            }
+
+
+            .faq-subtitle {
+
+                font-size: 12px;
+
+            }
+
+
+            .faq-question {
+
+                padding: 15px;
+
+            }
+
+
+            .faq-text {
+
+                font-size: 13px;
+
+            }
+
+
+            .faq-answer {
+
+                padding:
+                    0 15px 16px;
+
+            }
+
+
+            .faq-answer p {
+
+                font-size: 12px;
+
+            }
+
+
+            .faq-cta h2 {
+
+                font-size: 26px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                💅 Nail Studio
+
+            </div>
+
+
+            <!-- ==================================
+                 NAVIGATION
+            ================================== -->
+
+            <ul class="nav-links">
+
+
+                <li>
+
+                    <a href="index.html">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="about.html">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="services.html">
+
+                        Services
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="offer.html">
+
+                        Offers
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="faqs.html">
+
+                        FAQs
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="gallery.html">
+
+                        Gallery
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="booking.html">
+
+                        Booking
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="contact.html">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+        
+            </ul>
+
+
+           <div class="nav-buttons">
+
+                <a href="booking.html" class="signup">
+                    Book Now
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         FAQ SECTION
+    =========================================== -->
+
+    <section class="faq-section">
+
+
+        <!-- ==================================
+             FAQ HEADER
+        ================================== -->
+
+        <div class="faq-header">
+
+
+            <h1 class="faq-title">
+
+                Frequently Asked Questions
+
+            </h1>
+
+
+            <p class="faq-subtitle">
+
+                Find answers to common questions
+                about our nail services and bookings.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- ==================================
+             FAQ LIST
+        ================================== -->
+
+        <div class="faq-container">
+
+
+            <!-- ==================================
+                 FAQ 1
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        What nail services do you offer?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        We offer Gel Nails, Acrylic Nails,
+                        Bridal Nails, French Nails,
+                        Nail Extensions and Luxury Nail Art.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 2
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        How can I book an appointment?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        You can book an appointment online
+                        by visiting our Booking page and
+                        selecting your preferred service,
+                        date and time.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 3
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Can I choose my nail design?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. You can choose from different
+                        nail designs, shapes and polish shades.
+                        You can also use our Virtual Nail Preview
+                        to create your preferred look.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 4
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Do you offer bridal nail services?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. We offer bridal nail services
+                        with elegant designs that can be
+                        customized according to your
+                        wedding look.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 5
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Can I see my nail look before booking?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. Our Virtual Nail Preview allows
+                        you to select a service, nail shape,
+                        design and polish shade before booking.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 6
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Can I cancel or change my appointment?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. Please contact Nail Studio
+                        as soon as possible if you need to
+                        change or cancel your appointment.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 7
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Do you maintain hygiene and cleanliness?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. Our tools and equipment are
+                        carefully cleaned and sanitized to
+                        maintain a clean and comfortable
+                        environment.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FAQ 8
+            ================================== -->
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span class="faq-text">
+
+                        Can I get help choosing a nail design?
+
+                    </span>
+
+
+                    <span class="faq-icon">
+
+                        +
+
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Absolutely. Our nail artists can help
+                        you select a suitable design, shape
+                        and shade according to your preference.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==========================================
+             CONTACT CTA
+        =========================================== -->
+
+        <div class="faq-cta">
+
+
+            <h2>
+
+                Still Have Questions?
+
+            </h2>
+
+
+            <p>
+
+                Our team is happy to help you
+                with your nail service and booking.
+
+            </p>
+
+
+            <a
+                href="contact.html"
+                class="faq-btn">
+
+                Contact Us
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer>
+
+
+        <h2>
+
+            💅 Nail Studio
+
+        </h2>
+
+
+        <p>
+
+            Luxury Nails |
+            Modern Technology |
+            Perfect Experience
+
+        </p>
+
+
+        <p>
+
+            © 2026 Nail Studio
+
+        </p>
+
+
+    </footer>
+
+
+
+    <!-- ==========================================
+         FAQ JAVASCRIPT
+    =========================================== -->
+
+    <script>
+
+        const faqQuestions =
+            document.querySelectorAll(".faq-question");
+
+
+        faqQuestions.forEach(function(question) {
+
+            question.addEventListener(
+                "click",
+                function() {
+
+
+                    const currentItem =
+                        question.parentElement;
+
+
+                    const allItems =
+                        document.querySelectorAll(
+                            ".faq-item"
+                        );
+
+
+                    allItems.forEach(
+                        function(item) {
+
+                            if (
+                                item !== currentItem
+                            ) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    currentItem.classList.toggle(
+                        "active"
+                    );
+
+
+                }
+            );
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
