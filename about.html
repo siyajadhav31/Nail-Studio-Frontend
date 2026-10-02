@@ -18,6 +18,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+
     <style>
 
         /* ==========================================
@@ -168,6 +169,8 @@
 
         .about-page-text {
             padding: 10px 0;
+
+            text-align: center;
         }
 
 
@@ -196,29 +199,19 @@
             margin: 0 0 25px;
 
             color: #30282a;
+
+            font-weight: 600;
         }
 
 
-        /* GOLD LINE BELOW HEADING */
+        /* ==========================================
+           REMOVE GOLD LINE BELOW H1
+        ========================================== */
 
-        /* .about-page-text h1::after {
-            content: "";
-
-            display: block;
-
-            width: 65px;
-
-            height: 2px;
-
-            margin-top: 18px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    #c89b3c,
-                    #e5c77a
-                );
-        } */
+        .about-page-text h1::after {
+            content: none !important;
+            display: none !important;
+        }
 
 
         .about-page-text p {
@@ -228,7 +221,7 @@
 
             line-height: 1.9;
 
-            margin: 0 0 17px;
+            margin: 0 auto 17px;
 
             max-width: 600px;
         }
@@ -281,13 +274,14 @@
             display: flex;
 
             justify-content: center;
+
+            align-items: center;
         }
 
 
         /*
-        ==========================================
-        PHOTO KE PICHE WALA GOLDEN BOX REMOVED
-        ==========================================
+        IMPORTANT:
+        No ::before box is used here.
         */
 
 
@@ -607,15 +601,20 @@
             }
 
 
+            .about-page-text {
+                text-align: center;
+            }
+
+
             .about-page-text h1 {
                 font-size: 48px;
             }
 
 
             .about-page-text h1::after {
-                margin-left: auto;
+                content: none !important;
 
-                margin-right: auto;
+                display: none !important;
             }
 
 
@@ -666,6 +665,13 @@
 
             .about-page-text h1 {
                 font-size: 40px;
+            }
+
+
+            .about-page-text h1::after {
+                content: none !important;
+
+                display: none !important;
             }
 
 
