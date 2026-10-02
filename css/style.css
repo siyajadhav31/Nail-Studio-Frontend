@@ -137,7 +137,115 @@ a{
     background:#b8860b;
 }
 
+/* ==========================================
+   MOBILE NAVBAR
+========================================== */
 
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        padding: 16px 5%;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .login,
+    .signup {
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    /* Hamburger button */
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    /* Hide desktop buttons */
+    .nav-buttons {
+        display: none;
+    }
+
+    /* Hide menu initially */
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-top: 15px;
+        padding: 10px 0;
+        background: white;
+        border-top: 1px solid #f1e8e3;
+    }
+
+    /* Show menu when clicked */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        font-size: 14px;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-links a:hover {
+        color: #b8860b;
+        background: #fffaf8;
+    }
+
+}
 
 
 /* ==========================================
