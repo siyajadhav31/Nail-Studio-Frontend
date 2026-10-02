@@ -45,15 +45,47 @@ a{
     z-index:1000;
 }
 
+
+/* ==========================================
+   LOGO
+========================================== */
+
 .logo{
     font-family:'Cormorant Garamond',serif;
     font-size:30px;
     font-weight:600;
     color:#333;
-    text-decoration:none;
     letter-spacing:.2px;
     white-space:nowrap;
+    flex-shrink:0;
 }
+
+/* IMPORTANT:
+   Logo is now a clickable link
+*/
+
+.logo a{
+    display:inline-block;
+    color:#333;
+    text-decoration:none;
+    font-family:'Cormorant Garamond',serif;
+    font-size:inherit;
+    font-weight:inherit;
+    letter-spacing:inherit;
+    white-space:nowrap;
+    cursor:pointer;
+    pointer-events:auto;
+}
+
+.logo a:hover{
+    color:#333;
+    text-decoration:none;
+}
+
+
+/* ==========================================
+   NAV LINKS
+========================================== */
 
 .nav-links{
     display:flex;
@@ -76,6 +108,7 @@ a{
     position:relative;
     padding:5px 0;
     white-space:nowrap;
+    cursor:pointer;
 }
 
 .nav-links a::after{
@@ -111,6 +144,10 @@ a{
     width:100%;
 }
 
+
+/* ==========================================
+   NAV BUTTONS
+========================================== */
 
 .nav-buttons{
     display:flex;
@@ -161,6 +198,7 @@ a{
     align-items:center;
     min-height:76vh;
     padding:65px 8%;
+    padding-bottom:45px;
     gap:70px;
     background:#fffaf8;
 }
@@ -2594,15 +2632,6 @@ footer p{
 
 
 /* ==========================================
-   HERO SPACING
-========================================== */
-
-.hero{
-    padding-bottom:45px;
-}
-
-
-/* ==========================================
    RESPONSIVE - TABLET
 ========================================== */
 
@@ -2738,6 +2767,10 @@ footer p{
 
     .logo{
         font-size:29px;
+    }
+
+    .logo a{
+        font-size:inherit;
     }
 
     .nav-links{
@@ -3013,6 +3046,10 @@ footer p{
         font-size:27px;
     }
 
+    .logo a{
+        font-size:inherit;
+    }
+
     .nav-links{
         gap:7px 13px;
     }
@@ -3111,6 +3148,10 @@ footer p{
 
     .logo{
         font-size:25px;
+    }
+
+    .logo a{
+        font-size:inherit;
     }
 
     .nav-links{
@@ -3295,6 +3336,24 @@ footer p{
         margin:0 0 18px 0;
     }
 
+    /* IMPORTANT:
+       Mobile logo remains clickable
+    */
+
+    .navbar .logo a{
+        display:inline-block;
+        font-size:inherit;
+        color:#333;
+        text-decoration:none;
+        cursor:pointer;
+        pointer-events:auto;
+    }
+
+    .navbar .logo a:hover{
+        color:#333;
+        text-decoration:none;
+    }
+
     .navbar .nav-links{
         display:flex;
         flex-direction:row;
@@ -3326,9 +3385,9 @@ footer p{
         color:#444;
         white-space:nowrap;
         text-decoration:none;
+        cursor:pointer;
     }
 
-    /* MOBILE ACTIVE LINK */
     .navbar .nav-links a.active{
         color:#b8860b;
         font-weight:600;
