@@ -1,6 +1,3 @@
-
-
-
 // ==========================================
 // DOM CONTENT LOADED
 // ==========================================
@@ -13,6 +10,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const API_URL =
         "http://127.0.0.1:8080/api/bookings";
+
+
+    // ==========================================
+    // MOBILE NAVBAR MENU
+    // ==========================================
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const navLinks =
+        document.querySelector(".nav-links");
+
+
+    if (menuToggle && navLinks) {
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navLinks.classList.toggle("active");
+
+
+                if (
+                    navLinks.classList.contains("active")
+                ) {
+
+                    menuToggle.textContent = "✕";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Close Menu"
+                    );
+
+                } else {
+
+                    menuToggle.textContent = "☰";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Open Menu"
+                    );
+
+                }
+
+            }
+        );
+
+
+        // Close menu after clicking a link
+
+        navLinks.querySelectorAll("a").forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.textContent = "☰";
+
+                        menuToggle.setAttribute(
+                            "aria-label",
+                            "Open Menu"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
 
 
     // ==========================================
@@ -29,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(
             "#previewBtn, #virtualPreviewBtn, .virtual-preview-btn"
         );
+
 
 
     // ==========================================
@@ -54,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
     // ==========================================
     // CLOSE MODAL
     // ==========================================
@@ -73,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+
 
 
     // ==========================================
@@ -96,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // ESCAPE KEY
     // ==========================================
@@ -115,9 +192,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
+            // Close mobile menu
+
+            if (
+                navLinks &&
+                navLinks.classList.contains("active")
+            ) {
+
+                navLinks.classList.remove("active");
+
+                if (menuToggle) {
+
+                    menuToggle.textContent = "☰";
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Open Menu"
+                    );
+
+                }
+
+            }
+
         }
 
     });
+
 
 
     // ==========================================
@@ -133,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedShade = "Royal Gold";
 
     let selectedColor = "#c89b3c";
+
 
 
     // ==========================================
@@ -173,6 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(
             ".nail-preview-stage .virtual-nail"
         );
+
 
 
     // ==========================================
@@ -230,6 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+
     // ==========================================
     // MAKE CLASS NAME
     // ==========================================
@@ -241,6 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/\s+/g, "-");
 
     }
+
 
 
     // ==========================================
@@ -259,6 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // CREATE VISUAL DESIGN
     // ==========================================
@@ -274,12 +380,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        // Clear previous design
-
         designLayer.innerHTML = "";
 
         designLayer.className =
             "nail-design";
+
 
 
         // ==========================================
@@ -301,6 +406,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+
         // ==========================================
         // FRENCH TIPS
         // ==========================================
@@ -318,6 +424,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         }
+
 
 
         // ==========================================
@@ -339,6 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+
         // ==========================================
         // CAT EYE
         // ==========================================
@@ -356,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         }
+
 
 
         // ==========================================
@@ -390,6 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+
         // ==========================================
         // FLORAL
         // ==========================================
@@ -412,6 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
 
 
     // ==========================================
@@ -450,6 +561,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
 
 
     // ==========================================
@@ -503,6 +615,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // UPDATE SERVICE
     // ==========================================
@@ -531,6 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
 
 
     // ==========================================
@@ -565,6 +679,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // UPDATE BOOKING DESIGN
     // ==========================================
@@ -579,6 +694,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
 
 
     // ==========================================
@@ -623,6 +739,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
     // ==========================================
     // SHAPE OPTIONS
     // ==========================================
@@ -663,6 +780,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     });
+
 
 
     // ==========================================
@@ -707,6 +825,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     });
+
 
 
     // ==========================================
@@ -756,6 +875,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
     // ==========================================
     // DEFAULT PREVIEW
     // ==========================================
@@ -777,6 +897,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateShade();
 
     updateBookingDesign();
+
 
 
     // ==========================================
@@ -845,6 +966,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==================================
                 // EMAIL VALIDATION
                 // ==================================
@@ -863,6 +985,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
 
                 }
+
 
 
                 // ==================================
@@ -885,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==================================
                 // DATE VALIDATION
                 // ==================================
@@ -903,6 +1027,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
 
                 }
+
 
 
                 // ==================================
@@ -948,6 +1073,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Booking...";
 
                 }
+
 
 
                 // ==================================
@@ -1002,6 +1128,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+
                     // ==================================
                     // SAVE PREVIEW INFORMATION
                     // ==================================
@@ -1037,6 +1164,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert(
                         "✨ Appointment Booked Successfully!"
                     );
+
 
 
                     // ==================================
@@ -1084,6 +1212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
+
                 catch (error) {
 
                     console.error(
@@ -1096,6 +1225,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 }
+
 
 
                 if (bookButton) {
@@ -1113,6 +1243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // NORMAL BOOKING PAGE
     // ==========================================
@@ -1125,10 +1256,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (bookingForm) {
 
-        // ==========================================
-        // NORMAL BOOKING SUBMIT
-        // ==========================================
-
         bookingForm.addEventListener(
             "submit",
             async function (e) {
@@ -1136,6 +1263,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
 
                 e.stopPropagation();
+
 
 
                 // ==========================================
@@ -1166,17 +1294,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     ).value;
 
 
-                // IMPORTANT:
-                // Correct ID from booking.html
-
                 const date =
                     document.getElementById(
                         "bookingDate"
                     ).value;
 
-
-                // IMPORTANT:
-                // Correct ID from booking.html
 
                 const time =
                     document.getElementById(
@@ -1194,6 +1316,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById(
                         "bookingMessage"
                     );
+
 
 
                 // ==========================================
@@ -1224,6 +1347,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==========================================
                 // EMAIL VALIDATION
                 // ==========================================
@@ -1250,6 +1374,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
 
                 }
+
 
 
                 // ==========================================
@@ -1280,6 +1405,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==========================================
                 // DATE VALIDATION
                 // ==========================================
@@ -1306,6 +1432,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
 
                 }
+
 
 
                 // ==========================================
@@ -1338,6 +1465,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==========================================
                 // SHOW LOADING MESSAGE
                 // ==========================================
@@ -1353,6 +1481,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+
                 // ==========================================
                 // NORMAL BOOKING DATA
                 // ==========================================
@@ -1365,9 +1494,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     phone: phone,
 
-                    service: service || "Appointment",
+                    service:
+                        service ||
+                        "Appointment",
 
-                    design: design || "Not Selected",
+                    design:
+                        design ||
+                        "Not Selected",
 
                     bookingDate: date,
 
@@ -1382,6 +1515,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Normal Booking Data:",
                     bookingData
                 );
+
 
 
                 // ==========================================
@@ -1430,6 +1564,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
 
+
                     // ==========================================
                     // GET SAVED BOOKING
                     // ==========================================
@@ -1442,6 +1577,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Normal booking saved:",
                         savedBooking
                     );
+
 
 
                     // ==========================================
@@ -1470,6 +1606,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
 
                     }
+
 
 
                     // ==========================================
@@ -1515,6 +1652,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // SERVICES PAGE BOOK BUTTONS
     // ==========================================
@@ -1548,6 +1686,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
     // ==========================================
     // SELECTED SERVICE
     // ==========================================
@@ -1569,7 +1708,6 @@ document.addEventListener("DOMContentLoaded", function () {
         bookingServiceField
     ) {
 
-        // If service is a SELECT
         if (
             bookingServiceField.tagName ===
             "SELECT"
@@ -1601,7 +1739,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        // If service is hidden input
         else {
 
             bookingServiceField.value =
@@ -1610,6 +1747,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
 
 
     // ==========================================
@@ -1642,6 +1780,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     // ==========================================
     // GALLERY
     // ==========================================
@@ -1664,6 +1803,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     });
+
 
 
     // ==========================================
