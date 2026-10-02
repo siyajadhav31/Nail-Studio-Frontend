@@ -4,387 +4,1178 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nail Studio | Premium Nail Care</title>
+    <title>Nail Studio | Luxury Nail Experience</title>
 
     <link rel="stylesheet" href="css/style.css">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ==========================================
+         HOMEPAGE EXTRA CSS
+    =========================================== -->
 
     <style>
 
         /* ==========================================
-           HOME PAGE EXTRA
+           QUICK FEATURES
         ========================================== */
 
-        .hero-buttons{
-            display:flex;
-            gap:15px;
-            flex-wrap:wrap;
+        .quick-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: white;
+            padding: 22px 15%;
+            border-top: 1px solid #f1e8e3;
+            border-bottom: 1px solid #f1e8e3;
         }
 
-        .virtual-btn{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            padding:13px 28px;
-            border:1px solid #c89b3c;
-            background:#fff;
-            color:#b8860b;
-            border-radius:6px;
-            text-decoration:none;
-            font-size:14px;
-            cursor:pointer;
-            transition:.3s ease;
+        .quick-feature {
+            text-align: center;
+            padding: 12px;
+            border-right: 1px solid #eee;
         }
 
-        .virtual-btn:hover{
-            background:#c89b3c;
-            color:#fff;
+        .quick-feature:last-child {
+            border-right: none;
+        }
+
+        .quick-feature-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .quick-feature h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .quick-feature p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
         }
 
 
         /* ==========================================
-           VIRTUAL PREVIEW MODAL
+           SPECIAL OFFER
         ========================================== */
 
-        .preview-modal{
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,.65);
-            display:none;
-            align-items:center;
-            justify-content:center;
-            z-index:9999;
-            padding:20px;
+        .home-offer {
+            padding: 50px 8%;
+            text-align: center;
+            background: #fffaf8;
         }
 
-        .preview-modal.show{
-            display:flex;
+        .home-offer-label {
+            color: #b8860b;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
-        .preview-box{
-            width:100%;
-            max-width:900px;
-            max-height:90vh;
-            overflow-y:auto;
-            background:#fff;
-            border-radius:12px;
-            padding:30px;
-            position:relative;
-            box-shadow:0 20px 60px rgba(0,0,0,.25);
+        .home-offer h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 45px;
+            margin: 10px 0 15px;
+            color: #333;
         }
 
-        .preview-close{
-            position:absolute;
-            top:15px;
-            right:20px;
-            border:none;
-            background:none;
-            font-size:28px;
-            color:#555;
-            cursor:pointer;
-            line-height:1;
-        }
-
-        .preview-title{
-            text-align:center;
-            margin-bottom:8px;
-            font-family:'Cormorant Garamond',serif;
-            font-size:34px;
-            color:#333;
-        }
-
-        .preview-subtitle{
-            text-align:center;
-            color:#777;
-            font-size:14px;
-            margin-bottom:28px;
-        }
-
-        .preview-section{
-            margin-bottom:25px;
-        }
-
-        .preview-section h3{
-            font-family:'Cormorant Garamond',serif;
-            font-size:24px;
-            margin-bottom:12px;
-            color:#333;
-        }
-
-        .preview-options{
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-        }
-
-        .preview-option{
-            padding:10px 18px;
-            border:1px solid #ddd;
-            border-radius:6px;
-            background:#fff;
-            color:#555;
-            cursor:pointer;
-            transition:.25s ease;
-            font-family:'Poppins',sans-serif;
-            font-size:13px;
-        }
-
-        .preview-option:hover{
-            border-color:#c89b3c;
-            color:#b8860b;
-        }
-
-        .preview-option.active{
-            background:#c89b3c;
-            border-color:#c89b3c;
-            color:#fff;
-        }
-
-        .shade-grid{
-            display:grid;
-            grid-template-columns:repeat(6,1fr);
-            gap:12px;
-        }
-
-        .shade-option{
-            border:1px solid #ddd;
-            border-radius:8px;
-            padding:10px 5px;
-            background:#fff;
-            cursor:pointer;
-            text-align:center;
-            font-size:11px;
-            color:#555;
-            transition:.25s ease;
-        }
-
-        .shade-circle{
-            width:35px;
-            height:35px;
-            border-radius:50%;
-            margin:0 auto 7px;
-            border:1px solid #ddd;
-        }
-
-        .shade-option.active{
-            border-color:#c89b3c;
-            box-shadow:0 0 0 2px rgba(200,155,60,.2);
-        }
-
-        .shade-option.active .shade-circle{
-            border:2px solid #c89b3c;
-        }
-
-        .gold{
-            background:#d4af37;
-        }
-
-        .rose{
-            background:#d89a9a;
-        }
-
-        .plum{
-            background:#703b58;
-        }
-
-        .ocean{
-            background:#3d7180;
-        }
-
-        .onyx{
-            background:#222;
-        }
-
-        .nude{
-            background:#d8b59e;
+        .home-offer p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #777;
+            line-height: 1.8;
         }
 
 
         /* ==========================================
-           BOOKING FORM
+           SERVICES
         ========================================== */
 
-        .virtual-booking-form{
-            margin-top:30px;
-            padding-top:25px;
-            border-top:1px solid #eee;
+        .home-services {
+            padding: 50px 8%;
+            background: white;
         }
 
-        .virtual-form-grid{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:15px;
+        .home-section-heading {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .virtual-form-group{
-            display:flex;
-            flex-direction:column;
+        .home-section-heading .small-heading {
+            color: #b8860b;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
-        .virtual-form-group.full{
-            grid-column:1/-1;
+        .home-section-heading h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 45px;
+            color: #333;
+            margin: 8px 0 12px;
         }
 
-        .virtual-form-group label{
-            font-size:13px;
-            margin-bottom:6px;
-            color:#444;
+        .home-section-heading p {
+            max-width: 620px;
+            margin: auto;
+            color: #777;
+            line-height: 1.8;
         }
 
-        .virtual-form-group input,
-        .virtual-form-group select{
-            width:100%;
-            box-sizing:border-box;
-            padding:12px 13px;
-            border:1px solid #ddd;
-            border-radius:6px;
-            outline:none;
-            font-family:'Poppins',sans-serif;
-            font-size:13px;
+        .home-service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
         }
 
-        .virtual-form-group input:focus,
-        .virtual-form-group select:focus{
-            border-color:#c89b3c;
+        .home-service-card {
+            padding: 32px 28px;
+            text-align: center;
+            background: #fffaf8;
+            border: 1px solid #f0e5df;
+            border-radius: 18px;
+            transition: all 0.3s ease;
         }
 
-        .booking-summary{
-            margin-top:20px;
-            padding:16px;
-            background:#faf7f4;
-            border-radius:8px;
-            border:1px solid #eee;
+        .home-service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: #d6b66b;
         }
 
-        .booking-summary h4{
-            margin:0 0 10px;
-            font-family:'Cormorant Garamond',serif;
-            font-size:22px;
+        .home-service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            font-size: 30px;
         }
 
-        .summary-line{
-            display:flex;
-            justify-content:space-between;
-            gap:15px;
-            padding:4px 0;
-            font-size:13px;
-            color:#555;
+        .home-service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 29px;
+            color: #333;
+            margin-bottom: 10px;
         }
 
-        .summary-line strong{
-            color:#333;
+        .home-service-card p {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 18px;
         }
 
-        .virtual-book-btn{
-            width:100%;
-            margin-top:18px;
-            padding:14px;
-            border:none;
-            background:#c89b3c;
-            color:#fff;
-            border-radius:6px;
-            cursor:pointer;
-            font-family:'Poppins',sans-serif;
-            font-size:14px;
-            transition:.3s ease;
-        }
-
-        .virtual-book-btn:hover{
-            background:#b8860b;
-        }
-
-        .virtual-book-btn:disabled{
-            opacity:.6;
-            cursor:not-allowed;
+        .home-service-card a {
+            color: #b8860b;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
         }
 
 
         /* ==========================================
-           HOME EXTRA SECTIONS
+           WHY CHOOSE US
         ========================================== */
 
-        .home-preview-section{
-            padding:80px 7%;
-            background:#faf7f4;
-            text-align:center;
+        .home-why {
+            padding: 50px 8%;
+            background: #fff8f5;
         }
 
-        .home-preview-section h2{
-            font-family:'Cormorant Garamond',serif;
-            font-size:42px;
-            margin-bottom:12px;
-            color:#333;
+        .home-why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            max-width: 1150px;
+            margin: auto;
         }
 
-        .home-preview-section p{
-            max-width:650px;
-            margin:0 auto 25px;
-            color:#777;
-            line-height:1.8;
-            font-size:14px;
+        .home-why-card {
+            text-align: center;
+            background: white;
+            padding: 28px 20px;
+            border-radius: 16px;
+            border: 1px solid #f0e5df;
+            transition: 0.3s ease;
+        }
+
+        .home-why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .home-why-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .home-why-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .home-why-card p {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 0;
         }
 
 
         /* ==========================================
-           RESPONSIVE
+           VIRTUAL PREVIEW CTA
         ========================================== */
 
-        @media(max-width:700px){
+        .home-preview {
+            padding: 50px 8%;
+            background: white;
+        }
 
-            .hero-buttons{
-                justify-content:center;
+        .home-preview-box {
+            max-width: 1050px;
+            margin: auto;
+            padding: 45px 35px;
+            text-align: center;
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff8f5,
+                    #fff,
+                    #fff8ed
+                );
+
+            border: 1px solid #f0dfc5;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        .home-preview-icon {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .home-preview-box h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 45px;
+            margin: 8px 0 12px;
+            color: #333;
+        }
+
+        .home-preview-box p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #777;
+            line-height: 1.8;
+        }
+
+
+        /* ==========================================
+           FINAL CTA
+        ========================================== */
+
+        .home-final {
+            padding: 50px 8%;
+            text-align: center;
+            background: #fffaf8;
+        }
+
+        .home-final h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 46px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .home-final p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: #777;
+            line-height: 1.8;
+        }
+
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
+        .hero {
+            padding-bottom: 45px !important;
+        }
+
+
+        /* ==========================================
+           NEW VIRTUAL PREVIEW MODAL
+        ========================================== */
+
+        .preview-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(35, 27, 24, 0.72);
+            backdrop-filter: blur(7px);
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .preview-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 1180px;
+            max-height: 92vh;
+            overflow-y: auto;
+            position: relative;
+            background: #fffdfb;
+            border: 1px solid #ead8bc;
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            padding: 35px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 22px;
+            top: 15px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff8ed;
+            color: #8c6718;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 20;
+            transition: 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #c89b3c;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-content > h2 {
+            font-family: 'Cormorant Garamond', serif;
+            text-align: center;
+            font-size: 42px;
+            color: #333;
+            margin: 0;
+        }
+
+        .preview-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin: 5px 0 28px;
+        }
+
+
+        /* ==========================================
+           VIRTUAL PREVIEW LAYOUT
+        ========================================== */
+
+        .virtual-preview-layout {
+            display: grid;
+            grid-template-columns: 245px minmax(300px, 1fr) 300px;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .preview-control-panel,
+        .preview-result-panel {
+            background: #fffaf7;
+            border: 1px solid #eee0d5;
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .preview-control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .preview-control-panel h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .preview-step {
+            border-bottom: 1px solid #eee2da;
+            padding-bottom: 16px;
+        }
+
+        .preview-step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .preview-step-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #b8860b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .preview-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .preview-option {
+            border: 1px solid #e5d9d1;
+            background: white;
+            color: #555;
+            border-radius: 7px;
+            padding: 8px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .preview-option:hover {
+            border-color: #c89b3c;
+            color: #a2771d;
+        }
+
+        .preview-option.active {
+            background: #c89b3c;
+            border-color: #c89b3c;
+            color: white;
+            box-shadow: 0 4px 12px rgba(200, 155, 60, 0.22);
+        }
+
+
+        /* ==========================================
+           CENTER PREVIEW
+        ========================================== */
+
+        .preview-center-panel {
+            min-width: 0;
+            background:
+                linear-gradient(
+                    145deg,
+                    #fffaf7,
+                    #ffffff,
+                    #fff8ed
+                );
+            border: 1px solid #eee0d5;
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-center-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25px;
+            color: #333;
+            margin: 0 0 3px;
+        }
+
+        .preview-center-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        .nail-preview-stage {
+            flex: 1;
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 35px 15px;
+            margin-top: 8px;
+            border-radius: 22px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #ffffff,
+                    #fff7f2
+                );
+
+            border: 1px solid #f0dfd4;
+            overflow: hidden;
+        }
+
+
+        /* ==========================================
+           HAND-LIKE NAIL ARRANGEMENT
+        ========================================== */
+
+        .virtual-nail {
+            position: relative;
+            width: 48px;
+            height: 155px;
+            background: #c89b3c;
+            border: 2px solid rgba(80, 50, 30, 0.20);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.15);
+
+            overflow: hidden;
+
+            transition:
+                width 0.4s ease,
+                height 0.4s ease,
+                border-radius 0.4s ease,
+                clip-path 0.4s ease,
+                background 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .nail-1,
+        .nail-5 {
+            height: 125px;
+        }
+
+        .nail-2,
+        .nail-4 {
+            height: 145px;
+        }
+
+        .nail-3 {
+            height: 165px;
+        }
+
+        .virtual-nail:hover {
+            transform: translateY(-8px);
+        }
+
+        .virtual-nail::after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            right: 7px;
+            top: 7px;
+            height: 25px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.20);
+            pointer-events: none;
+        }
+
+        .nail-design {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            z-index: 3;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+
+        /* ==========================================
+           ALMOND
+        ========================================== */
+
+        .shape-almond .virtual-nail {
+            width: 48px;
+            height: 155px;
+
+            border-radius:
+                50% 50% 25% 25% /
+                25% 25% 12% 12%;
+        }
+
+
+        /* ==========================================
+           SQUARE
+        ========================================== */
+
+        .shape-square .virtual-nail {
+            width: 52px;
+            height: 150px;
+            border-radius: 13px 13px 5px 5px;
+        }
+
+
+        /* ==========================================
+           COFFIN
+        ========================================== */
+
+        .shape-coffin .virtual-nail {
+            width: 55px;
+            height: 150px;
+
+            clip-path: polygon(
+                13% 0,
+                87% 0,
+                100% 100%,
+                0 100%
+            );
+
+            border-radius: 10px 10px 3px 3px;
+        }
+
+
+        /* ==========================================
+           OVAL
+        ========================================== */
+
+        .shape-oval .virtual-nail {
+            width: 48px;
+            height: 150px;
+
+            border-radius:
+                50% 50% 30% 30% /
+                30% 30% 15% 15%;
+        }
+
+
+        /* ==========================================
+           STILETTO
+        ========================================== */
+
+        .shape-stiletto .virtual-nail {
+            width: 50px;
+            height: 165px;
+
+            clip-path: polygon(
+                50% 0,
+                95% 100%,
+                5% 100%
+            );
+
+            border-radius: 30px 30px 5px 5px;
+        }
+
+
+        /* ==========================================
+           CLASSIC NUDE
+        ========================================== */
+
+        .design-classic-nude .nail-design::before {
+            content: "";
+            width: 60%;
+            height: 45%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+
+        /* ==========================================
+           FRENCH TIPS
+        ========================================== */
+
+        .design-french-tips .nail-design {
+            align-items: flex-end;
+        }
+
+        .design-french-tips .nail-design::before {
+            content: "";
+            width: 100%;
+            height: 25px;
+            background: white;
+
+            border-radius:
+                50% 50% 0 0;
+
+            box-shadow:
+                0 -2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* ==========================================
+           CHROME
+        ========================================== */
+
+        .design-chrome .nail-design {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.65),
+                    transparent 35%,
+                    rgba(255, 255, 255, 0.65) 50%,
+                    transparent 70%
+                );
+        }
+
+        .design-chrome .nail-design::before {
+            content: "✦";
+            font-size: 25px;
+            color: rgba(255, 255, 255, 0.85);
+
+            text-shadow:
+                0 0 8px white,
+                0 0 15px white;
+        }
+
+
+        /* ==========================================
+           CAT EYE
+        ========================================== */
+
+        .design-cat-eye .nail-design {
+            background:
+                linear-gradient(
+                    110deg,
+                    transparent 25%,
+                    rgba(255, 255, 255, 0.85) 45%,
+                    transparent 65%
+                );
+        }
+
+        .design-cat-eye .nail-design::before {
+            content: "✦";
+            color: white;
+            font-size: 24px;
+
+            text-shadow:
+                0 0 10px white;
+        }
+
+
+        /* ==========================================
+           GLITTER
+        ========================================== */
+
+        .design-glitter .nail-design {
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.95) 1px,
+                    transparent 2px
+                );
+
+            background-size: 12px 12px;
+        }
+
+        .design-glitter .nail-design::before {
+            content: "✦";
+            color: white;
+            font-size: 20px;
+        }
+
+
+        /* ==========================================
+           FLORAL
+        ========================================== */
+
+        .design-floral .nail-design::before {
+            content: "🌸";
+            font-size: 26px;
+
+            filter:
+                drop-shadow(
+                    0 2px 3px rgba(0, 0, 0, 0.15)
+                );
+        }
+
+        .design-floral .nail-design::after {
+            content: "•";
+            position: absolute;
+            color: #ffd54f;
+            font-size: 18px;
+            transform: translate(1px, 1px);
+        }
+
+
+        /* ==========================================
+           SHADE OPTIONS
+        ========================================== */
+
+        .shade-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .shade-btn {
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            border: 3px solid white;
+            outline: 1px solid #ddd;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .shade-btn:hover {
+            transform: scale(1.12);
+        }
+
+        .shade-btn.active {
+            outline: 2px solid #b8860b;
+            transform: scale(1.12);
+        }
+
+        .selected-shade {
+            font-size: 11px;
+            color: #777;
+            margin: 10px 0 0;
+        }
+
+        .selected-shade strong {
+            color: #a4771c;
+        }
+
+
+        /* ==========================================
+           RESULT PANEL
+        ========================================== */
+
+        .preview-result-panel h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25px;
+            color: #333;
+            margin: 0 0 18px;
+        }
+
+        .selected-look {
+            padding: 17px;
+            background: white;
+            border: 1px solid #eee0d5;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .selected-look h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .selected-look p {
+            margin: 7px 0;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .selected-look strong {
+            color: #444;
+        }
+
+
+        /* ==========================================
+           VIRTUAL BOOKING
+        ========================================== */
+
+        .virtual-booking-section {
+            margin-top: 0;
+            padding: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            text-align: left;
+        }
+
+        .virtual-booking-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25px;
+            color: #333;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .virtual-booking-subtitle {
+            text-align: left;
+            color: #888;
+            font-size: 11px;
+            margin-bottom: 17px;
+            line-height: 1.5;
+        }
+
+        .booking-field {
+            margin-bottom: 12px;
+        }
+
+        .booking-field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .booking-field input {
+            width: 100%;
+            padding: 10px 11px;
+            border: 1px solid #e4d8d1;
+            border-radius: 7px;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            outline: none;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .booking-field input:focus {
+            border-color: #c89b3c;
+            box-shadow:
+                0 0 0 3px
+                rgba(200, 155, 60, 0.10);
+        }
+
+        .virtual-booking-section .form-group {
+            margin-bottom: 12px;
+        }
+
+        .virtual-booking-section .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .virtual-booking-section .form-group select {
+            width: 100%;
+            padding: 10px 11px;
+            border: 1px solid #e4d8d1;
+            border-radius: 7px;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            outline: none;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .virtual-booking-section .form-group select:focus {
+            border-color: #c89b3c;
+        }
+
+
+        /* ==========================================
+           BOOKING SUMMARY
+        ========================================== */
+
+        .booking-summary {
+            margin-top: 14px;
+            padding: 13px;
+            background: white;
+            border: 1px solid #eee1d9;
+            border-radius: 10px;
+        }
+
+        .booking-summary h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 9px;
+        }
+
+        .booking-summary p {
+            margin: 5px 0;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .booking-summary strong {
+            color: #444;
+        }
+
+
+        /* ==========================================
+           BOOK BUTTON
+        ========================================== */
+
+        .virtual-booking-section .virtual-book-btn {
+            width: 100%;
+            margin-top: 14px;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 7px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .virtual-booking-section .virtual-book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 20px
+                rgba(184, 134, 11, 0.20);
+        }
+
+
+        /* ==========================================
+           MOBILE PREVIEW
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .virtual-preview-layout {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .preview-box{
-                padding:22px;
+            .preview-control-panel {
+                grid-column: 1 / -1;
             }
 
-            .preview-title{
-                font-size:29px;
-            }
-
-            .shade-grid{
-                grid-template-columns:repeat(3,1fr);
-            }
-
-            .virtual-form-grid{
-                grid-template-columns:1fr;
-            }
-
-            .virtual-form-group.full{
-                grid-column:auto;
-            }
-
-            .home-preview-section h2{
-                font-size:34px;
+            .preview-result-panel {
+                grid-column: 1 / -1;
             }
 
         }
 
-        @media(max-width:450px){
 
-            .preview-modal{
-                padding:10px;
+        @media (max-width: 600px) {
+
+            .preview-modal {
+                padding: 10px;
             }
 
-            .preview-box{
-                padding:18px;
+            .modal-content {
+                padding: 25px 15px;
+                max-height: 95vh;
+                border-radius: 18px;
             }
 
-            .shade-grid{
-                grid-template-columns:repeat(2,1fr);
+            .modal-content > h2 {
+                font-size: 32px;
+                padding-right: 25px;
             }
 
-            .preview-option{
-                width:100%;
-                text-align:center;
+            .virtual-preview-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-control-panel,
+            .preview-center-panel,
+            .preview-result-panel {
+                grid-column: auto;
+            }
+
+            .nail-preview-stage {
+                min-height: 280px;
+                gap: 7px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .virtual-nail {
+                width: 38px !important;
+                height: 120px !important;
+            }
+
+            .nail-design {
+                font-size: 20px;
+            }
+
+        }
+
+
+        /* ==========================================
+           MOBILE HOMEPAGE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .quick-features {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 25px 8%;
+            }
+
+            .home-service-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .home-why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding-bottom: 30px !important;
+            }
+
+            .quick-features {
+                grid-template-columns: 1fr;
+                padding: 18px 8%;
+            }
+
+            .quick-feature {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            .quick-feature:last-child {
+                border-bottom: none;
+            }
+
+            .home-service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-services,
+            .home-offer,
+            .home-why,
+            .home-preview,
+            .home-final {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .home-offer h2,
+            .home-section-heading h2,
+            .home-preview-box h2,
+            .home-final h2 {
+                font-size: 36px;
+            }
+
+            .home-preview-box {
+                padding: 35px 20px;
             }
 
         }
@@ -397,1235 +1188,1046 @@
 <body>
 
 
-<!-- ==========================================
-     NAVBAR
-========================================== -->
+    <!-- ==========================================
+         NAVBAR
+    =========================================== -->
 
-<header>
+    <header>
 
-    <nav class="navbar">
+        <nav class="navbar">
 
-        <!-- LOGO -->
-        <a href="index.html" class="logo">
-            💅 Nail Studio
+            <div class="logo">
+    <a href="index.html">💅 Nail Studio</a>
+</div>  
+
+            
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="services.html">Services</a>
+                </li>
+
+                <li>
+                    <a href="offer.html">Offers</a>
+                </li>
+
+                <li>
+                    <a href="faqs.html">FAQs</a>
+                </li>
+
+                <li>
+                    <a href="gallery.html">Gallery</a>
+                </li>
+
+                <li>
+                    <a href="booking.html">Booking</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+
+            </ul>
+
+            <div class="nav-buttons">
+
+                <a href="booking.html" class="signup">
+                    Book Now
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==========================================
+         HERO
+    =========================================== -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p style="
+                color:#b8860b;
+                font-weight:600;
+                letter-spacing:2px;
+                text-transform:uppercase;
+            ">
+                Welcome to Nail Studio
+            </p>
+
+            <h1>
+                Luxury Nails
+                <br>
+                <span style="color:#c89b3c;">
+                    Designed For You
+                </span>
+            </h1>
+
+            <p>
+                Discover beautiful nail designs created
+                specially for your style. From elegant
+                classics to glamorous nail art, your
+                perfect look starts here.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="booking.html" class="gold-btn">
+                    Book Appointment
+                </a>
+
+                <a href="#" class="outline-btn" id="previewBtn">
+                    ✨ Try Virtual Preview
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <img
+                src="images/about.png"
+                alt="Luxury Nail Studio">
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SERVICES
+    =========================================== -->
+
+    <section class="home-services">
+
+        <div class="home-section-heading">
+
+            <div class="small-heading">
+                Our Services
+            </div>
+
+            <h2>
+                Choose Your Perfect Look
+            </h2>
+
+            <p>
+                Select from our popular nail services
+                and create a look that matches your
+                personality and occasion.
+            </p>
+
+        </div>
+
+
+        <div class="home-service-grid">
+
+            <div class="home-service-card">
+
+                <div class="home-service-icon">
+                    🌸
+                </div>
+
+                <h3>
+                    Gel Nails
+                </h3>
+
+                <p>
+                    Smooth, glossy and long-lasting
+                    nails for an elegant everyday look.
+                </p>
+
+                <a href="services.html">
+                    Explore Service →
+                </a>
+
+            </div>
+
+
+            <div class="home-service-card">
+
+                <div class="home-service-icon">
+                    💎
+                </div>
+
+                <h3>
+                    Acrylic Nails
+                </h3>
+
+                <p>
+                    Stylish and durable nail extensions
+                    customized to your preferred shape.
+                </p>
+
+                <a href="services.html">
+                    Explore Service →
+                </a>
+
+            </div>
+
+
+            <div class="home-service-card">
+
+                <div class="home-service-icon">
+                    👑
+                </div>
+
+                <h3>
+                    Luxury Nail Art
+                </h3>
+
+                <p>
+                    Unique artistic designs for parties,
+                    celebrations and special occasions.
+                </p>
+
+                <a href="services.html">
+                    Explore Service →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SPECIAL OFFER
+    =========================================== -->
+
+    <section class="home-offer">
+
+        <div class="home-offer-label">
+            Limited Time
+        </div>
+
+        <h2>
+            ✨ New Season Nail Collection
+        </h2>
+
+        <p>
+            Explore our latest nail styles featuring
+            elegant shades, modern shapes and creative
+            designs perfect for every occasion.
+        </p>
+
+        <a href="offer.html" class="gold-btn">
+            View Latest Offers
         </a>
 
-
-        <!-- NAVIGATION -->
-        <ul class="nav-links">
-
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-
-            <li>
-                <a href="about.html">About</a>
-            </li>
-
-            <li>
-                <a href="services.html">Services</a>
-            </li>
-
-            <li>
-                <a href="offer.html">Offers</a>
-            </li>
-
-            <li>
-                <a href="faqs.html">FAQs</a>
-            </li>
-
-            <li>
-                <a href="gallery.html">Gallery</a>
-            </li>
-
-            <li>
-                <a href="booking.html">Booking</a>
-            </li>
-
-            <li>
-                <a href="contact.html">Contact</a>
-            </li>
-
-        </ul>
+    </section>
 
 
-        <!-- BOOK NOW -->
-        <div class="nav-buttons">
+    <!-- ==========================================
+         WHY CHOOSE US
+    =========================================== -->
 
-            <a href="booking.html" class="signup">
-                Book Now
+    <section class="home-why">
+
+        <div class="home-section-heading">
+
+            <div class="small-heading">
+                The Nail Studio Experience
+            </div>
+
+            <h2>
+                Why Choose Us
+            </h2>
+
+            <p>
+                We focus on beautiful designs,
+                personalized service and a comfortable
+                salon experience.
+            </p>
+
+        </div>
+
+
+        <div class="home-why-grid">
+
+            <div class="home-why-card">
+
+                <div class="home-why-icon">
+                    💅
+                </div>
+
+                <h3>
+                    Expert Nail Artists
+                </h3>
+
+                <p>
+                    Skilled professionals creating
+                    beautiful and personalized nail looks.
+                </p>
+
+            </div>
+
+
+            <div class="home-why-card">
+
+                <div class="home-why-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Personalized Designs
+                </h3>
+
+                <p>
+                    Choose your service, shape,
+                    design and shade for your own style.
+                </p>
+
+            </div>
+
+
+            <div class="home-why-card">
+
+                <div class="home-why-icon">
+                    🧼
+                </div>
+
+                <h3>
+                    Clean & Hygienic
+                </h3>
+
+                <p>
+                    We carefully maintain cleanliness
+                    and hygiene for every appointment.
+                </p>
+
+            </div>
+
+
+            <div class="home-why-card">
+
+                <div class="home-why-icon">
+                    📅
+                </div>
+
+                <h3>
+                    Easy Online Booking
+                </h3>
+
+                <p>
+                    Select your preferred service and
+                    book your appointment easily online.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         VIRTUAL PREVIEW CTA
+    =========================================== -->
+
+    <section class="home-preview">
+
+        <div class="home-preview-box">
+
+            <div class="home-preview-icon">
+                💅 ✨
+            </div>
+
+            <h2>
+                Create Your Perfect Nail Look
+            </h2>
+
+            <p>
+                Not sure which design to choose?
+                Try our Virtual Nail Preview and
+                experiment with different shapes,
+                designs and shades before booking.
+            </p>
+
+            <a
+                href="#"
+                id="previewBtnBottom"
+                class="gold-btn">
+
+                ✨ Try Virtual Preview
+
             </a>
 
         </div>
 
-    </nav>
+    </section>
 
-</header>
 
+    <!-- ==========================================
+         FINAL CTA
+    =========================================== -->
 
-
-<!-- ==========================================
-     HERO
-========================================== -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>
-            Beautiful Nails,
-            <br>
-            Beautiful You
-        </h1>
-
-        <p>
-            Discover premium nail care, elegant designs,
-            and a luxurious experience created especially for you.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="booking.html" class="btn">
-                Book Appointment
-            </a>
-
-            <button
-                type="button"
-                class="virtual-btn"
-                id="openPreviewBtn"
-            >
-                ✨ Virtual Preview
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==========================================
-     SERVICES PREVIEW
-========================================== -->
-
-<section class="services">
-
-    <div class="section-title">
-
-        <span>OUR SERVICES</span>
-
-        <h2>
-            Nail Care & Beauty
-        </h2>
-
-        <p>
-            From simple elegance to statement designs,
-            we create nails that match your personality.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                💅
-            </div>
-
-            <h3>
-                Gel Nails
-            </h3>
-
-            <p>
-                Long-lasting shine and beautiful
-                salon-quality gel nails.
-            </p>
-
-            <a href="services.html">
-                Explore Service →
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                ✨
-            </div>
-
-            <h3>
-                Nail Art
-            </h3>
-
-            <p>
-                Creative nail art designed to
-                make your nails stand out.
-            </p>
-
-            <a href="services.html">
-                Explore Service →
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🌸
-            </div>
-
-            <h3>
-                Bridal Nails
-            </h3>
-
-            <p>
-                Elegant bridal nail designs
-                for your special day.
-            </p>
-
-            <a href="services.html">
-                Explore Service →
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                💎
-            </div>
-
-            <h3>
-                Nail Extensions
-            </h3>
-
-            <p>
-                Beautifully shaped extensions
-                for a glamorous finish.
-            </p>
-
-            <a href="services.html">
-                Explore Service →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==========================================
-     SPECIAL OFFER
-========================================== -->
-
-<section class="offer-section">
-
-    <div class="offer-content">
-
-        <span>
-            SPECIAL OFFER
-        </span>
-
-        <h2>
-            Get 20% Off Your First Visit
-        </h2>
-
-        <p>
-            Experience premium nail care and
-            enjoy an exclusive discount on your first appointment.
-        </p>
-
-        <a href="booking.html" class="btn">
-            Claim Offer
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==========================================
-     WHY CHOOSE US
-========================================== -->
-
-<section class="why-us">
-
-    <div class="section-title">
-
-        <span>WHY NAIL STUDIO</span>
-
-        <h2>
-            Beauty With Attention To Detail
-        </h2>
-
-        <p>
-            We believe every client deserves
-            beautiful nails and a relaxing experience.
-        </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                💎
-            </div>
-
-            <h3>
-                Premium Quality
-            </h3>
-
-            <p>
-                We use carefully selected,
-                high-quality nail products.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                ✨
-            </div>
-
-            <h3>
-                Beautiful Designs
-            </h3>
-
-            <p>
-                Choose from elegant classics
-                or creative modern nail art.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                🌸
-            </div>
-
-            <h3>
-                Relaxing Experience
-            </h3>
-
-            <p>
-                Sit back, relax, and enjoy
-                your personalized nail session.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                ❤️
-            </div>
-
-            <h3>
-                Personal Care
-            </h3>
-
-            <p>
-                Every appointment is designed
-                around your preferences.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==========================================
-     VIRTUAL PREVIEW CTA
-========================================== -->
-
-<section class="home-preview-section">
-
-    <h2>
-        Design Your Perfect Nails
-    </h2>
-
-    <p>
-        Not sure which style to choose?
-        Try our Virtual Nail Preview and select your
-        service, shape, design and shade before booking.
-    </p>
-
-    <button
-        type="button"
-        class="btn"
-        id="openPreviewBtnBottom"
-    >
-        ✨ Try Virtual Preview
-    </button>
-
-</section>
-
-
-
-<!-- ==========================================
-     FINAL CTA
-========================================== -->
-
-<section class="cta-section">
-
-    <div class="cta-content">
+    <section class="home-final">
 
         <h2>
             Ready For Your Perfect Nails?
         </h2>
 
         <p>
-            Book your appointment today and
-            let us create something beautiful for you.
+            Choose your favorite service,
+            select your design and book your
+            appointment today.
         </p>
 
-        <a href="booking.html" class="btn">
+        <a href="booking.html" class="gold-btn">
             Book Your Appointment
         </a>
 
+    </section>
+
+
+    <!-- ==========================================
+         VIRTUAL NAIL PREVIEW MODAL
+    =========================================== -->
+
+    <div id="previewModal" class="preview-modal">
+
+        <div class="modal-content">
+
+            <span id="closeModal" class="close-modal">
+                &times;
+            </span>
+
+            <h2>
+                💅 Virtual Nail Preview
+            </h2>
+
+            <p class="preview-subtitle">
+                Design your look • Preview it • Book it
+            </p>
+
+
+            <div class="virtual-preview-layout">
+
+
+                <!-- ==========================================
+                     LEFT CONTROL PANEL
+                =========================================== -->
+
+                <div class="preview-control-panel">
+
+                    <h3>
+                        Create Your Look
+                    </h3>
+
+
+                    <!-- SERVICE -->
+
+                    <div class="preview-step">
+
+                        <div class="preview-step-title">
+                            01 · Service
+                        </div>
+
+                        <div class="preview-options">
+
+                            <button
+                                type="button"
+                                class="preview-option service-option active"
+                                data-service="Gel Nails">
+                                Gel Nails
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option service-option"
+                                data-service="Acrylic Nails">
+                                Acrylic Nails
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option service-option"
+                                data-service="Bridal Nails">
+                                Bridal Nails
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option service-option"
+                                data-service="French Nails">
+                                French Nails
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option service-option"
+                                data-service="Nail Extensions">
+                                Nail Extensions
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option service-option"
+                                data-service="Luxury Nail Art">
+                                Luxury Nail Art
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SHAPE -->
+
+                    <div class="preview-step">
+
+                        <div class="preview-step-title">
+                            02 · Shape
+                        </div>
+
+                        <div class="preview-options">
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option active"
+                                data-shape="Almond">
+                                Almond
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Square">
+                                Square
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Coffin">
+                                Coffin
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Oval">
+                                Oval
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Stiletto">
+                                Stiletto
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESIGN -->
+
+                    <div class="preview-step">
+
+                        <div class="preview-step-title">
+                            03 · Design
+                        </div>
+
+                        <div class="preview-options">
+
+                            <button
+                                type="button"
+                                class="preview-option design-option active"
+                                data-design="Classic Nude">
+                                Classic Nude
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option design-option"
+                                data-design="French Tips">
+                                French Tips
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option design-option"
+                                data-design="Chrome">
+                                Chrome
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option design-option"
+                                data-design="Cat Eye">
+                                Cat Eye
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option design-option"
+                                data-design="Glitter">
+                                Glitter
+                            </button>
+
+                            <button
+                                type="button"
+                                class="preview-option design-option"
+                                data-design="Floral">
+                                Floral
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SHADE -->
+
+                    <div class="preview-step">
+
+                        <div class="preview-step-title">
+                            04 · Polish Shade
+                        </div>
+
+                        <div class="shade-options">
+
+                            <button
+                                type="button"
+                                class="shade-btn active"
+                                data-shade="Royal Gold"
+                                data-color="#c89b3c"
+                                style="background:#c89b3c;">
+                            </button>
+
+                            <button
+                                type="button"
+                                class="shade-btn"
+                                data-shade="Rose Blush"
+                                data-color="#e91e63"
+                                style="background:#e91e63;">
+                            </button>
+
+                            <button
+                                type="button"
+                                class="shade-btn"
+                                data-shade="Plum Glam"
+                                data-color="#9c27b0"
+                                style="background:#9c27b0;">
+                            </button>
+
+                            <button
+                                type="button"
+                                class="shade-btn"
+                                data-shade="Ocean Breeze"
+                                data-color="#00bcd4"
+                                style="background:#00bcd4;">
+                            </button>
+
+                            <button
+                                type="button"
+                                class="shade-btn"
+                                data-shade="Midnight Onyx"
+                                data-color="#222222"
+                                style="background:#222222;">
+                            </button>
+
+                            <button
+                                type="button"
+                                class="shade-btn"
+                                data-shade="Nude"
+                                data-color="#d8a58c"
+                                style="background:#d8a58c;">
+                            </button>
+
+                        </div>
+
+                        <p class="selected-shade">
+                            Selected:
+                            <strong id="selectedShadeName">
+                                Royal Gold
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     CENTER NAIL PREVIEW
+                =========================================== -->
+
+                <div class="preview-center-panel">
+
+                    <h3 class="preview-center-title">
+                        Your Nail Preview
+                    </h3>
+
+                    <p class="preview-center-subtitle">
+                        See your selected style before booking
+                    </p>
+
+                    <div
+                        class="nail-preview-stage"
+                        id="nailPreviewStage">
+
+                        <div class="virtual-nail nail-1">
+                            <span class="nail-design"></span>
+                        </div>
+
+                        <div class="virtual-nail nail-2">
+                            <span class="nail-design"></span>
+                        </div>
+
+                        <div class="virtual-nail nail-3">
+                            <span class="nail-design"></span>
+                        </div>
+
+                        <div class="virtual-nail nail-4">
+                            <span class="nail-design"></span>
+                        </div>
+
+                        <div class="virtual-nail nail-5">
+                            <span class="nail-design"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     RIGHT BOOKING PANEL
+                =========================================== -->
+
+                <div class="preview-result-panel">
+
+                    <h3>
+                        ✨ Book Your Look
+                    </h3>
+
+
+                    <!-- SELECTED LOOK -->
+
+                    <div class="selected-look">
+
+                        <h3>
+                            Selected Look
+                        </h3>
+
+                        <p>
+                            <strong>Service:</strong>
+                            <span id="previewService">
+                                Gel Nails
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Shape:</strong>
+                            <span id="previewShape">
+                                Almond
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Design:</strong>
+                            <span id="previewDesign">
+                                Classic Nude
+                            </span>
+                        </p>
+
+                        <p>
+                            <strong>Shade:</strong>
+                            <span id="previewShade">
+                                Royal Gold
+                            </span>
+                        </p>
+
+                    </div>
+
+
+                    <!-- ==========================================
+                         VIRTUAL BOOKING
+                    =========================================== -->
+
+                    <div class="virtual-booking-section">
+
+                        <h3>
+                            Book This Look
+                        </h3>
+
+                        <p class="virtual-booking-subtitle">
+                            Enter your details to reserve your selected nail design.
+                        </p>
+
+
+                        <form id="virtualBookingForm">
+
+
+                            <div class="booking-field">
+
+                                <label for="virtualName">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="virtualName"
+                                    name="name"
+                                    placeholder="Enter your full name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="booking-field">
+
+                                <label for="virtualEmail">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="virtualEmail"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="booking-field">
+
+                                <label for="virtualPhone">
+                                    Contact Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="virtualPhone"
+                                    name="phone"
+                                    placeholder="10-digit contact number"
+                                    pattern="[0-9]{10}"
+                                    maxlength="10"
+                                    inputmode="numeric"
+                                    required>
+
+                            </div>
+
+
+                            <div class="booking-field">
+
+                                <label for="virtualBookingDate">
+                                    Booking Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="virtualBookingDate"
+                                    name="bookingDate"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="time">
+                                    🕒 Appointment Time
+                                </label>
+
+                                <select
+                                    id="time"
+                                    name="time"
+                                    required>
+
+                                    <option value="">
+                                        Select a time
+                                    </option>
+
+                                    <option value="10:00 AM">
+                                        10:00 AM
+                                    </option>
+
+                                    <option value="11:00 AM">
+                                        11:00 AM
+                                    </option>
+
+                                    <option value="12:00 PM">
+                                        12:00 PM
+                                    </option>
+
+                                    <option value="1:00 PM">
+                                        1:00 PM
+                                    </option>
+
+                                    <option value="2:00 PM">
+                                        2:00 PM
+                                    </option>
+
+                                    <option value="3:00 PM">
+                                        3:00 PM
+                                    </option>
+
+                                    <option value="4:00 PM">
+                                        4:00 PM
+                                    </option>
+
+                                    <option value="5:00 PM">
+                                        5:00 PM
+                                    </option>
+
+                                    <option value="6:00 PM">
+                                        6:00 PM
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- ONLY USED INTERNALLY FOR VIRTUAL BOOKING -->
+
+                            <input
+                                type="hidden"
+                                id="virtualService"
+                                name="service"
+                                value="Gel Nails">
+
+
+                            <div class="booking-summary">
+
+                                <h4>
+                                    ✨ Booking Summary
+                                </h4>
+
+                                <p>
+                                    <strong>Service:</strong>
+                                    <span id="bookingService">
+                                        Gel Nails
+                                    </span>
+                                </p>
+
+                                <p>
+                                    <strong>Design:</strong>
+                                    <span id="bookingDesign">
+                                        Classic Nude
+                                    </span>
+                                </p>
+
+                                <p>
+                                    <strong>Shade:</strong>
+                                    <span id="bookingShade">
+                                        Royal Gold
+                                    </span>
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                id="bookVirtualLook"
+                                class="virtual-book-btn">
+
+                                💅 Book This Look
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-</section>
 
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
 
+    <footer>
 
-<!-- ==========================================
-     VIRTUAL NAIL PREVIEW MODAL
-========================================== -->
-
-<div
-    class="preview-modal"
-    id="previewModal"
->
-
-
-    <div class="preview-box">
-
-
-        <button
-            type="button"
-            class="preview-close"
-            id="closePreviewBtn"
-        >
-            &times;
-        </button>
-
-
-        <h2 class="preview-title">
-            Virtual Nail Preview
+        <h2>
+            💅 Nail Studio
         </h2>
 
-        <p class="preview-subtitle">
-            Choose your service, shape, design and shade.
+        <p>
+            Luxury Nails |
+            Modern Technology |
+            Perfect Experience
         </p>
-
-
-
-        <!-- SERVICE -->
-
-        <div class="preview-section">
-
-            <h3>
-                Choose Service
-            </h3>
-
-            <div class="preview-options">
-
-                <button
-                    type="button"
-                    class="preview-option service-option active"
-                    data-service="Gel Nails"
-                >
-                    Gel Nails
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option service-option"
-                    data-service="Acrylic Nails"
-                >
-                    Acrylic Nails
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option service-option"
-                    data-service="Bridal Nails"
-                >
-                    Bridal Nails
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option service-option"
-                    data-service="French Nails"
-                >
-                    French Nails
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option service-option"
-                    data-service="Nail Extensions"
-                >
-                    Nail Extensions
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option service-option"
-                    data-service="Luxury Nail Art"
-                >
-                    Luxury Nail Art
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SHAPE -->
-
-        <div class="preview-section">
-
-            <h3>
-                Choose Shape
-            </h3>
-
-            <div class="preview-options">
-
-                <button
-                    type="button"
-                    class="preview-option shape-option active"
-                    data-shape="Almond"
-                >
-                    Almond
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option shape-option"
-                    data-shape="Square"
-                >
-                    Square
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option shape-option"
-                    data-shape="Coffin"
-                >
-                    Coffin
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option shape-option"
-                    data-shape="Oval"
-                >
-                    Oval
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option shape-option"
-                    data-shape="Stiletto"
-                >
-                    Stiletto
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- DESIGN -->
-
-        <div class="preview-section">
-
-            <h3>
-                Choose Design
-            </h3>
-
-            <div class="preview-options">
-
-                <button
-                    type="button"
-                    class="preview-option design-option active"
-                    data-design="Classic Nude"
-                >
-                    Classic Nude
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option design-option"
-                    data-design="French Tips"
-                >
-                    French Tips
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option design-option"
-                    data-design="Chrome"
-                >
-                    Chrome
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option design-option"
-                    data-design="Cat Eye"
-                >
-                    Cat Eye
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option design-option"
-                    data-design="Glitter"
-                >
-                    Glitter
-                </button>
-
-                <button
-                    type="button"
-                    class="preview-option design-option"
-                    data-design="Floral"
-                >
-                    Floral
-                </button>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SHADE -->
-
-        <div class="preview-section">
-
-            <h3>
-                Choose Shade
-            </h3>
-
-            <div class="shade-grid">
-
-
-                <button
-                    type="button"
-                    class="shade-option active"
-                    data-shade="Royal Gold"
-                >
-
-                    <div class="shade-circle gold"></div>
-
-                    Royal Gold
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="shade-option"
-                    data-shade="Rose Blush"
-                >
-
-                    <div class="shade-circle rose"></div>
-
-                    Rose Blush
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="shade-option"
-                    data-shade="Plum Glam"
-                >
-
-                    <div class="shade-circle plum"></div>
-
-                    Plum Glam
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="shade-option"
-                    data-shade="Ocean Breeze"
-                >
-
-                    <div class="shade-circle ocean"></div>
-
-                    Ocean Breeze
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="shade-option"
-                    data-shade="Midnight Onyx"
-                >
-
-                    <div class="shade-circle onyx"></div>
-
-                    Midnight Onyx
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="shade-option"
-                    data-shade="Nude"
-                >
-
-                    <div class="shade-circle nude"></div>
-
-                    Nude
-
-                </button>
-
-
-            </div>
-
-        </div>
-
-
-
-        <!-- BOOKING FORM -->
-
-        <div class="virtual-booking-form">
-
-            <h3>
-                Book Your Look
-            </h3>
-
-
-            <div class="virtual-form-grid">
-
-
-                <div class="virtual-form-group">
-
-                    <label for="virtualName">
-                        Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="virtualName"
-                        placeholder="Enter your name"
-                    >
-
-                </div>
-
-
-                <div class="virtual-form-group">
-
-                    <label for="virtualEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="virtualEmail"
-                        placeholder="Enter your email"
-                    >
-
-                </div>
-
-
-                <div class="virtual-form-group">
-
-                    <label for="virtualPhone">
-                        Phone
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="virtualPhone"
-                        placeholder="Enter your phone number"
-                    >
-
-                </div>
-
-
-                <div class="virtual-form-group">
-
-                    <label for="virtualDate">
-                        Date
-                    </label>
-
-                    <input
-                        type="date"
-                        id="virtualDate"
-                    >
-
-                </div>
-
-
-                <div class="virtual-form-group">
-
-                    <label for="virtualTime">
-                        Time
-                    </label>
-
-                    <input
-                        type="time"
-                        id="virtualTime"
-                    >
-
-                </div>
-
-
-                <input
-                    type="hidden"
-                    id="virtualService"
-                    value="Gel Nails"
-                >
-
-
-            </div>
-
-
-
-            <!-- BOOKING SUMMARY -->
-
-            <div class="booking-summary">
-
-                <h4>
-                    Your Selection
-                </h4>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Service
-                    </span>
-
-                    <strong id="summaryService">
-                        Gel Nails
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Shape
-                    </span>
-
-                    <strong id="summaryShape">
-                        Almond
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Design
-                    </span>
-
-                    <strong id="summaryDesign">
-                        Classic Nude
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Shade
-                    </span>
-
-                    <strong id="summaryShade">
-                        Royal Gold
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-            <button
-                type="button"
-                class="virtual-book-btn"
-                id="bookVirtualLook"
-            >
-                Book This Look
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- ==========================================
-     FOOTER
-========================================== -->
-
-<footer>
-
-    <div class="footer-content">
-
-
-        <div class="footer-about">
-
-            <h3>
-                💅 Nail Studio
-            </h3>
-
-            <p>
-                Premium nail care and beautiful
-                designs made especially for you.
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Quick Links
-            </h4>
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-            <a href="services.html">
-                Services
-            </a>
-
-            <a href="booking.html">
-                Booking
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </div>
-
-
-        <div class="footer-contact">
-
-            <h4>
-                Contact
-            </h4>
-
-            <p>
-                📞 +91 98765 43210
-            </p>
-
-            <p>
-                ✉️ nailstudio@example.com
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="footer-bottom">
 
         <p>
-            © 2026 Nail Studio. All Rights Reserved.
+            © 2026 Nail Studio
         </p>
 
-    </div>
-
-</footer>
+    </footer>
 
 
+    <!-- MAIN JS -->
 
-<!-- ==========================================
-     MAIN JS
-========================================== -->
-
-<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 
 
+    <!-- BOTTOM PREVIEW BUTTON -->
 
-<!-- ==========================================
-     VIRTUAL PREVIEW BUTTON
-========================================== -->
+    <script>
 
-<script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-document.addEventListener("DOMContentLoaded", function(){
+                const bottomPreview =
+                    document.getElementById(
+                        "previewBtnBottom"
+                    );
 
-    const openBtn =
-        document.getElementById("openPreviewBtn");
+                if (bottomPreview) {
 
-    const openBtnBottom =
-        document.getElementById("openPreviewBtnBottom");
+                    bottomPreview.addEventListener(
+                        "click",
+                        function (event) {
 
-    const modal =
-        document.getElementById("previewModal");
+                            event.preventDefault();
 
-    const closeBtn =
-        document.getElementById("closePreviewBtn");
+                            const previewButton =
+                                document.getElementById(
+                                    "previewBtn"
+                                );
 
+                            if (previewButton) {
+                                previewButton.click();
+                            }
 
-    function openPreview(){
+                        }
+                    );
 
-        if(modal){
-            modal.classList.add("show");
-            document.body.style.overflow = "hidden";
-        }
-
-    }
-
-
-    function closePreview(){
-
-        if(modal){
-            modal.classList.remove("show");
-            document.body.style.overflow = "";
-        }
-
-    }
-
-
-    if(openBtn){
-        openBtn.addEventListener(
-            "click",
-            openPreview
-        );
-    }
-
-
-    if(openBtnBottom){
-        openBtnBottom.addEventListener(
-            "click",
-            openPreview
-        );
-    }
-
-
-    if(closeBtn){
-        closeBtn.addEventListener(
-            "click",
-            closePreview
-        );
-    }
-
-
-    if(modal){
-
-        modal.addEventListener(
-            "click",
-            function(event){
-
-                if(event.target === modal){
-                    closePreview();
                 }
 
             }
         );
 
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Escape"){
-                closePreview();
-            }
-
-        }
-    );
-
-
-
-    /* ==========================================
-       SERVICE SELECTION
-    ========================================== */
-
-    const serviceOptions =
-        document.querySelectorAll(".service-option");
-
-    const shapeOptions =
-        document.querySelectorAll(".shape-option");
-
-    const designOptions =
-        document.querySelectorAll(".design-option");
-
-    const shadeOptions =
-        document.querySelectorAll(".shade-option");
-
-
-    const summaryService =
-        document.getElementById("summaryService");
-
-    const summaryShape =
-        document.getElementById("summaryShape");
-
-    const summaryDesign =
-        document.getElementById("summaryDesign");
-
-    const summaryShade =
-        document.getElementById("summaryShade");
-
-    const virtualService =
-        document.getElementById("virtualService");
-
-
-    serviceOptions.forEach(function(option){
-
-        option.addEventListener(
-            "click",
-            function(){
-
-                serviceOptions.forEach(function(item){
-                    item.classList.remove("active");
-                });
-
-                option.classList.add("active");
-
-                const value =
-                    option.dataset.service;
-
-                if(summaryService){
-                    summaryService.textContent = value;
-                }
-
-                if(virtualService){
-                    virtualService.value = value;
-                }
-
-            }
-        );
-
-    });
-
-
-    shapeOptions.forEach(function(option){
-
-        option.addEventListener(
-            "click",
-            function(){
-
-                shapeOptions.forEach(function(item){
-                    item.classList.remove("active");
-                });
-
-                option.classList.add("active");
-
-                const value =
-                    option.dataset.shape;
-
-                if(summaryShape){
-                    summaryShape.textContent = value;
-                }
-
-            }
-        );
-
-    });
-
-
-    designOptions.forEach(function(option){
-
-        option.addEventListener(
-            "click",
-            function(){
-
-                designOptions.forEach(function(item){
-                    item.classList.remove("active");
-                });
-
-                option.classList.add("active");
-
-                const value =
-                    option.dataset.design;
-
-                if(summaryDesign){
-                    summaryDesign.textContent = value;
-                }
-
-            }
-        );
-
-    });
-
-
-    shadeOptions.forEach(function(option){
-
-        option.addEventListener(
-            "click",
-            function(){
-
-                shadeOptions.forEach(function(item){
-                    item.classList.remove("active");
-                });
-
-                option.classList.add("active");
-
-                const value =
-                    option.dataset.shade;
-
-                if(summaryShade){
-                    summaryShade.textContent = value;
-                }
-
-            }
-        );
-
-    });
-
-});
-
-</script>
-
+    </script>
 
 </body>
 
