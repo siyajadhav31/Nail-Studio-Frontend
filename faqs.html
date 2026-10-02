@@ -9,10 +9,8 @@
 
     <title>FAQs | Nail Studio</title>
 
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-
 
     <!-- GOOGLE FONTS -->
     <link
@@ -124,6 +122,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
         .faq-text {
             font-size: 14px;
             font-weight: 500;
@@ -147,6 +146,7 @@
             align-items: center;
 
             color: #c89b3c;
+
             font-size: 19px;
             font-weight: 400;
 
@@ -169,6 +169,7 @@
             color: #666;
 
             font-family: 'Poppins', sans-serif;
+
             font-size: 13px;
             line-height: 1.7;
         }
@@ -212,6 +213,7 @@
             border-radius: 15px;
         }
 
+
         .faq-cta h2 {
             font-family: 'Cormorant Garamond', serif;
 
@@ -223,10 +225,12 @@
             margin: 0 0 8px;
         }
 
+
         .faq-cta p {
             font-family: 'Poppins', sans-serif;
 
             font-size: 13px;
+
             color: #666;
 
             margin: 0 0 18px;
@@ -258,16 +262,19 @@
             font-family: 'Poppins', sans-serif;
 
             font-size: 12px;
+
             font-weight: 500;
 
             transition: 0.3s ease;
         }
 
+
         .faq-btn:hover {
             transform: scale(1.04);
 
             box-shadow:
-                0 4px 12px rgba(200, 155, 60, 0.25);
+                0 4px 12px
+                rgba(200, 155, 60, 0.25);
         }
 
 
@@ -275,12 +282,13 @@
            FAQ NAVBAR ACTIVE
         ========================================== */
 
-        .nav-links a.faq-active {
+        .nav-links a.active {
             color: #b8860b !important;
             font-weight: 600 !important;
         }
 
-        .nav-links a.faq-active::after {
+
+        .nav-links a.active::after {
             width: 100% !important;
             background: #b8860b !important;
         }
@@ -346,11 +354,15 @@
             <!-- LOGO -->
 
             <div class="logo">
+
                 💅 Nail Studio
+
             </div>
 
 
-            <!-- NAVIGATION -->
+            <!-- ==================================
+                 NAVIGATION
+            ================================== -->
 
             <ul class="nav-links">
 
@@ -376,7 +388,7 @@
                 </li>
 
 
-                <!-- OFFERS - NOT ACTIVE -->
+                <!-- OFFERS -->
 
                 <li>
                     <a href="offer.html">
@@ -385,10 +397,10 @@
                 </li>
 
 
-                <!-- FAQS - ACTIVE -->
+                <!-- FAQs -->
 
                 <li>
-                    <a href="faqs.html" class="faq-active">
+                    <a href="faqs.html" id="faqNav">
                         FAQs
                     </a>
                 </li>
@@ -413,6 +425,7 @@
                         Contact
                     </a>
                 </li>
+
 
             </ul>
 
@@ -457,7 +470,9 @@
 
 
 
-        <!-- FAQ LIST -->
+        <!-- ==========================================
+             FAQ LIST
+        ========================================== -->
 
         <div class="faq-container">
 
@@ -477,6 +492,7 @@
                     </span>
 
                 </button>
+
 
                 <div class="faq-answer">
 
@@ -507,6 +523,7 @@
                     </span>
 
                 </button>
+
 
                 <div class="faq-answer">
 
@@ -539,6 +556,7 @@
 
                 </button>
 
+
                 <div class="faq-answer">
 
                     <p>
@@ -569,6 +587,7 @@
                     </span>
 
                 </button>
+
 
                 <div class="faq-answer">
 
@@ -601,6 +620,7 @@
 
                 </button>
 
+
                 <div class="faq-answer">
 
                     <p>
@@ -631,6 +651,7 @@
 
                 </button>
 
+
                 <div class="faq-answer">
 
                     <p>
@@ -660,6 +681,7 @@
                     </span>
 
                 </button>
+
 
                 <div class="faq-answer">
 
@@ -692,6 +714,7 @@
 
                 </button>
 
+
                 <div class="faq-answer">
 
                     <p>
@@ -723,6 +746,7 @@
                 Our team is happy to help you
                 with your nail service and booking.
             </p>
+
 
             <a href="contact.html" class="faq-btn">
                 Contact Us
@@ -765,6 +789,10 @@
 
     <script>
 
+        /* ==========================================
+           FAQ OPEN / CLOSE
+        ========================================== */
+
         const faqQuestions =
             document.querySelectorAll(".faq-question");
 
@@ -797,6 +825,44 @@
             });
 
         });
+
+
+
+        /* ==========================================
+           FORCE FAQs NAVBAR ACTIVE
+        ========================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                /* Remove active from ALL navbar links */
+
+                const allNavLinks =
+                    document.querySelectorAll(".nav-links a");
+
+
+                allNavLinks.forEach(function(link) {
+
+                    link.classList.remove("active");
+
+                });
+
+
+                /* Make FAQs active */
+
+                const faqNav =
+                    document.getElementById("faqNav");
+
+
+                if (faqNav) {
+
+                    faqNav.classList.add("active");
+
+                }
+
+            }
+        );
 
     </script>
 
