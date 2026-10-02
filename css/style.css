@@ -277,99 +277,118 @@ a{
     margin:auto;
 }
 
-
-/* ==========================================
-   ABOUT
-========================================== */
-
-.about{
-    padding:85px 8%;
-    background:white;
-    text-align:center;
-}
-
-.about h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:46px;
-    font-weight:600;
-    color:#49393e;
-    margin-bottom:18px;
-}
-
-.about p{
-    max-width:780px;
-    margin:0 auto;
-    color:#777;
-    line-height:1.9;
-    font-size:15px;
-}
-
-
 /* ==========================================
    ABOUT PAGE
 ========================================== */
 
-.about-page{
-    padding:80px 8%;
-    background:#fffaf8;
-    text-align:center;
+.about-page {
+    padding: 80px 8%;
+    background: #fffaf8;
 }
 
-.about-page-content{
-    max-width:1000px;
-    margin:0 auto;
-    display:block;
+.about-page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+
+    gap: 70px;
 }
 
-.about-page-text{
-    text-align:center;
-    max-width:800px;
-    margin:0 auto;
+.about-page-text {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-.about-page-text .booking-subtitle{
-    display:block;
-    width:100%;
-    text-align:center;
-    color:#b8860b;
-    font-size:13px;
-    font-weight:500;
-    letter-spacing:1.5px;
-    margin-bottom:13px;
+.about-page-text .booking-subtitle {
+    display: block;
+    width: 100%;
+
+    text-align: center;
+
+    color: #b8860b;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 13px;
 }
 
-.about-page-text h1{
-    font-family:'Cormorant Garamond',serif;
-    font-size:55px;
-    line-height:1.1;
-    font-weight:600;
-    color:#49393e;
-    margin-bottom:22px;
+.about-page-text h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 55px;
+    line-height: 1.1;
+
+    font-weight: 600;
+
+    color: #49393e;
+
+    margin: 0 0 22px;
 }
 
-.about-page-text p{
-    color:#806f74;
-    line-height:1.9;
-    margin-bottom:15px;
-    font-size:15px;
+/* Heading ke neeche GOLD LINE */
+.about-page-text h1::after {
+    content: "";
+
+    display: block;
+
+    width: 65px;
+    height: 2px;
+
+    background: #c89b3c;
+
+    margin: 18px auto 0;
+
+    border-radius: 10px;
 }
 
-.about-page-text .gold-btn{
-    display:inline-block;
-    margin-top:12px;
+.about-page-text p {
+    color: #806f74;
+
+    line-height: 1.9;
+
+    margin-bottom: 15px;
+
+    font-size: 15px;
 }
 
-.about-page-image{
-    margin:40px auto 0;
-    display:flex;
-    justify-content:center;
+.about-page-text .gold-btn {
+    display: inline-block;
+
+    margin-top: 12px;
 }
 
-.about-page-image img{
-    width:100%;
-    max-width:500px;
-    border-radius:18px;
-    box-shadow:0 12px 35px rgba(80,55,45,.10);
+
+/* ==========================================
+   PRICE LIST IMAGE
+========================================== */
+
+.about-page-image {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.about-page-image img {
+    display: block;
+
+    width: 100%;
+    max-width: 500px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(80, 55, 45, 0.10);
 }
 
 
@@ -377,38 +396,95 @@ a{
    OUR MISSION
 ========================================== */
 
-.about-mission{
-    padding:80px 8%;
-    background:#fff5f7;
-    text-align:center;
+.about-mission {
+    padding: 80px 8%;
+
+    background: #fff5f7;
+
+    text-align: center;
 }
 
-.about-mission h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:46px;
-    font-weight:600;
-    color:#49393e;
-    margin-bottom:20px;
+.about-mission h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 46px;
+
+    font-weight: 600;
+
+    color: #49393e;
+
+    margin-bottom: 20px;
 }
 
-.about-mission h2::after{
-    content:"";
-    display:block;
-    width:55px;
-    height:2px;
-    background:#c89b3c;
-    margin:12px auto 24px;
-    border-radius:10px;
+.about-mission h2::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 2px;
+
+    background: #c89b3c;
+
+    margin: 12px auto 24px;
+
+    border-radius: 10px;
 }
 
-.about-mission p{
-    max-width:750px;
-    margin:0 auto;
-    color:#806f74;
-    line-height:1.9;
-    font-size:15px;
+.about-mission p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    color: #806f74;
+
+    line-height: 1.9;
+
+    font-size: 15px;
 }
 
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 800px) {
+
+    .about-page {
+        padding: 60px 6%;
+    }
+
+    .about-page-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .about-page-text h1 {
+        font-size: 48px;
+    }
+
+    .about-page-image {
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .about-page {
+        padding: 50px 20px;
+    }
+
+    .about-page-text h1 {
+        font-size: 40px;
+    }
+
+    .about-page-text p {
+        font-size: 13px;
+    }
+
+}
 
 /* ==========================================
    SERVICES
