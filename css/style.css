@@ -50,38 +50,34 @@ a{
    LOGO
 ========================================== */
 
-.logo{
-    font-family:'Cormorant Garamond',serif;
-    font-size:30px;
-    font-weight:600;
-    color:#333;
-    letter-spacing:.2px;
-    white-space:nowrap;
-    flex-shrink:0;
+.logo {
+    display: inline-block;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    color: #333;
+
+    letter-spacing: .2px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+
+    cursor: pointer;
 }
 
-/* IMPORTANT:
-   Logo is now a clickable link
-*/
 
-.logo a{
-    display:inline-block;
-    color:#333;
-    text-decoration:none;
-    font-family:'Cormorant Garamond',serif;
-    font-size:inherit;
-    font-weight:inherit;
-    letter-spacing:inherit;
-    white-space:nowrap;
-    cursor:pointer;
-    pointer-events:auto;
+/* LOGO HOVER */
+
+.logo:hover {
+    color: #b8860b;
+    text-decoration: none;
 }
-
-.logo a:hover{
-    color:#333;
-    text-decoration:none;
-}
-
 
 /* ==========================================
    NAV LINKS
