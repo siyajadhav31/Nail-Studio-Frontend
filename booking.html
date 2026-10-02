@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,18 +12,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- LOGIN CHECK -->
-    <script>
-
-        const loggedIn = localStorage.getItem("loggedIn");
-
-        if (loggedIn !== "true") {
-            window.location.href = "welcome.html";
-        }
-
-    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -44,45 +34,76 @@
             💅 Nail Studio
         </div>
 
+
         <ul class="nav-links">
 
             <li>
-                <a href="index.html">Home</a>
+                <a href="index.html">
+                    Home
+                </a>
             </li>
 
             <li>
-                <a href="about.html">About</a>
+                <a href="about.html">
+                    About
+                </a>
             </li>
 
             <li>
-                <a href="services.html">Services</a>
+                <a href="services.html">
+                    Services
+                </a>
             </li>
 
             <li>
-                <a href="offer.html">Offers</a>
+                <a href="offer.html">
+                    Offers
+                </a>
             </li>
 
             <li>
-                <a href="faqs.html">FAQs</a>
+                <a href="faqs.html">
+                    FAQs
+                </a>
             </li>
 
             <li>
-                <a href="gallery.html">Gallery</a>
+                <a href="gallery.html">
+                    Gallery
+                </a>
             </li>
 
             <li>
-                <a href="booking.html" class="active">Booking</a>
+                <a href="booking.html" class="active">
+                    Booking
+                </a>
             </li>
 
             <li>
-                <a href="contact.html">Contact</a>
+                <a href="contact.html">
+                    Contact
+                </a>
             </li>
 
         </ul>
 
-        <a href="booking.html" class="nav-book-btn"
-           style="background:#c89b3c; color:white; padding:10px 10px; border-radius:5px; text-decoration:none; font-size:13px; font-weight:600;">
-                 Book Now
+
+        <!-- ONLY BOOK NOW -->
+
+        <a
+            href="booking.html"
+            class="nav-book-btn"
+            style="
+                background:#c89b3c;
+                color:white;
+                padding:10px 10px;
+                border-radius:5px;
+                text-decoration:none;
+                font-size:13px;
+                font-weight:600;
+            "
+        >
+            Book Now
         </a>
 
     </nav>
@@ -110,9 +131,11 @@
                 ✨ Luxury Nail Experience
             </span>
 
+
             <h1>
                 Book Appointment
             </h1>
+
 
             <p class="booking-required">
                 All fields marked <span>*</span> are required.
@@ -147,6 +170,8 @@
                 <div class="booking-row">
 
 
+                    <!-- MOBILE -->
+
                     <div class="form-group">
 
                         <label for="phone">
@@ -159,6 +184,7 @@
                             name="phone"
                             placeholder="10-digit number"
                             maxlength="10"
+                            pattern="[6-9][0-9]{9}"
                             required
                         >
 
@@ -169,6 +195,8 @@
                     </div>
 
 
+
+                    <!-- EMAIL -->
 
                     <div class="form-group">
 
@@ -193,93 +221,95 @@
 
                 <!-- DATE + TIME -->
 
-
-       <div class="booking-row">
-
-                 <!-- DATE -->
-
-        <div class="form-group">
-
-            <label for="bookingDate">
-            Preferred Date <span>*</span>
-            </label>
-
-                 <input
-                    type="date"
-                    id="bookingDate"
-                    name="bookingDate"
-                    required
-                                     >
-
-         </div>
+                <div class="booking-row">
 
 
-                     <!-- TIME -->
+                    <!-- DATE -->
 
-        <div class="form-group">
+                    <div class="form-group">
 
-            <label for="bookingTime">
-            🕒 Appointment Time <span>*</span>
-             </label>
+                        <label for="bookingDate">
+                            Preferred Date <span>*</span>
+                        </label>
 
-        <select
-            id="bookingTime"
-            name="bookingTime"
-            required>
+                        <input
+                            type="date"
+                            id="bookingDate"
+                            name="bookingDate"
+                            required
+                        >
 
-            <option value="">
-                Select a time
-            </option>
+                    </div>
 
-            <option value="11:00 AM">
-                11:00 AM
-            </option>
 
-            <option value="12:00 PM">
-                12:00 PM
-            </option>
 
-            <option value="1:00 PM">
-                1:00 PM
-            </option>
+                    <!-- TIME -->
 
-            <option value="2:00 PM">
-                2:00 PM
-            </option>
+                    <div class="form-group">
 
-            <option value="3:00 PM">
-                3:00 PM
-            </option>
+                        <label for="bookingTime">
+                            🕒 Appointment Time <span>*</span>
+                        </label>
 
-            <option value="4:00 PM">
-                4:00 PM
-            </option>
+                        <select
+                            id="bookingTime"
+                            name="bookingTime"
+                            required
+                        >
 
-            <option value="5:00 PM">
-                5:00 PM
-            </option>
+                            <option value="">
+                                Select a time
+                            </option>
 
-            <option value="6:00 PM">
-                6:00 PM
-            </option>
+                            <option value="11:00 AM">
+                                11:00 AM
+                            </option>
 
-            <option value="7:00 PM">
-                7:00 PM
-            </option>
+                            <option value="12:00 PM">
+                                12:00 PM
+                            </option>
 
-            <option value="8:00 PM">
-                8:00 PM
-            </option>
+                            <option value="1:00 PM">
+                                1:00 PM
+                            </option>
 
-            <option value="9:00 PM">
-                9:00 PM
-            </option>
+                            <option value="2:00 PM">
+                                2:00 PM
+                            </option>
 
-        </select>
+                            <option value="3:00 PM">
+                                3:00 PM
+                            </option>
 
-    </div>
+                            <option value="4:00 PM">
+                                4:00 PM
+                            </option>
 
-</div>
+                            <option value="5:00 PM">
+                                5:00 PM
+                            </option>
+
+                            <option value="6:00 PM">
+                                6:00 PM
+                            </option>
+
+                            <option value="7:00 PM">
+                                7:00 PM
+                            </option>
+
+                            <option value="8:00 PM">
+                                8:00 PM
+                            </option>
+
+                            <option value="9:00 PM">
+                                9:00 PM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
 
 
 
@@ -314,6 +344,7 @@
             </form>
 
 
+
             <!-- BOOKING MESSAGE -->
 
             <div
@@ -332,6 +363,8 @@
 
         <div class="studio-info-box">
 
+
+            <!-- HEADING -->
 
             <div class="studio-heading">
 
@@ -368,10 +401,10 @@
                     </p>
 
                     <a
-                     href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
-                     target="_blank"
->
-                     Get Directions →
+                        href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
+                        target="_blank"
+                    >
+                        Get Directions →
                     </a>
 
                 </div>
@@ -447,7 +480,7 @@
                 </p>
 
                 <a
-                    href="https://wa.me/91XXXXXXXXXX"
+                    href="https://wa.me/917715053174"
                     target="_blank"
                 >
                     Chat on WhatsApp
@@ -500,13 +533,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const today = new Date();
 
+
         const year =
             today.getFullYear();
+
 
         const month =
             String(
                 today.getMonth() + 1
             ).padStart(2, "0");
+
 
         const day =
             String(
@@ -585,7 +621,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-<!-- MAIN JS -->
+<!-- ==========================================
+     MAIN JS
+========================================== -->
 
 <script src="js/main.js"></script>
 
@@ -593,4 +631,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
-

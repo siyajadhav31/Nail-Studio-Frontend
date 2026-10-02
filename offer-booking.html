@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,54 +109,6 @@
         .nav-links a:hover {
 
             color: #c89b3c;
-
-        }
-
-
-        .nav-buttons {
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-
-        .login-btn {
-
-            border: none;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #c89b3c,
-                    #b8860b
-                );
-
-            color: white;
-
-            padding: 10px 22px;
-
-            border-radius: 25px;
-
-            cursor: pointer;
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 13px;
-
-            transition: 0.3s;
-
-        }
-
-
-        .login-btn:hover {
-
-            transform: scale(1.05);
-
-            box-shadow:
-                0 5px 15px
-                rgba(200, 155, 60, 0.3);
 
         }
 
@@ -554,25 +507,6 @@
 
     </style>
 
-
-    <!-- =================================
-         LOGIN CHECK
-    ================================= -->
-
-    <script>
-
-        const loggedIn =
-            localStorage.getItem("loggedIn");
-
-        if (loggedIn !== "true") {
-
-            window.location.href =
-                "welcome.html";
-
-        }
-
-    </script>
-
 </head>
 
 
@@ -641,19 +575,6 @@
             </li>
 
         </ul>
-
-
-        <div class="nav-buttons">
-
-            <button
-                id="logoutBtn"
-                class="login-btn">
-
-                Logout
-
-            </button>
-
-        </div>
 
     </nav>
 
@@ -842,7 +763,7 @@
 
             <div class="back-link">
 
-                <a href="offer-details.html">
+                <a href="offer.html">
                     ← Back to Offers
                 </a>
 
@@ -911,9 +832,7 @@
                 if (selectedOffer) {
 
                     offerName.textContent =
-                        decodeURIComponent(
-                            selectedOffer
-                        );
+                        selectedOffer;
 
                 }
 
@@ -952,45 +871,6 @@
                             this.value
                                 .replace(/\D/g, "")
                                 .slice(0, 10);
-
-                    }
-                );
-
-
-                /* =================================
-                   LOGOUT
-                ================================= */
-
-                const logoutBtn =
-                    document.getElementById(
-                        "logoutBtn"
-                    );
-
-
-                logoutBtn.addEventListener(
-                    "click",
-                    function () {
-
-
-                        localStorage.removeItem(
-                            "loggedIn"
-                        );
-
-                        localStorage.removeItem(
-                            "userEmail"
-                        );
-
-                        localStorage.removeItem(
-                            "userRole"
-                        );
-
-                        localStorage.removeItem(
-                            "virtualBooking"
-                        );
-
-
-                        window.location.href =
-                            "welcome.html";
 
                     }
                 );
@@ -1192,6 +1072,10 @@
                                 );
 
 
+                            /* =================================
+                               SUCCESS
+                            ================================= */
+
                             if (response.ok) {
 
                                 alert(
@@ -1207,15 +1091,22 @@
 
                             }
 
+
+                            /* =================================
+                               ERROR
+                            ================================= */
+
                             else {
 
                                 let errorMessage =
                                     "Booking failed. Please try again.";
 
+
                                 try {
 
                                     const errorData =
                                         await response.json();
+
 
                                     if (errorData.message) {
 
@@ -1241,8 +1132,12 @@
 
                             }
 
-
                         }
+
+
+                        /* =================================
+                           SERVER CONNECTION ERROR
+                        ================================= */
 
                         catch (error) {
 
@@ -1270,3 +1165,4 @@
 </body>
 
 </html>
+
