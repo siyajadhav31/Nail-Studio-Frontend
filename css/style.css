@@ -446,10 +446,10 @@ a{
 }
 
 .service-price{
-    color:#b8860b !important;
+    color:#b8860b ;
     font-weight:600;
-    font-size:17px !important;
-    margin:12px 18px !important;
+    font-size:17px ;
+    margin:12px 18px ;
 }
 
 .card .gold-btn{
@@ -3292,7 +3292,7 @@ footer p{
             #777 60%,
             #ffffff 80%,
             #aaa 100%
-        ) !important;
+        ) ;
 
     box-shadow:
         0 7px 20px rgba(0,0,0,.16),
@@ -4162,6 +4162,11 @@ footer p{
     }
 
 
+
+
+
+
+
     /* ==================================
        HOME PAGE
     ================================== */
@@ -4182,6 +4187,12 @@ footer p{
     }
 
 }
+
+
+
+
+
+
 
 
 /* ==========================================
@@ -4459,7 +4470,7 @@ footer p{
 ========================================== */
 
 .hero{
-    padding-bottom:45px !important;
+    padding-bottom:45px ;
 }
 
 
@@ -4487,7 +4498,7 @@ footer p{
 @media(max-width:600px){
 
     .hero{
-        padding-bottom:30px !important;
+        padding-bottom:30px ;
     }
 
     .quick-features{
@@ -4534,6 +4545,139 @@ footer p{
 
     .home-preview-box{
         padding:35px 20px;
+    }
+
+}
+/* ==========================================
+   FINAL MOBILE NAVBAR FIX
+========================================== */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        display: flex ;
+        flex-direction: column ;
+        align-items: center ;
+        justify-content: center ;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 24px 12px 20px ;
+    }
+
+
+    /* LOGO */
+
+    .navbar .logo {
+        display: block ;
+
+        width: 100%;
+
+        text-align: center;
+
+        font-size: 30px ;
+
+        margin: 0 0 18px 0 ;
+    }
+
+
+    /* NAVIGATION */
+
+    .navbar .nav-links {
+        display: flex ;
+
+        flex-direction: row ;
+
+        flex-wrap: wrap ;
+
+        align-items: center ;
+
+        justify-content: center ;
+
+        width: 100% ;
+
+        gap: 0 ;
+
+        margin: 0 ;
+
+        padding: 0 ;
+
+        background: transparent ;
+
+        border: none ;
+
+        list-style: none ;
+    }
+
+
+    .navbar .nav-links li {
+        display: block ;
+
+        width: auto ;
+
+        text-align: center ;
+
+        margin: 0 ;
+
+        padding: 0 ;
+    }
+
+
+    .navbar .nav-links a {
+        display: block ;
+
+        width: auto ;
+
+        padding: 7px 9px ;
+
+        font-size: 14px ;
+
+        color: #444 ;
+
+        white-space: nowrap ;
+
+        text-decoration: none ;
+    }
+
+
+    .navbar .nav-links a::after {
+        display: none ;
+    }
+
+
+    /* BOOK NOW */
+
+    .navbar .nav-buttons {
+        display: flex ;
+
+        width: 100% ;
+
+        justify-content: center ;
+
+        align-items: center ;
+
+        margin-top: 18px ;
+
+        gap: 0 ;
+    }
+
+
+    .navbar .signup {
+        display: inline-block ;
+
+        padding: 10px 28px ;
+
+        font-size: 14px ;
+
+        border-radius: 6px ;
+    }
+
+
+    /* HIDE HAMBURGER COMPLETELY */
+
+    .navbar .menu-toggle {
+        display: none ;
     }
 
 }
