@@ -488,116 +488,212 @@ a{
    SERVICES
 ========================================== */
 
-.services{
-    padding:70px 8%;
-    background:#fffaf8;
+.services {
+    padding: 50px 8%;
+    background: #fffaf8;
 }
 
-.services-header{
-    text-align:center;
-    max-width:750px;
-    margin:0 auto 38px;
+.services-header {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 28px;
 }
 
-.services-title{
-    font-family:'Cormorant Garamond',serif;
-    font-size:44px;
-    font-weight:600;
-    color:#49393e;
-    margin:8px 0;
+.services-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: #49393e;
+    margin: 8px 0;
 }
 
-.services-intro{
-    font-size:15px;
-    color:#777;
-    line-height:1.8;
+.services-intro {
+    font-size: 15px;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
 }
 
-.booking-subtitle{
-    color:#b8860b;
-    font-size:13px;
-    letter-spacing:1px;
+.booking-subtitle {
+    color: #b8860b;
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:28px;
-    max-width:1200px;
-    margin:auto;
+
+/* ==========================================
+   SERVICE CARDS
+========================================== */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.card{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    border:1px solid #f0e8e4;
-    box-shadow:0 5px 18px rgba(60,40,30,.06);
-    transition:.35s ease;
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #f0e8e4;
+    box-shadow: 0 5px 18px rgba(60, 40, 30, .06);
+    transition: .35s ease;
 }
 
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 28px rgba(60,40,30,.10);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(60, 40, 30, .10);
 }
 
-.card img{
-    width:100%;
-    height:245px;
-    object-fit:cover;
-    display:block;
-    transition:.5s ease;
+
+/* ==========================================
+   SERVICE IMAGE
+========================================== */
+
+.card img {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+    display: block;
+    transition: .5s ease;
 }
 
-.card:hover img{
-    transform:scale(1.04);
+.card:hover img {
+    transform: scale(1.04);
 }
 
-.card h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:27px;
-    font-weight:600;
-    margin:17px 18px 8px;
-    color:#49393e;
+
+/* ==========================================
+   CARD CONTENT
+========================================== */
+
+.card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 14px 18px 6px;
+    color: #49393e;
+    line-height: 1.25;
 }
 
-.card p{
-    color:#777;
-    font-size:13px;
-    line-height:1.7;
-    margin:0 18px 12px;
+.card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0 18px 9px;
 }
 
-.service-price{
-    color:#b8860b;
-    font-weight:600;
-    font-size:17px;
-    margin:12px 18px;
+.service-price {
+    color: #b8860b;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 9px 18px;
 }
 
-.card .gold-btn{
-    margin:0 18px 20px;
+
+/* ==========================================
+   BOOK NOW BUTTON
+========================================== */
+
+.card .gold-btn {
+    margin: 0 18px 15px;
 }
 
-.services-cta{
-    text-align:center;
-    margin-top:55px;
-    padding:50px 20px;
+
+/* ==========================================
+   ADD-ON CARDS
+========================================== */
+
+.cards .card:not(:has(img)) {
+    padding: 16px 0;
 }
 
-.services-cta h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:40px;
-    font-weight:600;
-    margin-bottom:10px;
-    color:#49393e;
+.cards .card:not(:has(img)) h3 {
+    margin-top: 4px;
 }
 
-.services-cta p{
-    color:#777;
-    margin-bottom:20px;
+
+/* ==========================================
+   CALL TO ACTION
+========================================== */
+
+.services-cta {
+    text-align: center;
+    margin-top: 45px;
+    padding: 45px 20px;
 }
 
+.services-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #49393e;
+}
+
+.services-cta p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .services {
+        padding: 40px 5%;
+    }
+
+    .services-title {
+        font-size: 36px;
+    }
+
+    .services-intro {
+        font-size: 14px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card img {
+        height: 230px;
+    }
+
+    .card h3 {
+        font-size: 23px;
+    }
+
+    .services-cta {
+        margin-top: 35px;
+        padding: 35px 15px;
+    }
+
+    .services-cta h2 {
+        font-size: 34px;
+    }
+
+}
 
 /* ==========================================
    GALLERY
