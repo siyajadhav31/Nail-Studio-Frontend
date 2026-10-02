@@ -17,11 +17,6 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
-
-    <!-- =================================
-         PAGE CSS
-    ================================= -->
-
     <style>
 
         /* =================================
@@ -114,7 +109,7 @@
 
 
         /* =================================
-           OFFER BOOKING SECTION
+           BOOKING SECTION
         ================================= */
 
         .booking-section {
@@ -349,6 +344,17 @@
         }
 
 
+        .gold-btn:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
         /* =================================
            BACK LINK
         ================================= */
@@ -520,7 +526,9 @@
     <nav class="navbar">
 
         <div class="logo">
+
             💅 Nail Studio
+
         </div>
 
 
@@ -591,15 +599,23 @@
             <div class="booking-heading">
 
                 <h1>
+
                     ✨ Offer Booking
+
                 </h1>
 
+
                 <p>
+
                     Book your special offer appointment with us.
+
                 </p>
 
+
                 <h2 id="offerName">
+
                     Special Offer
+
                 </h2>
 
             </div>
@@ -617,8 +633,11 @@
                 <div class="form-group">
 
                     <label for="offerNameInput">
+
                         Full Name
+
                     </label>
+
 
                     <input
                         type="text"
@@ -634,8 +653,11 @@
                 <div class="form-group">
 
                     <label for="offerEmail">
+
                         Email Address
+
                     </label>
+
 
                     <input
                         type="email"
@@ -651,8 +673,11 @@
                 <div class="form-group">
 
                     <label for="offerPhone">
+
                         Phone Number
+
                     </label>
+
 
                     <input
                         type="tel"
@@ -671,8 +696,11 @@
                 <div class="form-group">
 
                     <label for="offerDate">
+
                         Appointment Date
+
                     </label>
+
 
                     <input
                         type="date"
@@ -687,15 +715,20 @@
                 <div class="form-group">
 
                     <label for="offerTime">
+
                         🕒 Appointment Time
+
                     </label>
+
 
                     <select
                         id="offerTime"
                         required>
 
                         <option value="">
+
                             Select a time
+
                         </option>
 
                         <option value="11:00 AM">
@@ -751,7 +784,8 @@
 
                 <button
                     type="submit"
-                    class="gold-btn">
+                    class="gold-btn"
+                    id="bookButton">
 
                     Book Appointment 💅
 
@@ -764,7 +798,9 @@
             <div class="back-link">
 
                 <a href="offer.html">
+
                     ← Back to Offers
+
                 </a>
 
             </div>
@@ -784,17 +820,25 @@
         <h2>
 
             <a href="index.html">
+
                 💅 Nail Studio
+
             </a>
 
         </h2>
 
-        <p>
-            Luxury Nails | Modern Technology | Perfect Experience
-        </p>
 
         <p>
+
+            Luxury Nails | Modern Technology | Perfect Experience
+
+        </p>
+
+
+        <p>
+
             © 2026 Nail Studio
+
         </p>
 
     </footer>
@@ -820,8 +864,10 @@
                         window.location.search
                     );
 
+
                 const selectedOffer =
                     urlParams.get("offer");
+
 
                 const offerName =
                     document.getElementById(
@@ -846,10 +892,12 @@
                         "offerDate"
                     );
 
+
                 const today =
                     new Date()
                         .toISOString()
                         .split("T")[0];
+
 
                 dateInput.min = today;
 
@@ -862,6 +910,7 @@
                     document.getElementById(
                         "offerPhone"
                     );
+
 
                 phoneInput.addEventListener(
                     "input",
@@ -877,12 +926,18 @@
 
 
                 /* =================================
-                   OFFER BOOKING
+                   FORM
                 ================================= */
 
                 const form =
                     document.getElementById(
                         "offerBookingForm"
+                    );
+
+
+                const bookButton =
+                    document.getElementById(
+                        "bookButton"
                     );
 
 
@@ -892,6 +947,10 @@
 
                         e.preventDefault();
 
+
+                        /* =================================
+                           GET FORM DATA
+                        ================================= */
 
                         const name =
                             document.getElementById(
@@ -924,7 +983,7 @@
 
 
                         /* =================================
-                           BASIC VALIDATION
+                           VALIDATION
                         ================================= */
 
                         if (!name) {
@@ -991,11 +1050,10 @@
                                 bookingDate + "T00:00:00"
                             );
 
-                        const day =
-                            selectedDate.getDay();
 
-
-                        if (day === 0) {
+                        if (
+                            selectedDate.getDay() === 0
+                        ) {
 
                             alert(
                                 "Sunday is closed. Please select another date."
@@ -1044,14 +1102,24 @@
 
 
                         /* =================================
-                           SEND TO SPRING BOOT
+                           DISABLE BUTTON
+                        ================================= */
+
+                        bookButton.disabled = true;
+
+                        bookButton.textContent =
+                            "Booking...";
+
+
+                        /* =================================
+                           SEND TO RENDER BACKEND
                         ================================= */
 
                         try {
 
                             const response =
                                 await fetch(
-                                    "http://localhost:8080/api/bookings",
+                                    "https://nail-studio-backend-k604.onrender.com/api/bookings",
                                     {
 
                                         method: "POST",
@@ -1062,6 +1130,9 @@
                                                 "application/json"
 
                                         },
+
+                                        credentials:
+                                            "include",
 
                                         body:
                                             JSON.stringify(
@@ -1089,26 +1160,42 @@
                                 window.location.href =
                                     "offer.html";
 
+
+                                return;
+
                             }
 
 
                             /* =================================
-                               ERROR
+                               SERVER ERROR
                             ================================= */
 
-                            else {
-
-                                let errorMessage =
-                                    "Booking failed. Please try again.";
+                            let errorMessage =
+                                "Booking failed. Please try again.";
 
 
-                                try {
+                            try {
+
+                                const contentType =
+                                    response.headers.get(
+                                        "content-type"
+                                    );
+
+
+                                if (
+                                    contentType &&
+                                    contentType.includes(
+                                        "application/json"
+                                    )
+                                ) {
 
                                     const errorData =
                                         await response.json();
 
 
-                                    if (errorData.message) {
+                                    if (
+                                        errorData.message
+                                    ) {
 
                                         errorMessage =
                                             errorData.message;
@@ -1117,26 +1204,48 @@
 
                                 }
 
-                                catch (error) {
+                                else {
 
-                                    console.log(
-                                        "No JSON error response."
-                                    );
+                                    const errorText =
+                                        await response.text();
+
+
+                                    if (errorText) {
+
+                                        errorMessage =
+                                            errorText;
+
+                                    }
 
                                 }
 
+                            }
 
-                                alert(
-                                    errorMessage
+                            catch (error) {
+
+                                console.log(
+                                    "Unable to read server error response."
                                 );
 
                             }
+
+
+                            console.error(
+                                "Booking failed:",
+                                response.status,
+                                errorMessage
+                            );
+
+
+                            alert(
+                                errorMessage
+                            );
 
                         }
 
 
                         /* =================================
-                           SERVER CONNECTION ERROR
+                           CONNECTION ERROR
                         ================================= */
 
                         catch (error) {
@@ -1148,8 +1257,20 @@
 
 
                             alert(
-                                "Unable to connect to the server. Please make sure your Spring Boot backend is running on port 8080."
+                                "Unable to connect to the booking server. Please try again later."
                             );
+
+                        }
+
+
+                        finally {
+
+                            bookButton.disabled =
+                                false;
+
+
+                            bookButton.textContent =
+                                "Book Appointment 💅";
 
                         }
 

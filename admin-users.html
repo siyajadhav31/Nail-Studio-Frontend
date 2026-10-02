@@ -25,14 +25,12 @@
         ========================================== */
 
         .users-page-header {
-
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 20px;
             margin-bottom: 20px;
             flex-wrap: wrap;
-
         }
 
 
@@ -41,19 +39,14 @@
         ========================================== */
 
         .registered-count {
-
             font-size: 15px;
             font-weight: 500;
             color: #555;
-
         }
 
-
         .registered-count span {
-
             color: #b8860b;
             font-weight: 600;
-
         }
 
 
@@ -62,56 +55,37 @@
         ========================================== */
 
         .user-search {
-
             position: relative;
             width: 280px;
-
         }
-
 
         .user-search input {
-
             width: 100%;
             padding: 11px 15px 11px 40px;
-
             border: 1px solid #e5d4cc;
             border-radius: 12px;
-
             background: #fff;
-
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
-
             outline: none;
-
             transition: 0.3s ease;
-
+            box-sizing: border-box;
         }
 
-
         .user-search input:focus {
-
             border-color: #c89b3c;
-
             box-shadow:
                 0 0 0 3px
                 rgba(200, 155, 60, 0.10);
-
         }
 
-
         .user-search span {
-
             position: absolute;
-
             left: 14px;
             top: 50%;
-
             transform:
                 translateY(-50%);
-
             font-size: 16px;
-
         }
 
 
@@ -120,43 +94,29 @@
         ========================================== */
 
         .refresh-btn {
-
             border: none;
-
             padding: 11px 18px;
-
             border-radius: 12px;
-
             background:
                 linear-gradient(
                     135deg,
                     #c89b3c,
                     #b8860b
                 );
-
             color: white;
-
             font-family: 'Poppins', sans-serif;
-
             font-size: 13px;
             font-weight: 500;
-
             cursor: pointer;
-
             transition: 0.3s ease;
-
         }
 
-
         .refresh-btn:hover {
-
             transform:
                 translateY(-2px);
-
             box-shadow:
                 0 7px 18px
                 rgba(184, 134, 11, 0.25);
-
         }
 
 
@@ -165,32 +125,21 @@
         ========================================== */
 
         .users-table-wrapper {
-
             overflow-x: auto;
             width: 100%;
-
         }
-
 
         #usersTable {
-
             width: 100%;
             border-collapse: collapse;
-
         }
-
 
         #usersTable th {
-
             white-space: nowrap;
-
         }
 
-
         #usersTable td {
-
             vertical-align: middle;
-
         }
 
 
@@ -199,10 +148,8 @@
         ========================================== */
 
         .user-name {
-
             font-weight: 500;
             color: #333;
-
         }
 
 
@@ -211,10 +158,8 @@
         ========================================== */
 
         .user-email {
-
             color: #666;
             font-size: 13px;
-
         }
 
 
@@ -223,26 +168,17 @@
         ========================================== */
 
         .user-id {
-
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
             min-width: 34px;
             height: 30px;
-
             padding: 0 8px;
-
             border-radius: 9px;
-
             background: #fff4ef;
-
             color: #b8860b;
-
             font-size: 12px;
             font-weight: 600;
-
         }
 
 
@@ -251,9 +187,7 @@
         ========================================== */
 
         .user-action {
-
             white-space: nowrap;
-
         }
 
 
@@ -262,24 +196,15 @@
         ========================================== */
 
         .user-empty {
-
             padding: 45px 20px;
-
             text-align: center;
-
             color: #777;
-
             font-size: 14px;
-
         }
 
-
         .user-empty-icon {
-
             font-size: 35px;
-
             margin-bottom: 10px;
-
         }
 
 
@@ -290,23 +215,15 @@
         @media (max-width: 800px) {
 
             .users-page-header {
-
                 align-items: stretch;
-
             }
-
 
             .user-search {
-
                 width: 100%;
-
             }
 
-
             .refresh-btn {
-
                 width: 100%;
-
             }
 
         }
@@ -315,16 +232,11 @@
         @media (max-width: 600px) {
 
             .users-page-header {
-
                 flex-direction: column;
-
             }
 
-
             .registered-count {
-
                 text-align: left;
-
             }
 
         }
@@ -376,24 +288,12 @@
 
             </li>
 
-
-            <li>
-
-                <button
-                    id="logoutBtn"
-                    class="logout-btn">
-
-                    Logout
-
-                </button>
-
-            </li>
-
         </ul>
 
     </nav>
 
 </header>
+
 
 
 <!-- ==========================================
@@ -432,6 +332,7 @@
         </div>
 
 
+
         <!-- ==========================================
              USER CONTROLS
         ========================================== -->
@@ -450,6 +351,7 @@
             </div>
 
 
+
             <!-- SEARCH -->
 
             <div class="user-search">
@@ -460,12 +362,14 @@
 
                 </span>
 
+
                 <input
                     type="text"
                     id="searchUser"
                     placeholder="Search by name or email...">
 
             </div>
+
 
 
             <!-- REFRESH -->
@@ -479,6 +383,7 @@
             </button>
 
         </div>
+
 
 
         <!-- ==========================================
@@ -553,6 +458,7 @@
             </div>
 
 
+
             <!-- EMPTY -->
 
             <div
@@ -564,12 +470,12 @@
 
             </div>
 
-
         </div>
 
     </div>
 
 </section>
+
 
 
 <script>
@@ -580,10 +486,15 @@
 // ==========================================
 
 const API_URL =
-    "http://127.0.0.1:8080/api/users";
+    "https://nail-studio-backend-k604.onrender.com/api/users";
+
+
+const ADMIN_API_URL =
+    "https://nail-studio-backend-k604.onrender.com/api/admin";
 
 
 let usersData = [];
+
 
 
 // ==========================================
@@ -596,15 +507,30 @@ async function checkAdminLogin() {
 
         const response =
             await fetch(
-                "http://127.0.0.1:8080/api/admin/check",
+                `${ADMIN_API_URL}/check`,
                 {
-
                     method: "GET",
-
-                    credentials: "include"
-
+                    credentials: "include",
+                    cache: "no-store"
                 }
             );
+
+
+        if (!response.ok) {
+
+            console.error(
+                "Admin check failed:",
+                response.status
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+
+            return false;
+
+        }
 
 
         const result =
@@ -624,6 +550,7 @@ async function checkAdminLogin() {
 
             window.location.href =
                 "admin-login.html";
+
 
             return false;
 
@@ -651,6 +578,7 @@ async function checkAdminLogin() {
     }
 
 }
+
 
 
 // ==========================================
@@ -704,18 +632,12 @@ async function loadUsers() {
         const response =
             await fetch(
                 API_URL +
-                "/all?_=" +
+                "/all?_" +
                 new Date().getTime(),
                 {
-
                     method: "GET",
-
-                    credentials:
-                        "include",
-
-                    cache:
-                        "no-store"
-
+                    credentials: "include",
+                    cache: "no-store"
                 }
             );
 
@@ -723,7 +645,8 @@ async function loadUsers() {
         if (!response.ok) {
 
             throw new Error(
-                "Unable to load users"
+                "Unable to load users. HTTP " +
+                response.status
             );
 
         }
@@ -786,11 +709,13 @@ async function loadUsers() {
 
                 </div>
 
+
                 Unable to load users.
 
                 <br>
 
-                Make sure Spring Boot is running.
+                Make sure Spring Boot is running
+                and the API is available.
 
             </div>
 
@@ -799,6 +724,7 @@ async function loadUsers() {
     }
 
 }
+
 
 
 // ==========================================
@@ -826,6 +752,7 @@ function updateUserCount() {
     `;
 
 }
+
 
 
 // ==========================================
@@ -874,23 +801,29 @@ function displayUsers() {
 
                 const name =
                     user.name
-                        ? user.name.toLowerCase()
+                        ? String(user.name)
+                            .toLowerCase()
                         : "";
 
 
                 const email =
                     user.email
-                        ? user.email.toLowerCase()
+                        ? String(user.email)
+                            .toLowerCase()
                         : "";
 
 
                 return (
+
                     name.includes(searchText) ||
+
                     email.includes(searchText)
+
                 );
 
             }
         );
+
 
 
     if (
@@ -953,12 +886,14 @@ function displayUsers() {
     }
 
 
+
     emptyMessage.style.display =
         "none";
 
 
     table.style.display =
         "table";
+
 
 
     filteredUsers.forEach(
@@ -976,7 +911,7 @@ function displayUsers() {
 
                     <span class="user-id">
 
-                        ${user.id}
+                        ${user.id || ""}
 
                     </span>
 
@@ -1034,6 +969,7 @@ function displayUsers() {
 }
 
 
+
 // ==========================================
 // ESCAPE USER NAME
 // ==========================================
@@ -1046,6 +982,7 @@ function escapeName(name) {
         .replace(/"/g, '\\"');
 
 }
+
 
 
 // ==========================================
@@ -1078,12 +1015,9 @@ async function deleteUser(
             await fetch(
                 API_URL + "/" + id,
                 {
-
                     method: "DELETE",
-
                     credentials:
                         "include"
-
                 }
             );
 
@@ -1091,7 +1025,8 @@ async function deleteUser(
         if (!response.ok) {
 
             throw new Error(
-                "Delete failed"
+                "Delete failed. HTTP " +
+                response.status
             );
 
         }
@@ -1128,6 +1063,7 @@ async function deleteUser(
 }
 
 
+
 // ==========================================
 // SEARCH USERS
 // ==========================================
@@ -1142,6 +1078,7 @@ document
 
         }
     );
+
 
 
 // ==========================================
@@ -1159,68 +1096,6 @@ document
         }
     );
 
-
-// ==========================================
-// ADMIN LOGOUT
-// ==========================================
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async function () {
-
-            try {
-
-                await fetch(
-                    "http://127.0.0.1:8080/api/admin/logout",
-                    {
-
-                        method: "POST",
-
-                        credentials:
-                            "include"
-
-                    }
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-            }
-
-
-            localStorage.removeItem(
-                "loggedIn"
-            );
-
-
-            localStorage.removeItem(
-                "userToken"
-            );
-
-
-            localStorage.removeItem(
-                "adminToken"
-            );
-
-
-            localStorage.removeItem(
-                "virtualBooking"
-            );
-
-
-            window.location.href =
-                "admin-login.html";
-
-        }
-    );
 
 
 // ==========================================
