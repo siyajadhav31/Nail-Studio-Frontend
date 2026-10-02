@@ -40,64 +40,94 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             padding: 18px 7%;
+
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 3px 18px rgba(0, 0, 0, 0.06);
+
+            box-shadow:
+                0 3px 18px rgba(0, 0, 0, 0.06);
+
             position: relative;
             z-index: 10;
         }
 
+
         .logo {
             font-family: 'Cormorant Garamond', serif;
+
             font-size: 30px;
             font-weight: 700;
+
             color: #333;
+
             white-space: nowrap;
         }
+
 
         .nav-links {
             display: flex;
             align-items: center;
+
             gap: 23px;
+
             list-style: none;
+
             margin: 0;
             padding: 0;
         }
 
+
         .nav-links a {
             text-decoration: none;
+
             color: #444;
+
             font-size: 13px;
+
             transition: 0.3s ease;
         }
+
 
         .nav-links a:hover {
             color: #b8860b;
         }
+
 
         .nav-buttons {
             display: flex;
             align-items: center;
         }
 
+
         .signup {
             text-decoration: none;
+
             color: white;
+
             padding: 10px 20px;
+
             border-radius: 25px;
+
             font-size: 13px;
-            background: linear-gradient(
-                135deg,
-                #c89b3c,
-                #b8860b
-            );
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
             transition: 0.3s ease;
         }
 
+
         .signup:hover {
             transform: translateY(-2px);
+
             box-shadow:
-                0 7px 18px rgba(200, 155, 60, 0.30);
+                0 7px 18px
+                rgba(200, 155, 60, 0.30);
         }
 
 
@@ -107,6 +137,7 @@
 
         .about-page {
             padding: 90px 7%;
+
             background:
                 linear-gradient(
                     135deg,
@@ -115,13 +146,18 @@
                 );
         }
 
+
         .about-page-content {
             max-width: 1200px;
+
             margin: auto;
 
             display: grid;
+
             grid-template-columns: 1fr 0.9fr;
+
             align-items: center;
+
             gap: 75px;
         }
 
@@ -134,11 +170,14 @@
             padding: 10px 0;
         }
 
+
         .booking-subtitle {
             display: inline-block;
 
             font-size: 12px;
+
             font-weight: 600;
+
             letter-spacing: 2px;
 
             color: #b8860b;
@@ -146,10 +185,12 @@
             margin-bottom: 18px;
         }
 
+
         .about-page-text h1 {
             font-family: 'Cormorant Garamond', serif;
 
             font-size: 58px;
+
             line-height: 1.05;
 
             margin: 0 0 25px;
@@ -157,32 +198,41 @@
             color: #30282a;
         }
 
+
+        /* GOLD LINE BELOW HEADING */
+
         .about-page-text h1::after {
             content: "";
+
             display: block;
 
             width: 65px;
+
             height: 2px;
 
             margin-top: 18px;
 
-            background: linear-gradient(
-                to right,
-                #c89b3c,
-                #e5c77a
-            );
+            background:
+                linear-gradient(
+                    to right,
+                    #c89b3c,
+                    #e5c77a
+                );
         }
+
 
         .about-page-text p {
             color: #6d6567;
 
             font-size: 14px;
+
             line-height: 1.9;
 
             margin: 0 0 17px;
 
             max-width: 600px;
         }
+
 
         .about-page-text .gold-btn {
             display: inline-block;
@@ -205,10 +255,12 @@
             text-decoration: none;
 
             font-size: 13px;
+
             font-weight: 500;
 
             transition: 0.3s ease;
         }
+
 
         .about-page-text .gold-btn:hover {
             transform: translateY(-3px);
@@ -227,32 +279,25 @@
             position: relative;
 
             display: flex;
+
             justify-content: center;
         }
 
-        .about-page-image::before {
-            content: "";
 
-            position: absolute;
+        /*
+        ==========================================
+        PHOTO KE PICHE WALA GOLDEN BOX REMOVED
+        ==========================================
+        */
 
-            width: 88%;
-            height: 92%;
-
-            border: 1px solid #d8b76a;
-
-            border-radius: 22px;
-
-            top: 20px;
-            right: -15px;
-
-            z-index: 0;
-        }
 
         .about-page-image img {
             position: relative;
+
             z-index: 1;
 
             width: 100%;
+
             max-width: 450px;
 
             display: block;
@@ -265,6 +310,7 @@
 
             transition: 0.4s ease;
         }
+
 
         .about-page-image img:hover {
             transform: translateY(-5px);
@@ -297,12 +343,14 @@
             position: relative;
         }
 
+
         .about-mission::before {
             content: "✦";
 
             position: absolute;
 
             top: 18px;
+
             left: 50%;
 
             transform: translateX(-50%);
@@ -311,6 +359,7 @@
 
             font-size: 18px;
         }
+
 
         .about-mission h2 {
             font-family: 'Cormorant Garamond', serif;
@@ -321,6 +370,7 @@
 
             color: #30282a;
         }
+
 
         .about-mission p {
             max-width: 720px;
@@ -352,6 +402,7 @@
             text-align: center;
         }
 
+
         .why-us h2 {
             font-family: 'Cormorant Garamond', serif;
 
@@ -362,12 +413,14 @@
             margin: 0 0 45px;
         }
 
+
         .why-us h2::after {
             content: "";
 
             display: block;
 
             width: 55px;
+
             height: 2px;
 
             background: #c89b3c;
@@ -393,6 +446,7 @@
             gap: 25px;
         }
 
+
         .card {
             background: white;
 
@@ -410,8 +464,10 @@
             transition: 0.35s ease;
 
             position: relative;
+
             overflow: hidden;
         }
+
 
         .card::before {
             content: "";
@@ -419,9 +475,11 @@
             position: absolute;
 
             top: 0;
+
             left: 0;
 
             width: 100%;
+
             height: 3px;
 
             background:
@@ -432,6 +490,7 @@
                 );
         }
 
+
         .card:hover {
             transform: translateY(-7px);
 
@@ -439,6 +498,7 @@
                 0 15px 35px
                 rgba(0, 0, 0, 0.10);
         }
+
 
         .card h3 {
             font-family: 'Cormorant Garamond', serif;
@@ -449,6 +509,7 @@
 
             margin: 8px 0 13px;
         }
+
 
         .card p {
             font-size: 13px;
@@ -475,6 +536,7 @@
             padding: 35px 20px;
         }
 
+
         footer h2 {
             font-family: 'Cormorant Garamond', serif;
 
@@ -482,6 +544,7 @@
 
             margin: 0 0 8px;
         }
+
 
         footer p {
             font-size: 12px;
@@ -502,17 +565,21 @@
                 gap: 13px;
             }
 
+
             .nav-links a {
                 font-size: 12px;
             }
+
 
             .about-page-content {
                 gap: 45px;
             }
 
+
             .about-page-text h1 {
                 font-size: 50px;
             }
+
         }
 
 
@@ -522,45 +589,59 @@
                 padding: 18px 5%;
             }
 
+
             .nav-links {
                 display: none;
             }
+
 
             .about-page {
                 padding: 60px 6%;
             }
 
+
             .about-page-content {
                 grid-template-columns: 1fr;
+
                 text-align: center;
             }
+
 
             .about-page-text h1 {
                 font-size: 48px;
             }
 
+
             .about-page-text h1::after {
                 margin-left: auto;
+
                 margin-right: auto;
             }
 
+
             .about-page-text p {
                 margin-left: auto;
+
                 margin-right: auto;
             }
+
 
             .about-page-image {
                 margin-top: 20px;
             }
 
+
             .cards {
                 grid-template-columns: 1fr;
+
                 max-width: 500px;
             }
+
 
             .about-mission {
                 margin: 55px 6%;
             }
+
         }
 
 
@@ -570,47 +651,53 @@
                 font-size: 25px;
             }
 
+
             .signup {
                 padding: 9px 15px;
+
                 font-size: 12px;
             }
+
 
             .about-page {
                 padding: 50px 20px;
             }
 
+
             .about-page-text h1 {
                 font-size: 40px;
             }
+
 
             .about-page-text p {
                 font-size: 13px;
             }
 
-            .about-page-image::before {
-                right: -7px;
-                top: 12px;
-            }
 
             .about-mission {
                 padding: 45px 25px;
             }
 
+
             .about-mission h2 {
                 font-size: 35px;
             }
+
 
             .why-us {
                 padding: 60px 20px;
             }
 
+
             .why-us h2 {
                 font-size: 36px;
             }
 
+
             .card {
                 padding: 30px 22px;
             }
+
         }
 
     </style>
@@ -647,11 +734,13 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="about.html">
                         About
                     </a>
                 </li>
+
 
                 <li>
                     <a href="services.html">
@@ -659,11 +748,13 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="offer.html">
                         Offers
                     </a>
                 </li>
+
 
                 <li>
                     <a href="faqs.html">
@@ -671,17 +762,20 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a href="gallery.html">
                         Gallery
                     </a>
                 </li>
 
+
                 <li>
                     <a href="booking.html">
                         Booking
                     </a>
                 </li>
+
 
                 <li>
                     <a href="contact.html">
@@ -799,6 +893,7 @@
 
         </h2>
 
+
         <p>
 
             Our mission is to provide a premium, relaxing and creative
@@ -836,6 +931,7 @@
 
                 </h3>
 
+
                 <p>
 
                     Skilled professionals creating beautiful nail designs.
@@ -855,6 +951,7 @@
 
                 </h3>
 
+
                 <p>
 
                     High-quality products for healthy and beautiful nails.
@@ -873,6 +970,7 @@
                     ✨ Modern Experience
 
                 </h3>
+
 
                 <p>
 
@@ -900,11 +998,13 @@
 
         </h2>
 
+
         <p>
 
             Luxury Nails | Modern Technology | Perfect Experience
 
         </p>
+
 
         <p>
 
