@@ -1,5 +1,5 @@
 // ==========================================
-// NAIL STUDIO - MAIN JAVASCRIPT
+// NAIL MUSE - MAIN JAVASCRIPT
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,13 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 .split("#")[0]
                 .toLowerCase();
 
-        if (
-            linkPage === currentPage ||
-            (
-                currentPage === "" &&
-                linkPage === "index.html"
-            )
-        ) {
+        // Remove active from every link first
+        link.classList.remove("active");
+
+        // Add active only to current page
+        if (linkPage === currentPage) {
             link.classList.add("active");
         }
 
@@ -59,18 +57,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const previewModal =
         document.getElementById("previewModal");
 
-    // IMPORTANT:
-    // HTML uses closeModal
     const previewClose =
         document.getElementById("closeModal");
 
-    // IMPORTANT:
-    // HTML uses previewBtn
     const openPreviewBtn =
         document.getElementById("previewBtn");
 
-    // IMPORTANT:
-    // HTML uses previewBtnBottom
     const openPreviewBtnBottom =
         document.getElementById("previewBtnBottom");
 
@@ -177,12 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function (event) {
 
-                if (
-                    event.target === previewModal
-                ) {
-
+                if (event.target === previewModal) {
                     closePreview();
-
                 }
 
             }
@@ -200,9 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function (event) {
 
             if (event.key === "Escape") {
-
                 closePreview();
-
             }
 
         }
@@ -220,10 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("previewService");
 
         if (previewService) {
-
             previewService.textContent =
                 selectedService;
-
         }
 
 
@@ -232,10 +216,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("previewShape");
 
         if (previewShape) {
-
             previewShape.textContent =
                 selectedShape;
-
         }
 
 
@@ -244,10 +226,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("previewDesign");
 
         if (previewDesign) {
-
             previewDesign.textContent =
                 selectedDesign;
-
         }
 
 
@@ -256,10 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("previewShade");
 
         if (previewShade) {
-
             previewShade.textContent =
                 selectedShade;
-
         }
 
 
@@ -270,10 +248,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (selectedShadeName) {
-
             selectedShadeName.textContent =
                 selectedShade;
-
         }
 
 
@@ -284,10 +260,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (bookingService) {
-
             bookingService.textContent =
                 selectedService;
-
         }
 
 
@@ -298,10 +272,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (bookingDesign) {
-
             bookingDesign.textContent =
                 selectedDesign;
-
         }
 
 
@@ -312,10 +284,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (bookingShade) {
-
             bookingShade.textContent =
                 selectedShade;
-
         }
 
 
@@ -326,10 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         if (virtualService) {
-
             virtualService.value =
                 selectedService;
-
         }
 
 
@@ -442,9 +410,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!nailStage) return;
 
-
-        // Remove old shape classes
-
         nailStage.classList.remove(
             "shape-round",
             "shape-square",
@@ -455,14 +420,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "shape-oval"
         );
 
-
-        // Convert text to CSS class
-
         const shapeClass =
             selectedShape
                 .toLowerCase()
                 .replace(/\s+/g, "-");
-
 
         nailStage.classList.add(
             "shape-" + shapeClass
@@ -525,7 +486,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!nailStage) return;
 
-
         nailStage.classList.remove(
             "design-classic-nude",
             "design-french",
@@ -537,12 +497,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "design-minimal"
         );
 
-
         const designClass =
             selectedDesign
                 .toLowerCase()
                 .replace(/\s+/g, "-");
-
 
         nailStage.classList.add(
             "design-" + designClass
@@ -554,9 +512,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
     // SHADE OPTIONS
     // ==========================================
-    // IMPORTANT:
-    // HTML uses .shade-btn
-    // NOT .shade-option
 
     const shadeOptions =
         document.querySelectorAll(
@@ -581,16 +536,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 option.classList.add("active");
 
-
                 selectedShade =
                     option.dataset.shade ||
                     option.textContent.trim();
 
-
                 selectedColor =
                     option.dataset.color ||
                     "#d4af37";
-
 
                 updateVirtualPreview();
 
@@ -607,7 +559,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function initializeVirtualPreview() {
 
         // SERVICE
-
         const defaultService =
             document.querySelector(
                 '.service-option[data-service="Gel Nails"]'
@@ -633,7 +584,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // SHAPE
-
         const defaultShape =
             document.querySelector(
                 '.shape-option[data-shape="Almond"]'
@@ -659,7 +609,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // DESIGN
-
         const defaultDesign =
             document.querySelector(
                 '.design-option[data-design="Classic Nude"]'
@@ -685,7 +634,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // SHADE
-
         const defaultShade =
             document.querySelector(
                 '.shade-btn[data-shade="Royal Gold"]'
@@ -733,7 +681,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "virtualBookingForm"
         );
 
-
     if (virtualBookingForm) {
 
         virtualBookingForm.addEventListener(
@@ -762,15 +709,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         "virtualPhone"
                     );
 
-                // IMPORTANT:
-                // HTML uses virtualBookingDate
                 const dateInput =
                     document.getElementById(
                         "virtualBookingDate"
                     );
 
-                // IMPORTANT:
-                // HTML uses time
                 const timeInput =
                     document.getElementById(
                         "time"
@@ -828,10 +771,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 // EMAIL VALIDATION
                 // ==========================================
 
-                // FIXED REGEX
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
                 if (
                     !emailPattern.test(email)
@@ -953,12 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    // RESET FORM
-
                     virtualBookingForm.reset();
-
-
-                    // CLOSE MODAL
 
                     closePreview();
 
@@ -1004,7 +940,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById(
             "bookingForm"
         );
-
 
     if (bookingForm) {
 
@@ -1077,6 +1012,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         : "";
 
 
+                // ==========================================
+                // VALIDATION
+                // ==========================================
+
                 if (
                     !name ||
                     !email ||
@@ -1094,11 +1033,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // FIXED EMAIL REGEX
+                // ==========================================
+                // EMAIL VALIDATION
+                // ==========================================
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
                 if (
                     !emailPattern.test(email)
@@ -1112,6 +1052,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
+
+                // ==========================================
+                // BOOKING DATA
+                // ==========================================
 
                 const bookingData = {
 
@@ -1147,11 +1091,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+                // ==========================================
+                // BUTTON STATE
+                // ==========================================
+
                 const submitButton =
                     bookingForm.querySelector(
                         'button[type="submit"]'
                     );
-
 
                 const originalButtonText =
                     submitButton
@@ -1169,6 +1116,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
+
+                // ==========================================
+                // SEND BOOKING
+                // ==========================================
 
                 try {
 
@@ -1269,7 +1220,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "[data-service]"
         );
 
-
     serviceButtons.forEach(
         function (button) {
 
@@ -1305,14 +1255,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "service"
         );
 
-
     if (bookingServiceInput) {
 
         const savedService =
             localStorage.getItem(
                 "selectedService"
             );
-
 
         if (savedService) {
 
@@ -1332,7 +1280,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById(
             "contactForm"
         );
-
 
     if (contactForm) {
 
@@ -1363,7 +1310,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ".gallery-item"
         );
 
-
     galleryItems.forEach(
         function (item) {
 
@@ -1386,64 +1332,52 @@ document.addEventListener("DOMContentLoaded", function () {
     // DATE MINIMUM = TODAY
     // ==========================================
 
+    const today =
+        new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2, "0");
+
+    const todayString =
+        `${year}-${month}-${day}`;
+
+
+    // VIRTUAL BOOKING DATE
+
     const virtualDate =
         document.getElementById(
             "virtualBookingDate"
         );
 
-
     if (virtualDate) {
 
-        const today =
-            new Date();
-
-        const year =
-            today.getFullYear();
-
-        const month =
-            String(
-                today.getMonth() + 1
-            ).padStart(2, "0");
-
-        const day =
-            String(
-                today.getDate()
-            ).padStart(2, "0");
-
-
         virtualDate.min =
-            `${year}-${month}-${day}`;
+            todayString;
 
     }
 
+
+    // NORMAL BOOKING DATE
 
     const normalDate =
         document.getElementById(
             "bookingDate"
         );
 
-
     if (normalDate) {
 
-        const today =
-            new Date();
-
-        const year =
-            today.getFullYear();
-
-        const month =
-            String(
-                today.getMonth() + 1
-            ).padStart(2, "0");
-
-        const day =
-            String(
-                today.getDate()
-            ).padStart(2, "0");
-
-
         normalDate.min =
-            `${year}-${month}-${day}`;
+            todayString;
 
     }
 
@@ -1453,7 +1387,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
 
     console.log(
-        "✅ Nail Studio main.js loaded successfully"
+        "✅ Nail Muse main.js loaded successfully"
     );
 
 });
