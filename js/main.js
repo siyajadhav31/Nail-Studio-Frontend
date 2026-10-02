@@ -1,6 +1,3 @@
-
-
-
 // ==========================================
 // DOM CONTENT LOADED
 // ==========================================
@@ -42,11 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
 
             if (previewModal) {
-
                 previewModal.style.display = "flex";
-
                 document.body.style.overflow = "hidden";
-
             }
 
         });
@@ -63,11 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
         closeModal.addEventListener("click", function () {
 
             if (previewModal) {
-
                 previewModal.style.display = "none";
-
                 document.body.style.overflow = "";
-
             }
 
         });
@@ -86,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (e.target === previewModal) {
 
                 previewModal.style.display = "none";
-
                 document.body.style.overflow = "";
 
             }
@@ -110,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
 
                 previewModal.style.display = "none";
-
                 document.body.style.overflow = "";
 
             }
@@ -125,13 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
 
     let selectedService = "Gel Nails";
-
     let selectedShape = "Almond";
-
     let selectedDesign = "Classic Nude";
-
     let selectedShade = "Royal Gold";
-
     let selectedColor = "#c89b3c";
 
 
@@ -269,17 +254,12 @@ document.addEventListener("DOMContentLoaded", function () {
             nail.querySelector(".nail-design");
 
         if (!designLayer) {
-
             return;
-
         }
 
         // Clear previous design
-
         designLayer.innerHTML = "";
-
-        designLayer.className =
-            "nail-design";
+        designLayer.className = "nail-design";
 
 
         // ==========================================
@@ -421,9 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateShape() {
 
         if (!nailPreviewStage) {
-
             return;
-
         }
 
         nailPreviewStage.classList.remove(
@@ -459,9 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateDesign() {
 
         if (!nailPreviewStage) {
-
             return;
-
         }
 
         nailPreviewStage.classList.remove(
@@ -700,7 +676,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 updateDesign();
-
                 updateBookingDesign();
 
             }
@@ -769,13 +744,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     updateService();
-
     updateShape();
-
     updateDesign();
-
     updateShade();
-
     updateBookingDesign();
 
 
@@ -790,7 +761,6 @@ document.addEventListener("DOMContentLoaded", function () {
             async function (e) {
 
                 e.preventDefault();
-
                 e.stopPropagation();
 
 
@@ -919,6 +889,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     service: selectedService,
 
+                    design: selectedDesign,
+
                     bookingDate: bookingDate,
 
                     bookingTime: bookingTime,
@@ -975,6 +947,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
 
+                    // ==================================
+                    // SERVER ERROR
+                    // ==================================
+
                     if (!response.ok) {
 
                         const errorText =
@@ -982,6 +958,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         console.error(
                             "Server Error:",
+                            response.status,
                             errorText
                         );
 
@@ -991,6 +968,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     }
 
+
+                    // ==================================
+                    // GET SAVED BOOKING
+                    // ==================================
 
                     const savedBooking =
                         await response.json();
@@ -1034,6 +1015,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+                    // ==================================
+                    // SUCCESS
+                    // ==================================
+
                     alert(
                         "✨ Appointment Booked Successfully!"
                     );
@@ -1044,42 +1029,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     // ==================================
 
                     if (virtualName) {
-
                         virtualName.value = "";
-
                     }
 
                     if (virtualEmail) {
-
                         virtualEmail.value = "";
-
                     }
 
                     if (virtualPhone) {
-
                         virtualPhone.value = "";
-
                     }
 
                     if (virtualBookingDate) {
-
                         virtualBookingDate.value = "";
-
                     }
 
                     if (virtualBookingTime) {
-
                         virtualBookingTime.value = "";
-
                     }
 
 
                     updateService();
-
                     updateShape();
-
                     updateDesign();
-
                     updateShade();
 
                 }
@@ -1092,18 +1064,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     alert(
-                        "Unable to book appointment. Please make sure Spring Boot is running."
+                        "Unable to book appointment. Please try again."
                     );
 
                 }
 
+                finally {
 
-                if (bookButton) {
+                    if (bookButton) {
 
-                    bookButton.disabled = false;
+                        bookButton.disabled = false;
 
-                    bookButton.textContent =
-                        "💅 Book This Look";
+                        bookButton.textContent =
+                            "💅 Book This Look";
+
+                    }
 
                 }
 
@@ -1134,7 +1109,6 @@ document.addEventListener("DOMContentLoaded", function () {
             async function (e) {
 
                 e.preventDefault();
-
                 e.stopPropagation();
 
 
@@ -1166,17 +1140,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     ).value;
 
 
-                // IMPORTANT:
-                // Correct ID from booking.html
-
                 const date =
                     document.getElementById(
                         "bookingDate"
                     ).value;
 
-
-                // IMPORTANT:
-                // Correct ID from booking.html
 
                 const time =
                     document.getElementById(
@@ -1365,9 +1333,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     phone: phone,
 
-                    service: service || "Appointment",
+                    service:
+                        service ||
+                        "Appointment",
 
-                    design: design || "Not Selected",
+                    design:
+                        design ||
+                        "Not Selected",
 
                     bookingDate: date,
 
@@ -1420,6 +1392,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         console.error(
                             "Server Error:",
+                            response.status,
                             errorText
                         );
 
@@ -1480,7 +1453,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
-
                 catch (error) {
 
                     console.error(
@@ -1501,7 +1473,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             <span>
                                 Unable to connect to the server.
-                                Please make sure Spring Boot is running.
+                                Please try again.
                             </span>
                         `;
 
@@ -1570,6 +1542,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
 
         // If service is a SELECT
+
         if (
             bookingServiceField.tagName ===
             "SELECT"
@@ -1602,6 +1575,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // If service is hidden input
+
         else {
 
             bookingServiceField.value =
@@ -1660,7 +1634,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             }
-
         );
 
     });
