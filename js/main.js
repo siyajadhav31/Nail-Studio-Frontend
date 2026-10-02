@@ -4,12 +4,49 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
     // ==========================================
     // API URL
     // ==========================================
 
     const API_URL =
         "https://nail-studio-backend-k604.onrender.com/api/bookings";
+
+
+    // ==========================================
+    // ACTIVE NAVBAR LINK
+    // ==========================================
+
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop()
+            .toLowerCase() || "index.html";
+
+    const navLinks =
+        document.querySelectorAll(".nav-links a");
+
+    navLinks.forEach(function (link) {
+
+        const linkPage =
+            link.getAttribute("href")
+                .split("/")
+                .pop()
+                .split("?")[0]
+                .split("#")[0]
+                .toLowerCase();
+
+        if (
+            linkPage === currentPage ||
+            (
+                currentPage === "" &&
+                linkPage === "index.html"
+            )
+        ) {
+            link.classList.add("active");
+        }
+
+    });
 
 
     // ==========================================
@@ -20,39 +57,60 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("previewModal");
 
     const previewClose =
-        document.getElementById("previewClose");
+        document.getElementById("closePreviewBtn");
 
     const openPreviewBtn =
-        document.getElementById("openPreview");
+        document.getElementById("openPreviewBtn");
 
-    const virtualBookingForm =
-        document.getElementById("virtualBookingForm");
+    const openPreviewBtnBottom =
+        document.getElementById("openPreviewBtnBottom");
+
+    const virtualBookButton =
+        document.getElementById("bookVirtualLook");
 
 
     // ==========================================
     // VIRTUAL PREVIEW STATE
     // ==========================================
 
-    let selectedService = "Classic Manicure";
-    let selectedShape = "Round";
-    let selectedDesign = "Minimal";
-    let selectedShade = "Nude";
-    let selectedColor = "#e8cfc4";
+    let selectedService = "Gel Nails";
+    let selectedShape = "Almond";
+    let selectedDesign = "Classic Nude";
+    let selectedShade = "Royal Gold";
 
 
     // ==========================================
     // OPEN PREVIEW MODAL
     // ==========================================
 
-    if (openPreviewBtn && previewModal) {
+    function openPreview() {
+
+        if (previewModal) {
+
+            previewModal.classList.add("show");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+    }
+
+
+    if (openPreviewBtn) {
 
         openPreviewBtn.addEventListener(
             "click",
-            function () {
+            openPreview
+        );
 
-                previewModal.style.display = "flex";
+    }
 
-            }
+
+    if (openPreviewBtnBottom) {
+
+        openPreviewBtnBottom.addEventListener(
+            "click",
+            openPreview
         );
 
     }
@@ -62,22 +120,31 @@ document.addEventListener("DOMContentLoaded", function () {
     // CLOSE PREVIEW MODAL
     // ==========================================
 
-    if (previewClose && previewModal) {
+    function closePreview() {
+
+        if (previewModal) {
+
+            previewModal.classList.remove("show");
+
+            document.body.style.overflow = "";
+
+        }
+
+    }
+
+
+    if (previewClose) {
 
         previewClose.addEventListener(
             "click",
-            function () {
-
-                previewModal.style.display = "none";
-
-            }
+            closePreview
         );
 
     }
 
 
     // ==========================================
-    // CLOSE MODAL WHEN CLICKING OUTSIDE
+    // CLOSE WHEN CLICKING OUTSIDE
     // ==========================================
 
     if (previewModal) {
@@ -88,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (event.target === previewModal) {
 
-                    previewModal.style.display = "none";
+                    closePreview();
 
                 }
 
@@ -99,19 +166,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // ESCAPE KEY CLOSE
+    // ESCAPE KEY
     // ==========================================
 
     document.addEventListener(
         "keydown",
         function (event) {
 
-            if (
-                event.key === "Escape" &&
-                previewModal
-            ) {
+            if (event.key === "Escape") {
 
-                previewModal.style.display = "none";
+                closePreview();
 
             }
 
@@ -120,56 +184,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // PREVIEW UPDATE FUNCTION
+    // UPDATE VIRTUAL BOOKING SUMMARY
     // ==========================================
 
-    function updatePreview() {
+    function updateVirtualSummary() {
 
-        const serviceText =
-            document.getElementById("previewService");
+        const summaryService =
+            document.getElementById("summaryService");
 
-        const shapeText =
-            document.getElementById("previewShape");
+        const summaryShape =
+            document.getElementById("summaryShape");
 
-        const designText =
-            document.getElementById("previewDesign");
+        const summaryDesign =
+            document.getElementById("summaryDesign");
 
-        const shadeText =
-            document.getElementById("previewShade");
+        const summaryShade =
+            document.getElementById("summaryShade");
 
-        const nailPreview =
-            document.getElementById("nailPreview");
+        const virtualService =
+            document.getElementById("virtualService");
 
 
-        if (serviceText) {
-            serviceText.textContent =
+        if (summaryService) {
+
+            summaryService.textContent =
                 selectedService;
+
         }
 
 
-        if (shapeText) {
-            shapeText.textContent =
+        if (summaryShape) {
+
+            summaryShape.textContent =
                 selectedShape;
+
         }
 
 
-        if (designText) {
-            designText.textContent =
+        if (summaryDesign) {
+
+            summaryDesign.textContent =
                 selectedDesign;
+
         }
 
 
-        if (shadeText) {
-            shadeText.textContent =
+        if (summaryShade) {
+
+            summaryShade.textContent =
                 selectedShade;
+
         }
 
 
-        // Change nail preview colour
-        if (nailPreview) {
+        if (virtualService) {
 
-            nailPreview.style.background =
-                selectedColor;
+            virtualService.value =
+                selectedService;
 
         }
 
@@ -185,40 +256,38 @@ document.addEventListener("DOMContentLoaded", function () {
             ".service-option"
         );
 
-    serviceOptions.forEach(
-        function (option) {
 
-            option.addEventListener(
-                "click",
-                function () {
+    serviceOptions.forEach(function (option) {
 
-                    serviceOptions.forEach(
-                        function (item) {
+        option.addEventListener(
+            "click",
+            function () {
 
-                            item.classList.remove(
-                                "selected"
-                            );
+                serviceOptions.forEach(
+                    function (item) {
 
-                        }
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                    option.classList.add(
-                        "selected"
-                    );
+                    }
+                );
 
 
-                    selectedService =
-                        option.dataset.service ||
-                        option.textContent.trim();
+                option.classList.add("active");
 
 
-                    updatePreview();
+                selectedService =
+                    option.dataset.service ||
+                    option.textContent.trim();
 
-                }
-            );
 
-        }
-    );
+                updateVirtualSummary();
+
+            }
+        );
+
+    });
 
 
     // ==========================================
@@ -230,40 +299,38 @@ document.addEventListener("DOMContentLoaded", function () {
             ".shape-option"
         );
 
-    shapeOptions.forEach(
-        function (option) {
 
-            option.addEventListener(
-                "click",
-                function () {
+    shapeOptions.forEach(function (option) {
 
-                    shapeOptions.forEach(
-                        function (item) {
+        option.addEventListener(
+            "click",
+            function () {
 
-                            item.classList.remove(
-                                "selected"
-                            );
+                shapeOptions.forEach(
+                    function (item) {
 
-                        }
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                    option.classList.add(
-                        "selected"
-                    );
+                    }
+                );
 
 
-                    selectedShape =
-                        option.dataset.shape ||
-                        option.textContent.trim();
+                option.classList.add("active");
 
 
-                    updatePreview();
+                selectedShape =
+                    option.dataset.shape ||
+                    option.textContent.trim();
 
-                }
-            );
 
-        }
-    );
+                updateVirtualSummary();
+
+            }
+        );
+
+    });
 
 
     // ==========================================
@@ -275,40 +342,38 @@ document.addEventListener("DOMContentLoaded", function () {
             ".design-option"
         );
 
-    designOptions.forEach(
-        function (option) {
 
-            option.addEventListener(
-                "click",
-                function () {
+    designOptions.forEach(function (option) {
 
-                    designOptions.forEach(
-                        function (item) {
+        option.addEventListener(
+            "click",
+            function () {
 
-                            item.classList.remove(
-                                "selected"
-                            );
+                designOptions.forEach(
+                    function (item) {
 
-                        }
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                    option.classList.add(
-                        "selected"
-                    );
+                    }
+                );
 
 
-                    selectedDesign =
-                        option.dataset.design ||
-                        option.textContent.trim();
+                option.classList.add("active");
 
 
-                    updatePreview();
+                selectedDesign =
+                    option.dataset.design ||
+                    option.textContent.trim();
 
-                }
-            );
 
-        }
-    );
+                updateVirtualSummary();
+
+            }
+        );
+
+    });
 
 
     // ==========================================
@@ -320,65 +385,56 @@ document.addEventListener("DOMContentLoaded", function () {
             ".shade-option"
         );
 
-    shadeOptions.forEach(
-        function (option) {
 
-            option.addEventListener(
-                "click",
-                function () {
+    shadeOptions.forEach(function (option) {
 
-                    shadeOptions.forEach(
-                        function (item) {
+        option.addEventListener(
+            "click",
+            function () {
 
-                            item.classList.remove(
-                                "selected"
-                            );
+                shadeOptions.forEach(
+                    function (item) {
 
-                        }
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                    option.classList.add(
-                        "selected"
-                    );
+                    }
+                );
 
 
-                    selectedShade =
-                        option.dataset.shade ||
-                        option.textContent.trim();
+                option.classList.add("active");
 
 
-                    selectedColor =
-                        option.dataset.color ||
-                        selectedColor;
+                selectedShade =
+                    option.dataset.shade ||
+                    option.textContent.trim();
 
 
-                    updatePreview();
+                updateVirtualSummary();
 
-                }
-            );
+            }
+        );
 
-        }
-    );
+    });
 
 
     // ==========================================
-    // DEFAULT PREVIEW
+    // INITIAL VIRTUAL SUMMARY
     // ==========================================
 
-    updatePreview();
+    updateVirtualSummary();
 
 
     // ==========================================
     // VIRTUAL BOOKING
     // ==========================================
 
-    if (virtualBookingForm) {
+    if (virtualBookButton) {
 
-        virtualBookingForm.addEventListener(
-            "submit",
-            async function (event) {
-
-                event.preventDefault();
+        virtualBookButton.addEventListener(
+            "click",
+            async function () {
 
 
                 // ------------------------------------------
@@ -406,20 +462,24 @@ document.addEventListener("DOMContentLoaded", function () {
                         ? nameInput.value.trim()
                         : "";
 
+
                 const email =
                     emailInput
                         ? emailInput.value.trim()
                         : "";
+
 
                 const phone =
                     phoneInput
                         ? phoneInput.value.trim()
                         : "";
 
+
                 const bookingDate =
                     dateInput
                         ? dateInput.value
                         : "";
+
 
                 const bookingTime =
                     timeInput
@@ -448,7 +508,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // FIXED EMAIL REGEX
+                // ------------------------------------------
+                // EMAIL VALIDATION
+                // ------------------------------------------
+
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -476,43 +539,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     phone: phone,
 
-                    service:
-                        selectedService,
+                    service: selectedService,
 
-                    design:
-                        selectedDesign,
+                    design: selectedDesign,
 
-                    bookingDate:
-                        bookingDate,
+                    bookingDate: bookingDate,
 
-                    bookingTime:
-                        bookingTime,
+                    bookingTime: bookingTime,
 
-                    bookingType:
-                        "VIRTUAL"
+                    bookingType: "VIRTUAL"
 
                 };
 
 
+                console.log(
+                    "Sending virtual booking:",
+                    bookingData
+                );
+
+
                 // ------------------------------------------
-                // SUBMIT TO BACKEND
+                // BUTTON STATE
                 // ------------------------------------------
 
-                const submitButton =
-                    virtualBookingForm.querySelector(
-                        'button[type="submit"]'
-                    );
+                virtualBookButton.disabled = true;
+
+                virtualBookButton.textContent =
+                    "Booking...";
 
 
-                if (submitButton) {
-
-                    submitButton.disabled = true;
-
-                    submitButton.textContent =
-                        "Booking...";
-
-                }
-
+                // ------------------------------------------
+                // SEND TO BACKEND
+                // ------------------------------------------
 
                 try {
 
@@ -550,7 +608,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
                         throw new Error(
-                            "Booking failed"
+                            "Virtual booking failed"
                         );
 
                     }
@@ -566,6 +624,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+                    // ------------------------------------------
+                    // SUCCESS
+                    // ------------------------------------------
+
                     alert(
                         "Virtual booking submitted successfully!"
                     );
@@ -575,22 +637,37 @@ document.addEventListener("DOMContentLoaded", function () {
                     // RESET FORM
                     // ------------------------------------------
 
-                    virtualBookingForm.reset();
+                    if (nameInput) {
+                        nameInput.value = "";
+                    }
+
+                    if (emailInput) {
+                        emailInput.value = "";
+                    }
+
+                    if (phoneInput) {
+                        phoneInput.value = "";
+                    }
+
+                    if (dateInput) {
+                        dateInput.value = "";
+                    }
+
+                    if (timeInput) {
+                        timeInput.value = "";
+                    }
 
 
                     // ------------------------------------------
                     // CLOSE MODAL
                     // ------------------------------------------
 
-                    if (previewModal) {
+                    closePreview();
 
-                        previewModal.style.display =
-                            "none";
-
-                    }
+                }
 
 
-                } catch (error) {
+                catch (error) {
 
                     console.error(
                         "Virtual booking error:",
@@ -602,17 +679,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Unable to submit booking. Please try again."
                     );
 
+                }
 
-                } finally {
 
-                    if (submitButton) {
+                finally {
 
-                        submitButton.disabled = false;
+                    virtualBookButton.disabled = false;
 
-                        submitButton.textContent =
-                            "Book Virtual Appointment";
-
-                    }
+                    virtualBookButton.textContent =
+                        "Book This Look";
 
                 }
 
@@ -670,30 +745,36 @@ document.addEventListener("DOMContentLoaded", function () {
                         ? nameInput.value.trim()
                         : "";
 
+
                 const email =
                     emailInput
                         ? emailInput.value.trim()
                         : "";
+
 
                 const phone =
                     phoneInput
                         ? phoneInput.value.trim()
                         : "";
 
+
                 const service =
                     serviceInput
                         ? serviceInput.value.trim()
                         : "";
+
 
                 const design =
                     designInput
                         ? designInput.value.trim()
                         : "";
 
+
                 const date =
                     dateInput
                         ? dateInput.value
                         : "";
+
 
                 const time =
                     timeInput
@@ -722,7 +803,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // FIXED EMAIL REGEX
+                // ------------------------------------------
+                // EMAIL VALIDATION
+                // ------------------------------------------
+
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -796,6 +880,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                // ------------------------------------------
+                // SEND TO BACKEND
+                // ------------------------------------------
+
                 try {
 
                     const response =
@@ -848,19 +936,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+                    // ------------------------------------------
+                    // SUCCESS
+                    // ------------------------------------------
+
                     alert(
                         "Booking submitted successfully!"
                     );
 
 
                     // ------------------------------------------
-                    // RESET FORM
+                    // RESET
                     // ------------------------------------------
 
                     bookingForm.reset();
 
+                }
 
-                } catch (error) {
+
+                catch (error) {
 
                     console.error(
                         "Booking error:",
@@ -872,8 +966,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Unable to submit booking. Please try again."
                     );
 
+                }
 
-                } finally {
+
+                finally {
 
                     if (submitButton) {
 
@@ -927,6 +1023,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+
+    // ==========================================
+    // LOAD SELECTED SERVICE ON BOOKING PAGE
+    // ==========================================
+
+    const bookingServiceInput =
+        document.getElementById("service");
+
+
+    if (bookingServiceInput) {
+
+        const savedService =
+            localStorage.getItem(
+                "selectedService"
+            );
+
+
+        if (
+            savedService &&
+            !bookingServiceInput.value
+        ) {
+
+            bookingServiceInput.value =
+                savedService;
+
+        }
+
+    }
 
 
     // ==========================================
