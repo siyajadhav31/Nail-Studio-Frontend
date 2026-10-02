@@ -5,9 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Contact Us | Nail Studio</title>
+    <title>Contact Us | Nail Muse</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -17,373 +18,893 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+
+    <!-- CONTACT PAGE CSS -->
+
+    <style>
+
+        /* ==========================================
+           CONTACT HERO
+        ========================================== */
+
+        .contact-hero {
+            padding: 70px 8% 65px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffdf8,
+                    #f9f1df
+                );
+
+            border-bottom: 1px solid #eadfce;
+        }
+
+
+        .contact-hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+
+        .contact-hero-content span {
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            color: #b8860b;
+        }
+
+
+        .contact-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 52px;
+            font-weight: 600;
+
+            color: #333;
+
+            margin: 10px 0 10px;
+
+            line-height: 1.1;
+        }
+
+
+        .contact-hero p {
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+            font-weight: 300;
+
+            color: #777;
+
+            line-height: 1.8;
+
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           CONTACT MAIN
+        ========================================== */
+
+        .contact-main {
+            padding: 75px 7% 85px;
+
+            background: #fffaf8;
+        }
+
+
+        .contact-content {
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr 0.85fr;
+
+            gap: 65px;
+
+            align-items: center;
+        }
+
+
+        /* ==========================================
+           CONTACT DETAILS
+        ========================================== */
+
+        .contact-details {
+            width: 100%;
+        }
+
+
+        .contact-small-title {
+            display: block;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            color: #b8860b;
+
+            margin-bottom: 10px;
+        }
+
+
+        .contact-details h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 42px;
+
+            font-weight: 600;
+
+            color: #333;
+
+            margin: 0 0 10px;
+
+            line-height: 1.1;
+        }
+
+
+        .contact-intro {
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 300;
+
+            color: #707070;
+
+            line-height: 1.8;
+
+            max-width: 570px;
+
+            margin: 0 0 30px;
+        }
+
+
+        /* ==========================================
+           CONTACT GRID
+        ========================================== */
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        /* ==========================================
+           CONTACT CARD
+        ========================================== */
+
+        .contact-card {
+            display: flex;
+
+            gap: 16px;
+
+            padding: 20px;
+
+            background: #ffffff;
+
+            border: 1px solid #eadfce;
+
+            min-height: 115px;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #c89b3c;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.05);
+        }
+
+
+        /* ==========================================
+           CONTACT CARD ICON
+        ========================================== */
+
+        .contact-card-icon {
+            width: 35px;
+            height: 35px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #c89b3c;
+
+            color: #b8860b;
+
+            font-size: 0;
+
+            position: relative;
+        }
+
+
+        .contact-card-icon::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border: 1px solid #b8860b;
+
+            border-radius: 50%;
+        }
+
+
+        /* Different simple decorative lines */
+
+        .contact-card:nth-child(2)
+        .contact-card-icon::before {
+            width: 12px;
+            height: 8px;
+
+            border-radius: 1px;
+        }
+
+
+        .contact-card:nth-child(3)
+        .contact-card-icon::before {
+            width: 8px;
+            height: 12px;
+
+            border-radius: 50% 50% 2px 2px;
+        }
+
+
+        .contact-card:nth-child(4)
+        .contact-card-icon::before {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+        }
+
+
+        /* ==========================================
+           CARD CONTENT
+        ========================================== */
+
+        .contact-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            color: #3d3834;
+
+            margin: 0 0 7px;
+        }
+
+
+        .contact-card p {
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 300;
+
+            color: #707070;
+
+            line-height: 1.7;
+
+            margin: 0;
+        }
+
+
+        .contact-card a {
+            display: inline-block;
+
+            margin-top: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            color: #b8860b;
+
+            text-decoration: none;
+
+            transition: 0.3s ease;
+        }
+
+
+        .contact-card a:hover {
+            color: #8f6805;
+        }
+
+
+        .closed-text {
+            display: inline-block;
+
+            margin-top: 5px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 10px;
+
+            color: #a27615;
+
+            font-weight: 500;
+        }
+
+
+        /* ==========================================
+           CONTACT IMAGE
+        ========================================== */
+
+        .contact-image {
+            position: relative;
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #e5d5ad;
+
+            background: #fffdf8;
+        }
+
+
+        .contact-image::before {
+            content: "";
+
+            position: absolute;
+
+            top: -10px;
+            right: -10px;
+
+            width: 65px;
+            height: 65px;
+
+            border-top: 1px solid #c89b3c;
+            border-right: 1px solid #c89b3c;
+
+            pointer-events: none;
+        }
+
+
+        .contact-image::after {
+            content: "";
+
+            position: absolute;
+
+            bottom: -10px;
+            left: -10px;
+
+            width: 65px;
+            height: 65px;
+
+            border-bottom: 1px solid #c89b3c;
+            border-left: 1px solid #c89b3c;
+
+            pointer-events: none;
+        }
+
+
+        .contact-image img {
+            width: 100%;
+
+            height: 500px;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        /* ==========================================
+           ACTIVE NAVBAR
+        ========================================== */
+
+        .nav-links a.active {
+            color: #b8860b !important;
+
+            font-weight: 600 !important;
+        }
+
+
+        .nav-links a.active::after {
+            width: 100% !important;
+
+            background: #b8860b !important;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE - TABLET
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .contact-content {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+
+                max-width: 800px;
+            }
+
+
+            .contact-image {
+                max-width: 650px;
+
+                margin: 0 auto;
+            }
+
+
+            .contact-image img {
+                height: 430px;
+            }
+
+        }
+
+
+        /* ==========================================
+           RESPONSIVE - MOBILE
+        ========================================== */
+
+        @media (max-width: 650px) {
+
+            .contact-hero {
+                padding: 50px 5px 50px;
+            }
+
+
+            .contact-hero h1 {
+                font-size: 42px;
+            }
+
+
+            .contact-main {
+                padding: 55px 5% 65px;
+            }
+
+
+            .contact-details h2 {
+                font-size: 36px;
+            }
+
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .contact-card {
+                padding: 18px;
+            }
+
+
+            .contact-image img {
+                height: 360px;
+            }
+
+        }
+
+
+        /* ==========================================
+           SMALL MOBILE
+        ========================================== */
+
+        @media (max-width: 420px) {
+
+            .contact-hero h1 {
+                font-size: 37px;
+            }
+
+
+            .contact-hero p {
+                font-size: 12px;
+            }
+
+
+            .contact-details h2 {
+                font-size: 32px;
+            }
+
+
+            .contact-image img {
+                height: 320px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ==========================================
-     NAVBAR
-========================================== -->
+    <!-- ==========================================
+         NAVBAR
+    ========================================== -->
 
-<header>
+    <header>
 
-    <nav class="navbar">
-
-
-        <!-- LOGO -->
-
-        <div class="logo">
-            💅 Nail Studio
-        </div>
+        <nav class="navbar">
 
 
+            <!-- LOGO -->
 
-        <!-- NAVIGATION -->
-
-        <ul class="nav-links">
-
-            <li>
-                <a href="index.html">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="about.html">
-                    About
-                </a>
-            </li>
-
-            <li>
-                <a href="services.html">
-                    Services
-                </a>
-            </li>
-
-            <li>
-                <a href="offer.html">
-                    Offers
-                </a>
-            </li>
-
-            <li>
-                <a href="faqs.html">
-                    FAQs
-                </a>
-            </li>
-
-            <li>
-                <a href="gallery.html">
-                    Gallery
-                </a>
-            </li>
-
-            <li>
-                <a href="booking.html">
-                    Booking
-                </a>
-            </li>
-
-            <li>
-                <a href="contact.html" class="active">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-
-
-        <!-- ONLY BOOK NOW -->
-
-        <div class="nav-buttons">
-
-            <a
-                href="booking.html"
-                class="signup"
-            >
-                Book Now
+            <a href="index.html" class="logo">
+                Nail Muse
             </a>
 
-        </div>
+
+            <!-- NAVIGATION -->
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="services.html">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="offer.html">
+                        Offers
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faqs.html">
+                        FAQs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="booking.html">
+                        Booking
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
 
 
-    </nav>
+            <!-- BOOK NOW -->
 
-</header>
+            <div class="nav-buttons">
 
+                <a href="booking.html"
+                    class="signup">
+                    Book Now
+                </a>
 
+            </div>
 
-<!-- ==========================================
-     CONTACT HERO
-========================================== -->
+        </nav>
 
-<section class="contact-hero">
-
-    <div class="contact-hero-content">
-
-
-        <span>
-            ✨ CONTACT US
-        </span>
-
-
-        <h1>
-            Get In Touch
-        </h1>
-
-
-        <p>
-            We'd love to hear from you. Let's create
-            something beautiful together.
-        </p>
-
-
-    </div>
-
-</section>
+    </header>
 
 
 
-<!-- ==========================================
-     CONTACT INFORMATION
-========================================== -->
+    <!-- ==========================================
+         CONTACT HERO
+    ========================================== -->
 
-<section class="contact-main">
+    <section class="contact-hero">
 
-    <div class="contact-content">
+        <div class="contact-hero-content">
 
-
-        <!-- ======================================
-             LEFT SIDE
-        ======================================= -->
-
-        <div class="contact-details">
-
-
-            <span class="contact-small-title">
-                💖 NAIL STUDIO
+            <span>
+                Contact Us
             </span>
 
+            <h1>
+                Get In Touch
+            </h1>
 
-            <h2>
-                Contact Nail Studio
-            </h2>
-
-
-            <p class="contact-intro">
-                Have questions about our services, nail designs
-                or appointments? Feel free to reach out to us.
+            <p>
+                We'd love to hear from you.
+                Let's create something beautiful together.
             </p>
 
+        </div>
+
+    </section>
 
 
-            <!-- CONTACT GRID -->
 
-            <div class="contact-grid">
+    <!-- ==========================================
+         CONTACT MAIN
+    ========================================== -->
 
+    <section class="contact-main">
 
-                <!-- ==================================
-                     LOCATION
-                =================================== -->
-
-                <div class="contact-card">
+        <div class="contact-content">
 
 
-                    <div class="contact-card-icon">
-                        📍
+            <!-- ======================================
+                 LEFT SIDE
+            ======================================= -->
+
+            <div class="contact-details">
+
+                <span class="contact-small-title">
+                    Nail Muse
+                </span>
+
+
+                <h2>
+                    Contact Nail Muse
+                </h2>
+
+
+                <p class="contact-intro">
+                    Have questions about our services,
+                    nail designs or appointments?
+                    Feel free to reach out to us.
+                </p>
+
+
+
+                <!-- CONTACT GRID -->
+
+                <div class="contact-grid">
+
+
+                    <!-- LOCATION -->
+
+                    <div class="contact-card">
+
+                        <div class="contact-card-icon"></div>
+
+                        <div>
+
+                            <h3>
+                                Our Location
+                            </h3>
+
+                            <p>
+                                Shop No. 3, Bhavani Plaza,<br>
+                                Ashok Nagar Road, Datar Colony,<br>
+                                Bhandup East, Mumbai – 400042.
+                            </p>
+
+                            <a
+                                href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Get Directions →
+                            </a>
+
+                        </div>
+
                     </div>
 
 
-                    <div>
 
-                        <h3>
-                            Our Location
-                        </h3>
+                    <!-- EMAIL -->
+
+                    <div class="contact-card">
+
+                        <div class="contact-card-icon"></div>
+
+                        <div>
+
+                            <h3>
+                                Email Address
+                            </h3>
+
+                            <p>
+                                hello@nailstudio.com
+                            </p>
+
+                        </div>
+
+                    </div>
 
 
-                        <p>
-                            Shop No. 3, Bhavani Plaza,<br>
-                            Ashok Nagar Road, Datar Colony,<br>
-                            Bhandup East, Mumbai – 400042.
-                        </p>
+
+                    <!-- CONTACT -->
+
+                    <div class="contact-card">
+
+                        <div class="contact-card-icon"></div>
+
+                        <div>
+
+                            <h3>
+                                Contact
+                            </h3>
+
+                            <p>
+                                +91 7715053174
+                            </p>
+
+                        </div>
+
+                    </div>
 
 
-                        <a
-                            href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
-                            target="_blank"
-                        >
-                            Get Directions →
-                        </a>
+
+                    <!-- OPENING HOURS -->
+
+                    <div class="contact-card">
+
+                        <div class="contact-card-icon"></div>
+
+                        <div>
+
+                            <h3>
+                                Opening Hours
+                            </h3>
+
+                            <p>
+                                Monday – Saturday
+                            </p>
+
+                            <p>
+                                11:00 AM – 9:30 PM
+                            </p>
+
+                            <span class="closed-text">
+                                Sunday Closed
+                            </span>
+
+                        </div>
 
                     </div>
 
 
                 </div>
 
-
-
-                <!-- ==================================
-                     EMAIL
-                =================================== -->
-
-                <div class="contact-card">
-
-
-                    <div class="contact-card-icon">
-                        📧
-                    </div>
-
-
-                    <div>
-
-                        <h3>
-                            Email Address
-                        </h3>
-
-
-                        <p>
-                            hello@nailstudio.com
-                        </p>
-
-                    </div>
-
-
-                </div>
+            </div>
 
 
 
-                <!-- ==================================
-                     CONTACT
-                =================================== -->
+            <!-- ======================================
+                 RIGHT SIDE IMAGE
+            ======================================= -->
 
-                <div class="contact-card">
+            <div class="contact-image">
 
-
-                    <div class="contact-card-icon">
-                        📞
-                    </div>
-
-
-                    <div>
-
-                        <h3>
-                            Contact
-                        </h3>
-
-
-                        <p>
-                            +91 7715053174
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- ==================================
-                     OPENING HOURS
-                =================================== -->
-
-                <div class="contact-card">
-
-
-                    <div class="contact-card-icon">
-                        🕐
-                    </div>
-
-
-                    <div>
-
-                        <h3>
-                            Opening Hours
-                        </h3>
-
-
-                        <p>
-                            Monday – Saturday
-                        </p>
-
-
-                        <p>
-                            11:00 AM – 9:30 PM
-                        </p>
-
-
-                        <span class="closed-text">
-                            Sunday Closed
-                        </span>
-
-                    </div>
-
-
-                </div>
-
+                <img
+                    src="images/contact.jpg"
+                    alt="Nail Muse">
 
             </div>
 
 
         </div>
 
-
-
-        <!-- ======================================
-             RIGHT SIDE IMAGE
-        ======================================= -->
-
-        <div class="contact-image">
-
-
-            <img
-                src="images/contact.jpg"
-                alt="Nail Studio"
-            >
-
-
-        </div>
-
-
-    </div>
-
-</section>
+    </section>
 
 
 
-<!-- ==========================================
-     FOOTER
-========================================== -->
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
 
-<footer>
+    <footer>
 
+        <h2>
+            Nail Muse
+        </h2>
 
-    <h2>
-        💅 Nail Studio
-    </h2>
+        <p>
+            Luxury Nails |
+            Modern Technology |
+            Perfect Experience
+        </p>
 
+        <p>
+            © 2026 Nail Muse
+        </p>
 
-    <p>
-        Luxury Nails | Modern Technology | Perfect Experience
-    </p>
-
-
-    <p>
-        © 2026 Nail Studio
-    </p>
-
-
-</footer>
+    </footer>
 
 
 
-<!-- ==========================================
-     MAIN JAVASCRIPT
-========================================== -->
+    <!-- ==========================================
+         MAIN JAVASCRIPT
+    ========================================== -->
 
-<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <!-- ==========================================
+         AUTOMATIC ACTIVE NAVBAR
+    ========================================== -->
+
+    <script>
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop()
+                .toLowerCase() || "index.html";
+
+        const navLinks =
+            document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(function(link) {
+
+            const href =
+                link.getAttribute("href");
+
+            if (!href) return;
+
+            const linkPage =
+                href
+                    .split("/")
+                    .pop()
+                    .split("?")[0]
+                    .split("#")[0]
+                    .toLowerCase();
+
+            link.classList.remove("active");
+
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+
+        });
+
+    </script>
 
 
 </body>

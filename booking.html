@@ -6,15 +6,331 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Book Appointment | Nail Studio</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Book Appointment | Nail Muse</title>
 
     <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* ==========================================
+           BOOKING PAGE
+        ========================================== */
+
+        .booking {
+            background: #fffaf8;
+            padding: 75px 6% 90px;
+            min-height: 80vh;
+        }
+
+        .booking-layout {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 0.9fr;
+            gap: 45px;
+            align-items: start;
+        }
+
+        /* ==========================================
+           LEFT BOOKING FORM
+        ========================================== */
+
+        .booking-container {
+            background: #ffffff;
+            border: 1px solid #eadfc9;
+            padding: 45px;
+            box-shadow: 0 12px 35px rgba(90, 70, 40, 0.07);
+        }
+
+        .booking-subtitle {
+            display: inline-block;
+            color: #b8860b;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .booking-container h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 600;
+            color: #49393e;
+            margin: 0 0 8px;
+            line-height: 1.1;
+        }
+
+        .booking-required {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 32px;
+        }
+
+        .booking-required span,
+        .form-group label span {
+            color: #b8860b;
+        }
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+            margin-bottom: 23px;
+        }
+
+        .booking-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #49393e;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #ddd1bd;
+            background: #fffdfb;
+            padding: 0 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: #49393e;
+            outline: none;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #c89b3c;
+            box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .form-group small {
+            display: block;
+            color: #999;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        /* ==========================================
+           SUBMIT BUTTON
+        ========================================== */
+
+        .booking-submit-btn {
+            width: 100%;
+            height: 52px;
+            border: none;
+            background: #c89b3c;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .booking-submit-btn:hover {
+            background: #a97813;
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================
+           BOOKING MESSAGE
+        ========================================== */
+
+        .booking-message {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: #49393e;
+            min-height: 20px;
+        }
+
+        /* ==========================================
+           STUDIO INFO
+        ========================================== */
+
+        .studio-info-box {
+            background: #f8f1e5;
+            border: 1px solid #eadfc9;
+            padding: 38px;
+        }
+
+        .studio-heading {
+            border-bottom: 1px solid #dfd0b6;
+            padding-bottom: 18px;
+            margin-bottom: 27px;
+        }
+
+        .studio-heading h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            color: #49393e;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .studio-detail {
+            display: flex;
+            gap: 17px;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e4d7c0;
+        }
+
+        .studio-detail:last-of-type {
+            margin-bottom: 25px;
+        }
+
+        .studio-icon {
+            width: 38px;
+            height: 38px;
+            border: 1px solid #c89b3c;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .studio-icon::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border: 1px solid #b8860b;
+            border-radius: 50%;
+            position: absolute;
+            top: 14px;
+            left: 14px;
+        }
+
+        .studio-detail h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: #49393e;
+            margin: 0 0 6px;
+            font-weight: 600;
+        }
+
+        .studio-detail p {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .studio-detail a {
+            display: inline-block;
+            margin-top: 7px;
+            color: #b8860b;
+            font-size: 11px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .studio-detail a:hover {
+            text-decoration: underline;
+        }
+
+        .closed-text {
+            display: inline-block;
+            color: #b8860b;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* ==========================================
+           WHATSAPP
+        ========================================== */
+
+        .studio-whatsapp {
+            background: #fff;
+            border: 1px solid #e4d6bd;
+            padding: 22px;
+        }
+
+        .studio-whatsapp h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 23px;
+            color: #49393e;
+            margin: 0 0 7px;
+        }
+
+        .studio-whatsapp p {
+            color: #777;
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 0 0 15px;
+        }
+
+        .studio-whatsapp a {
+            display: inline-block;
+            background: #c89b3c;
+            color: white;
+            padding: 10px 18px;
+            font-size: 11px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .studio-whatsapp a:hover {
+            background: #a97813;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .booking {
+                padding: 50px 5% 65px;
+            }
+
+            .booking-container,
+            .studio-info-box {
+                padding: 28px 22px;
+            }
+
+            .booking-container h1 {
+                font-size: 42px;
+            }
+
+            .booking-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -30,86 +346,57 @@
 
     <nav class="navbar">
 
-        <div class="logo">
-            💅 Nail Studio
-        </div>
-
+        <a href="index.html" class="logo">
+            Nail Muse
+        </a>
 
         <ul class="nav-links">
 
             <li>
-                <a href="index.html">
-                    Home
-                </a>
+                <a href="index.html">Home</a>
             </li>
 
             <li>
-                <a href="about.html">
-                    About
-                </a>
+                <a href="about.html">About</a>
             </li>
 
             <li>
-                <a href="services.html">
-                    Services
-                </a>
+                <a href="services.html">Services</a>
             </li>
 
             <li>
-                <a href="offer.html">
-                    Offers
-                </a>
+                <a href="offer.html">Offers</a>
             </li>
 
             <li>
-                <a href="faqs.html">
-                    FAQs
-                </a>
+                <a href="faqs.html">FAQs</a>
             </li>
 
             <li>
-                <a href="gallery.html">
-                    Gallery
-                </a>
+                <a href="gallery.html">Gallery</a>
             </li>
 
             <li>
-                <a href="booking.html" class="active">
-                    Booking
-                </a>
+                <a href="booking.html">Booking</a>
             </li>
 
             <li>
-                <a href="contact.html">
-                    Contact
-                </a>
+                <a href="contact.html">Contact</a>
             </li>
 
         </ul>
 
+        <div class="nav-buttons">
 
-        <!-- ONLY BOOK NOW -->
+            <a href="booking.html" class="signup">
+                Book Now
+            </a>
 
-        <a
-            href="booking.html"
-            class="nav-book-btn"
-            style="
-                background:#c89b3c;
-                color:white;
-                padding:10px 10px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:13px;
-                font-weight:600;
-            "
-        >
-            Book Now
-        </a>
+        </div>
 
     </nav>
 
 </header>
-
 
 
 <!-- ==========================================
@@ -121,21 +408,17 @@
     <div class="booking-layout">
 
 
-        <!-- ======================================
-             LEFT SIDE - BOOK APPOINTMENT
-        ======================================= -->
+        <!-- LEFT SIDE -->
 
         <div class="booking-container">
 
             <span class="booking-subtitle">
-                ✨ Luxury Nail Experience
+                Luxury Nail Experience
             </span>
-
 
             <h1>
                 Book Appointment
             </h1>
-
 
             <p class="booking-required">
                 All fields marked <span>*</span> are required.
@@ -164,13 +447,9 @@
                 </div>
 
 
-
                 <!-- MOBILE + EMAIL -->
 
                 <div class="booking-row">
-
-
-                    <!-- MOBILE -->
 
                     <div class="form-group">
 
@@ -195,9 +474,6 @@
                     </div>
 
 
-
-                    <!-- EMAIL -->
-
                     <div class="form-group">
 
                         <label for="email">
@@ -214,17 +490,12 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- DATE + TIME -->
 
                 <div class="booking-row">
-
-
-                    <!-- DATE -->
 
                     <div class="form-group">
 
@@ -242,13 +513,10 @@
                     </div>
 
 
-
-                    <!-- TIME -->
-
                     <div class="form-group">
 
                         <label for="bookingTime">
-                            🕒 Appointment Time <span>*</span>
+                            Appointment Time <span>*</span>
                         </label>
 
                         <select
@@ -261,56 +529,23 @@
                                 Select a time
                             </option>
 
-                            <option value="11:00 AM">
-                                11:00 AM
-                            </option>
-
-                            <option value="12:00 PM">
-                                12:00 PM
-                            </option>
-
-                            <option value="1:00 PM">
-                                1:00 PM
-                            </option>
-
-                            <option value="2:00 PM">
-                                2:00 PM
-                            </option>
-
-                            <option value="3:00 PM">
-                                3:00 PM
-                            </option>
-
-                            <option value="4:00 PM">
-                                4:00 PM
-                            </option>
-
-                            <option value="5:00 PM">
-                                5:00 PM
-                            </option>
-
-                            <option value="6:00 PM">
-                                6:00 PM
-                            </option>
-
-                            <option value="7:00 PM">
-                                7:00 PM
-                            </option>
-
-                            <option value="8:00 PM">
-                                8:00 PM
-                            </option>
-
-                            <option value="9:00 PM">
-                                9:00 PM
-                            </option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                            <option value="6:00 PM">6:00 PM</option>
+                            <option value="7:00 PM">7:00 PM</option>
+                            <option value="8:00 PM">8:00 PM</option>
+                            <option value="9:00 PM">9:00 PM</option>
 
                         </select>
 
                     </div>
 
                 </div>
-
 
 
                 <!-- BACKEND COMPATIBILITY -->
@@ -330,7 +565,6 @@
                 >
 
 
-
                 <!-- SUBMIT -->
 
                 <button
@@ -340,37 +574,23 @@
                     Confirm Appointment
                 </button>
 
-
             </form>
 
-
-
-            <!-- BOOKING MESSAGE -->
 
             <div
                 id="bookingMessage"
                 class="booking-message"
             ></div>
 
-
         </div>
 
 
-
-        <!-- ======================================
-             RIGHT SIDE - STUDIO INFORMATION
-        ======================================= -->
+        <!-- RIGHT SIDE -->
 
         <div class="studio-info-box">
 
 
-            <!-- HEADING -->
-
             <div class="studio-heading">
-
-                <span>
-                    ✨
-                </span>
 
                 <h2>
                     Studio Info
@@ -379,14 +599,11 @@
             </div>
 
 
-
             <!-- LOCATION -->
 
             <div class="studio-detail">
 
-                <div class="studio-icon">
-                    📍
-                </div>
+                <div class="studio-icon"></div>
 
                 <div>
 
@@ -412,14 +629,11 @@
             </div>
 
 
-
             <!-- BUSINESS HOURS -->
 
             <div class="studio-detail">
 
-                <div class="studio-icon">
-                    ⏰
-                </div>
+                <div class="studio-icon"></div>
 
                 <div>
 
@@ -441,14 +655,11 @@
             </div>
 
 
-
             <!-- CONTACT -->
 
             <div class="studio-detail">
 
-                <div class="studio-icon">
-                    📞
-                </div>
+                <div class="studio-icon"></div>
 
                 <div>
 
@@ -465,13 +676,12 @@
             </div>
 
 
-
             <!-- WHATSAPP -->
 
             <div class="studio-whatsapp">
 
                 <h3>
-                    💬 WhatsApp Us
+                    WhatsApp Us
                 </h3>
 
                 <p>
@@ -491,11 +701,9 @@
 
         </div>
 
-
     </div>
 
 </section>
-
 
 
 <!-- ==========================================
@@ -505,11 +713,10 @@
 <footer>
 
     <p>
-        © 2026 Nail Studio. All Rights Reserved.
+        © 2026 Nail Muse. All Rights Reserved.
     </p>
 
 </footer>
-
 
 
 <!-- ==========================================
@@ -528,31 +735,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateInput =
         document.getElementById("bookingDate");
 
-
     if (dateInput) {
 
         const today = new Date();
 
-
         const year =
             today.getFullYear();
-
 
         const month =
             String(
                 today.getMonth() + 1
             ).padStart(2, "0");
 
-
         const day =
             String(
                 today.getDate()
             ).padStart(2, "0");
 
-
         dateInput.min =
             `${year}-${month}-${day}`;
-
 
 
         /* ==========================================
@@ -568,10 +769,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         this.value + "T00:00:00"
                     );
 
-
                 const dayOfWeek =
                     selectedDate.getDay();
-
 
                 if (dayOfWeek === 0) {
 
@@ -589,14 +788,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* ==========================================
        MOBILE NUMBER VALIDATION
     ========================================== */
 
     const phoneInput =
         document.getElementById("phone");
-
 
     if (phoneInput) {
 
@@ -616,7 +813,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* ==========================================
        SAVE BOOKING TO SPRING BOOT BACKEND
     ========================================== */
@@ -624,10 +820,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookingForm =
         document.getElementById("bookingForm");
 
-
     const bookingMessage =
         document.getElementById("bookingMessage");
-
 
     if (bookingForm) {
 
@@ -636,6 +830,42 @@ document.addEventListener("DOMContentLoaded", function () {
             async function (event) {
 
                 event.preventDefault();
+
+
+                /* EXTRA PHONE VALIDATION */
+
+                const phone =
+                    document.getElementById("phone").value;
+
+                const phonePattern =
+                    /^[6-9][0-9]{9}$/;
+
+                if (!phonePattern.test(phone)) {
+
+                    bookingMessage.innerHTML =
+                        "Please enter a valid 10-digit mobile number.";
+
+                    return;
+
+                }
+
+
+                /* EMAIL VALIDATION */
+
+                const email =
+                    document.getElementById("email").value;
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+
+                    bookingMessage.innerHTML =
+                        "Please enter a valid email address.";
+
+                    return;
+
+                }
 
 
                 bookingMessage.innerHTML =
@@ -648,10 +878,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("name").value,
 
                     email:
-                        document.getElementById("email").value,
+                        email,
 
                     phone:
-                        document.getElementById("phone").value,
+                        phone,
 
                     service:
                         document.getElementById("service").value,
@@ -705,7 +935,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     const result =
                         await response.json();
 
-
                     console.log(
                         "Booking saved:",
                         result
@@ -713,7 +942,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     bookingMessage.innerHTML =
-                        "✅ Appointment booked successfully!";
+                        "Appointment booked successfully!";
 
 
                     bookingForm.reset();
@@ -728,7 +957,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     bookingMessage.innerHTML =
-                        "❌ Booking failed. Please try again.";
+                        "Booking failed. Please try again.";
 
                 }
 
@@ -742,12 +971,53 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-
 <!-- ==========================================
      MAIN JS
 ========================================== -->
 
 <script src="js/main.js"></script>
+
+
+<!-- ACTIVE NAVBAR -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop()
+            .toLowerCase() || "index.html";
+
+    const navLinks =
+        document.querySelectorAll(".nav-links a");
+
+    navLinks.forEach(function (link) {
+
+        const href =
+            link.getAttribute("href");
+
+        if (!href) return;
+
+        const linkPage =
+            href
+                .split("/")
+                .pop()
+                .split("?")[0]
+                .split("#")[0]
+                .toLowerCase();
+
+        link.classList.remove("active");
+
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+</script>
 
 
 </body>

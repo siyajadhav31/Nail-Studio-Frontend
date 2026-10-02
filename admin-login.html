@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Login | Nail Studio</title>
+    <title>Admin Login | Nail Muse</title>
 
     <link rel="stylesheet"
           href="css/style.css">
@@ -17,68 +17,327 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
 
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #fffaf3;
+            color: #333;
+        }
+
+
+        /* ==============================
+           ADMIN LOGIN PAGE
+        ============================== */
+
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(200, 155, 60, 0.10),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(200, 155, 60, 0.08),
+                    transparent 35%
+                ),
+                #fffaf3;
+        }
+
+
+        .admin-login-container {
+            width: 100%;
+            max-width: 430px;
+            background: #ffffff;
+            padding: 48px 42px;
+            border: 1px solid rgba(184, 134, 11, 0.25);
+            box-shadow:
+                0 18px 50px rgba(70, 50, 20, 0.10);
+            text-align: center;
+        }
+
+
+        /* ==============================
+           LOGO
+        ============================== */
+
+        .admin-logo {
+            display: inline-block;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: .5px;
+            margin-bottom: 8px;
+            transition: .3s ease;
+        }
+
+
+        .admin-logo:hover {
+            color: #b8860b;
+        }
+
+
+        .admin-subtitle {
+            font-size: 12px;
+            color: #9a8b78;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+
+        /* ==============================
+           HEADING
+        ============================== */
+
+        .admin-login-container h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 600;
+            color: #49393e;
+            margin: 0 0 28px;
+        }
+
+
+        /* ==============================
+           FORM
+        ============================== */
+
+        .admin-form {
+            text-align: left;
+        }
+
+
+        .admin-field {
+            margin-bottom: 20px;
+        }
+
+
+        .admin-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #5e5148;
+            margin-bottom: 8px;
+        }
+
+
+        .admin-field input {
+            width: 100%;
+            height: 48px;
+            padding: 0 15px;
+            border: 1px solid #ded4c6;
+            background: #fffdf9;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            outline: none;
+            transition: .3s ease;
+        }
+
+
+        .admin-field input:focus {
+            border-color: #c89b3c;
+            box-shadow:
+                0 0 0 3px rgba(200, 155, 60, 0.10);
+        }
+
+
+        .admin-field input::placeholder {
+            color: #aaa;
+        }
+
+
+        /* ==============================
+           LOGIN BUTTON
+        ============================== */
+
+        .admin-login-btn {
+            width: 100%;
+            height: 50px;
+            border: none;
+            background: #b8860b;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: .5px;
+            cursor: pointer;
+            transition: .3s ease;
+            margin-top: 5px;
+        }
+
+
+        .admin-login-btn:hover {
+            background: #987009;
+            transform: translateY(-1px);
+        }
+
+
+        .admin-login-btn:active {
+            transform: translateY(0);
+        }
+
+
+        /* ==============================
+           MESSAGE
+        ============================== */
+
+        #adminMessage {
+            min-height: 20px;
+            text-align: center;
+            margin: 16px 0 0;
+            font-size: 12px;
+        }
+
+
+        /* ==============================
+           BACK LINK
+        ============================== */
+
+        .back-home {
+            display: inline-block;
+            margin-top: 28px;
+            color: #8d7758;
+            text-decoration: none;
+            font-size: 12px;
+            transition: .3s ease;
+        }
+
+
+        .back-home:hover {
+            color: #b8860b;
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 500px) {
+
+            .admin-login-container {
+                padding: 40px 25px;
+            }
+
+
+            .admin-logo {
+                font-size: 34px;
+            }
+
+
+            .admin-login-container h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<section class="auth-page">
+<section class="admin-login-page">
 
-    <div class="auth-container">
+    <div class="admin-login-container">
 
 
-        <div class="auth-logo">
+        <!-- LOGO -->
 
-            💅 Nail Studio
+        <a
+            href="welcome.html"
+            class="admin-logo">
 
+            Nail Muse
+
+        </a>
+
+
+        <div class="admin-subtitle">
+            Admin Panel
         </div>
 
 
+        <!-- HEADING -->
+
+        <h1>
+            Admin Login
+        </h1>
+
+
+        <!-- FORM -->
+
         <form
             id="adminLoginForm"
-            class="auth-form">
+            class="admin-form">
 
 
-            <h1>
-                Admin Login
-            </h1>
+            <div class="admin-field">
+
+                <label for="adminEmail">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                    autocomplete="email"
+                    required>
+
+            </div>
 
 
-            <input
-                type="email"
-                id="adminEmail"
-                placeholder="Admin Email"
-                required>
+            <div class="admin-field">
 
+                <label for="adminPassword">
+                    Password
+                </label>
 
-            <input
-                type="password"
-                id="adminPassword"
-                placeholder="Password"
-                required>
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required>
+
+            </div>
 
 
             <button
                 type="submit"
-                class="auth-btn">
+                class="admin-login-btn">
 
                 Login as Admin
 
             </button>
 
 
-            <p
-                id="adminMessage"
-                style="
-                    text-align:center;
-                    margin-top:15px;
-                ">
-            </p>
+            <p id="adminMessage"></p>
 
 
         </form>
 
+
+        <!-- BACK TO WEBSITE -->
 
         <a
             href="welcome.html"
@@ -94,9 +353,7 @@
 </section>
 
 
-
 <script>
-
 
 document
     .getElementById("adminLoginForm")
@@ -108,15 +365,16 @@ document
 
 
             const email =
-                document.getElementById(
-                    "adminEmail"
-                ).value;
+                document
+                    .getElementById("adminEmail")
+                    .value
+                    .trim();
 
 
             const password =
-                document.getElementById(
-                    "adminPassword"
-                ).value;
+                document
+                    .getElementById("adminPassword")
+                    .value;
 
 
             const message =
@@ -125,35 +383,30 @@ document
                 );
 
 
-            try {
+            message.textContent = "";
+            message.style.color = "";
 
+
+            try {
 
                 const response =
                     await fetch(
                         "http://127.0.0.1:8080/api/admin/login",
                         {
-
                             method: "POST",
 
-                            credentials:
-                                "include",
+                            credentials: "include",
 
                             headers: {
-
                                 "Content-Type":
                                     "application/json"
-
                             },
 
                             body:
                                 JSON.stringify({
-
                                     email: email,
-
                                     password: password
-
                                 })
-
                         }
                     );
 
@@ -167,10 +420,8 @@ document
                     "Admin login successful"
                 ) {
 
-
                     message.style.color =
-                        "green";
-
+                        "#5f7f52";
 
                     message.textContent =
                         "Admin login successful!";
@@ -186,27 +437,23 @@ document
                         500
                     );
 
-
                 }
 
                 else {
 
-
                     message.style.color =
-                        "red";
-
+                        "#b04a4a";
 
                     message.textContent =
-                        result;
+                        result ||
+                        "Invalid admin credentials.";
 
                 }
-
 
             }
 
 
             catch (error) {
-
 
                 console.error(
                     "Admin login error:",
@@ -215,8 +462,7 @@ document
 
 
                 message.style.color =
-                    "red";
-
+                    "#b04a4a";
 
                 message.textContent =
                     "Unable to connect to server.";
@@ -225,7 +471,6 @@ document
 
         }
     );
-
 
 </script>
 

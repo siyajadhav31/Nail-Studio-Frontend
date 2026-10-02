@@ -4,17 +4,15 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Bookings | Nail Studio</title>
+    <title>Admin Bookings | Nail Muse</title>
 
     <link rel="stylesheet" href="css/style.css">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-
 
     <style>
 
@@ -22,50 +20,46 @@
            ADMIN NAVBAR
         ========================================== */
 
-        .navbar {
+        .admin-navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 18px 5%;
             background: #ffffff;
-            border-bottom: 1px solid #eee5df;
+            border-bottom: 1px solid #eadfc9;
             min-height: 72px;
             box-sizing: border-box;
         }
 
-        .navbar .logo {
+        .admin-logo {
+            display: inline-block;
             text-decoration: none;
             color: #49393e;
             font-family: 'Cormorant Garamond', serif;
             font-size: 30px;
             font-weight: 600;
+            letter-spacing: .2px;
+            transition: .3s ease;
+        }
+
+        .admin-logo:hover {
+            color: #b8860b;
+        }
+
+        .admin-nav-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 20px;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
+        .admin-nav-link {
             color: #49393e;
+            text-decoration: none;
             font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: 0.3s ease;
+            font-size: 13px;
         }
 
-        .nav-links a:hover {
+        .admin-nav-link:hover {
             color: #b8860b;
         }
 
@@ -73,22 +67,132 @@
             background: transparent;
             border: 1px solid #49393e;
             color: #49393e;
-            padding: 7px 10px;
-            border-radius: 3px;
+            padding: 8px 17px;
+            border-radius: 2px;
             font-family: 'Poppins', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: .3s ease;
         }
 
         .logout-btn:hover {
             background: #49393e;
-            color: white;
+            color: #ffffff;
         }
 
 
         /* ==========================================
-           FILTER SECTION
+           ADMIN MAIN
+        ========================================== */
+
+        .admin-bookings {
+            min-height: calc(100vh - 150px);
+            background: #fffaf8;
+            padding: 65px 5% 80px;
+        }
+
+        .admin-container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+
+        /* ==========================================
+           ADMIN TITLE
+        ========================================== */
+
+        .admin-title {
+            margin-bottom: 38px;
+        }
+
+        .admin-title span {
+            color: #b8860b;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .admin-title h1 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #49393e;
+            font-size: 50px;
+            font-weight: 600;
+            margin: 8px 0 5px;
+            line-height: 1.1;
+        }
+
+        .admin-title p {
+            color: #777;
+            font-size: 13px;
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           DASHBOARD STATS
+        ========================================== */
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .admin-stat-card {
+            background: #ffffff;
+            border: 1px solid #eadfc9;
+            padding: 25px 22px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: .3s ease;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(90, 70, 40, .08);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border: 1px solid #d9bd79;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .stat-icon::after {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border: 1px solid #b8860b;
+            position: absolute;
+        }
+
+        .stat-info h3 {
+            margin: 0 0 5px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .stat-info p {
+            margin: 0;
+            font-size: 27px;
+            font-weight: 600;
+            color: #49393e;
+        }
+
+
+        /* ==========================================
+           FILTER
         ========================================== */
 
         .booking-filter {
@@ -96,28 +200,81 @@
             justify-content: flex-end;
             align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .booking-filter label {
-            font-size: 14px;
+            font-size: 12px;
+            color: #666;
             font-weight: 500;
-            color: #444;
         }
 
         .booking-filter select {
-            padding: 10px 15px;
-            border: 1px solid #e5d4cc;
-            border-radius: 10px;
-            background: white;
+            padding: 10px 35px 10px 13px;
+            border: 1px solid #dfd0b6;
+            background: #ffffff;
+            color: #49393e;
             font-family: 'Poppins', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             outline: none;
             cursor: pointer;
         }
 
         .booking-filter select:focus {
             border-color: #c89b3c;
+        }
+
+
+        /* ==========================================
+           TABLE BOX
+        ========================================== */
+
+        .table-wrapper {
+            background: #ffffff;
+            border: 1px solid #eadfc9;
+            overflow: hidden;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        #bookingTable {
+            width: 100%;
+            min-width: 1050px;
+            border-collapse: collapse;
+        }
+
+        #bookingTable thead {
+            background: #f8f1e5;
+        }
+
+        #bookingTable th {
+            padding: 16px 14px;
+            text-align: left;
+            color: #49393e;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #dfd0b6;
+            white-space: nowrap;
+        }
+
+        #bookingTable td {
+            padding: 16px 14px;
+            color: #666;
+            font-size: 12px;
+            border-bottom: 1px solid #eee5d8;
+            white-space: nowrap;
+        }
+
+        #bookingTable tbody tr {
+            transition: .2s ease;
+        }
+
+        #bookingTable tbody tr:hover {
+            background: #fffaf4;
         }
 
 
@@ -129,100 +286,29 @@
         .service-badge,
         .virtual-badge {
             display: inline-block;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 6px 11px;
+            font-size: 10px;
             font-weight: 500;
             white-space: nowrap;
+            border: 1px solid;
         }
 
         .offer-badge {
-            background: #fff4ef;
-            color: #b8860b;
+            color: #a97813;
+            background: #fffaf0;
+            border-color: #e4c982;
         }
 
         .service-badge {
-            background: #f5f5f5;
-            color: #555;
+            color: #666;
+            background: #fafafa;
+            border-color: #ddd;
         }
 
         .virtual-badge {
-            background: #f5edff;
-            color: #8a4db8;
-        }
-
-
-        /* ==========================================
-           ADMIN DASHBOARD STATS
-        ========================================== */
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .admin-stat-card {
-            background: white;
-            padding: 22px;
-            border-radius: 18px;
-            border: 1px solid #f0e3dd;
-            box-shadow: 0 8px 25px rgba(80, 50, 40, 0.08);
-
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-            transition: 0.3s ease;
-        }
-
-        .admin-stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(80, 50, 40, 0.12);
-        }
-
-        .stat-icon {
-            width: 52px;
-            height: 52px;
-            min-width: 52px;
-
-            border-radius: 14px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 23px;
-
-            background: #fff4ef;
-        }
-
-        .stat-info h3 {
-            margin: 0 0 5px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #777;
-        }
-
-        .stat-info p {
-            margin: 0;
-            font-size: 27px;
-            font-weight: 600;
-            color: #333;
-        }
-
-
-        /* ==========================================
-           TABLE
-        ========================================== */
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        #bookingTable {
-            min-width: 1000px;
+            color: #79508f;
+            background: #faf5fc;
+            border-color: #d8c3e1;
         }
 
 
@@ -232,39 +318,57 @@
 
         .action-buttons {
             display: flex;
-            gap: 8px;
+            gap: 7px;
             align-items: center;
         }
 
         .edit-btn,
         .delete-btn {
             border: none;
-            padding: 7px 10px;
-            border-radius: 6px;
+            padding: 7px 12px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            transition: 0.3s ease;
+            font-size: 11px;
+            transition: .3s ease;
         }
 
         .edit-btn {
-            background: #fff4ef;
-            color: #b8860b;
+            background: #faf3e5;
+            color: #a97813;
         }
 
         .edit-btn:hover {
             background: #c89b3c;
-            color: white;
+            color: #ffffff;
         }
 
         .delete-btn {
-            background: #fff0f0;
-            color: #c0392b;
+            background: #fff3f1;
+            color: #b43b30;
         }
 
         .delete-btn:hover {
-            background: #c0392b;
-            color: white;
+            background: #b43b30;
+            color: #ffffff;
+        }
+
+
+        /* ==========================================
+           LOADING / EMPTY
+        ========================================== */
+
+        .loading {
+            padding: 35px;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .empty-message {
+            padding: 40px;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
         }
 
 
@@ -276,53 +380,43 @@
             display: none;
             position: fixed;
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-
+            inset: 0;
+            background: rgba(55, 45, 35, .45);
             align-items: center;
             justify-content: center;
-
             padding: 20px;
             box-sizing: border-box;
         }
 
         .admin-modal-content {
             width: 100%;
-            max-width: 500px;
+            max-width: 510px;
             max-height: 90vh;
             overflow-y: auto;
-
             background: #fffaf8;
-            padding: 30px;
-            border-radius: 18px;
-
+            border: 1px solid #eadfc9;
+            padding: 35px;
             position: relative;
-
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
             box-sizing: border-box;
         }
 
         .admin-modal-content h2 {
-            margin-top: 0;
-            margin-bottom: 25px;
-
+            margin: 0 0 27px;
             font-family: 'Cormorant Garamond', serif;
             color: #49393e;
-            font-size: 30px;
+            font-size: 34px;
+            font-weight: 600;
         }
 
         .admin-close-modal {
             position: absolute;
             top: 15px;
             right: 20px;
-
-            font-size: 28px;
+            font-size: 26px;
             color: #777;
-
             cursor: pointer;
+            line-height: 1;
         }
 
         .admin-close-modal:hover {
@@ -336,9 +430,8 @@
         .edit-form-group label {
             display: block;
             margin-bottom: 7px;
-
             font-family: 'Poppins', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: #49393e;
         }
@@ -346,16 +439,13 @@
         .edit-form-group input,
         .edit-form-group select {
             width: 100%;
-            padding: 11px 13px;
-
-            border: 1px solid #e5d4cc;
-            border-radius: 8px;
-
-            background: white;
-
+            height: 45px;
+            padding: 0 13px;
+            border: 1px solid #dfd0b6;
+            background: #ffffff;
             font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-
+            font-size: 12px;
+            color: #49393e;
             outline: none;
             box-sizing: border-box;
         }
@@ -367,32 +457,41 @@
 
         .update-btn {
             width: 100%;
-            padding: 12px;
-
+            height: 47px;
             border: none;
-            border-radius: 8px;
-
             background: #c89b3c;
-            color: white;
-
+            color: #ffffff;
             font-family: 'Poppins', sans-serif;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: .3s ease;
+            margin-top: 5px;
         }
 
         .update-btn:hover {
-            background: #b8860b;
+            background: #a97813;
         }
 
 
         /* ==========================================
-           RESPONSIVE DASHBOARD
+           FOOTER
         ========================================== */
 
-        @media (max-width: 1200px) {
+        .admin-footer {
+            text-align: center;
+            padding: 25px;
+            background: #49393e;
+            color: #ffffff;
+            font-size: 11px;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 1050px) {
 
             .admin-stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -400,28 +499,30 @@
 
         }
 
-
         @media (max-width: 700px) {
 
-            .navbar {
+            .admin-navbar {
                 padding: 15px 20px;
             }
 
-            .navbar .logo {
+            .admin-logo {
                 font-size: 25px;
             }
 
-            .nav-links {
-                gap: 12px;
+            .admin-nav-right {
+                gap: 10px;
             }
 
-            .nav-links a {
-                font-size: 12px;
+            .admin-nav-link {
+                display: none;
             }
 
-            .logout-btn {
-                padding: 6px 8px;
-                font-size: 12px;
+            .admin-bookings {
+                padding: 45px 20px 60px;
+            }
+
+            .admin-title h1 {
+                font-size: 42px;
             }
 
             .booking-filter {
@@ -431,11 +532,14 @@
 
         }
 
-
-        @media (max-width: 600px) {
+        @media (max-width: 550px) {
 
             .admin-stats {
                 grid-template-columns: 1fr;
+            }
+
+            .admin-modal-content {
+                padding: 27px 22px;
             }
 
         }
@@ -449,34 +553,32 @@
 
 
 <!-- ==========================================
-     NAVBAR
+     ADMIN NAVBAR
 ========================================== -->
 
 <header>
 
-    <nav class="navbar">
+    <nav class="admin-navbar">
 
-        <a href="admin-bookings.html" class="logo">
-            💅 Nail Studio
+        <a href="admin-bookings.html" class="admin-logo">
+            Nail Muse
         </a>
 
+        <div class="admin-nav-right">
 
-        <ul class="nav-links">
+            <a
+                href="admin-bookings.html"
+                class="admin-nav-link">
+                Customer Bookings
+            </a>
 
-            <li>
-                <a href="admin-bookings.html">
-                    Customer Bookings
-                </a>
-            </li>
+            <button
+                id="logoutBtn"
+                class="logout-btn">
+                Logout
+            </button>
 
-
-            <li>
-                <button id="logoutBtn" class="logout-btn">
-                    Logout
-                </button>
-            </li>
-
-        </ul>
+        </div>
 
     </nav>
 
@@ -492,12 +594,12 @@
     <div class="admin-container">
 
 
-        <!-- ADMIN TITLE -->
+        <!-- TITLE -->
 
         <div class="admin-title">
 
             <span>
-                ✨ Nail Studio Administration
+                Nail Muse Administration
             </span>
 
             <h1>
@@ -512,19 +614,14 @@
 
 
         <!-- ==========================================
-             ADMIN DASHBOARD STATS
+             DASHBOARD STATS
         ========================================== -->
 
         <div class="admin-stats">
 
-
-            <!-- TOTAL BOOKINGS -->
-
             <div class="admin-stat-card">
 
-                <div class="stat-icon">
-                    📅
-                </div>
+                <div class="stat-icon"></div>
 
                 <div class="stat-info">
 
@@ -541,13 +638,9 @@
             </div>
 
 
-            <!-- OFFER BOOKINGS -->
-
             <div class="admin-stat-card">
 
-                <div class="stat-icon">
-                    🎁
-                </div>
+                <div class="stat-icon"></div>
 
                 <div class="stat-info">
 
@@ -564,13 +657,9 @@
             </div>
 
 
-            <!-- SERVICE BOOKINGS -->
-
             <div class="admin-stat-card">
 
-                <div class="stat-icon">
-                    💅
-                </div>
+                <div class="stat-icon"></div>
 
                 <div class="stat-info">
 
@@ -587,13 +676,9 @@
             </div>
 
 
-            <!-- VIRTUAL BOOKINGS -->
-
             <div class="admin-stat-card">
 
-                <div class="stat-icon">
-                    ✨
-                </div>
+                <div class="stat-icon"></div>
 
                 <div class="stat-info">
 
@@ -613,7 +698,7 @@
 
 
         <!-- ==========================================
-             BOOKING FILTER
+             FILTER
         ========================================== -->
 
         <div class="booking-filter">
@@ -629,15 +714,15 @@
                 </option>
 
                 <option value="offer">
-                    🎁 Offer Bookings
+                    Offer Bookings
                 </option>
 
                 <option value="service">
-                    💅 Service Bookings
+                    Service Bookings
                 </option>
 
                 <option value="virtual">
-                    ✨ Virtual Bookings
+                    Virtual Bookings
                 </option>
 
             </select>
@@ -649,45 +734,43 @@
              BOOKING TABLE
         ========================================== -->
 
-        <div class="table-container">
+        <div class="table-wrapper">
 
-            <div id="loadingMessage" class="loading">
-                Loading bookings...
-            </div>
+            <div class="table-container">
 
+                <div
+                    id="loadingMessage"
+                    class="loading">
+                    Loading bookings...
+                </div>
 
-            <table id="bookingTable">
+                <table id="bookingTable">
 
-                <thead>
+                    <thead>
 
-                    <tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Booking Type</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
 
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Booking Type</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Action</th>
+                    </thead>
 
-                    </tr>
+                    <tbody id="bookingTableBody"></tbody>
 
-                </thead>
+                </table>
 
-
-                <tbody id="bookingTableBody">
-                </tbody>
-
-            </table>
-
-
-            <div
-                id="emptyMessage"
-                class="empty-message"
-                style="display:none;">
-
-                No bookings found.
+                <div
+                    id="emptyMessage"
+                    class="empty-message"
+                    style="display:none;">
+                    No bookings found.
+                </div>
 
             </div>
 
@@ -702,34 +785,30 @@
      EDIT MODAL
 ========================================== -->
 
-<div id="editModal" class="admin-modal">
+<div
+    id="editModal"
+    class="admin-modal">
 
     <div class="admin-modal-content">
-
 
         <span
             class="admin-close-modal"
             id="closeModal">
-
             &times;
-
         </span>
 
-
         <h2>
-            ✨ Edit Booking
+            Edit Booking
         </h2>
 
 
         <form id="editBookingForm">
 
 
-            <!-- NAME -->
-
             <div class="edit-form-group">
 
                 <label for="editName">
-                    👤 Full Name
+                    Full Name
                 </label>
 
                 <input
@@ -740,12 +819,10 @@
             </div>
 
 
-            <!-- EMAIL -->
-
             <div class="edit-form-group">
 
                 <label for="editEmail">
-                    📧 Email Address
+                    Email Address
                 </label>
 
                 <input
@@ -756,30 +833,26 @@
             </div>
 
 
-            <!-- PHONE -->
-
             <div class="edit-form-group">
 
                 <label for="editPhone">
-                    📱 Phone Number
+                    Phone Number
                 </label>
 
                 <input
                     type="tel"
                     id="editPhone"
-                    pattern="[0-9]{10}"
+                    pattern="[6-9][0-9]{9}"
                     maxlength="10"
                     required>
 
             </div>
 
 
-            <!-- DATE -->
-
             <div class="edit-form-group">
 
                 <label for="editDate">
-                    📅 Appointment Date
+                    Appointment Date
                 </label>
 
                 <input
@@ -790,77 +863,41 @@
             </div>
 
 
-            <!-- TIME -->
-
             <div class="edit-form-group">
 
                 <label for="editTime">
-                    🕒 Appointment Time
+                    Appointment Time
                 </label>
 
-                <select id="editTime" required>
+                <select
+                    id="editTime"
+                    required>
 
                     <option value="">
                         Select a time
                     </option>
 
-                    <option value="11:00 AM">
-                        11:00 AM
-                    </option>
-
-                    <option value="12:00 PM">
-                        12:00 PM
-                    </option>
-
-                    <option value="1:00 PM">
-                        1:00 PM
-                    </option>
-
-                    <option value="2:00 PM">
-                        2:00 PM
-                    </option>
-
-                    <option value="3:00 PM">
-                        3:00 PM
-                    </option>
-
-                    <option value="4:00 PM">
-                        4:00 PM
-                    </option>
-
-                    <option value="5:00 PM">
-                        5:00 PM
-                    </option>
-
-                    <option value="6:00 PM">
-                        6:00 PM
-                    </option>
-
-                    <option value="7:00 PM">
-                        7:00 PM
-                    </option>
-
-                    <option value="8:00 PM">
-                        8:00 PM
-                    </option>
-
-                    <option value="9:00 PM">
-                        9:00 PM
-                    </option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
 
                 </select>
 
             </div>
 
 
-            <!-- UPDATE BUTTON -->
-
             <button
                 type="submit"
                 class="update-btn">
-
-                ✨ Update Booking
-
+                Update Booking
             </button>
 
         </form>
@@ -870,12 +907,22 @@
 </div>
 
 
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer class="admin-footer">
+
+    © 2026 Nail Muse. All Rights Reserved.
+
+</footer>
+
+
 <script>
 
-
-// ==========================================
-// API URL
-// ==========================================
+/* ==========================================
+   API URL
+========================================== */
 
 const API_URL =
     "https://nail-studio-backend-k604.onrender.com/api/bookings";
@@ -886,9 +933,9 @@ let bookingsData = [];
 let selectedBookingId = null;
 
 
-// ==========================================
-// CHECK ADMIN LOGIN
-// ==========================================
+/* ==========================================
+   CHECK ADMIN LOGIN
+========================================== */
 
 async function checkAdminLogin() {
 
@@ -903,16 +950,13 @@ async function checkAdminLogin() {
                 }
             );
 
-
         const result =
             await response.text();
-
 
         console.log(
             "Admin Check:",
             result
         );
-
 
         if (result !== "Admin authenticated") {
 
@@ -922,7 +966,6 @@ async function checkAdminLogin() {
             return false;
 
         }
-
 
         return true;
 
@@ -935,10 +978,8 @@ async function checkAdminLogin() {
             error
         );
 
-
         window.location.href =
             "admin-login.html";
-
 
         return false;
 
@@ -947,9 +988,9 @@ async function checkAdminLogin() {
 }
 
 
-// ==========================================
-// CHECK BOOKING TYPE
-// ==========================================
+/* ==========================================
+   CHECK BOOKING TYPE
+========================================== */
 
 function getBookingType(booking) {
 
@@ -957,41 +998,37 @@ function getBookingType(booking) {
         return "SERVICE";
     }
 
-
     const type =
-        String(booking.bookingType || "")
-            .trim()
-            .toUpperCase();
-
+        String(
+            booking.bookingType || ""
+        )
+        .trim()
+        .toUpperCase();
 
     if (type === "VIRTUAL") {
         return "VIRTUAL";
     }
 
-
     if (type === "OFFER") {
         return "OFFER";
     }
-
 
     if (type === "SERVICE") {
         return "SERVICE";
     }
 
-
     if (isOldOfferBooking(booking)) {
         return "OFFER";
     }
-
 
     return "SERVICE";
 
 }
 
 
-// ==========================================
-// OLD OFFER BOOKING CHECK
-// ==========================================
+/* ==========================================
+   OLD OFFER BOOKING CHECK
+========================================== */
 
 function isOldOfferBooking(booking) {
 
@@ -999,12 +1036,10 @@ function isOldOfferBooking(booking) {
         return false;
     }
 
-
     const service =
         booking.service
             .trim()
             .toLowerCase();
-
 
     return (
 
@@ -1023,48 +1058,40 @@ function isOldOfferBooking(booking) {
 }
 
 
-// ==========================================
-// BOOKING TYPE CHECKS
-// ==========================================
+/* ==========================================
+   BOOKING TYPE CHECKS
+========================================== */
 
 function isOfferBooking(booking) {
+
     return getBookingType(booking) === "OFFER";
+
 }
 
 
 function isVirtualBooking(booking) {
+
     return getBookingType(booking) === "VIRTUAL";
+
 }
 
 
 function isServiceBooking(booking) {
+
     return getBookingType(booking) === "SERVICE";
+
 }
 
 
-// ==========================================
-// UPDATE DASHBOARD STATS
-// ==========================================
+/* ==========================================
+   UPDATE DASHBOARD STATS
+========================================== */
 
 function updateDashboardStats() {
 
-    const totalBookings =
-        document.getElementById("totalBookings");
-
-
-    const offerBookings =
-        document.getElementById("offerBookings");
-
-
-    const serviceBookings =
-        document.getElementById("serviceBookings");
-
-
-    const virtualBookings =
-        document.getElementById("virtualBookings");
-
-
-    totalBookings.textContent =
+    document.getElementById(
+        "totalBookings"
+    ).textContent =
         bookingsData.length;
 
 
@@ -1072,13 +1099,17 @@ function updateDashboardStats() {
         bookingsData.filter(
             function (booking) {
 
-                return isOfferBooking(booking);
+                return isOfferBooking(
+                    booking
+                );
 
             }
         ).length;
 
 
-    offerBookings.textContent =
+    document.getElementById(
+        "offerBookings"
+    ).textContent =
         offerCount;
 
 
@@ -1086,13 +1117,17 @@ function updateDashboardStats() {
         bookingsData.filter(
             function (booking) {
 
-                return isServiceBooking(booking);
+                return isServiceBooking(
+                    booking
+                );
 
             }
         ).length;
 
 
-    serviceBookings.textContent =
+    document.getElementById(
+        "serviceBookings"
+    ).textContent =
         serviceCount;
 
 
@@ -1100,21 +1135,25 @@ function updateDashboardStats() {
         bookingsData.filter(
             function (booking) {
 
-                return isVirtualBooking(booking);
+                return isVirtualBooking(
+                    booking
+                );
 
             }
         ).length;
 
 
-    virtualBookings.textContent =
+    document.getElementById(
+        "virtualBookings"
+    ).textContent =
         virtualCount;
 
 }
 
 
-// ==========================================
-// LOAD BOOKINGS
-// ==========================================
+/* ==========================================
+   LOAD BOOKINGS
+========================================== */
 
 async function loadBookings() {
 
@@ -1123,12 +1162,10 @@ async function loadBookings() {
             "bookingTableBody"
         );
 
-
     const loadingMessage =
         document.getElementById(
             "loadingMessage"
         );
-
 
     const emptyMessage =
         document.getElementById(
@@ -1139,14 +1176,11 @@ async function loadBookings() {
     loadingMessage.style.display =
         "block";
 
-
     loadingMessage.textContent =
         "Loading bookings...";
 
-
     emptyMessage.style.display =
         "none";
-
 
     tableBody.innerHTML =
         "";
@@ -1180,12 +1214,6 @@ async function loadBookings() {
             await response.json();
 
 
-        console.log(
-            "All bookings received:",
-            bookingsData
-        );
-
-
         bookingsData.sort(
             function (a, b) {
 
@@ -1215,16 +1243,16 @@ async function loadBookings() {
 
 
         loadingMessage.innerHTML =
-            "❌ Unable to load bookings. Make sure Spring Boot is running.";
+            "Unable to load bookings. Make sure Spring Boot is running.";
 
     }
 
 }
 
 
-// ==========================================
-// DISPLAY BOOKINGS
-// ==========================================
+/* ==========================================
+   DISPLAY BOOKINGS
+========================================== */
 
 function displayBookings() {
 
@@ -1233,12 +1261,10 @@ function displayBookings() {
             "bookingTableBody"
         );
 
-
     const emptyMessage =
         document.getElementById(
             "emptyMessage"
         );
-
 
     const filter =
         document.getElementById(
@@ -1260,13 +1286,14 @@ function displayBookings() {
             bookingsData.filter(
                 function (booking) {
 
-                    return isOfferBooking(booking);
+                    return isOfferBooking(
+                        booking
+                    );
 
                 }
             );
 
     }
-
 
     else if (filter === "service") {
 
@@ -1274,13 +1301,14 @@ function displayBookings() {
             bookingsData.filter(
                 function (booking) {
 
-                    return isServiceBooking(booking);
+                    return isServiceBooking(
+                        booking
+                    );
 
                 }
             );
 
     }
-
 
     else if (filter === "virtual") {
 
@@ -1288,7 +1316,9 @@ function displayBookings() {
             bookingsData.filter(
                 function (booking) {
 
-                    return isVirtualBooking(booking);
+                    return isVirtualBooking(
+                        booking
+                    );
 
                 }
             );
@@ -1314,7 +1344,9 @@ function displayBookings() {
         function (booking) {
 
             const bookingType =
-                getBookingType(booking);
+                getBookingType(
+                    booking
+                );
 
 
             let bookingTypeText = "";
@@ -1325,7 +1357,7 @@ function displayBookings() {
             if (bookingType === "OFFER") {
 
                 bookingTypeText =
-                    "🎁 Offer Booking";
+                    "Offer Booking";
 
                 badgeClass =
                     "offer-badge";
@@ -1335,7 +1367,7 @@ function displayBookings() {
             else if (bookingType === "VIRTUAL") {
 
                 bookingTypeText =
-                    "✨ Virtual Booking";
+                    "Virtual Booking";
 
                 badgeClass =
                     "virtual-badge";
@@ -1345,7 +1377,7 @@ function displayBookings() {
             else {
 
                 bookingTypeText =
-                    "💅 Service Booking";
+                    "Service Booking";
 
                 badgeClass =
                     "service-badge";
@@ -1354,7 +1386,9 @@ function displayBookings() {
 
 
             const row =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             row.innerHTML = `
@@ -1398,18 +1432,13 @@ function displayBookings() {
                         <button
                             class="edit-btn"
                             onclick="openEditModal(${booking.id})">
-
-                            ✏️ Edit
-
+                            Edit
                         </button>
-
 
                         <button
                             class="delete-btn"
                             onclick="deleteBooking(${booking.id})">
-
-                            🗑️ Delete
-
+                            Delete
                         </button>
 
                     </div>
@@ -1419,7 +1448,9 @@ function displayBookings() {
             `;
 
 
-            tableBody.appendChild(row);
+            tableBody.appendChild(
+                row
+            );
 
         }
     );
@@ -1427,9 +1458,9 @@ function displayBookings() {
 }
 
 
-// ==========================================
-// FILTER CHANGE
-// ==========================================
+/* ==========================================
+   FILTER CHANGE
+========================================== */
 
 document
     .getElementById("bookingFilter")
@@ -1443,9 +1474,9 @@ document
     );
 
 
-// ==========================================
-// OPEN EDIT MODAL
-// ==========================================
+/* ==========================================
+   OPEN EDIT MODAL
+========================================== */
 
 function openEditModal(id) {
 
@@ -1463,7 +1494,7 @@ function openEditModal(id) {
     if (!booking) {
 
         alert(
-            "❌ Booking not found."
+            "Booking not found."
         );
 
         return;
@@ -1513,9 +1544,9 @@ function openEditModal(id) {
 }
 
 
-// ==========================================
-// CLOSE MODAL
-// ==========================================
+/* ==========================================
+   CLOSE MODAL
+========================================== */
 
 document
     .getElementById("closeModal")
@@ -1532,9 +1563,9 @@ document
     );
 
 
-// ==========================================
-// CLOSE MODAL OUTSIDE CLICK
-// ==========================================
+/* ==========================================
+   CLOSE MODAL OUTSIDE CLICK
+========================================== */
 
 window.addEventListener(
     "click",
@@ -1544,7 +1575,6 @@ window.addEventListener(
             document.getElementById(
                 "editModal"
             );
-
 
         if (event.target === modal) {
 
@@ -1557,9 +1587,9 @@ window.addEventListener(
 );
 
 
-// ==========================================
-// UPDATE BOOKING
-// ==========================================
+/* ==========================================
+   UPDATE BOOKING
+========================================== */
 
 document
     .getElementById("editBookingForm")
@@ -1573,7 +1603,7 @@ document
             if (!selectedBookingId) {
 
                 alert(
-                    "❌ Booking ID not found."
+                    "Booking ID not found."
                 );
 
                 return;
@@ -1585,8 +1615,12 @@ document
                 bookingsData.find(
                     function (booking) {
 
-                        return Number(booking.id) ===
-                               Number(selectedBookingId);
+                        return Number(
+                            booking.id
+                        ) ===
+                        Number(
+                            selectedBookingId
+                        );
 
                     }
                 );
@@ -1599,30 +1633,25 @@ document
                         "editName"
                     ).value.trim(),
 
-
                 email:
                     document.getElementById(
                         "editEmail"
                     ).value.trim(),
-
 
                 phone:
                     document.getElementById(
                         "editPhone"
                     ).value.trim(),
 
-
                 bookingDate:
                     document.getElementById(
                         "editDate"
                     ).value,
 
-
                 bookingTime:
                     document.getElementById(
                         "editTime"
                     ).value,
-
 
                 bookingType:
                     originalBooking
@@ -1670,7 +1699,7 @@ document
 
 
                 alert(
-                    "✅ Booking Updated Successfully!"
+                    "Booking Updated Successfully!"
                 );
 
 
@@ -1697,7 +1726,7 @@ document
 
 
                 alert(
-                    "❌ Failed to update booking."
+                    "Failed to update booking."
                 );
 
             }
@@ -1706,9 +1735,9 @@ document
     );
 
 
-// ==========================================
-// DELETE BOOKING
-// ==========================================
+/* ==========================================
+   DELETE BOOKING
+========================================== */
 
 async function deleteBooking(id) {
 
@@ -1749,7 +1778,7 @@ async function deleteBooking(id) {
 
 
         alert(
-            "🗑️ Booking Deleted Successfully!"
+            "Booking Deleted Successfully!"
         );
 
 
@@ -1766,7 +1795,7 @@ async function deleteBooking(id) {
 
 
         alert(
-            "❌ Failed to delete booking."
+            "Failed to delete booking."
         );
 
     }
@@ -1774,9 +1803,9 @@ async function deleteBooking(id) {
 }
 
 
-// ==========================================
-// ADMIN LOGOUT
-// ==========================================
+/* ==========================================
+   ADMIN LOGOUT
+========================================== */
 
 document
     .getElementById("logoutBtn")
@@ -1814,21 +1843,17 @@ document
                 "loggedIn"
             );
 
-
             localStorage.removeItem(
                 "userToken"
             );
-
 
             localStorage.removeItem(
                 "adminToken"
             );
 
-
             localStorage.removeItem(
                 "virtualBooking"
             );
-
 
             localStorage.removeItem(
                 "selectedService"
@@ -1842,9 +1867,9 @@ document
     );
 
 
-// ==========================================
-// START
-// ==========================================
+/* ==========================================
+   START
+========================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1852,7 +1877,6 @@ document.addEventListener(
 
         const isAdmin =
             await checkAdminLogin();
-
 
         if (isAdmin) {
 

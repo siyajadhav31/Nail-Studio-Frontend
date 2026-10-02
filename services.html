@@ -2,59 +2,894 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Services | Nail Studio</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Our Services | Nail Muse</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- GOOGLE FONTS -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+
+    <style>
+
+        /* ==========================================
+           SERVICES PAGE
+        ========================================== */
+
+        body {
+            margin: 0;
+            background: #fffaf8;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 7%;
+
+            background: rgba(255, 255, 255, 0.98);
+
+            box-shadow:
+                0 3px 18px rgba(0, 0, 0, 0.06);
+
+            position: relative;
+            z-index: 10;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: inline-block;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 30px;
+            font-weight: 600;
+
+            color: #333;
+
+            letter-spacing: .2px;
+
+            white-space: nowrap;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+
+            transition: 0.3s ease;
+        }
+
+
+        .logo:hover {
+            color: #b8860b;
+            text-decoration: none;
+        }
+
+
+        /* ==========================================
+           NAV LINKS
+        ========================================== */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 23px;
+
+            list-style: none;
+
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .nav-links a {
+            position: relative;
+
+            text-decoration: none;
+
+            color: #444;
+
+            font-size: 13px;
+
+            padding-bottom: 5px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .nav-links a:hover {
+            color: #b8860b;
+        }
+
+
+        /* ACTIVE LINK */
+
+        .nav-links a.active {
+            color: #b8860b;
+
+            font-weight: 600;
+        }
+
+
+        .nav-links a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 1.5px;
+
+            background: #b8860b;
+        }
+
+
+        /* ==========================================
+           BOOK NOW
+        ========================================== */
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .signup {
+            text-decoration: none;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            transition: 0.3s ease;
+        }
+
+
+        .signup:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(200, 155, 60, 0.30);
+        }
+
+
+        /* ==========================================
+           SERVICES SECTION
+        ========================================== */
+
+        .services {
+            padding: 75px 6% 80px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf8,
+                    #fff6f0
+                );
+        }
+
+
+        /* ==========================================
+           HEADER
+        ========================================== */
+
+        .services-header {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: 0 auto 48px;
+        }
+
+
+        .booking-subtitle {
+            display: inline-block;
+
+            color: #b8860b;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .services-title {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 48px;
+
+            font-weight: 600;
+
+            color: #49393e;
+
+            margin: 5px 0 12px;
+
+            line-height: 1.1;
+        }
+
+
+        .services-intro {
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin: 0 auto;
+
+            max-width: 620px;
+        }
+
+
+        /* ==========================================
+           SERVICE GRID
+        ========================================== */
+
+        .service-grid {
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* ==========================================
+           SERVICE CARD
+        ========================================== */
+
+        .service-card {
+            background: #ffffff;
+
+            border: 1px solid #eee2d7;
+
+            border-radius: 15px;
+
+            padding: 25px 23px 22px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(80, 50, 30, 0.06);
+
+            transition: 0.3s ease;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 230px;
+        }
+
+
+        .service-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(80, 50, 30, 0.11);
+
+            border-color: #e3cfaa;
+        }
+
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #49393e;
+
+            font-size: 24px;
+
+            line-height: 1.2;
+
+            font-weight: 600;
+
+            margin: 0 0 11px;
+        }
+
+
+        .service-description {
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            margin: 0 0 18px;
+        }
+
+
+        .service-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-top: 1px solid #eee8e3;
+
+            padding-top: 13px;
+
+            margin-top: auto;
+        }
+
+
+        .price {
+            color: #b8860b;
+
+            font-size: 17px;
+
+            font-weight: 600;
+        }
+
+
+        .duration {
+            color: #777;
+
+            font-size: 11px;
+        }
+
+
+        /* ==========================================
+           BOOK BUTTON
+        ========================================== */
+
+        .service-btn {
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: #ffffff;
+
+            border-radius: 25px;
+
+            padding: 10px 15px;
+
+            margin-top: 17px;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            transition: 0.3s ease;
+        }
+
+
+        .service-btn:hover {
+            background: #9d7208;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 6px 15px
+                rgba(184, 134, 11, 0.20);
+        }
+
+
+        /* ==========================================
+           PAINT PACKAGES
+        ========================================== */
+
+        .paint-section {
+            text-align: center;
+
+            margin: 78px auto 35px;
+
+            max-width: 700px;
+        }
+
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 43px;
+
+            font-weight: 600;
+
+            color: #49393e;
+
+            margin: 5px 0 8px;
+        }
+
+
+        .section-description {
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           ADD-ON GRID
+        ========================================== */
+
+        .addon-grid {
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        /* ==========================================
+           ADD-ON CARD
+        ========================================== */
+
+        .addon-card {
+            background: #ffffff;
+
+            border: 1px solid #eee2d7;
+
+            border-radius: 13px;
+
+            padding: 19px 21px;
+
+            display: grid;
+
+            grid-template-columns: 1fr auto;
+
+            align-items: center;
+
+            gap: 15px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .addon-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(80, 50, 30, 0.08);
+
+            border-color: #e3cfaa;
+        }
+
+
+        .addon-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #49393e;
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            margin: 0 0 4px;
+        }
+
+
+        .addon-card p {
+            color: #888;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            margin: 0;
+        }
+
+
+        .addon-card strong {
+            color: #b8860b;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==========================================
+           CTA
+        ========================================== */
+
+        .services-cta {
+            text-align: center;
+
+            padding: 75px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff8ef,
+                    #fffaf8
+                );
+        }
+
+
+        .services-cta span {
+            color: #b8860b;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .services-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #49393e;
+
+            font-size: 43px;
+
+            font-weight: 600;
+
+            margin: 7px 0 10px;
+        }
+
+
+        .services-cta p {
+            color: #777;
+
+            font-size: 13px;
+
+            margin: 0 0 23px;
+        }
+
+
+        .gold-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            transition: 0.3s ease;
+        }
+
+
+        .gold-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(200, 155, 60, 0.28);
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+            background: #222;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+
+        footer h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 28px;
+
+            margin: 0 0 8px;
+        }
+
+
+        footer p {
+            font-size: 12px;
+
+            color: #ddd;
+
+            margin: 5px 0;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 13px;
+            }
+
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+
+            .service-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 18px 5%;
+            }
+
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .services {
+                padding: 60px 5%;
+            }
+
+
+            .service-grid {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+
+            .addon-grid {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+
+            .services-title {
+                font-size: 42px;
+            }
+
+
+            .section-title {
+                font-size: 38px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 25px;
+            }
+
+
+            .signup {
+                padding: 9px 15px;
+
+                font-size: 12px;
+            }
+
+
+            .services {
+                padding: 50px 20px;
+            }
+
+
+            .services-title {
+                font-size: 38px;
+            }
+
+
+            .services-intro {
+                font-size: 13px;
+            }
+
+
+            .service-card {
+                padding: 22px 20px;
+            }
+
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+
+            .section-title {
+                font-size: 34px;
+            }
+
+
+            .addon-card {
+                grid-template-columns: 1fr auto;
+
+                padding: 16px;
+            }
+
+
+            .addon-card h3 {
+                font-size: 19px;
+            }
+
+
+            .services-cta {
+                padding: 60px 20px;
+            }
+
+
+            .services-cta h2 {
+                font-size: 35px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-    <!-- =================================
+
+    <!-- ==========================================
          HEADER
-    ================================= -->
+    ========================================== -->
 
     <header>
 
         <nav class="navbar">
 
-            <div class="logo">
-                💅 Nail Studio
-            </div>
+
+            <!-- CLICKABLE LOGO -->
+
+            <a href="index.html" class="logo">
+                Nail Muse
+            </a>
+
+
+            <!-- NAVIGATION -->
 
             <ul class="nav-links">
 
-                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
 
-                <li><a href="about.html">About</a></li>
 
-                <li><a href="services.html">Services</a></li>
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
 
-                <li><a href="offer.html">Offers</a></li>
 
-                <li><a href="faqs.html">FAQs</a></li>
+                <li>
+                    <a href="services.html">
+                        Services
+                    </a>
+                </li>
 
-                <li><a href="gallery.html">Gallery</a></li>
 
-                <li><a href="booking.html">Booking</a></li>
+                <li>
+                    <a href="offer.html">
+                        Offers
+                    </a>
+                </li>
 
-                <li><a href="contact.html">Contact</a></li>
+
+                <li>
+                    <a href="faqs.html">
+                        FAQs
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="booking.html">
+                        Booking
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
 
             </ul>
 
+
+            <!-- BOOK NOW -->
+
             <div class="nav-buttons">
 
-                <a href="booking.html" class="signup">
+                <a href="booking.html"
+                   class="signup">
+
                     Book Now
+
                 </a>
 
             </div>
@@ -64,23 +899,26 @@
     </header>
 
 
-    <!-- =================================
-         SERVICES PAGE
-    ================================= -->
+    <!-- ==========================================
+         SERVICES
+    ========================================== -->
 
     <section class="services">
 
-        <!-- SERVICES HEADER -->
+
+        <!-- HEADER -->
 
         <div class="services-header">
 
             <span class="booking-subtitle">
-                ✨ OUR SERVICES
+                OUR SERVICES
             </span>
+
 
             <h1 class="services-title">
                 Luxury Nail Services
             </h1>
+
 
             <p class="services-intro">
                 Discover our premium nail services designed
@@ -90,37 +928,42 @@
 
         </div>
 
-        <div class="cards">
+
+        <!-- ==========================================
+             MAIN SERVICES
+        ========================================== -->
+
+        <div class="service-grid">
 
 
-            <!-- Acrylic Extensions -->
+            <!-- 1 -->
 
-            <div class="card">
-
-                <img
-                    src="images/extensions.jpg"
-                    alt="Acrylic Extensions">
+            <div class="service-card">
 
                 <h3>
-                    💎 Acrylic Extensions + Gel Polish
+                    Acrylic Extensions + Gel Polish
                 </h3>
 
-                <p class="service-price">
-                    ₹1800
+                <p class="service-description">
+                    Strong and elegant acrylic extensions
+                    finished with a smooth gel polish.
                 </p>
 
-                <p>
-                    Acrylic extensions finished with
-                    a smooth and glossy gel polish.
-                </p>
+                <div class="service-info">
 
-                <p>
-                    <strong>Duration:</strong> 75 minutes
-                </p>
+                    <span class="price">
+                        ₹1800
+                    </span>
+
+                    <span class="duration">
+                        75 minutes
+                    </span>
+
+                </div>
 
                 <a
                     href="booking.html"
-                    class="gold-btn"
+                    class="service-btn"
                     data-service="Acrylic Extensions + Gel Polish">
 
                     Book Now
@@ -130,34 +973,71 @@
             </div>
 
 
-            <!-- Hands Gel Polish -->
+            <!-- 2 -->
 
-            <div class="card">
-
-                <img
-                    src="images/gel.jpg"
-                    alt="Hands Gel Polish">
+            <div class="service-card">
 
                 <h3>
-                    💅 Hands Gel Polish
+                    Gel Extensions + Gel Polish
                 </h3>
 
-                <p class="service-price">
-                    ₹699
+                <p class="service-description">
+                    Lightweight gel extensions with a
+                    smooth and glossy gel finish.
                 </p>
 
-                <p>
-                    Beautiful glossy gel polish for
-                    perfectly polished hands.
-                </p>
+                <div class="service-info">
 
-                <p>
-                    <strong>Duration:</strong> 30 minutes
-                </p>
+                    <span class="price">
+                        ₹1800
+                    </span>
+
+                    <span class="duration">
+                        75 minutes
+                    </span>
+
+                </div>
 
                 <a
                     href="booking.html"
-                    class="gold-btn"
+                    class="service-btn"
+                    data-service="Gel Extensions + Gel Polish">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div class="service-card">
+
+                <h3>
+                    Hands Gel Polish
+                </h3>
+
+                <p class="service-description">
+                    A clean, glossy gel polish finish
+                    for beautifully polished hands.
+                </p>
+
+                <div class="service-info">
+
+                    <span class="price">
+                        ₹699
+                    </span>
+
+                    <span class="duration">
+                        30 minutes
+                    </span>
+
+                </div>
+
+                <a
+                    href="booking.html"
+                    class="service-btn"
                     data-service="Hands Gel Polish">
 
                     Book Now
@@ -167,71 +1047,71 @@
             </div>
 
 
-           <!-- Bridal Nails -->
+            <!-- 4 -->
 
-            <div class="card">
-
-                <img 
-                    src="images/bridal.jpg" 
-                    alt="Bridal Nails">
+            <div class="service-card">
 
                 <h3>
-                    💍 Bridal Nails
+                    Feet Gel Polish
                 </h3>
 
-                 <p class="service-price">
-        ₹2,499
-    </p>
-
-    <p>
-        Elegant and glamorous nail designs
-        specially created for your perfect bridal look.
-    </p>
-
-    <p>
-        <strong>Duration:</strong> 90 minutes
-    </p>
-
-    <a 
-        href="booking.html"
-        class="gold-btn"
-        data-service="Bridal Nails">
-
-        Book Now
-
-    </a>
-
-</div>
-
-
-            <!-- Temporary Nails -->
-
-            <div class="card">
-
-                <img
-                    src="images/nail-art.jpg"
-                    alt="Temporary Nails">
-
-                <h3>
-                    🌸 Temporary Nails + Gel Polish
-                </h3>
-
-                <p class="service-price">
-                    ₹1199
+                <p class="service-description">
+                    Long-lasting glossy gel polish
+                    for perfectly polished feet.
                 </p>
 
-                <p>
+                <div class="service-info">
+
+                    <span class="price">
+                        ₹699
+                    </span>
+
+                    <span class="duration">
+                        30 minutes
+                    </span>
+
+                </div>
+
+                <a
+                    href="booking.html"
+                    class="service-btn"
+                    data-service="Feet Gel Polish">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div class="service-card">
+
+                <h3>
+                    Temporary Nails + Gel Polish
+                </h3>
+
+                <p class="service-description">
                     Stylish temporary nails finished
                     with premium gel polish.
                 </p>
 
-                <p>
-                    <strong>Duration:</strong> 50 minutes
-                </p>
+                <div class="service-info">
+
+                    <span class="price">
+                        ₹1199
+                    </span>
+
+                    <span class="duration">
+                        50 minutes
+                    </span>
+
+                </div>
 
                 <a
                     href="booking.html"
-                    class="gold-btn"
+                    class="service-btn"
                     data-service="Temporary Nails + Gel Polish">
 
                     Book Now
@@ -241,329 +1121,380 @@
             </div>
 
 
-            <!-- Burgundy Nails -->
+            <!-- 6 -->
 
-<div class="card">
+            <div class="service-card">
 
-    <img 
-        src="images/Burgundy.jpg" 
-        alt="Burgundy Nails">
+                <h3>
+                    Overlays + Gel Polish
+                </h3>
 
-    <h3>
-        💅 Burgundy Nails
-    </h3>
+                <p class="service-description">
+                    A protective overlay that gives your
+                    natural nails strength and shine.
+                </p>
 
-    <p class="service-price">
-        ₹1,299
-    </p>
+                <div class="service-info">
 
-    <p>
-        Rich and elegant burgundy nail designs
-        for a bold and sophisticated look.
-    </p>
+                    <span class="price">
+                        ₹1499
+                    </span>
 
-    <p>
-        <strong>Duration:</strong> 60 minutes
-    </p>
+                    <span class="duration">
+                        60 minutes
+                    </span>
 
-    <a 
-        href="booking.html"
-        class="gold-btn"
-        data-service="Burgundy Nails">
+                </div>
 
-        Book Now
+                <a
+                    href="booking.html"
+                    class="service-btn"
+                    data-service="Overlays + Gel Polish">
 
-    </a>
+                    Book Now
 
-</div>
+                </a>
 
-<!-- French Nails -->
-
-<div class="card">
-
-    <img 
-        src="images/french.jpg" 
-        alt="French Nails">
-
-    <h3>
-        💅 French Nails
-    </h3>
-
-    <p class="service-price">
-        ₹999
-    </p>
-
-    <p>
-        Classic and timeless French nail design
-        for a clean, elegant and sophisticated look.
-    </p>
-
-    <p>
-        <strong>Duration:</strong> 60 minutes
-    </p>
-
-    <a 
-        href="booking.html"
-        class="gold-btn"
-        data-service="French Nails">
-
-        Book Now
-
-    </a>
-
-</div>
+            </div>
 
 
-           <!-- Rouge Nails -->
+            <!-- 7 -->
 
-<div class="card">
+            <div class="service-card">
 
-    <img 
-        src="images/rouge.jpg" 
-        alt="Rouge Nails">
+                <h3>
+                    Refills + Gel Polish
+                </h3>
 
-    <h3>
-        💅 Rouge Nails
-    </h3>
+                <p class="service-description">
+                    Refresh and maintain your existing
+                    extensions with a clean gel finish.
+                </p>
 
-    <p class="service-price">
-        ₹1,399
-    </p>
+                <div class="service-info">
 
-    <p>
-        Deep, bold and glamorous rouge nail designs
-        for a luxurious and sophisticated look.
-    </p>
+                    <span class="price">
+                        ₹1499
+                    </span>
 
-    <p>
-        <strong>Duration:</strong> 60 minutes
-    </p>
+                    <span class="duration">
+                        60 minutes
+                    </span>
 
-    <a 
-        href="booking.html"
-        class="gold-btn"
-        data-service="Rouge Nails">
+                </div>
 
-        Book Now
+                <a
+                    href="booking.html"
+                    class="service-btn"
+                    data-service="Refills + Gel Polish">
 
-    </a>
+                    Book Now
 
-</div>
+                </a>
+
+            </div>
 
 
-          <!-- Polka Dot Nails -->
+            <!-- 8 -->
 
-<div class="card">
+            <div class="service-card">
 
-    <img 
-        src="images/polkadots.jpg" 
-        alt="Polka Dot Nails">
+                <h3>
+                    Manicure & Pedicure
+                </h3>
 
-    <h3>
-        💅 Polka Dot Nails
-    </h3>
+                <p class="service-description">
+                    A relaxing manicure and pedicure
+                    treatment for clean, refreshed nails.
+                </p>
 
-    <p class="service-price">
-        ₹1,099
-    </p>
+                <div class="service-info">
 
-    <p>
-        Fun and stylish polka dot nail designs
-        for a cute, playful and trendy look.
-    </p>
+                    <span class="price">
+                        ₹1199
+                    </span>
 
-    <p>
-        <strong>Duration:</strong> 60 minutes
-    </p>
+                    <span class="duration">
+                        50 minutes
+                    </span>
 
-    <a 
-        href="booking.html"
-        class="gold-btn"
-        data-service="Polka Dot Nails">
+                </div>
 
-        Book Now
+                <a
+                    href="booking.html"
+                    class="service-btn"
+                    data-service="Manicure & Pedicure">
 
-    </a>
+                    Book Now
 
-</div>
+                </a>
+
+            </div>
+
+
+            <!-- 9 -->
+
+            <div class="service-card">
+
+                <h3>
+                    Removals
+                </h3>
+
+                <p class="service-description">
+                    Safe and careful removal of existing
+                    nail extensions or gel polish.
+                </p>
+
+                <div class="service-info">
+
+                    <span class="price">
+                        ₹499
+                    </span>
+
+                    <span class="duration">
+                        50 minutes
+                    </span>
+
+                </div>
+
+                <a
+                    href="booking.html"
+                    class="service-btn"
+                    data-service="Removals">
+
+                    Book Now
+
+                </a>
+
+            </div>
+
 
         </div>
 
-        <!-- =================================
-             ADD-ON SERVICES
-        ================================= -->
 
-        <div class="services-header">
+        <!-- ==========================================
+             PAINT PACKAGES
+        ========================================== -->
 
-            <h2 class="services-title">
-                Add-On Services
+        <div class="paint-section">
+
+            <span class="booking-subtitle">
+                DETAILS & FINISHES
+            </span>
+
+
+            <h2 class="section-title">
+                Paint Packages
             </h2>
 
+
+            <p class="section-description">
+                Add a little extra detail and creativity
+                to your perfect nail look.
+            </p>
+
         </div>
 
 
-        <div class="cards">
+        <!-- ==========================================
+             ADD-ONS
+        ========================================== -->
+
+        <div class="addon-grid">
 
 
-            <!-- Glitter Polish -->
+            <!-- 1 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    ✨ Glitter Polish on Full Nail
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Glitter Polish on Full Nail
+                    </h3>
+
+                    <p>
+                        Price per finger.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹30
-                </p>
-
-                <p>
-                    Per finger where applicable.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- Glitter French -->
+            <!-- 2 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    ✨ Glitter French
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Glitter French
+                    </h3>
+
+                    <p>
+                        Price per finger.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹60
-                </p>
-
-                <p>
-                    Per finger.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- Glitter Ombre -->
+            <!-- 3 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    🌸 Glitter Ombre
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Glitter Ombre
+                    </h3>
+
+                    <p>
+                        Price per finger.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹60
-                </p>
-
-                <p>
-                    Per finger.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- French Chrome -->
+            <!-- 4 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    💎 French Chrome
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        French Chrome
+                    </h3>
+
+                    <p>
+                        Price per finger.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹80
-                </p>
-
-                <p>
-                    Per finger.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- Brush Art -->
+            <!-- 5 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    🎨 Brush Art
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Brush Art
+                    </h3>
+
+                    <p>
+                        Per-finger starting rate.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹100
-                </p>
-
-                <p>
-                    Per-finger starting rate.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- 3D Art -->
+            <!-- 6 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    💎 3D Art
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        3D Art
+                    </h3>
+
+                    <p>
+                        Per-finger starting rate.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹150
-                </p>
-
-                <p>
-                    Per-finger starting rate.
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- Chrome + French -->
+            <!-- 7 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    ✨ Chrome + French
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Chrome + French
+                    </h3>
+
+                    <p>
+                        20–30 minutes.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹90
-                </p>
-
-                <p>
-                    <strong>Duration:</strong> 20–30 minutes
-                </p>
+                </strong>
 
             </div>
 
 
-            <!-- Swirls Light -->
+            <!-- 8 -->
 
-            <div class="card">
+            <div class="addon-card">
 
-                <h3>
-                    🌸 Swirls Light
-                </h3>
+                <div>
 
-                <p class="service-price">
+                    <h3>
+                        Swirls Light
+                    </h3>
+
+                    <p>
+                        25–30 minutes.
+                    </p>
+
+                </div>
+
+                <strong>
                     ₹60
-                </p>
-
-                <p>
-                    <strong>Duration:</strong> 25–30 minutes
-                </p>
+                </strong>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- =================================
-         CALL TO ACTION
-    ================================= -->
+    <!-- ==========================================
+         CTA
+    ========================================== -->
 
     <section class="services-cta">
 
@@ -571,40 +1502,44 @@
             Ready for Your Perfect Nails?
         </h2>
 
+
         <p>
             Choose your favorite service and book
             your luxury nail experience today.
         </p>
 
+
         <a
             href="booking.html"
             class="gold-btn">
 
-            ✨ Book Your Appointment
+            Book Your Appointment
 
         </a>
 
     </section>
 
 
-    <!-- =================================
+    <!-- ==========================================
          FOOTER
-    ================================= -->
+    ========================================== -->
 
     <footer>
 
         <h2>
-            💅 Nail Studio
+            Nail Muse
         </h2>
+
 
         <p>
             Luxury Nails |
-            Modern Technology |
+            Modern Techniques |
             Perfect Experience
         </p>
 
+
         <p>
-            © 2026 Nail Studio
+            © 2026 Nail Muse
         </p>
 
     </footer>
