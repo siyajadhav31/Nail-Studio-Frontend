@@ -144,6 +144,18 @@ a{
     width:100%;
 }
 
+/* FAQ PAGE ACTIVE LINK */
+
+.nav-links a.faq-active {
+    color: #b8860b ;
+    font-weight: 600 ;
+}
+
+.nav-links a.faq-active::after {
+    width: 100% ;
+    background: #b8860b ;
+}
+
 
 /* ==========================================
    NAV BUTTONS
