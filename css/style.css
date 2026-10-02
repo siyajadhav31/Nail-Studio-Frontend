@@ -489,28 +489,29 @@ a{
 ========================================== */
 
 .services {
-    padding: 50px 8%;
+    padding: 45px 6%;
     background: #fffaf8;
+    box-sizing: border-box;
 }
 
 .services-header {
     text-align: center;
-    max-width: 750px;
-    margin: 0 auto 28px;
+    max-width: 700px;
+    margin: 0 auto 25px;
 }
 
 .services-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 600;
     color: #49393e;
-    margin: 8px 0;
+    margin: 5px 0 8px;
 }
 
 .services-intro {
-    font-size: 15px;
+    font-size: 14px;
     color: #777;
-    line-height: 1.7;
+    line-height: 1.6;
     margin: 0;
 }
 
@@ -527,24 +528,34 @@ a{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    max-width: 1200px;
-    margin: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
+
+/* ==========================================
+   CARD
+========================================== */
+
 .card {
-    background: white;
-    border-radius: 12px;
+    min-width: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid #f0e8e4;
     box-shadow: 0 5px 18px rgba(60, 40, 30, .06);
-    transition: .35s ease;
+    transition: .3s ease;
+    box-sizing: border-box;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(60, 40, 30, .10);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(60, 40, 30, .10);
 }
 
 
@@ -554,42 +565,52 @@ a{
 
 .card img {
     width: 100%;
-    height: 245px;
+    height: 200px;
     object-fit: cover;
     display: block;
-    transition: .5s ease;
+    transition: .4s ease;
 }
 
 .card:hover img {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 
 /* ==========================================
-   CARD CONTENT
+   CARD TITLE
 ========================================== */
 
 .card h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 600;
-    margin: 14px 18px 6px;
+    line-height: 1.2;
     color: #49393e;
-    line-height: 1.25;
+    margin: 13px 15px 6px;
 }
+
+
+/* ==========================================
+   CARD TEXT
+========================================== */
 
 .card p {
     color: #777;
-    font-size: 13px;
-    line-height: 1.55;
-    margin: 0 18px 9px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0 15px 8px;
 }
+
+
+/* ==========================================
+   PRICE
+========================================== */
 
 .service-price {
     color: #b8860b;
     font-weight: 600;
-    font-size: 16px;
-    margin: 9px 18px;
+    font-size: 15px;
+    margin: 6px 15px 9px;
 }
 
 
@@ -598,7 +619,10 @@ a{
 ========================================== */
 
 .card .gold-btn {
-    margin: 0 18px 15px;
+    display: inline-block;
+    margin: 5px 15px 15px;
+    padding: 10px 20px;
+    font-size: 13px;
 }
 
 
@@ -607,11 +631,11 @@ a{
 ========================================== */
 
 .cards .card:not(:has(img)) {
-    padding: 16px 0;
+    padding: 15px 0;
 }
 
 .cards .card:not(:has(img)) h3 {
-    margin-top: 4px;
+    margin: 3px 15px 7px;
 }
 
 
@@ -621,21 +645,21 @@ a{
 
 .services-cta {
     text-align: center;
-    margin-top: 45px;
-    padding: 45px 20px;
+    margin-top: 40px;
+    padding: 40px 20px;
 }
 
 .services-cta h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #49393e;
 }
 
 .services-cta p {
     color: #777;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 
@@ -645,9 +669,13 @@ a{
 
 @media (max-width: 900px) {
 
+    .services {
+        padding: 40px 5%;
+    }
+
     .cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 22px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
     }
 
 }
@@ -660,11 +688,11 @@ a{
 @media (max-width: 600px) {
 
     .services {
-        padding: 40px 5%;
+        padding: 35px 5%;
     }
 
     .services-title {
-        font-size: 36px;
+        font-size: 35px;
     }
 
     .services-intro {
@@ -673,89 +701,27 @@ a{
 
     .cards {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 18px;
     }
 
     .card img {
-        height: 230px;
+        height: 210px;
     }
 
     .card h3 {
-        font-size: 23px;
+        font-size: 22px;
     }
 
     .services-cta {
-        margin-top: 35px;
-        padding: 35px 15px;
+        margin-top: 30px;
+        padding: 30px 15px;
     }
 
     .services-cta h2 {
-        font-size: 34px;
+        font-size: 32px;
     }
 
 }
-
-/* ==========================================
-   FINAL SERVICES CARD SIZE
-========================================== */
-
-.services {
-    padding-top: 35px ;
-    padding-bottom: 40px ;
-}
-
-.services-header {
-    margin-bottom: 22px ;
-}
-
-/* Card layout */
-.cards {
-    gap: 22px ;
-}
-
-/* Smaller image */
-.card img {
-    height: 190px ;
-    object-fit: cover ;
-}
-
-/* Smaller heading */
-.card h3 {
-    font-size: 22px ;
-    line-height: 1.2 ;
-    margin: 12px 16px 5px ;
-}
-
-/* Price */
-.card .service-price {
-    font-size: 15px ;
-    margin: 6px 16px ;
-}
-
-/* Description */
-.card p {
-    font-size: 12px ;
-    line-height: 1.45 ;
-    margin: 0 16px 7px ;
-}
-
-/* Duration */
-.card p strong {
-    font-size: 12px;
-}
-
-/* Button */
-.card .gold-btn {
-    margin: 5px 16px 14px ;
-    padding: 10px 20px ;
-}
-
-/* CTA */
-.services-cta {
-    margin-top: 35px ;
-    padding: 35px 20px ;
-}
-
 
 /* ==========================================
    GALLERY
