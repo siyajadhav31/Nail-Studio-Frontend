@@ -4,7 +4,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
     // ==========================================
     // API URL
     // ==========================================
@@ -28,8 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navLinks.forEach(function (link) {
 
+        const href =
+            link.getAttribute("href");
+
+        if (!href) return;
+
         const linkPage =
-            link.getAttribute("href")
+            href
                 .split("/")
                 .pop()
                 .split("?")[0]
@@ -256,7 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ".service-option"
         );
 
-
     serviceOptions.forEach(function (option) {
 
         option.addEventListener(
@@ -298,7 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(
             ".shape-option"
         );
-
 
     shapeOptions.forEach(function (option) {
 
@@ -342,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ".design-option"
         );
 
-
     designOptions.forEach(function (option) {
 
         option.addEventListener(
@@ -384,7 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(
             ".shade-option"
         );
-
 
     shadeOptions.forEach(function (option) {
 
@@ -436,11 +436,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             async function () {
 
-
-                // ------------------------------------------
-                // GET FORM VALUES
-                // ------------------------------------------
-
                 const nameInput =
                     document.getElementById("virtualName");
 
@@ -462,24 +457,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         ? nameInput.value.trim()
                         : "";
 
-
                 const email =
                     emailInput
                         ? emailInput.value.trim()
                         : "";
-
 
                 const phone =
                     phoneInput
                         ? phoneInput.value.trim()
                         : "";
 
-
                 const bookingDate =
                     dateInput
                         ? dateInput.value
                         : "";
-
 
                 const bookingTime =
                     timeInput
@@ -487,9 +478,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         : "";
 
 
-                // ------------------------------------------
+                // ==========================================
                 // VALIDATION
-                // ------------------------------------------
+                // ==========================================
 
                 if (
                     !name ||
@@ -508,9 +499,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ------------------------------------------
+                // ==========================================
                 // EMAIL VALIDATION
-                // ------------------------------------------
+                // ==========================================
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -527,9 +518,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ------------------------------------------
+                // ==========================================
                 // BOOKING DATA
-                // ------------------------------------------
+                // ==========================================
 
                 const bookingData = {
 
@@ -558,9 +549,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // ------------------------------------------
+                // ==========================================
                 // BUTTON STATE
-                // ------------------------------------------
+                // ==========================================
 
                 virtualBookButton.disabled = true;
 
@@ -568,9 +559,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Booking...";
 
 
-                // ------------------------------------------
+                // ==========================================
                 // SEND TO BACKEND
-                // ------------------------------------------
+                // ==========================================
 
                 try {
 
@@ -592,10 +583,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         );
 
-
-                    // ------------------------------------------
-                    // RESPONSE CHECK
-                    // ------------------------------------------
 
                     if (!response.ok) {
 
@@ -624,48 +611,53 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    // ------------------------------------------
-                    // SUCCESS
-                    // ------------------------------------------
-
                     alert(
                         "Virtual booking submitted successfully!"
                     );
 
 
-                    // ------------------------------------------
+                    // ==========================================
                     // RESET FORM
-                    // ------------------------------------------
+                    // ==========================================
 
                     if (nameInput) {
+
                         nameInput.value = "";
+
                     }
 
                     if (emailInput) {
+
                         emailInput.value = "";
+
                     }
 
                     if (phoneInput) {
+
                         phoneInput.value = "";
+
                     }
 
                     if (dateInput) {
+
                         dateInput.value = "";
+
                     }
 
                     if (timeInput) {
+
                         timeInput.value = "";
+
                     }
 
 
-                    // ------------------------------------------
+                    // ==========================================
                     // CLOSE MODAL
-                    // ------------------------------------------
+                    // ==========================================
 
                     closePreview();
 
                 }
-
 
                 catch (error) {
 
@@ -680,7 +672,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 }
-
 
                 finally {
 
@@ -714,9 +705,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                // ------------------------------------------
+                // ==========================================
                 // GET VALUES
-                // ------------------------------------------
+                // ==========================================
 
                 const nameInput =
                     document.getElementById("name");
@@ -745,36 +736,30 @@ document.addEventListener("DOMContentLoaded", function () {
                         ? nameInput.value.trim()
                         : "";
 
-
                 const email =
                     emailInput
                         ? emailInput.value.trim()
                         : "";
-
 
                 const phone =
                     phoneInput
                         ? phoneInput.value.trim()
                         : "";
 
-
                 const service =
                     serviceInput
                         ? serviceInput.value.trim()
                         : "";
-
 
                 const design =
                     designInput
                         ? designInput.value.trim()
                         : "";
 
-
                 const date =
                     dateInput
                         ? dateInput.value
                         : "";
-
 
                 const time =
                     timeInput
@@ -782,9 +767,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         : "";
 
 
-                // ------------------------------------------
+                // ==========================================
                 // VALIDATION
-                // ------------------------------------------
+                // ==========================================
 
                 if (
                     !name ||
@@ -803,9 +788,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ------------------------------------------
+                // ==========================================
                 // EMAIL VALIDATION
-                // ------------------------------------------
+                // ==========================================
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -822,9 +807,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ------------------------------------------
+                // ==========================================
                 // BOOKING DATA
-                // ------------------------------------------
+                // ==========================================
 
                 const bookingData = {
 
@@ -860,14 +845,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // ------------------------------------------
+                // ==========================================
                 // SUBMIT BUTTON
-                // ------------------------------------------
+                // ==========================================
 
                 const submitButton =
                     bookingForm.querySelector(
                         'button[type="submit"]'
                     );
+
+
+                const originalButtonText =
+                    submitButton
+                        ? submitButton.textContent
+                        : "";
 
 
                 if (submitButton) {
@@ -880,9 +871,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ------------------------------------------
+                // ==========================================
                 // SEND TO BACKEND
-                // ------------------------------------------
+                // ==========================================
 
                 try {
 
@@ -904,10 +895,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         );
 
-
-                    // ------------------------------------------
-                    // RESPONSE CHECK
-                    // ------------------------------------------
 
                     if (!response.ok) {
 
@@ -936,23 +923,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    // ------------------------------------------
+                    // ==========================================
                     // SUCCESS
-                    // ------------------------------------------
+                    // ==========================================
 
                     alert(
                         "Booking submitted successfully!"
                     );
 
 
-                    // ------------------------------------------
-                    // RESET
-                    // ------------------------------------------
+                    // ==========================================
+                    // RESET FORM
+                    // ==========================================
 
                     bookingForm.reset();
 
                 }
-
 
                 catch (error) {
 
@@ -968,7 +954,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
-
                 finally {
 
                     if (submitButton) {
@@ -976,7 +961,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         submitButton.disabled = false;
 
                         submitButton.textContent =
-                            "Book Appointment";
+                            originalButtonText ||
+                            "Confirm Appointment";
 
                     }
 
@@ -1041,10 +1027,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        if (
-            savedService &&
-            !bookingServiceInput.value
-        ) {
+        if (savedService) {
 
             bookingServiceInput.value =
                 savedService;
@@ -1110,6 +1093,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
-
 
 });
