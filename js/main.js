@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
 
     const API_URL =
-        "http://127.0.0.1:8080/api/bookings";
+        "https://nail-studio-backend-k604.onrender.com/api/bookings";
 
 
     // ==========================================
