@@ -30,8 +30,6 @@ a{
 }
 
 
-
-
 /* ==========================================
    NAVBAR
 ========================================== */
@@ -99,6 +97,21 @@ a{
     width:100%;
 }
 
+
+/* ==========================================
+   ACTIVE NAVBAR LINK
+========================================== */
+
+.nav-links a.active{
+    color:#b8860b;
+    font-weight:600;
+}
+
+.nav-links a.active::after{
+    width:100%;
+}
+
+
 .nav-buttons{
     display:flex;
     align-items:center;
@@ -136,8 +149,6 @@ a{
 .signup:hover{
     background:#b8860b;
 }
-
-
 
 
 /* ==========================================
@@ -446,10 +457,10 @@ a{
 }
 
 .service-price{
-    color:#b8860b ;
+    color:#b8860b;
     font-weight:600;
-    font-size:17px ;
-    margin:12px 18px ;
+    font-size:17px;
+    margin:12px 18px;
 }
 
 .card .gold-btn{
@@ -581,1430 +592,484 @@ footer p{
    BOOKING PAGE
 ========================================== */
 
-.booking {
-    padding: 75px 5%;
-    min-height: 80vh;
-    background: #fffaf8;
+.booking{
+    padding:75px 5%;
+    min-height:80vh;
+    background:#fffaf8;
 }
 
-
-/* ==========================================
-   BOOKING LAYOUT
-========================================== */
-
-.booking-layout {
-    max-width: 1150px;
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: 1.7fr 1fr;
-    gap: 45px;
-
-    align-items: start;
+.booking-layout{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.7fr 1fr;
+    gap:45px;
+    align-items:start;
 }
 
-
-/* ==========================================
-   LEFT SIDE - BOOKING FORM
-========================================== */
-
-.booking-container {
-    width: 100%;
-    box-sizing: border-box;
-
-    background: #ffffff;
-
-    padding: 45px;
-
-    border-radius: 24px;
-
-    border: 1px solid #f0e8e4;
-
-    box-shadow: 0 8px 28px rgba(60, 40, 30, 0.07);
+.booking-container{
+    width:100%;
+    box-sizing:border-box;
+    background:#ffffff;
+    padding:45px;
+    border-radius:24px;
+    border:1px solid #f0e8e4;
+    box-shadow:0 8px 28px rgba(60,40,30,.07);
 }
 
-
-/* ==========================================
-   BOOKING TITLE
-========================================== */
-
-.booking h1 {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 48px;
-
-    font-weight: 600;
-
-    color: #49393e;
-
-    margin: 0 0 5px;
+.booking h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;
+    font-weight:600;
+    color:#49393e;
+    margin:0 0 5px;
 }
 
-
-.booking-subtitle {
-    display: block;
-
-    color: #b8860b;
-
-    font-size: 13px;
-
-    margin: 0 0 10px;
+.booking-subtitle{
+    display:block;
+    color:#b8860b;
+    font-size:13px;
+    margin:0 0 10px;
 }
 
-
-.booking-required {
-    color: #777;
-
-    font-size: 13px;
-
-    margin: 0 0 30px;
+.booking-required{
+    color:#777;
+    font-size:13px;
+    margin:0 0 30px;
 }
 
-
-.booking-required span {
-    color: #b8860b;
+.booking-required span{
+    color:#b8860b;
 }
 
-
-/* ==========================================
-   FORM GROUP
-========================================== */
-
-.form-group {
-    margin-bottom: 20px;
+.form-group{
+    margin-bottom:20px;
 }
 
-
-.form-group label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-weight: 500;
-
-    font-size: 14px;
-
-    color: #444;
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:500;
+    font-size:14px;
+    color:#444;
 }
 
-
-.form-group label span {
-    color: #b8860b;
+.form-group label span{
+    color:#b8860b;
 }
-
-
-/* ==========================================
-   INPUT / SELECT / TEXTAREA
-========================================== */
 
 .form-group input,
 .form-group select,
-.form-group textarea {
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 13px 15px;
-
-    border: 1px solid #eadcc2;
-
-    border-radius: 7px;
-
-    outline: none;
-
-    background: #fffaf2;
-
-    transition: 0.3s ease;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 13px;
-
-    color: #333;
+.form-group textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px 15px;
+    border:1px solid #eadcc2;
+    border-radius:7px;
+    outline:none;
+    background:#fffaf2;
+    transition:.3s ease;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    color:#333;
 }
-
 
 .form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #999;
+.form-group textarea::placeholder{
+    color:#999;
 }
-
 
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
-
-    border-color: #c89b3c;
-
-    box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.10);
-
-    background: #ffffff;
+.form-group textarea:focus{
+    border-color:#c89b3c;
+    box-shadow:0 0 0 3px rgba(200,155,60,.10);
+    background:#ffffff;
 }
 
-
-/* ==========================================
-   SMALL NOTE
-========================================== */
-
-.form-group small {
-
-    display: block;
-
-    margin-top: 7px;
-
-    font-size: 11px;
-
-    color: #888;
+.form-group small{
+    display:block;
+    margin-top:7px;
+    font-size:11px;
+    color:#888;
 }
 
-
-/* ==========================================
-   TWO INPUTS IN ONE ROW
-========================================== */
-
-.booking-row {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
+.booking-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-
-/* ==========================================
-   SUBMIT BUTTON
-========================================== */
-
-.booking-submit-btn {
-
-    width: 100%;
-
-    padding: 14px 20px;
-
-    margin-top: 5px;
-
-    border: none;
-
-    border-radius: 7px;
-
-    background: #c89b3c;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    transition: 0.3s ease;
+.booking-submit-btn{
+    width:100%;
+    padding:14px 20px;
+    margin-top:5px;
+    border:none;
+    border-radius:7px;
+    background:#c89b3c;
+    color:#ffffff;
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    transition:.3s ease;
 }
 
-
-.booking-submit-btn:hover {
-
-    background: #b8860b;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 6px 15px rgba(200, 155, 60, 0.20);
+.booking-submit-btn:hover{
+    background:#b8860b;
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(200,155,60,.20);
 }
 
-
-/* ==========================================
-   BOOKING MESSAGE
-========================================== */
-
-.booking-message {
-
-    margin-top: 25px;
-
-    border-radius: 10px;
-
-    padding: 20px;
+.booking-message{
+    margin-top:25px;
+    border-radius:10px;
+    padding:20px;
 }
 
-
-.booking-message.loading {
-
-    background: #fff9eb;
-
-    color: #9a6d00;
-
-    text-align: center;
+.booking-message.loading{
+    background:#fff9eb;
+    color:#9a6d00;
+    text-align:center;
 }
 
-
-.booking-message.success {
-
-    background: #f0fff4;
-
-    border: 1px solid #b7e4c7;
-
-    color: #276738;
+.booking-message.success{
+    background:#f0fff4;
+    border:1px solid #b7e4c7;
+    color:#276738;
 }
 
-
-.booking-message.error {
-
-    background: #fff0f0;
-
-    border: 1px solid #f0b5b5;
-
-    color: #a52a2a;
+.booking-message.error{
+    background:#fff0f0;
+    border:1px solid #f0b5b5;
+    color:#a52a2a;
 }
 
-
-.success-icon {
-
-    width: 45px;
-
-    height: 45px;
-
-    border-radius: 50%;
-
-    background: #c89b3c;
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 25px;
-
-    margin-bottom: 5px;
+.success-icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#c89b3c;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:5px;
 }
 
-
-/* ==========================================
-   RIGHT SIDE - STUDIO INFO
-========================================== */
-
-.studio-info-box {
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    background: #ffffff;
-
-    padding: 30px;
-
-    border-radius: 16px;
-
-    border: 1px solid #f0e8e4;
-
-    box-shadow: 0 8px 28px rgba(60, 40, 30, 0.07);
+.studio-info-box{
+    width:100%;
+    box-sizing:border-box;
+    background:#ffffff;
+    padding:30px;
+    border-radius:16px;
+    border:1px solid #f0e8e4;
+    box-shadow:0 8px 28px rgba(60,40,30,.07);
 }
 
-
-/* ==========================================
-   STUDIO HEADING
-========================================== */
-
-.studio-info-box .studio-heading {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    text-align: left;
-
-    margin-bottom: 28px;
+.studio-info-box .studio-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-align:left;
+    margin-bottom:28px;
 }
 
-
-.studio-info-box .studio-heading span {
-
-    font-size: 18px;
-
-    color: #c89b3c;
+.studio-info-box .studio-heading span{
+    font-size:18px;
+    color:#c89b3c;
 }
 
-
-.studio-info-box .studio-heading h2 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 25px;
-
-    font-weight: 500;
-
-    color: #49393e;
-
-    margin: 0;
+.studio-info-box .studio-heading h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:25px;
+    font-weight:500;
+    color:#49393e;
+    margin:0;
 }
 
-
-/* ==========================================
-   STUDIO DETAILS
-========================================== */
-
-.studio-detail {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 14px;
-
-    margin-bottom: 27px;
+.studio-detail{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    margin-bottom:27px;
 }
 
-
-.studio-detail .studio-icon {
-
-    width: 22px;
-
-    min-width: 22px;
-
-    height: auto;
-
-    margin: 0;
-
-    padding: 0;
-
-    background: transparent;
-
-    font-size: 17px;
-
-    text-align: center;
+.studio-detail .studio-icon{
+    width:22px;
+    min-width:22px;
+    height:auto;
+    margin:0;
+    padding:0;
+    background:transparent;
+    font-size:17px;
+    text-align:center;
 }
 
-
-.studio-detail h3 {
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    color: #333;
-
-    margin: 0 0 6px;
+.studio-detail h3{
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:#333;
+    margin:0 0 6px;
 }
 
-
-.studio-detail p {
-
-    color: #555;
-
-    line-height: 1.75;
-
-    font-size: 13px;
-
-    margin: 0;
+.studio-detail p{
+    color:#555;
+    line-height:1.75;
+    font-size:13px;
+    margin:0;
 }
 
-
-/* ==========================================
-   GET DIRECTIONS
-========================================== */
-
-.studio-detail a {
-
-    display: inline-block;
-
-    margin-top: 4px;
-
-    color: #b8860b;
-
-    text-decoration: none;
-
-    font-size: 12px;
-
-    font-weight: 500;
+.studio-detail a{
+    display:inline-block;
+    margin-top:4px;
+    color:#b8860b;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:500;
 }
 
-
-.studio-detail a:hover {
-
-    text-decoration: underline;
+.studio-detail a:hover{
+    text-decoration:underline;
 }
 
-
-/* ==========================================
-   CLOSED TEXT
-========================================== */
-
-.closed-text {
-
-    display: block;
-
-    color: #a52a2a;
-
-    font-size: 12px;
-
-    margin-top: 5px;
+.closed-text{
+    display:block;
+    color:#a52a2a;
+    font-size:12px;
+    margin-top:5px;
 }
 
-
-/* ==========================================
-   WHATSAPP
-========================================== */
-
-.studio-whatsapp {
-
-    margin-top: 10px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid #eee4df;
+.studio-whatsapp{
+    margin-top:10px;
+    padding-top:20px;
+    border-top:1px solid #eee4df;
 }
 
-
-.studio-whatsapp h3 {
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    color: #333;
-
-    margin: 0 0 7px;
+.studio-whatsapp h3{
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:#333;
+    margin:0 0 7px;
 }
 
-
-.studio-whatsapp p {
-
-    margin: 0 0 12px;
-
-    color: #777;
-
-    font-size: 12px;
-
-    line-height: 1.6;
+.studio-whatsapp p{
+    margin:0 0 12px;
+    color:#777;
+    font-size:12px;
+    line-height:1.6;
 }
 
-
-.studio-whatsapp a {
-
-    display: inline-block;
-
-    color: #b8860b;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 500;
+.studio-whatsapp a{
+    display:inline-block;
+    color:#b8860b;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
 }
 
-
-.studio-whatsapp a:hover {
-
-    text-decoration: underline;
+.studio-whatsapp a:hover{
+    text-decoration:underline;
 }
 
-
-/* ==========================================
-   BOOKING INTRO
-========================================== */
-
-.booking-intro {
-
-    max-width: 650px;
-
-    margin: 0 auto 30px;
-
-    text-align: center;
-
-    line-height: 1.8;
-
-    font-size: 15px;
-
-    color: #777;
+.booking-intro{
+    max-width:650px;
+    margin:0 auto 30px;
+    text-align:center;
+    line-height:1.8;
+    font-size:15px;
+    color:#777;
 }
 
-
-/* ==========================================
-   BOOKING NOTE
-========================================== */
-
-.booking-note {
-
-    display: block;
-
-    margin-top: 7px;
-
-    font-size: 12px;
-
-    color: #999;
+.booking-note{
+    display:block;
+    margin-top:7px;
+    font-size:12px;
+    color:#999;
 }
 
-
-/* ==========================================
-   BOOKING POLICY
-========================================== */
-
-.booking-policy {
-
-    padding: 70px 5%;
-
-    background: #fffaf8;
+.booking-policy{
+    padding:70px 5%;
+    background:#fffaf8;
 }
 
-
-.booking-policy-container {
-
-    max-width: 1100px;
-
-    margin: auto;
+.booking-policy-container{
+    max-width:1100px;
+    margin:auto;
 }
 
-
-.booking-policy-container > h2 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 40px;
-
-    color: #49393e;
-
-    text-align: center;
-
-    margin-bottom: 35px;
+.booking-policy-container > h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:40px;
+    color:#49393e;
+    text-align:center;
+    margin-bottom:35px;
 }
 
-
-.policy-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 20px;
+.policy-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
 }
 
-
-.policy-grid > div {
-
-    background: #ffffff;
-
-    padding: 25px 20px;
-
-    border-radius: 10px;
-
-    border: 1px solid #f0e8e4;
+.policy-grid > div{
+    background:#ffffff;
+    padding:25px 20px;
+    border-radius:10px;
+    border:1px solid #f0e8e4;
 }
 
-
-.policy-grid h3 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 22px;
-
-    color: #49393e;
-
-    margin-bottom: 10px;
+.policy-grid h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    color:#49393e;
+    margin-bottom:10px;
 }
 
-
-.policy-grid p {
-
-    font-size: 13px;
-
-    line-height: 1.7;
-
-    color: #777;
-
-    margin: 0;
+.policy-grid p{
+    font-size:13px;
+    line-height:1.7;
+    color:#777;
+    margin:0;
 }
 
 
 /* ==========================================
    OLD STUDIO SECTION
-   KEEP IF USED ELSEWHERE
 ========================================== */
 
-.studio-info {
-
-    padding: 80px 5%;
-
-    background: white;
+.studio-info{
+    padding:80px 5%;
+    background:white;
 }
 
-
-.studio-info-container {
-
-    max-width: 1100px;
-
-    margin: auto;
+.studio-info-container{
+    max-width:1100px;
+    margin:auto;
 }
 
-
-.studio-heading {
-
-    text-align: center;
-
-    margin-bottom: 45px;
+.studio-heading{
+    text-align:center;
+    margin-bottom:45px;
 }
 
-
-.studio-heading .booking-subtitle {
-
-    margin-bottom: 10px;
+.studio-heading .booking-subtitle{
+    margin-bottom:10px;
 }
 
-
-.studio-heading h2 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 44px;
-
-    font-weight: 600;
-
-    color: #49393e;
-
-    margin: 0;
+.studio-heading h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:44px;
+    font-weight:600;
+    color:#49393e;
+    margin:0;
 }
 
-
-.studio-heading p {
-
-    max-width: 650px;
-
-    margin: 20px auto 0;
-
-    color: #777;
-
-    line-height: 1.8;
+.studio-heading p{
+    max-width:650px;
+    margin:20px auto 0;
+    color:#777;
+    line-height:1.8;
 }
 
-
-/* ==========================================
-   STUDIO CARDS
-========================================== */
-
-.studio-info-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 25px;
+.studio-info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
 }
 
-
-.studio-card {
-
-    padding: 35px 25px;
-
-    text-align: center;
-
-    background: #fffaf8;
-
-    border: 1px solid #f0e8e4;
-
-    border-radius: 14px;
-
-    transition: .3s ease;
+.studio-card{
+    padding:35px 25px;
+    text-align:center;
+    background:#fffaf8;
+    border:1px solid #f0e8e4;
+    border-radius:14px;
+    transition:.3s ease;
 }
 
-
-.studio-card:hover {
-
-    transform: translateY(-6px);
-
-    box-shadow: 0 12px 30px rgba(60, 40, 30, .08);
-
-    border-color: #e6d1a1;
+.studio-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(60,40,30,.08);
+    border-color:#e6d1a1;
 }
 
-
-.studio-card h3 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 25px;
-
-    color: #49393e;
-
-    margin-bottom: 12px;
+.studio-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:25px;
+    color:#49393e;
+    margin-bottom:12px;
 }
 
-
-.studio-card p {
-
-    color: #777;
-
-    line-height: 1.8;
-
-    font-size: 14px;
-
-    margin-bottom: 15px;
+.studio-card p{
+    color:#777;
+    line-height:1.8;
+    font-size:14px;
+    margin-bottom:15px;
 }
 
-
-.studio-link {
-
-    color: #b8860b;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 500;
-
-    transition: .3s ease;
+.studio-link{
+    color:#b8860b;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+    transition:.3s ease;
 }
 
-
-.studio-link:hover {
-
-    color: #8e6905;
+.studio-link:hover{
+    color:#8e6905;
 }
 
-
-/* ==========================================
-   WHATSAPP BOX
-========================================== */
-
-.whatsapp-box {
-
-    margin-top: 35px;
-
-    padding: 30px 35px;
-
-    border-radius: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #fffaf2,
-        #ffffff
-    );
-
-    border: 1px solid #eadcc2;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 25px;
+.whatsapp-box{
+    margin-top:35px;
+    padding:30px 35px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#fffaf2,#ffffff);
+    border:1px solid #eadcc2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
 }
 
-
-.whatsapp-box .booking-subtitle {
-
-    text-align: left;
-
-    margin: 0 0 5px;
+.whatsapp-box .booking-subtitle{
+    text-align:left;
+    margin:0 0 5px;
 }
 
-
-.whatsapp-box h3 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 29px;
-
-    color: #49393e;
-
-    margin: 0 0 8px;
+.whatsapp-box h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:29px;
+    color:#49393e;
+    margin:0 0 8px;
 }
 
-
-.whatsapp-box p {
-
-    margin: 0;
-
-    color: #777;
-
-    font-size: 14px;
-
-    line-height: 1.7;
+.whatsapp-box p{
+    margin:0;
+    color:#777;
+    font-size:14px;
+    line-height:1.7;
 }
 
-
-.whatsapp-btn {
-
-    display: inline-block;
-
-    padding: 13px 25px;
-
-    border-radius: 6px;
-
-    background: #c89b3c;
-
-    color: white;
-
-    text-decoration: none;
-
-    white-space: nowrap;
-
-    font-size: 14px;
-
-    transition: .3s ease;
+.whatsapp-btn{
+    display:inline-block;
+    padding:13px 25px;
+    border-radius:6px;
+    background:#c89b3c;
+    color:white;
+    text-decoration:none;
+    white-space:nowrap;
+    font-size:14px;
+    transition:.3s ease;
 }
 
-
-.whatsapp-btn:hover {
-
-    background: #b8860b;
-
-    transform: translateY(-2px);
+.whatsapp-btn:hover{
+    background:#b8860b;
+    transform:translateY(-2px);
 }
 
-
-/* ==========================================
-   TABLET
-========================================== */
-
-@media (max-width: 1000px) {
-
-    .booking-layout {
-
-        grid-template-columns: 1.4fr 1fr;
-
-        gap: 25px;
-    }
-
-
-    .booking-container {
-
-        padding: 35px;
-    }
-
-
-    .studio-info-box {
-
-        padding: 25px;
-    }
-
-
-    .booking h1 {
-
-        font-size: 42px;
-    }
-
-
-    .studio-info-grid {
-
-        grid-template-columns: 1fr 1fr;
-    }
-
-
-    .policy-grid {
-
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 750px) {
-
-    .booking {
-
-        padding: 50px 5%;
-    }
-
-
-    .booking-layout {
-
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-    }
-
-
-    .booking-container {
-
-        padding: 30px 20px;
-    }
-
-
-    .studio-info-box {
-
-        padding: 25px 20px;
-    }
-
-
-    .booking h1 {
-
-        font-size: 38px;
-    }
-
-
-    .booking-row {
-
-        grid-template-columns: 1fr;
-
-        gap: 0;
-    }
-
-
-    .studio-info-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .policy-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .whatsapp-box {
-
-        flex-direction: column;
-
-        text-align: center;
-    }
-
-
-    .whatsapp-box .booking-subtitle {
-
-        text-align: center;
-    }
-
-
-    .whatsapp-btn {
-
-        width: 100%;
-
-        text-align: center;
-
-        box-sizing: border-box;
-    }
-}
-
-
-/* ==========================================
-   VERY SMALL SCREEN
-========================================== */
-
-@media (max-width: 450px) {
-
-    .booking {
-
-        padding: 40px 4%;
-    }
-
-
-    .booking-container {
-
-        padding: 25px 16px;
-    }
-
-
-    .booking h1 {
-
-        font-size: 34px;
-    }
-
-
-    .studio-info-box {
-
-        padding: 22px 17px;
-    }
-}
-
-/* ==========================================
-   OLD STUDIO SECTION
-   Keep this if used on another page
-========================================== */
-
-.studio-info {
-
-    padding: 80px 5%;
-
-    background: white;
-}
-
-
-.studio-info-container {
-
-    max-width: 1100px;
-
-    margin: auto;
-}
-
-
-.studio-heading {
-
-    text-align: center;
-
-    margin-bottom: 45px;
-}
-
-
-.studio-heading .booking-subtitle {
-
-    margin-bottom: 10px;
-}
-
-
-.studio-heading h2 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 44px;
-
-    font-weight: 600;
-
-    color: #49393e;
-
-    margin: 0;
-}
-
-
-.studio-heading p {
-
-    max-width: 650px;
-
-    margin: 20px auto 0;
-
-    color: #777;
-
-    line-height: 1.8;
-}
-
-
-/* ==========================================
-   OLD STUDIO CARDS
-========================================== */
-
-.studio-info-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 25px;
-}
-
-
-.studio-card {
-
-    padding: 35px 25px;
-
-    text-align: center;
-
-    background: #fffaf8;
-
-    border: 1px solid #f0e8e4;
-
-    border-radius: 14px;
-
-    transition: .3s ease;
-}
-
-
-.studio-card:hover {
-
-    transform: translateY(-6px);
-
-    box-shadow: 0 12px 30px rgba(60, 40, 30, .08);
-
-    border-color: #e6d1a1;
-}
-
-
-.studio-card h3 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 25px;
-
-    color: #49393e;
-
-    margin-bottom: 12px;
-}
-
-
-.studio-card p {
-
-    color: #777;
-
-    line-height: 1.8;
-
-    font-size: 14px;
-
-    margin-bottom: 15px;
-}
-
-
-.studio-link {
-
-    color: #b8860b;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 500;
-
-    transition: .3s ease;
-}
-
-
-.studio-link:hover {
-
-    color: #8e6905;
-}
-
-
-/* ==========================================
-   WHATSAPP BOX
-========================================== */
-
-.whatsapp-box {
-
-    margin-top: 35px;
-
-    padding: 30px 35px;
-
-    border-radius: 14px;
-
-    background: linear-gradient(135deg, #fffaf2, #fff);
-
-    border: 1px solid #eadcc2;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 25px;
-}
-
-
-.whatsapp-box .booking-subtitle {
-
-    text-align: left;
-
-    margin: 0 0 5px;
-}
-
-
-.whatsapp-box h3 {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 29px;
-
-    color: #49393e;
-
-    margin: 0 0 8px;
-}
-
-
-.whatsapp-box p {
-
-    margin: 0;
-
-    color: #777;
-
-    font-size: 14px;
-
-    line-height: 1.7;
-}
-
-
-.whatsapp-btn {
-
-    display: inline-block;
-
-    padding: 13px 25px;
-
-    border-radius: 6px;
-
-    background: #c2185b;
-
-    color: white;
-
-    text-decoration: none;
-
-    white-space: nowrap;
-
-    font-size: 14px;
-
-    transition: .3s ease;
-}
-
-
-.whatsapp-btn:hover {
-
-    background: #a9154e;
-
-    transform: translateY(-2px);
-}
-
-
-/* ==========================================
-   RESPONSIVE - TABLET
-========================================== */
-
-@media (max-width: 1000px) {
-
-    .booking-layout {
-
-        grid-template-columns: 1.4fr 1fr;
-
-        gap: 25px;
-    }
-
-    .booking-container {
-
-        padding: 35px;
-    }
-
-    .studio-info-box {
-
-        padding: 25px;
-    }
-
-    .booking h1 {
-
-        font-size: 42px;
-    }
-
-    .studio-info-grid {
-
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .policy-grid {
-
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-
-/* ==========================================
-   RESPONSIVE - MOBILE
-========================================== */
-
-@media (max-width: 750px) {
-
-    .booking {
-
-        padding: 50px 5%;
-    }
-
-
-    .booking-layout {
-
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-    }
-
-
-    .booking-container {
-
-        padding: 30px 20px;
-    }
-
-
-    .studio-info-box {
-
-        padding: 25px 20px;
-    }
-
-
-    .booking h1 {
-
-        font-size: 38px;
-    }
-
-
-    .booking-row {
-
-        grid-template-columns: 1fr;
-
-        gap: 0;
-    }
-
-
-    .studio-info-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .policy-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .whatsapp-box {
-
-        flex-direction: column;
-
-        text-align: center;
-    }
-
-
-    .whatsapp-box .booking-subtitle {
-
-        text-align: center;
-    }
-
-
-    .whatsapp-btn {
-
-        width: 100%;
-
-        text-align: center;
-
-        box-sizing: border-box;
-    }
-}
-
-
-/* ==========================================
-   VERY SMALL SCREEN
-========================================== */
-
-@media (max-width: 450px) {
-
-    .booking {
-
-        padding: 40px 4%;
-    }
-
-
-    .booking-container {
-
-        padding: 25px 16px;
-    }
-
-
-    .booking h1 {
-
-        font-size: 34px;
-    }
-
-
-    .studio-info-box {
-
-        padding: 22px 17px;
-    }
-}
 
 /* ==========================================
    OLD ABOUT PAGE LAYOUT SUPPORT
@@ -2073,11 +1138,6 @@ footer p{
     line-height:1.8;
 }
 
-
-/* ==========================================
-   CONTACT MAIN
-========================================== */
-
 .contact-main{
     padding:45px 8% 70px;
     background:#fff6f3;
@@ -2091,11 +1151,6 @@ footer p{
     gap:50px;
     align-items:center;
 }
-
-
-/* ==========================================
-   CONTACT DETAILS
-========================================== */
 
 .contact-small-title{
     color:#b8860b;
@@ -2120,21 +1175,11 @@ footer p{
     margin-bottom:18px;
 }
 
-
-/* ==========================================
-   CONTACT GRID
-========================================== */
-
 .contact-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:16px;
 }
-
-
-/* ==========================================
-   CONTACT CARD
-========================================== */
 
 .contact-card{
     background:white;
@@ -2177,11 +1222,6 @@ footer p{
     line-height:1.6;
     margin:0;
 }
-
-
-/* ==========================================
-   CONTACT IMAGE
-========================================== */
 
 .contact-image{
     width:100%;
@@ -2424,11 +1464,6 @@ footer p{
     font-size:14px;
 }
 
-
-/* ==========================================
-   ADMIN DASHBOARD STATS
-========================================== */
-
 .admin-stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -2484,11 +1519,6 @@ footer p{
     line-height:1.2;
 }
 
-
-/* ==========================================
-   BOOKING FILTER
-========================================== */
-
 .booking-filter{
     display:flex;
     justify-content:flex-end;
@@ -2517,11 +1547,6 @@ footer p{
     border-color:#c89b3c;
 }
 
-
-/* ==========================================
-   TABLE CONTAINER
-========================================== */
-
 .table-container{
     background:white;
     padding:22px;
@@ -2530,11 +1555,6 @@ footer p{
     box-shadow:0 5px 20px rgba(60,40,30,.06);
     overflow-x:auto;
 }
-
-
-/* ==========================================
-   ADMIN BOOKINGS TABLE
-========================================== */
 
 #bookingTable{
     width:100%;
@@ -2562,45 +1582,30 @@ footer p{
     background:#fffaf5;
 }
 
-
-/* ==========================================
-   OFFER / SERVICE BADGES
-========================================== */
-
-.offer-badge{
-    display:inline-block;
-    padding:5px 11px;
-    background:#fce8ef;
-    color:#b04c70;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:500;
-}
-
-.service-badge{
-    display:inline-block;
-    padding:5px 11px;
-    background:#fff2d8;
-    color:#9a6d00;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:500;
-}
-
+.offer-badge,
+.service-badge,
 .design-badge{
     display:inline-block;
     padding:5px 11px;
-    background:#f8eafa;
-    color:#8a4a9b;
     border-radius:20px;
     font-size:11px;
     font-weight:500;
 }
 
+.offer-badge{
+    background:#fce8ef;
+    color:#b04c70;
+}
 
-/* ==========================================
-   ACTION BUTTONS
-========================================== */
+.service-badge{
+    background:#fff2d8;
+    color:#9a6d00;
+}
+
+.design-badge{
+    background:#f8eafa;
+    color:#8a4a9b;
+}
 
 .action-buttons{
     display:flex;
@@ -2634,11 +1639,6 @@ footer p{
 .delete-btn:hover{
     background:#b52a37;
 }
-
-
-/* ==========================================
-   LOADING / EMPTY
-========================================== */
 
 .empty-message,
 .loading{
@@ -2770,11 +1770,6 @@ footer p{
     background:#b8860b;
 }
 
-
-/* ==========================================
-   REGISTERED USERS TABLE
-========================================== */
-
 #usersTable{
     width:100%;
     border-collapse:collapse;
@@ -2800,11 +1795,6 @@ footer p{
 #usersTable tbody tr:hover{
     background:#fffaf5;
 }
-
-
-/* ==========================================
-   REGISTERED USERS DELETE BUTTON
-========================================== */
 
 #usersTable .delete-btn{
     background:#dc3545;
@@ -2873,7 +1863,6 @@ footer p{
 }
 
 @keyframes toastSlide{
-
     from{
         opacity:0;
         transform:translateX(40px);
@@ -2883,7 +1872,6 @@ footer p{
         opacity:1;
         transform:translateX(0);
     }
-
 }
 
 @media(max-width:600px){
@@ -2905,11 +1893,6 @@ footer p{
 /* =========================================================
    VIRTUAL NAIL PREVIEW
 ========================================================= */
-
-
-/* ==========================================
-   MODAL
-========================================== */
 
 .preview-modal{
     display:none;
@@ -2940,7 +1923,6 @@ footer p{
 }
 
 @keyframes previewModalOpen{
-
     from{
         opacity:0;
         transform:translateY(25px) scale(.97);
@@ -2950,13 +1932,7 @@ footer p{
         opacity:1;
         transform:translateY(0) scale(1);
     }
-
 }
-
-
-/* ==========================================
-   CLOSE
-========================================== */
 
 .preview-modal .close-modal{
     position:absolute;
@@ -2979,11 +1955,6 @@ footer p{
     color:#b8860b;
 }
 
-
-/* ==========================================
-   TITLE
-========================================== */
-
 .preview-modal .modal-content > h2{
     font-family:'Cormorant Garamond',serif;
     font-size:42px;
@@ -3000,11 +1971,6 @@ footer p{
     margin-bottom:30px;
 }
 
-
-/* ==========================================
-   SECTION
-========================================== */
-
 .preview-section{
     margin-bottom:28px;
 }
@@ -3016,11 +1982,6 @@ footer p{
     color:#49393e;
     margin-bottom:14px;
 }
-
-
-/* ==========================================
-   OPTIONS
-========================================== */
 
 .preview-options{
     display:flex;
@@ -3050,11 +2011,6 @@ footer p{
     color:white;
     box-shadow:0 4px 12px rgba(184,134,11,.15);
 }
-
-
-/* ==========================================
-   SHADE OPTIONS
-========================================== */
 
 .shade-options{
     display:flex;
@@ -3107,11 +2063,6 @@ footer p{
     color:#b8860b;
 }
 
-
-/* ==========================================
-   NAIL PREVIEW
-========================================== */
-
 .nail-preview-stage{
     min-height:320px;
     padding:45px 20px;
@@ -3131,11 +2082,6 @@ footer p{
     overflow:hidden;
     position:relative;
 }
-
-
-/* ==========================================
-   NAILS
-========================================== */
 
 .nail-preview-stage .virtual-nail{
     width:58px;
@@ -3181,11 +2127,6 @@ footer p{
         scale(1.05);
 }
 
-
-/* ==========================================
-   ALMOND
-========================================== */
-
 .nail-preview-stage.shape-almond .virtual-nail{
     border-radius:50%;
     clip-path:
@@ -3202,20 +2143,10 @@ footer p{
         );
 }
 
-
-/* ==========================================
-   SQUARE
-========================================== */
-
 .nail-preview-stage.shape-square .virtual-nail{
     border-radius:8px 8px 5px 5px;
     clip-path:none;
 }
-
-
-/* ==========================================
-   COFFIN
-========================================== */
 
 .nail-preview-stage.shape-coffin .virtual-nail{
     border-radius:20px 20px 5px 5px;
@@ -3230,20 +2161,10 @@ footer p{
         );
 }
 
-
-/* ==========================================
-   OVAL
-========================================== */
-
 .nail-preview-stage.shape-oval .virtual-nail{
     border-radius:50% 50% 45% 45%;
     clip-path:none;
 }
-
-
-/* ==========================================
-   STILETTO
-========================================== */
 
 .nail-preview-stage.shape-stiletto .virtual-nail{
     border-radius:50% 50% 10% 10%;
@@ -3256,11 +2177,6 @@ footer p{
             0% 78%
         );
 }
-
-
-/* ==========================================
-   DESIGNS
-========================================== */
 
 .nail-preview-stage.design-classic-nude
 .virtual-nail{
@@ -3292,7 +2208,7 @@ footer p{
             #777 60%,
             #ffffff 80%,
             #aaa 100%
-        ) ;
+        );
 
     box-shadow:
         0 7px 20px rgba(0,0,0,.16),
@@ -3333,11 +2249,6 @@ footer p{
     text-shadow:0 2px 5px rgba(0,0,0,.15);
 }
 
-
-/* ==========================================
-   NAIL SHINE
-========================================== */
-
 .nail-preview-stage .virtual-nail::before{
     content:"";
     position:absolute;
@@ -3350,11 +2261,6 @@ footer p{
     transform:rotate(-20deg);
     pointer-events:none;
 }
-
-
-/* ==========================================
-   SELECTED LOOK
-========================================== */
 
 .selected-look{
     margin-top:25px;
@@ -3388,11 +2294,6 @@ footer p{
     font-weight:500;
 }
 
-
-/* ==========================================
-   BOOK BUTTON
-========================================== */
-
 .virtual-book-btn{
     display:block;
     width:100%;
@@ -3413,11 +2314,6 @@ footer p{
     transform:translateY(-2px);
 }
 
-
-/* ==========================================
-   PREVIEW SCROLLBAR
-========================================== */
-
 .preview-modal .modal-content::-webkit-scrollbar{
     width:6px;
 }
@@ -3430,769 +2326,6 @@ footer p{
     background:#c89b3c;
     border-radius:10px;
 }
-
-
-/* ==========================================
-   RESPONSIVE - 1000px
-========================================== */
-
-@media(max-width:1000px){
-
-    .admin-stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .navbar{
-        padding-left:4%;
-        padding-right:4%;
-    }
-
-    .nav-links{
-        gap:16px;
-    }
-
-    .nav-links a{
-        font-size:12px;
-    }
-
-    .nav-buttons{
-        gap:6px;
-    }
-
-    .login,
-    .signup{
-        padding:8px 13px;
-    }
-
-    .hero{
-        gap:40px;
-    }
-
-}
-
-
-/* ==========================================
-   RESPONSIVE - 900px
-========================================== */
-
-@media(max-width:900px){
-
-    .navbar{
-        padding:16px 4%;
-    }
-
-    .nav-links{
-        gap:12px;
-    }
-
-    .nav-links a{
-        font-size:11px;
-    }
-
-    .nav-buttons{
-        gap:5px;
-    }
-
-    .login,
-    .signup{
-        padding:7px 11px;
-        font-size:11px;
-    }
-
-    .contact-content{
-        grid-template-columns:1fr;
-    }
-
-    .contact-image{
-        height:450px;
-    }
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .gallery-cards{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
-
-
-/* ==========================================
-   RESPONSIVE - 768px
-========================================== */
-
-@media(max-width:768px){
-
-    /* ==================================
-       NAVBAR
-    ================================== */
-
-    .navbar{
-        flex-direction:column;
-        gap:13px;
-        padding:16px 5%;
-    }
-
-    .logo{
-        font-size:29px;
-    }
-
-    .nav-links{
-        width:100%;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:8px 16px;
-    }
-
-    .nav-links a{
-        font-size:12px;
-        padding:4px 0;
-    }
-
-    .nav-buttons{
-        justify-content:center;
-        gap:8px;
-    }
-
-    .login,
-    .signup{
-        padding:8px 16px;
-        font-size:12px;
-    }
-
-
-    /* ==================================
-       HERO
-    ================================== */
-
-    .hero{
-        flex-direction:column;
-        text-align:center;
-        padding:55px 5%;
-        gap:40px;
-    }
-
-    .hero-text{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .hero-text h1{
-        font-size:48px;
-    }
-
-    .hero-text p{
-        max-width:600px;
-    }
-
-    .hero-buttons{
-        justify-content:center;
-    }
-
-    .hero-image img{
-        max-width:600px;
-    }
-
-
-    /* ==================================
-       SERVICES
-    ================================== */
-
-    .services{
-        padding:60px 5%;
-    }
-
-    .services-header{
-        text-align:center;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-        max-width:500px;
-    }
-
-
-    /* ==================================
-       GALLERY
-    ================================== */
-
-    .gallery-section{
-        padding:60px 5%;
-    }
-
-    .gallery-header h1{
-        font-size:42px;
-    }
-
-    .gallery-cards{
-        grid-template-columns:repeat(2,1fr);
-        gap:18px;
-    }
-
-    .gallery-card img{
-        height:220px;
-    }
-
-
-    /* ==================================
-       BOOKING
-    ================================== */
-
-    .booking{
-        padding:45px 5%;
-    }
-
-    .booking-container{
-        padding:28px;
-    }
-
-    .booking h1{
-        font-size:40px;
-    }
-
-    .row{
-        grid-template-columns:1fr;
-        gap:0;
-    }
-
-
-    /* ==================================
-       ABOUT
-    ================================== */
-
-    .about-page{
-        padding:60px 5%;
-    }
-
-    .about-page-content{
-        flex-direction:column;
-        gap:30px;
-    }
-
-    .about-page-text h1{
-        font-size:45px;
-    }
-
-    .about-page-image{
-        width:100%;
-    }
-
-    .about-page-image img{
-        max-width:100%;
-    }
-
-
-    /* ==================================
-       CONTACT
-    ================================== */
-
-    .contact-container{
-        grid-template-columns:1fr;
-    }
-
-
-    /* ==================================
-       WELCOME
-    ================================== */
-
-    .welcome-container h1{
-        font-size:48px;
-    }
-
-    .welcome-subtitle{
-        font-size:18px;
-    }
-
-
-    /* ==================================
-       ADMIN
-    ================================== */
-
-    .admin-bookings{
-        padding:40px 3%;
-    }
-
-    .admin-title h1{
-        font-size:38px;
-    }
-
-    .table-container{
-        padding:15px;
-    }
-
-    .admin-modal-content{
-        padding:25px;
-    }
-
-    .action-buttons{
-        flex-direction:column;
-    }
-
-    .edit-btn,
-    .delete-btn{
-        width:100%;
-    }
-
-    .admin-stats{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
-
-    .admin-stat-card{
-        padding:18px;
-    }
-
-
-    /* ==================================
-       BOOKING FILTER
-    ================================== */
-
-    .booking-filter{
-        justify-content:center;
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .booking-filter label{
-        text-align:center;
-    }
-
-    .booking-filter select{
-        width:100%;
-    }
-
-
-    /* ==================================
-       REGISTERED USERS
-    ================================== */
-
-    .admin-table-header{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .registered-count{
-        text-align:center;
-        font-size:22px;
-    }
-
-    .refresh-btn{
-        width:50%;
-        margin:auto;
-    }
-
-    #usersTable{
-        min-width:600px;
-    }
-
-
-    /* ==================================
-       VIRTUAL PREVIEW
-    ================================== */
-
-    .preview-modal{
-        padding:10px;
-    }
-
-    .preview-modal .modal-content{
-        padding:25px 18px;
-        max-height:95vh;
-        border-radius:16px;
-    }
-
-    .preview-modal .modal-content > h2{
-        font-size:35px;
-    }
-
-    .preview-section h3{
-        font-size:23px;
-    }
-
-    .preview-options{
-        justify-content:center;
-    }
-
-    .preview-option{
-        padding:9px 13px;
-        font-size:12px;
-    }
-
-    .shade-options{
-        justify-content:center;
-    }
-
-    .nail-preview-stage{
-        min-height:260px;
-        gap:9px;
-        padding:35px 10px;
-    }
-
-    .nail-preview-stage .virtual-nail{
-        width:45px;
-    }
-
-    .nail-preview-stage .nail-1{
-        height:120px;
-    }
-
-    .nail-preview-stage .nail-2{
-        height:140px;
-    }
-
-    .nail-preview-stage .nail-3{
-        height:150px;
-    }
-
-    .nail-preview-stage .nail-4{
-        height:140px;
-    }
-
-    .nail-preview-stage .nail-5{
-        height:120px;
-    }
-
-}
-
-
-/* ==========================================
-   RESPONSIVE - 600px
-========================================== */
-
-@media(max-width:600px){
-
-    /* ==================================
-       NAVBAR
-    ================================== */
-
-    .navbar{
-        gap:12px;
-        padding:15px 4%;
-    }
-
-    .logo{
-        font-size:27px;
-    }
-
-    .nav-links{
-        gap:7px 13px;
-    }
-
-    .nav-links a{
-        font-size:11px;
-    }
-
-    .nav-buttons{
-        width:100%;
-        justify-content:center;
-    }
-
-    .login,
-    .signup{
-        padding:8px 17px;
-        font-size:11px;
-    }
-
-
-    /* ==================================
-       CONTACT
-    ================================== */
-
-    .contact-hero{
-        padding:50px 5%;
-    }
-
-    .contact-hero-content h1{
-        font-size:42px;
-    }
-
-    .contact-main{
-        padding:45px 5%;
-    }
-
-    .contact-details h2{
-        font-size:34px;
-    }
-
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .contact-image{
-        height:350px;
-    }
-
-
-    /* ==================================
-       GALLERY
-    ================================== */
-
-    .gallery-cards{
-        grid-template-columns:1fr;
-        max-width:500px;
-        margin:auto;
-    }
-
-
-    /* ==================================
-       HOME PAGE
-    ================================== */
-
-    .home-services,
-    .home-offer,
-    .home-why,
-    .home-preview,
-    .home-final{
-        padding-top:40px;
-        padding-bottom:40px;
-    }
-
-}
-
-
-/* ==========================================
-   RESPONSIVE - 480px
-========================================== */
-
-@media(max-width:480px){
-
-    /* ==================================
-       NAVBAR
-    ================================== */
-
-    .navbar{
-        padding:14px 4%;
-    }
-
-    .logo{
-        font-size:25px;
-    }
-
-    .nav-links{
-        gap:6px 11px;
-    }
-
-    .nav-links a{
-        font-size:10.5px;
-    }
-
-    .login,
-    .signup{
-        padding:7px 15px;
-        font-size:11px;
-    }
-
-
-    /* ==================================
-       HERO
-    ================================== */
-
-    .hero{
-        padding:45px 5%;
-    }
-
-    .hero-text h1{
-        font-size:38px;
-    }
-
-    .hero-text p{
-        font-size:14px;
-    }
-
-    .gold-btn,
-    .outline-btn{
-        padding:11px 18px;
-        font-size:12px;
-    }
-
-
-    /* ==================================
-       ABOUT
-    ================================== */
-
-    .about{
-        padding:65px 6%;
-    }
-
-    .about h2{
-        font-size:39px;
-    }
-
-    .about-page-text h1{
-        font-size:38px;
-    }
-
-
-    /* ==================================
-       SERVICES
-    ================================== */
-
-    .services-title{
-        font-size:38px;
-    }
-
-
-    /* ==================================
-       BOOKING
-    ================================== */
-
-    .booking-container{
-        padding:20px;
-    }
-
-
-    /* ==================================
-       AUTH
-    ================================== */
-
-    .auth-container{
-        padding:25px;
-    }
-
-
-    /* ==================================
-       WELCOME
-    ================================== */
-
-    .welcome-page{
-        padding:20px;
-    }
-
-    .welcome-container h1{
-        font-size:38px;
-    }
-
-
-    /* ==================================
-       ADMIN
-    ================================== */
-
-    .admin-title h1{
-        font-size:32px;
-    }
-
-    .logout-btn{
-        padding:8px 16px;
-        font-size:12px;
-    }
-
-
-    /* ==================================
-       ADMIN STATS
-    ================================== */
-
-    .admin-stat-card{
-        padding:16px;
-    }
-
-    .stat-icon{
-        width:48px;
-        height:48px;
-        min-width:48px;
-        font-size:22px;
-    }
-
-    .stat-info h3{
-        font-size:19px;
-    }
-
-    .stat-info p{
-        font-size:23px;
-    }
-
-
-    /* ==================================
-       REGISTERED USERS
-    ================================== */
-
-    .registered-count{
-        font-size:22px;
-    }
-
-
-    /* ==================================
-       VIRTUAL PREVIEW
-    ================================== */
-
-    .preview-modal .modal-content > h2{
-        font-size:30px;
-    }
-
-    .preview-subtitle{
-        font-size:12px;
-    }
-
-    .nail-preview-stage{
-        gap:5px;
-        min-height:220px;
-    }
-
-    .nail-preview-stage .virtual-nail{
-        width:37px;
-        border-width:2px;
-    }
-
-    .nail-preview-stage .nail-1{
-        height:100px;
-    }
-
-    .nail-preview-stage .nail-2{
-        height:115px;
-    }
-
-    .nail-preview-stage .nail-3{
-        height:125px;
-    }
-
-    .nail-preview-stage .nail-4{
-        height:115px;
-    }
-
-    .nail-preview-stage .nail-5{
-        height:100px;
-    }
-
-    .selected-look{
-        padding:17px;
-    }
-
-    .selected-look h3{
-        font-size:24px;
-    }
-
-
-
-
-
-
-
-    /* ==================================
-       HOME PAGE
-    ================================== */
-
-    .home-section-heading{
-        margin-bottom:25px;
-    }
-
-    .home-offer h2,
-    .home-section-heading h2,
-    .home-preview-box h2,
-    .home-final h2{
-        font-size:36px;
-    }
-
-    .home-preview-box{
-        padding:35px 20px;
-    }
-
-}
-
-
-
-
-
-
 
 
 /* ==========================================
@@ -4236,7 +2369,6 @@ footer p{
     margin:0;
 }
 
-
 .home-offer{
     padding:50px 8%;
     text-align:center;
@@ -4264,7 +2396,6 @@ footer p{
     color:#777;
     line-height:1.8;
 }
-
 
 .home-services{
     padding:50px 8%;
@@ -4355,7 +2486,6 @@ footer p{
     font-weight:600;
 }
 
-
 .home-why{
     padding:50px 8%;
     background:#fff8f5;
@@ -4401,7 +2531,6 @@ footer p{
     margin:0;
 }
 
-
 .home-preview{
     padding:50px 8%;
     background:white;
@@ -4443,7 +2572,6 @@ footer p{
     line-height:1.8;
 }
 
-
 .home-final{
     padding:50px 8%;
     text-align:center;
@@ -4470,15 +2598,70 @@ footer p{
 ========================================== */
 
 .hero{
-    padding-bottom:45px ;
+    padding-bottom:45px;
 }
 
 
 /* ==========================================
-   HOME RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================== */
 
-@media(max-width:900px){
+@media (max-width:1000px){
+
+    .booking-layout{
+        grid-template-columns:1.4fr 1fr;
+        gap:25px;
+    }
+
+    .booking-container{
+        padding:35px;
+    }
+
+    .studio-info-box{
+        padding:25px;
+    }
+
+    .booking h1{
+        font-size:42px;
+    }
+
+    .studio-info-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .policy-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .admin-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .navbar{
+        padding-left:4%;
+        padding-right:4%;
+    }
+
+    .nav-links{
+        gap:16px;
+    }
+
+    .nav-links a{
+        font-size:12px;
+    }
+
+    .nav-buttons{
+        gap:6px;
+    }
+
+    .login,
+    .signup{
+        padding:8px 13px;
+    }
+
+    .hero{
+        gap:40px;
+    }
 
     .quick-features{
         grid-template-columns:repeat(3,1fr);
@@ -4492,13 +2675,395 @@ footer p{
     .home-why-grid{
         grid-template-columns:1fr 1fr;
     }
-
 }
+
+
+/* ==========================================
+   RESPONSIVE - 900px
+========================================== */
+
+@media(max-width:900px){
+
+    .navbar{
+        padding:16px 4%;
+    }
+
+    .nav-links{
+        gap:12px;
+    }
+
+    .nav-links a{
+        font-size:11px;
+    }
+
+    .nav-buttons{
+        gap:5px;
+    }
+
+    .login,
+    .signup{
+        padding:7px 11px;
+        font-size:11px;
+    }
+
+    .contact-content{
+        grid-template-columns:1fr;
+    }
+
+    .contact-image{
+        height:450px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery-cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+
+/* ==========================================
+   RESPONSIVE - 768px
+========================================== */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:13px;
+        padding:16px 5%;
+    }
+
+    .logo{
+        font-size:29px;
+    }
+
+    .nav-links{
+        width:100%;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px 16px;
+    }
+
+    .nav-links a{
+        font-size:12px;
+        padding:4px 0;
+    }
+
+    .nav-buttons{
+        justify-content:center;
+        gap:8px;
+    }
+
+    .login,
+    .signup{
+        padding:8px 16px;
+        font-size:12px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:55px 5%;
+        gap:40px;
+    }
+
+    .hero-text{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .hero-text h1{
+        font-size:48px;
+    }
+
+    .hero-text p{
+        max-width:600px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-image img{
+        max-width:600px;
+    }
+
+    .services{
+        padding:60px 5%;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        max-width:500px;
+    }
+
+    .gallery-section{
+        padding:60px 5%;
+    }
+
+    .gallery-header h1{
+        font-size:42px;
+    }
+
+    .gallery-cards{
+        grid-template-columns:repeat(2,1fr);
+        gap:18px;
+    }
+
+    .gallery-card img{
+        height:220px;
+    }
+
+    .booking{
+        padding:45px 5%;
+    }
+
+    .booking-container{
+        padding:28px;
+    }
+
+    .booking h1{
+        font-size:40px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .about-page{
+        padding:60px 5%;
+    }
+
+    .about-page-content{
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .about-page-text h1{
+        font-size:45px;
+    }
+
+    .about-page-image{
+        width:100%;
+    }
+
+    .about-page-image img{
+        max-width:100%;
+    }
+
+    .contact-container{
+        grid-template-columns:1fr;
+    }
+
+    .welcome-container h1{
+        font-size:48px;
+    }
+
+    .welcome-subtitle{
+        font-size:18px;
+    }
+
+    .admin-bookings{
+        padding:40px 3%;
+    }
+
+    .admin-title h1{
+        font-size:38px;
+    }
+
+    .table-container{
+        padding:15px;
+    }
+
+    .admin-modal-content{
+        padding:25px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .edit-btn,
+    .delete-btn{
+        width:100%;
+    }
+
+    .admin-stats{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .admin-stat-card{
+        padding:18px;
+    }
+
+    .booking-filter{
+        justify-content:center;
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .booking-filter label{
+        text-align:center;
+    }
+
+    .booking-filter select{
+        width:100%;
+    }
+
+    .admin-table-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .registered-count{
+        text-align:center;
+        font-size:22px;
+    }
+
+    .refresh-btn{
+        width:50%;
+        margin:auto;
+    }
+
+    #usersTable{
+        min-width:600px;
+    }
+
+    .preview-modal{
+        padding:10px;
+    }
+
+    .preview-modal .modal-content{
+        padding:25px 18px;
+        max-height:95vh;
+        border-radius:16px;
+    }
+
+    .preview-modal .modal-content > h2{
+        font-size:35px;
+    }
+
+    .preview-section h3{
+        font-size:23px;
+    }
+
+    .preview-options{
+        justify-content:center;
+    }
+
+    .preview-option{
+        padding:9px 13px;
+        font-size:12px;
+    }
+
+    .shade-options{
+        justify-content:center;
+    }
+
+    .nail-preview-stage{
+        min-height:260px;
+        gap:9px;
+        padding:35px 10px;
+    }
+
+    .nail-preview-stage .virtual-nail{
+        width:45px;
+    }
+
+    .nail-preview-stage .nail-1{
+        height:120px;
+    }
+
+    .nail-preview-stage .nail-2{
+        height:140px;
+    }
+
+    .nail-preview-stage .nail-3{
+        height:150px;
+    }
+
+    .nail-preview-stage .nail-4{
+        height:140px;
+    }
+
+    .nail-preview-stage .nail-5{
+        height:120px;
+    }
+}
+
+
+/* ==========================================
+   RESPONSIVE - 600px
+========================================== */
 
 @media(max-width:600px){
 
+    .navbar{
+        gap:12px;
+        padding:15px 4%;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .nav-links{
+        gap:7px 13px;
+    }
+
+    .nav-links a{
+        font-size:11px;
+    }
+
+    .nav-buttons{
+        width:100%;
+        justify-content:center;
+    }
+
+    .login,
+    .signup{
+        padding:8px 17px;
+        font-size:11px;
+    }
+
+    .contact-hero{
+        padding:50px 5%;
+    }
+
+    .contact-hero-content h1{
+        font-size:42px;
+    }
+
+    .contact-main{
+        padding:45px 5%;
+    }
+
+    .contact-details h2{
+        font-size:34px;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-image{
+        height:350px;
+    }
+
+    .gallery-cards{
+        grid-template-columns:1fr;
+        max-width:500px;
+        margin:auto;
+    }
+
     .hero{
-        padding-bottom:30px ;
+        padding-bottom:30px;
     }
 
     .quick-features{
@@ -4531,6 +3096,163 @@ footer p{
         padding-top:40px;
         padding-bottom:40px;
     }
+}
+
+
+/* ==========================================
+   RESPONSIVE - 480px
+========================================== */
+
+@media(max-width:480px){
+
+    .navbar{
+        padding:14px 4%;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+
+    .nav-links{
+        gap:6px 11px;
+    }
+
+    .nav-links a{
+        font-size:10.5px;
+    }
+
+    .login,
+    .signup{
+        padding:7px 15px;
+        font-size:11px;
+    }
+
+    .hero{
+        padding:45px 5%;
+    }
+
+    .hero-text h1{
+        font-size:38px;
+    }
+
+    .hero-text p{
+        font-size:14px;
+    }
+
+    .gold-btn,
+    .outline-btn{
+        padding:11px 18px;
+        font-size:12px;
+    }
+
+    .about{
+        padding:65px 6%;
+    }
+
+    .about h2{
+        font-size:39px;
+    }
+
+    .about-page-text h1{
+        font-size:38px;
+    }
+
+    .services-title{
+        font-size:38px;
+    }
+
+    .booking-container{
+        padding:20px;
+    }
+
+    .auth-container{
+        padding:25px;
+    }
+
+    .welcome-page{
+        padding:20px;
+    }
+
+    .welcome-container h1{
+        font-size:38px;
+    }
+
+    .admin-title h1{
+        font-size:32px;
+    }
+
+    .admin-stats{
+        grid-template-columns:1fr;
+    }
+
+    .admin-stat-card{
+        padding:16px;
+    }
+
+    .stat-icon{
+        width:48px;
+        height:48px;
+        min-width:48px;
+        font-size:22px;
+    }
+
+    .stat-info h3{
+        font-size:19px;
+    }
+
+    .stat-info p{
+        font-size:23px;
+    }
+
+    .registered-count{
+        font-size:22px;
+    }
+
+    .preview-modal .modal-content > h2{
+        font-size:30px;
+    }
+
+    .preview-subtitle{
+        font-size:12px;
+    }
+
+    .nail-preview-stage{
+        gap:5px;
+        min-height:220px;
+    }
+
+    .nail-preview-stage .virtual-nail{
+        width:37px;
+        border-width:2px;
+    }
+
+    .nail-preview-stage .nail-1{
+        height:100px;
+    }
+
+    .nail-preview-stage .nail-2{
+        height:115px;
+    }
+
+    .nail-preview-stage .nail-3{
+        height:125px;
+    }
+
+    .nail-preview-stage .nail-4{
+        height:115px;
+    }
+
+    .nail-preview-stage .nail-5{
+        height:100px;
+    }
+
+    .selected-look{
+        padding:17px;
+    }
+
+    .selected-look h3{
+        font-size:24px;
+    }
 
     .home-section-heading{
         margin-bottom:25px;
@@ -4546,138 +3268,93 @@ footer p{
     .home-preview-box{
         padding:35px 20px;
     }
-
 }
+
+
 /* ==========================================
    FINAL MOBILE NAVBAR FIX
 ========================================== */
 
-@media (max-width: 800px) {
+@media (max-width:800px){
 
-    .navbar {
-        display: flex ;
-        flex-direction: column ;
-        align-items: center ;
-        justify-content: center ;
-
-        width: 100%;
-        box-sizing: border-box;
-
-        padding: 24px 12px 20px ;
+    .navbar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+        box-sizing:border-box;
+        padding:24px 12px 20px;
     }
 
-
-    /* LOGO */
-
-    .navbar .logo {
-        display: block ;
-
-        width: 100%;
-
-        text-align: center;
-
-        font-size: 30px ;
-
-        margin: 0 0 18px 0 ;
+    .navbar .logo{
+        display:block;
+        width:100%;
+        text-align:center;
+        font-size:30px;
+        margin:0 0 18px 0;
     }
 
-
-    /* NAVIGATION */
-
-    .navbar .nav-links {
-        display: flex ;
-
-        flex-direction: row ;
-
-        flex-wrap: wrap ;
-
-        align-items: center ;
-
-        justify-content: center ;
-
-        width: 100% ;
-
-        gap: 0 ;
-
-        margin: 0 ;
-
-        padding: 0 ;
-
-        background: transparent ;
-
-        border: none ;
-
-        list-style: none ;
+    .navbar .nav-links{
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:center;
+        width:100%;
+        gap:0;
+        margin:0;
+        padding:0;
+        background:transparent;
+        border:none;
+        list-style:none;
     }
 
-
-    .navbar .nav-links li {
-        display: block ;
-
-        width: auto ;
-
-        text-align: center ;
-
-        margin: 0 ;
-
-        padding: 0 ;
+    .navbar .nav-links li{
+        display:block;
+        width:auto;
+        text-align:center;
+        margin:0;
+        padding:0;
     }
 
-
-    .navbar .nav-links a {
-        display: block ;
-
-        width: auto ;
-
-        padding: 7px 9px ;
-
-        font-size: 14px ;
-
-        color: #444 ;
-
-        white-space: nowrap ;
-
-        text-decoration: none ;
+    .navbar .nav-links a{
+        display:block;
+        width:auto;
+        padding:7px 9px;
+        font-size:14px;
+        color:#444;
+        white-space:nowrap;
+        text-decoration:none;
     }
 
-
-    .navbar .nav-links a::after {
-        display: none ;
+    /* MOBILE ACTIVE LINK */
+    .navbar .nav-links a.active{
+        color:#b8860b;
+        font-weight:600;
     }
 
-
-    /* BOOK NOW */
-
-    .navbar .nav-buttons {
-        display: flex ;
-
-        width: 100% ;
-
-        justify-content: center ;
-
-        align-items: center ;
-
-        margin-top: 18px ;
-
-        gap: 0 ;
+    .navbar .nav-links a::after{
+        display:none;
     }
 
-
-    .navbar .signup {
-        display: inline-block ;
-
-        padding: 10px 28px ;
-
-        font-size: 14px ;
-
-        border-radius: 6px ;
+    .navbar .nav-buttons{
+        display:flex;
+        width:100%;
+        justify-content:center;
+        align-items:center;
+        margin-top:18px;
+        gap:0;
     }
 
-
-   
-
-    .navbar .menu-toggle {
-        display: none ;
+    .navbar .signup{
+        display:inline-block;
+        padding:10px 28px;
+        font-size:14px;
+        border-radius:6px;
     }
 
+    .navbar .menu-toggle{
+        display:none;
+    }
 }
