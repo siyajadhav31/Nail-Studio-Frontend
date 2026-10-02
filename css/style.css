@@ -31,7 +31,6 @@ a{
 
 
 
-
 /* ==========================================
    NAVBAR
 ========================================== */
@@ -137,18 +136,14 @@ a{
     background:#b8860b;
 }
 
+
 /* ==========================================
-   MOBILE NAVBAR
+   MOBILE MENU BUTTON
+   HIDDEN - WE WANT LINKS VISIBLE
 ========================================== */
 
-.menu-toggle {
-    display: none;
-    border: none;
-    background: transparent;
-    color: #333;
-    font-size: 28px;
-    cursor: pointer;
-    padding: 4px;
+.menu-toggle{
+    display:none !important;
 }
 
 
@@ -156,24 +151,24 @@ a{
    TABLET
 ========================================== */
 
-@media (max-width: 1000px) {
+@media (max-width:1000px){
 
-    .navbar {
-        padding: 16px 5%;
+    .navbar{
+        padding:16px 5%;
     }
 
-    .nav-links {
-        gap: 14px;
+    .nav-links{
+        gap:14px;
     }
 
-    .nav-links a {
-        font-size: 12px;
+    .nav-links a{
+        font-size:12px;
     }
 
     .login,
-    .signup {
-        padding: 7px 12px;
-        font-size: 11px;
+    .signup{
+        padding:7px 12px;
+        font-size:11px;
     }
 
 }
@@ -183,71 +178,137 @@ a{
    MOBILE
 ========================================== */
 
-@media (max-width: 800px) {
+@media (max-width:800px){
 
-    .navbar {
-        padding: 15px 5%;
-        flex-wrap: wrap;
+    .navbar{
+        padding:25px 15px 20px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        justify-content:center;
     }
 
-    .logo {
-        font-size: 25px;
+
+    /* ======================================
+       LOGO
+    ====================================== */
+
+    .logo{
+        font-size:30px;
+
+        margin-bottom:18px;
+
+        text-align:center;
+
+        width:100%;
     }
 
-    /* Hamburger button */
-    .menu-toggle {
-        display: block;
-        margin-left: auto;
-        margin-right: 8px;
+
+    /* ======================================
+       NAVIGATION LINKS
+    ====================================== */
+
+    .nav-links{
+        display:flex;
+
+        width:100%;
+
+        flex-wrap:wrap;
+
+        flex-direction:row;
+
+        align-items:center;
+
+        justify-content:center;
+
+        gap:0;
+
+        margin:0;
+
+        padding:0;
+
+        background:transparent;
+
+        border:none;
     }
 
-    /* Hide desktop buttons */
-    .nav-buttons {
-        display: none;
+
+    .nav-links li{
+        width:auto;
+
+        text-align:center;
     }
 
-    /* Hide menu initially */
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        margin-top: 15px;
-        padding: 10px 0;
-        background: white;
-        border-top: 1px solid #f1e8e3;
+
+    .nav-links a{
+        display:block;
+
+        width:auto;
+
+        padding:7px 9px;
+
+        font-size:14px;
+
+        color:#444;
+
+        white-space:nowrap;
     }
 
-    /* Show menu when clicked */
-    .nav-links.active {
-        display: flex;
+
+    /* Remove underline on mobile */
+
+    .nav-links a::after{
+        display:none;
     }
 
-    .nav-links li {
-        width: 100%;
-        text-align: center;
+
+    .nav-links a:hover{
+        color:#b8860b;
+
+        background:transparent;
     }
 
-    .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 12px 0;
-        font-size: 14px;
+
+    /* ======================================
+       BOOK NOW
+    ====================================== */
+
+    .nav-buttons{
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        margin-top:18px;
+
+        width:100%;
     }
 
-    .nav-links a::after {
-        display: none;
+
+    .login,
+    .signup{
+        padding:10px 28px;
+
+        font-size:14px;
+
+        border-radius:6px;
     }
 
-    .nav-links a:hover {
-        color: #b8860b;
-        background: #fffaf8;
+
+    /* ======================================
+       HIDE HAMBURGER
+    ====================================== */
+
+    .menu-toggle{
+        display:none !important;
     }
 
 }
-
-
 /* ==========================================
    HERO
 ========================================== */
