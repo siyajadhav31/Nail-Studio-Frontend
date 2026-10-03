@@ -88,7 +88,7 @@
         </ul>
 
 
-        <!-- ONLY BOOK NOW -->
+        <!-- BOOK NOW -->
 
         <a
             href="booking.html"
@@ -214,7 +214,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -328,7 +327,6 @@
                     name="design"
                     value="Not Selected"
                 >
-
 
 
                 <!-- SUBMIT -->
@@ -533,26 +531,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const today = new Date();
 
-
         const year =
             today.getFullYear();
-
 
         const month =
             String(
                 today.getMonth() + 1
             ).padStart(2, "0");
 
-
         const day =
             String(
                 today.getDate()
             ).padStart(2, "0");
 
-
         dateInput.min =
             `${year}-${month}-${day}`;
-
 
 
         /* ==========================================
@@ -567,7 +560,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     new Date(
                         this.value + "T00:00:00"
                     );
-
 
                 const dayOfWeek =
                     selectedDate.getDay();
@@ -645,13 +637,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 const bookingData = {
 
                     name:
-                        document.getElementById("name").value,
+                        document.getElementById("name").value.trim(),
 
                     email:
-                        document.getElementById("email").value,
+                        document.getElementById("email").value.trim(),
 
                     phone:
-                        document.getElementById("phone").value,
+                        document.getElementById("phone").value.trim(),
 
                     service:
                         document.getElementById("service").value,
@@ -677,6 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         await fetch(
                             "https://nail-studio-backend-k604.onrender.com/api/bookings",
                             {
+
                                 method: "POST",
 
                                 headers: {
@@ -688,11 +681,20 @@ document.addEventListener("DOMContentLoaded", function () {
                                     JSON.stringify(
                                         bookingData
                                     )
+
                             }
                         );
 
 
                     if (!response.ok) {
+
+                        const errorText =
+                            await response.text();
+
+                        console.error(
+                            "Server response:",
+                            errorText
+                        );
 
                         throw new Error(
                             "Booking failed: " +
@@ -719,7 +721,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     bookingForm.reset();
 
 
-                } catch (error) {
+                }
+
+                catch (error) {
 
                     console.error(
                         "Booking Error:",

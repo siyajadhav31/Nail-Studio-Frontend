@@ -59,18 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const previewModal =
         document.getElementById("previewModal");
 
-    // IMPORTANT:
-    // HTML uses closeModal
     const previewClose =
         document.getElementById("closeModal");
 
-    // IMPORTANT:
-    // HTML uses previewBtn
     const openPreviewBtn =
         document.getElementById("previewBtn");
 
-    // IMPORTANT:
-    // HTML uses previewBtnBottom
     const openPreviewBtnBottom =
         document.getElementById("previewBtnBottom");
 
@@ -115,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // HERO BUTTON
+
     if (openPreviewBtn) {
 
         openPreviewBtn.addEventListener(
@@ -132,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // BOTTOM BUTTON
+
     if (openPreviewBtnBottom) {
 
         openPreviewBtnBottom.addEventListener(
@@ -216,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateVirtualPreview() {
 
         // SERVICE
+
         const previewService =
             document.getElementById("previewService");
 
@@ -228,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // SHAPE
+
         const previewShape =
             document.getElementById("previewShape");
 
@@ -240,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // DESIGN
+
         const previewDesign =
             document.getElementById("previewDesign");
 
@@ -252,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // SHADE
+
         const previewShade =
             document.getElementById("previewShade");
 
@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // SELECTED SHADE NAME
+
         const selectedShadeName =
             document.getElementById(
                 "selectedShadeName"
@@ -278,6 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // BOOKING SERVICE
+
         const bookingService =
             document.getElementById(
                 "bookingService"
@@ -292,6 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // BOOKING DESIGN
+
         const bookingDesign =
             document.getElementById(
                 "bookingDesign"
@@ -306,6 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // BOOKING SHADE
+
         const bookingShade =
             document.getElementById(
                 "bookingShade"
@@ -320,6 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // HIDDEN SERVICE INPUT
+
         const virtualService =
             document.getElementById(
                 "virtualService"
@@ -334,6 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // APPLY SHADE TO NAILS
+
         const nails =
             document.querySelectorAll(
                 ".virtual-nail"
@@ -442,9 +448,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!nailStage) return;
 
-
-        // Remove old shape classes
-
         nailStage.classList.remove(
             "shape-round",
             "shape-square",
@@ -455,14 +458,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "shape-oval"
         );
 
-
-        // Convert text to CSS class
-
         const shapeClass =
             selectedShape
                 .toLowerCase()
                 .replace(/\s+/g, "-");
-
 
         nailStage.classList.add(
             "shape-" + shapeClass
@@ -525,7 +524,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!nailStage) return;
 
-
         nailStage.classList.remove(
             "design-classic-nude",
             "design-french",
@@ -537,12 +535,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "design-minimal"
         );
 
-
         const designClass =
             selectedDesign
                 .toLowerCase()
                 .replace(/\s+/g, "-");
-
 
         nailStage.classList.add(
             "design-" + designClass
@@ -554,9 +550,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
     // SHADE OPTIONS
     // ==========================================
-    // IMPORTANT:
-    // HTML uses .shade-btn
-    // NOT .shade-option
 
     const shadeOptions =
         document.querySelectorAll(
@@ -581,16 +574,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 option.classList.add("active");
 
-
                 selectedShade =
                     option.dataset.shade ||
                     option.textContent.trim();
 
-
                 selectedColor =
                     option.dataset.color ||
                     "#d4af37";
-
 
                 updateVirtualPreview();
 
@@ -715,7 +705,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         updateNailShape();
+
         updateNailDesign();
+
         updateVirtualPreview();
 
     }
@@ -743,9 +735,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                // ==========================================
                 // INPUTS
-                // ==========================================
 
                 const nameInput =
                     document.getElementById(
@@ -762,15 +752,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         "virtualPhone"
                     );
 
-                // IMPORTANT:
-                // HTML uses virtualBookingDate
                 const dateInput =
                     document.getElementById(
                         "virtualBookingDate"
                     );
 
-                // IMPORTANT:
-                // HTML uses time
                 const timeInput =
                     document.getElementById(
                         "time"
@@ -803,9 +789,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         : "";
 
 
-                // ==========================================
                 // VALIDATION
-                // ==========================================
 
                 if (
                     !name ||
@@ -824,11 +808,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ==========================================
                 // EMAIL VALIDATION
-                // ==========================================
 
-                // FIXED REGEX
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -846,9 +827,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ==========================================
                 // BOOKING DATA
-                // ==========================================
 
                 const bookingData = {
 
@@ -881,9 +860,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // ==========================================
                 // BUTTON STATE
-                // ==========================================
 
                 if (virtualBookButton) {
 
@@ -896,9 +873,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // ==========================================
                 // SEND TO BACKEND
-                // ==========================================
 
                 try {
 
@@ -953,16 +928,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    // RESET FORM
-
                     virtualBookingForm.reset();
-
-
-                    // CLOSE MODAL
 
                     closePreview();
 
                 }
+
                 catch (error) {
 
                     console.error(
@@ -976,6 +947,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 }
+
                 finally {
 
                     if (virtualBookButton) {
@@ -1094,7 +1066,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // FIXED EMAIL REGEX
+                // EMAIL VALIDATION
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1226,6 +1198,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     bookingForm.reset();
 
                 }
+
                 catch (error) {
 
                     console.error(
@@ -1239,6 +1212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 }
+
                 finally {
 
                     if (submitButton) {

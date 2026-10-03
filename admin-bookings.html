@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Bookings | Nail Muse</title>
+    <title>Admin Bookings | Nail Studio</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -23,6 +23,7 @@
 
 <body>
 
+
     <!-- ==========================================
          ADMIN NAVBAR
     ========================================== -->
@@ -31,8 +32,12 @@
 
         <nav class="admin-navbar">
 
-            <a href="admin-bookings.html" class="admin-logo">
-                Nail Muse
+            <a
+                href="admin-bookings.html"
+                class="admin-logo">
+
+                Nail Studio
+
             </a>
 
 
@@ -77,7 +82,7 @@
             <div class="admin-title">
 
                 <span>
-                    Nail Muse Administration
+                    Nail Studio Administration
                 </span>
 
 
@@ -101,6 +106,8 @@
             <div class="admin-stats">
 
 
+                <!-- TOTAL BOOKINGS -->
+
                 <div class="admin-stat-card">
 
                     <div class="stat-icon"></div>
@@ -120,6 +127,8 @@
                 </div>
 
 
+
+                <!-- OFFER BOOKINGS -->
 
                 <div class="admin-stat-card">
 
@@ -141,6 +150,8 @@
 
 
 
+                <!-- SERVICE BOOKINGS -->
+
                 <div class="admin-stat-card">
 
                     <div class="stat-icon"></div>
@@ -160,6 +171,8 @@
                 </div>
 
 
+
+                <!-- VIRTUAL BOOKINGS -->
 
                 <div class="admin-stat-card">
 
@@ -227,6 +240,8 @@
                 <div class="table-container">
 
 
+                    <!-- LOADING -->
+
                     <div
                         id="loadingMessage"
                         class="loading">
@@ -236,6 +251,8 @@
                     </div>
 
 
+
+                    <!-- TABLE -->
 
                     <table id="bookingTable">
 
@@ -264,11 +281,15 @@
                         </thead>
 
 
-                        <tbody id="bookingTableBody"></tbody>
+                        <tbody
+                            id="bookingTableBody">
+                        </tbody>
 
                     </table>
 
 
+
+                    <!-- EMPTY -->
 
                     <div
                         id="emptyMessage"
@@ -302,6 +323,8 @@
         <div class="admin-modal-content">
 
 
+            <!-- CLOSE -->
+
             <span
                 class="admin-close-modal"
                 id="closeModal">
@@ -318,8 +341,11 @@
 
 
 
-            <form id="editBookingForm">
+            <form
+                id="editBookingForm">
 
+
+                <!-- NAME -->
 
                 <div class="edit-form-group">
 
@@ -336,6 +362,8 @@
 
 
 
+                <!-- EMAIL -->
+
                 <div class="edit-form-group">
 
                     <label for="editEmail">
@@ -350,6 +378,8 @@
                 </div>
 
 
+
+                <!-- PHONE -->
 
                 <div class="edit-form-group">
 
@@ -368,6 +398,8 @@
 
 
 
+                <!-- DATE -->
+
                 <div class="edit-form-group">
 
                     <label for="editDate">
@@ -382,6 +414,8 @@
                 </div>
 
 
+
+                <!-- TIME -->
 
                 <div class="edit-form-group">
 
@@ -447,6 +481,8 @@
 
 
 
+                <!-- UPDATE -->
+
                 <button
                     type="submit"
                     class="update-btn">
@@ -476,20 +512,18 @@
 
     <!-- ==========================================
          JAVASCRIPT
-         
-         IMPORTANT:
-         Script is placed at the bottom so all
-         HTML elements are already loaded.
     ========================================== -->
 
     <script>
 
+
         /* ==========================================
-           API URL
+           LIVE BACKEND URL
         ========================================== */
 
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
+
 
         const API_URL =
             API_BASE_URL + "/api/bookings";
@@ -511,11 +545,16 @@
 
                 const response =
                     await fetch(
-                        API_BASE_URL + "/api/admin/check",
+                        API_BASE_URL +
+                        "/api/admin/check",
                         {
                             method: "GET",
-                            credentials: "include",
-                            cache: "no-store"
+
+                            credentials:
+                                "include",
+
+                            cache:
+                                "no-store"
                         }
                     );
 
@@ -532,7 +571,8 @@
 
                 if (
                     !response.ok ||
-                    result.trim() !== "Admin authenticated"
+                    result.trim() !==
+                    "Admin authenticated"
                 ) {
 
                     window.location.href =
@@ -568,7 +608,7 @@
 
 
         /* ==========================================
-           CHECK BOOKING TYPE
+           GET BOOKING TYPE
         ========================================== */
 
         function getBookingType(booking) {
@@ -609,7 +649,13 @@
             }
 
 
-            if (isOldOfferBooking(booking)) {
+            /*
+             * Old offer bookings
+             */
+
+            if (
+                isOldOfferBooking(booking)
+            ) {
 
                 return "OFFER";
 
@@ -648,15 +694,20 @@
 
             return (
 
-                service === "first visit offer" ||
+                service ===
+                    "first visit offer" ||
 
-                service === "birthday offer" ||
+                service ===
+                    "birthday offer" ||
 
-                service === "nail art combo" ||
+                service ===
+                    "nail art combo" ||
 
-                service === "festive special" ||
+                service ===
+                    "festive special" ||
 
-                service === "loyalty rewards"
+                service ===
+                    "loyalty rewards"
 
             );
 
@@ -665,42 +716,60 @@
 
 
         /* ==========================================
-           BOOKING TYPE CHECKS
+           TYPE CHECKS
         ========================================== */
 
         function isOfferBooking(booking) {
 
-            return getBookingType(booking) === "OFFER";
+            return (
+                getBookingType(booking) ===
+                "OFFER"
+            );
 
         }
 
 
         function isVirtualBooking(booking) {
 
-            return getBookingType(booking) === "VIRTUAL";
+            return (
+                getBookingType(booking) ===
+                "VIRTUAL"
+            );
 
         }
 
 
         function isServiceBooking(booking) {
 
-            return getBookingType(booking) === "SERVICE";
+            return (
+                getBookingType(booking) ===
+                "SERVICE"
+            );
 
         }
 
 
 
         /* ==========================================
-           UPDATE DASHBOARD STATS
+           UPDATE DASHBOARD
         ========================================== */
 
         function updateDashboardStats() {
+
+            /*
+             * Total
+             */
 
             document.getElementById(
                 "totalBookings"
             ).textContent =
                 bookingsData.length;
 
+
+
+            /*
+             * Offers
+             */
 
             const offerCount =
                 bookingsData.filter(
@@ -720,6 +789,11 @@
                 offerCount;
 
 
+
+            /*
+             * Services
+             */
+
             const serviceCount =
                 bookingsData.filter(
                     function (booking) {
@@ -737,6 +811,11 @@
             ).textContent =
                 serviceCount;
 
+
+
+            /*
+             * Virtual
+             */
 
             const virtualCount =
                 bookingsData.filter(
@@ -783,6 +862,10 @@
                 );
 
 
+            /*
+             * Loading
+             */
+
             loadingMessage.style.display =
                 "block";
 
@@ -808,14 +891,18 @@
                         new Date().getTime(),
                         {
                             method: "GET",
-                            credentials: "include",
-                            cache: "no-store"
+
+                            credentials:
+                                "include",
+
+                            cache:
+                                "no-store"
                         }
                     );
 
 
                 console.log(
-                    "Bookings API status:",
+                    "Bookings API Status:",
                     response.status
                 );
 
@@ -835,23 +922,28 @@
 
 
                 console.log(
-                    "Bookings API response:",
+                    "Bookings API Response:",
                     data
                 );
 
 
                 /*
-                 * Supports both:
-                 *
-                 * 1. Direct array
-                 * 2. Wrapper response { data: [...] }
+                 * Direct array
                  */
 
-                if (Array.isArray(data)) {
+                if (
+                    Array.isArray(data)
+                ) {
 
-                    bookingsData = data;
+                    bookingsData =
+                        data;
 
                 }
+
+
+                /*
+                 * Wrapper response
+                 */
 
                 else if (
                     data &&
@@ -863,6 +955,11 @@
 
                 }
 
+
+                /*
+                 * Invalid response
+                 */
+
                 else {
 
                     bookingsData = [];
@@ -870,13 +967,18 @@
                 }
 
 
-                /* Newest booking first */
+
+                /*
+                 * Newest first
+                 */
 
                 bookingsData.sort(
                     function (a, b) {
 
-                        return Number(b.id) -
-                               Number(a.id);
+                        return (
+                            Number(b.id) -
+                            Number(a.id)
+                        );
 
                     }
                 );
@@ -900,6 +1002,12 @@
                 );
 
 
+                bookingsData = [];
+
+
+                updateDashboardStats();
+
+
                 loadingMessage.style.display =
                     "block";
 
@@ -907,13 +1015,44 @@
                 loadingMessage.innerHTML =
                     "Unable to load bookings. Please check the Spring Boot backend.";
 
-
-                bookingsData = [];
-
-
-                updateDashboardStats();
-
             }
+
+        }
+
+
+
+        /* ==========================================
+           ESCAPE HTML
+        ========================================== */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
@@ -951,7 +1090,14 @@
                 bookingsData.slice();
 
 
-            if (filter === "offer") {
+
+            /*
+             * OFFER
+             */
+
+            if (
+                filter === "offer"
+            ) {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -967,7 +1113,14 @@
             }
 
 
-            else if (filter === "service") {
+
+            /*
+             * SERVICE
+             */
+
+            else if (
+                filter === "service"
+            ) {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -983,7 +1136,14 @@
             }
 
 
-            else if (filter === "virtual") {
+
+            /*
+             * VIRTUAL
+             */
+
+            else if (
+                filter === "virtual"
+            ) {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -999,7 +1159,14 @@
             }
 
 
-            if (filteredBookings.length === 0) {
+
+            /*
+             * Empty
+             */
+
+            if (
+                filteredBookings.length === 0
+            ) {
 
                 emptyMessage.style.display =
                     "block";
@@ -1013,6 +1180,11 @@
                 "none";
 
 
+
+            /*
+             * Create rows
+             */
+
             filteredBookings.forEach(
                 function (booking) {
 
@@ -1022,13 +1194,22 @@
                         );
 
 
-                    let bookingTypeText = "";
+                    let bookingTypeText =
+                        "Service Booking";
 
-                    let badgeClass = "";
 
+                    let badgeClass =
+                        "service-badge";
+
+
+
+                    /*
+                     * Offer
+                     */
 
                     if (
-                        bookingType === "OFFER"
+                        bookingType ===
+                        "OFFER"
                     ) {
 
                         bookingTypeText =
@@ -1040,8 +1221,14 @@
                     }
 
 
+
+                    /*
+                     * Virtual
+                     */
+
                     else if (
-                        bookingType === "VIRTUAL"
+                        bookingType ===
+                        "VIRTUAL"
                     ) {
 
                         bookingTypeText =
@@ -1053,16 +1240,10 @@
                     }
 
 
-                    else {
 
-                        bookingTypeText =
-                            "Service Booking";
-
-                        badgeClass =
-                            "service-badge";
-
-                    }
-
+                    /*
+                     * Table row
+                     */
 
                     const row =
                         document.createElement(
@@ -1077,21 +1258,30 @@
                         </td>
 
                         <td>
-                            ${booking.name || ""}
+                            ${escapeHTML(
+                                booking.name || ""
+                            )}
                         </td>
 
                         <td>
-                            ${booking.email || ""}
+                            ${escapeHTML(
+                                booking.email || ""
+                            )}
                         </td>
 
                         <td>
-                            ${booking.phone || ""}
+                            ${escapeHTML(
+                                booking.phone || ""
+                            )}
                         </td>
 
                         <td>
 
-                            <span class="${badgeClass}">
+                            <span
+                                class="${badgeClass}">
+
                                 ${bookingTypeText}
+
                             </span>
 
                         </td>
@@ -1106,7 +1296,8 @@
 
                         <td>
 
-                            <div class="action-buttons">
+                            <div
+                                class="action-buttons">
 
                                 <button
                                     class="edit-btn"
@@ -1148,7 +1339,9 @@
         ========================================== */
 
         document
-            .getElementById("bookingFilter")
+            .getElementById(
+                "bookingFilter"
+            )
             .addEventListener(
                 "change",
                 function () {
@@ -1170,8 +1363,10 @@
                 bookingsData.find(
                     function (item) {
 
-                        return Number(item.id) ===
-                               Number(id);
+                        return (
+                            Number(item.id) ===
+                            Number(id)
+                        );
 
                     }
                 );
@@ -1236,7 +1431,9 @@
         ========================================== */
 
         document
-            .getElementById("closeModal")
+            .getElementById(
+                "closeModal"
+            )
             .addEventListener(
                 "click",
                 function () {
@@ -1252,7 +1449,7 @@
 
 
         /* ==========================================
-           CLOSE MODAL OUTSIDE CLICK
+           CLOSE MODAL OUTSIDE
         ========================================== */
 
         window.addEventListener(
@@ -1265,7 +1462,9 @@
                     );
 
 
-                if (event.target === modal) {
+                if (
+                    event.target === modal
+                ) {
 
                     modal.style.display =
                         "none";
@@ -1282,7 +1481,9 @@
         ========================================== */
 
         document
-            .getElementById("editBookingForm")
+            .getElementById(
+                "editBookingForm"
+            )
             .addEventListener(
                 "submit",
                 async function (event) {
@@ -1290,7 +1491,9 @@
                     event.preventDefault();
 
 
-                    if (!selectedBookingId) {
+                    if (
+                        !selectedBookingId
+                    ) {
 
                         alert(
                             "Booking ID not found."
@@ -1305,43 +1508,63 @@
                         bookingsData.find(
                             function (booking) {
 
-                                return Number(
-                                    booking.id
-                                ) ===
-                                Number(
-                                    selectedBookingId
+                                return (
+                                    Number(
+                                        booking.id
+                                    ) ===
+                                    Number(
+                                        selectedBookingId
+                                    )
                                 );
 
                             }
                         );
 
 
-                    const bookingData = {
+                    const updatedBooking = {
 
                         name:
-                            document.getElementById(
-                                "editName"
-                            ).value.trim(),
+                            document
+                                .getElementById(
+                                    "editName"
+                                )
+                                .value
+                                .trim(),
+
 
                         email:
-                            document.getElementById(
-                                "editEmail"
-                            ).value.trim(),
+                            document
+                                .getElementById(
+                                    "editEmail"
+                                )
+                                .value
+                                .trim(),
+
 
                         phone:
-                            document.getElementById(
-                                "editPhone"
-                            ).value.trim(),
+                            document
+                                .getElementById(
+                                    "editPhone"
+                                )
+                                .value
+                                .trim(),
+
 
                         bookingDate:
-                            document.getElementById(
-                                "editDate"
-                            ).value,
+                            document
+                                .getElementById(
+                                    "editDate"
+                                )
+                                .value,
+
 
                         bookingTime:
-                            document.getElementById(
-                                "editTime"
-                            ).value,
+                            document
+                                .getElementById(
+                                    "editTime"
+                                )
+                                .value,
+
 
                         bookingType:
                             originalBooking &&
@@ -1361,7 +1584,8 @@
                                 selectedBookingId,
                                 {
 
-                                    method: "PUT",
+                                    method:
+                                        "PUT",
 
                                     credentials:
                                         "include",
@@ -1375,14 +1599,16 @@
 
                                     body:
                                         JSON.stringify(
-                                            bookingData
+                                            updatedBooking
                                         )
 
                                 }
                             );
 
 
-                        if (!response.ok) {
+                        if (
+                            !response.ok
+                        ) {
 
                             throw new Error(
                                 "Update failed. Status: " +
@@ -1397,9 +1623,11 @@
                         );
 
 
-                        document.getElementById(
-                            "editModal"
-                        ).style.display =
+                        document
+                            .getElementById(
+                                "editModal"
+                            )
+                            .style.display =
                             "none";
 
 
@@ -1458,7 +1686,8 @@
                         id,
                         {
 
-                            method: "DELETE",
+                            method:
+                                "DELETE",
 
                             credentials:
                                 "include"
@@ -1467,7 +1696,9 @@
                     );
 
 
-                if (!response.ok) {
+                if (
+                    !response.ok
+                ) {
 
                     throw new Error(
                         "Delete failed. Status: " +
@@ -1509,7 +1740,9 @@
         ========================================== */
 
         document
-            .getElementById("logoutBtn")
+            .getElementById(
+                "logoutBtn"
+            )
             .addEventListener(
                 "click",
                 async function () {
@@ -1521,7 +1754,8 @@
                             "/api/admin/logout",
                             {
 
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 credentials:
                                     "include"
@@ -1594,6 +1828,7 @@
 
             }
         );
+
 
     </script>
 

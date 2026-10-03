@@ -28,12 +28,16 @@
     <div class="auth-container">
 
 
+        <!-- LOGO -->
+
         <div class="auth-logo">
 
             💅 Nail Studio
 
         </div>
 
+
+        <!-- ADMIN LOGIN FORM -->
 
         <form
             id="adminLoginForm"
@@ -45,6 +49,8 @@
             </h1>
 
 
+            <!-- EMAIL -->
+
             <input
                 type="email"
                 id="adminEmail"
@@ -52,12 +58,16 @@
                 required>
 
 
+            <!-- PASSWORD -->
+
             <input
                 type="password"
                 id="adminPassword"
                 placeholder="Password"
                 required>
 
+
+            <!-- LOGIN BUTTON -->
 
             <button
                 type="submit"
@@ -68,17 +78,21 @@
             </button>
 
 
+            <!-- MESSAGE -->
+
             <p
                 id="adminMessage"
                 style="
-                    text-align:center;
-                    margin-top:15px;
+                    text-align: center;
+                    margin-top: 15px;
                 ">
             </p>
 
 
         </form>
 
+
+        <!-- BACK TO WEBSITE -->
 
         <a
             href="welcome.html"
@@ -107,10 +121,14 @@ document
             event.preventDefault();
 
 
+            /* ===============================
+               GET FORM VALUES
+            =============================== */
+
             const email =
                 document.getElementById(
                     "adminEmail"
-                ).value;
+                ).value.trim();
 
 
             const password =
@@ -125,12 +143,24 @@ document
                 );
 
 
+            /* ===============================
+               RESET MESSAGE
+            =============================== */
+
+            message.style.color = "";
+            message.textContent = "Logging in...";
+
+
             try {
 
 
+                /* ===============================
+                   LIVE SPRING BOOT BACKEND
+                =============================== */
+
                 const response =
                     await fetch(
-                        "http://127.0.0.1:8080/api/admin/login",
+                        "https://nail-studio-backend-k604.onrender.com/api/admin/login",
                         {
 
                             method: "POST",
@@ -158,11 +188,26 @@ document
                     );
 
 
+                /* ===============================
+                   GET SERVER RESPONSE
+                =============================== */
+
                 const result =
                     await response.text();
 
 
+                console.log(
+                    "Admin login response:",
+                    result
+                );
+
+
+                /* ===============================
+                   LOGIN SUCCESS
+                =============================== */
+
                 if (
+                    response.ok &&
                     result ===
                     "Admin login successful"
                 ) {
@@ -175,6 +220,10 @@ document
                     message.textContent =
                         "Admin login successful!";
 
+
+                    /* ===============================
+                       REDIRECT TO ADMIN BOOKINGS
+                    =============================== */
 
                     setTimeout(
                         function() {
@@ -189,6 +238,11 @@ document
 
                 }
 
+
+                /* ===============================
+                   LOGIN FAILED
+                =============================== */
+
                 else {
 
 
@@ -197,13 +251,18 @@ document
 
 
                     message.textContent =
-                        result;
+                        result ||
+                        "Invalid admin email or password.";
 
                 }
 
 
             }
 
+
+            /* ===============================
+               SERVER CONNECTION ERROR
+            =============================== */
 
             catch (error) {
 
