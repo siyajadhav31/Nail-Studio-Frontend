@@ -14,537 +14,1078 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
-    <style>
+   <script>
 
-        /* ==========================================
-           ADMIN NAVBAR
-        ========================================== */
+/* ==========================================
+   API URL
+========================================== */
 
-        .admin-navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 5%;
-            background: #ffffff;
-            border-bottom: 1px solid #eadfc9;
-            min-height: 72px;
-            box-sizing: border-box;
-        }
+const API_BASE_URL =
+    "https://nail-studio-backend-k604.onrender.com";
 
-        .admin-logo {
-            display: inline-block;
-            text-decoration: none;
-            color: #49393e;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 30px;
-            font-weight: 600;
-            letter-spacing: .2px;
-            transition: .3s ease;
-        }
+const API_URL =
+    API_BASE_URL + "/api/bookings";
 
-        .admin-logo:hover {
-            color: #b8860b;
-        }
 
-        .admin-nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+let bookingsData = [];
 
-        .admin-nav-link {
-            color: #49393e;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-        }
+let selectedBookingId = null;
 
-        .admin-nav-link:hover {
-            color: #b8860b;
-        }
 
-        .logout-btn {
-            background: transparent;
-            border: 1px solid #49393e;
-            color: #49393e;
-            padding: 8px 17px;
-            border-radius: 2px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            cursor: pointer;
-            transition: .3s ease;
-        }
+/* ==========================================
+   CHECK ADMIN LOGIN
+========================================== */
 
-        .logout-btn:hover {
-            background: #49393e;
-            color: #ffffff;
+async function checkAdminLogin() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL + "/api/admin/check",
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+
+        const result =
+            await response.text();
+
+
+        console.log(
+            "Admin Check:",
+            result
+        );
+
+
+        if (!response.ok ||
+            result.trim() !== "Admin authenticated") {
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+
         }
 
 
-        /* ==========================================
-           ADMIN MAIN
-        ========================================== */
+        return true;
 
-        .admin-bookings {
-            min-height: calc(100vh - 150px);
-            background: #fffaf8;
-            padding: 65px 5% 80px;
-        }
+    }
 
-        .admin-container {
-            max-width: 1250px;
-            margin: auto;
-        }
+    catch (error) {
+
+        console.error(
+            "Admin authentication error:",
+            error
+        );
 
 
-        /* ==========================================
-           ADMIN TITLE
-        ========================================== */
-
-        .admin-title {
-            margin-bottom: 38px;
-        }
-
-        .admin-title span {
-            color: #b8860b;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .admin-title h1 {
-            font-family: 'Cormorant Garamond', serif;
-            color: #49393e;
-            font-size: 50px;
-            font-weight: 600;
-            margin: 8px 0 5px;
-            line-height: 1.1;
-        }
-
-        .admin-title p {
-            color: #777;
-            font-size: 13px;
-            margin: 0;
-        }
+        window.location.href =
+            "admin-login.html";
 
 
-        /* ==========================================
-           DASHBOARD STATS
-        ========================================== */
+        return false;
 
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 32px;
-        }
+    }
 
-        .admin-stat-card {
-            background: #ffffff;
-            border: 1px solid #eadfc9;
-            padding: 25px 22px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: .3s ease;
-        }
-
-        .admin-stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(90, 70, 40, .08);
-        }
-
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
-            border: 1px solid #d9bd79;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .stat-icon::after {
-            content: "";
-            width: 9px;
-            height: 9px;
-            border: 1px solid #b8860b;
-            position: absolute;
-        }
-
-        .stat-info h3 {
-            margin: 0 0 5px;
-            font-size: 11px;
-            font-weight: 500;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-        }
-
-        .stat-info p {
-            margin: 0;
-            font-size: 27px;
-            font-weight: 600;
-            color: #49393e;
-        }
+}
 
 
-        /* ==========================================
-           FILTER
-        ========================================== */
+/* ==========================================
+   CHECK BOOKING TYPE
+========================================== */
 
-        .booking-filter {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-        }
+function getBookingType(booking) {
 
-        .booking-filter label {
-            font-size: 12px;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .booking-filter select {
-            padding: 10px 35px 10px 13px;
-            border: 1px solid #dfd0b6;
-            background: #ffffff;
-            color: #49393e;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .booking-filter select:focus {
-            border-color: #c89b3c;
-        }
+    if (!booking) {
+        return "SERVICE";
+    }
 
 
-        /* ==========================================
-           TABLE BOX
-        ========================================== */
-
-        .table-wrapper {
-            background: #ffffff;
-            border: 1px solid #eadfc9;
-            overflow: hidden;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        #bookingTable {
-            width: 100%;
-            min-width: 1050px;
-            border-collapse: collapse;
-        }
-
-        #bookingTable thead {
-            background: #f8f1e5;
-        }
-
-        #bookingTable th {
-            padding: 16px 14px;
-            text-align: left;
-            color: #49393e;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #dfd0b6;
-            white-space: nowrap;
-        }
-
-        #bookingTable td {
-            padding: 16px 14px;
-            color: #666;
-            font-size: 12px;
-            border-bottom: 1px solid #eee5d8;
-            white-space: nowrap;
-        }
-
-        #bookingTable tbody tr {
-            transition: .2s ease;
-        }
-
-        #bookingTable tbody tr:hover {
-            background: #fffaf4;
-        }
+    const type =
+        String(
+            booking.bookingType || ""
+        )
+        .trim()
+        .toUpperCase();
 
 
-        /* ==========================================
-           BOOKING TYPE BADGES
-        ========================================== */
-
-        .offer-badge,
-        .service-badge,
-        .virtual-badge {
-            display: inline-block;
-            padding: 6px 11px;
-            font-size: 10px;
-            font-weight: 500;
-            white-space: nowrap;
-            border: 1px solid;
-        }
-
-        .offer-badge {
-            color: #a97813;
-            background: #fffaf0;
-            border-color: #e4c982;
-        }
-
-        .service-badge {
-            color: #666;
-            background: #fafafa;
-            border-color: #ddd;
-        }
-
-        .virtual-badge {
-            color: #79508f;
-            background: #faf5fc;
-            border-color: #d8c3e1;
-        }
+    if (type === "VIRTUAL") {
+        return "VIRTUAL";
+    }
 
 
-        /* ==========================================
-           ACTION BUTTONS
-        ========================================== */
+    if (type === "OFFER") {
+        return "OFFER";
+    }
 
-        .action-buttons {
-            display: flex;
-            gap: 7px;
-            align-items: center;
-        }
 
-        .edit-btn,
-        .delete-btn {
-            border: none;
-            padding: 7px 12px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            transition: .3s ease;
-        }
+    if (type === "SERVICE") {
+        return "SERVICE";
+    }
 
-        .edit-btn {
-            background: #faf3e5;
-            color: #a97813;
-        }
 
-        .edit-btn:hover {
-            background: #c89b3c;
-            color: #ffffff;
-        }
+    if (isOldOfferBooking(booking)) {
+        return "OFFER";
+    }
 
-        .delete-btn {
-            background: #fff3f1;
-            color: #b43b30;
-        }
 
-        .delete-btn:hover {
-            background: #b43b30;
-            color: #ffffff;
+    return "SERVICE";
+
+}
+
+
+/* ==========================================
+   OLD OFFER BOOKING CHECK
+========================================== */
+
+function isOldOfferBooking(booking) {
+
+    if (!booking || !booking.service) {
+        return false;
+    }
+
+
+    const service =
+        String(
+            booking.service
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return (
+
+        service === "first visit offer" ||
+
+        service === "birthday offer" ||
+
+        service === "nail art combo" ||
+
+        service === "festive special" ||
+
+        service === "loyalty rewards"
+
+    );
+
+}
+
+
+/* ==========================================
+   BOOKING TYPE CHECKS
+========================================== */
+
+function isOfferBooking(booking) {
+
+    return getBookingType(booking) === "OFFER";
+
+}
+
+
+function isVirtualBooking(booking) {
+
+    return getBookingType(booking) === "VIRTUAL";
+
+}
+
+
+function isServiceBooking(booking) {
+
+    return getBookingType(booking) === "SERVICE";
+
+}
+
+
+/* ==========================================
+   UPDATE DASHBOARD STATS
+========================================== */
+
+function updateDashboardStats() {
+
+    document.getElementById(
+        "totalBookings"
+    ).textContent =
+        bookingsData.length;
+
+
+    const offerCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isOfferBooking(
+                    booking
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "offerBookings"
+    ).textContent =
+        offerCount;
+
+
+    const serviceCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isServiceBooking(
+                    booking
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "serviceBookings"
+    ).textContent =
+        serviceCount;
+
+
+    const virtualCount =
+        bookingsData.filter(
+            function (booking) {
+
+                return isVirtualBooking(
+                    booking
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "virtualBookings"
+    ).textContent =
+        virtualCount;
+
+}
+
+
+/* ==========================================
+   LOAD BOOKINGS
+========================================== */
+
+async function loadBookings() {
+
+    const tableBody =
+        document.getElementById(
+            "bookingTableBody"
+        );
+
+
+    const loadingMessage =
+        document.getElementById(
+            "loadingMessage"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    loadingMessage.style.display =
+        "block";
+
+
+    loadingMessage.textContent =
+        "Loading bookings...";
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "?_=" +
+                new Date().getTime(),
+                {
+                    method: "GET",
+                    credentials: "include",
+                    cache: "no-store"
+                }
+            );
+
+
+        console.log(
+            "Bookings API status:",
+            response.status
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load bookings. Status: " +
+                response.status
+            );
+
         }
 
 
-        /* ==========================================
-           LOADING / EMPTY
-        ========================================== */
+        const data =
+            await response.json();
 
-        .loading {
-            padding: 35px;
-            text-align: center;
-            color: #888;
-            font-size: 13px;
+
+        console.log(
+            "Bookings API response:",
+            data
+        );
+
+
+        /*
+         * Supports both:
+         *
+         * 1. Direct array
+         * 2. Wrapper response { data: [...] }
+         */
+
+        if (Array.isArray(data)) {
+
+            bookingsData = data;
+
         }
 
-        .empty-message {
-            padding: 40px;
-            text-align: center;
-            color: #888;
-            font-size: 13px;
+        else if (
+            data &&
+            Array.isArray(data.data)
+        ) {
+
+            bookingsData =
+                data.data;
+
         }
 
+        else {
 
-        /* ==========================================
-           EDIT MODAL
-        ========================================== */
+            bookingsData = [];
 
-        .admin-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            inset: 0;
-            background: rgba(55, 45, 35, .45);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .admin-modal-content {
-            width: 100%;
-            max-width: 510px;
-            max-height: 90vh;
-            overflow-y: auto;
-            background: #fffaf8;
-            border: 1px solid #eadfc9;
-            padding: 35px;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
-            box-sizing: border-box;
-        }
-
-        .admin-modal-content h2 {
-            margin: 0 0 27px;
-            font-family: 'Cormorant Garamond', serif;
-            color: #49393e;
-            font-size: 34px;
-            font-weight: 600;
-        }
-
-        .admin-close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 26px;
-            color: #777;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .admin-close-modal:hover {
-            color: #49393e;
-        }
-
-        .edit-form-group {
-            margin-bottom: 18px;
-        }
-
-        .edit-form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            color: #49393e;
-        }
-
-        .edit-form-group input,
-        .edit-form-group select {
-            width: 100%;
-            height: 45px;
-            padding: 0 13px;
-            border: 1px solid #dfd0b6;
-            background: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            color: #49393e;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        .edit-form-group input:focus,
-        .edit-form-group select:focus {
-            border-color: #c89b3c;
-        }
-
-        .update-btn {
-            width: 100%;
-            height: 47px;
-            border: none;
-            background: #c89b3c;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: .3s ease;
-            margin-top: 5px;
-        }
-
-        .update-btn:hover {
-            background: #a97813;
         }
 
 
-        /* ==========================================
-           FOOTER
-        ========================================== */
+        /* Newest booking first */
 
-        .admin-footer {
-            text-align: center;
-            padding: 25px;
-            background: #49393e;
-            color: #ffffff;
-            font-size: 11px;
+        bookingsData.sort(
+            function (a, b) {
+
+                return Number(b.id) -
+                       Number(a.id);
+
+            }
+        );
+
+
+        loadingMessage.style.display =
+            "none";
+
+
+        displayBookings();
+
+        updateDashboardStats();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error loading bookings:",
+            error
+        );
+
+
+        loadingMessage.style.display =
+            "block";
+
+
+        loadingMessage.innerHTML =
+            "Unable to load bookings. Please check the Spring Boot backend.";
+
+
+        bookingsData = [];
+
+
+        updateDashboardStats();
+
+    }
+
+}
+
+
+/* ==========================================
+   DISPLAY BOOKINGS
+========================================== */
+
+function displayBookings() {
+
+    const tableBody =
+        document.getElementById(
+            "bookingTableBody"
+        );
+
+
+    const emptyMessage =
+        document.getElementById(
+            "emptyMessage"
+        );
+
+
+    const filter =
+        document.getElementById(
+            "bookingFilter"
+        ).value;
+
+
+    tableBody.innerHTML =
+        "";
+
+
+    let filteredBookings =
+        bookingsData.slice();
+
+
+    if (filter === "offer") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isOfferBooking(
+                        booking
+                    );
+
+                }
+            );
+
+    }
+
+
+    else if (filter === "service") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isServiceBooking(
+                        booking
+                    );
+
+                }
+            );
+
+    }
+
+
+    else if (filter === "virtual") {
+
+        filteredBookings =
+            bookingsData.filter(
+                function (booking) {
+
+                    return isVirtualBooking(
+                        booking
+                    );
+
+                }
+            );
+
+    }
+
+
+    if (filteredBookings.length === 0) {
+
+        emptyMessage.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyMessage.style.display =
+        "none";
+
+
+    filteredBookings.forEach(
+        function (booking) {
+
+
+            const bookingType =
+                getBookingType(
+                    booking
+                );
+
+
+            let bookingTypeText = "";
+
+            let badgeClass = "";
+
+
+            if (bookingType === "OFFER") {
+
+                bookingTypeText =
+                    "Offer Booking";
+
+                badgeClass =
+                    "offer-badge";
+
+            }
+
+
+            else if (bookingType === "VIRTUAL") {
+
+                bookingTypeText =
+                    "Virtual Booking";
+
+                badgeClass =
+                    "virtual-badge";
+
+            }
+
+
+            else {
+
+                bookingTypeText =
+                    "Service Booking";
+
+                badgeClass =
+                    "service-badge";
+
+            }
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${booking.id || ""}
+                </td>
+
+                <td>
+                    ${booking.name || ""}
+                </td>
+
+                <td>
+                    ${booking.email || ""}
+                </td>
+
+                <td>
+                    ${booking.phone || ""}
+                </td>
+
+                <td>
+
+                    <span class="${badgeClass}">
+                        ${bookingTypeText}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${booking.bookingDate || ""}
+                </td>
+
+                <td>
+                    ${booking.bookingTime || ""}
+                </td>
+
+                <td>
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="edit-btn"
+                            onclick="openEditModal(${booking.id})">
+                            Edit
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteBooking(${booking.id})">
+                            Delete
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   FILTER CHANGE
+========================================== */
+
+document
+    .getElementById("bookingFilter")
+    .addEventListener(
+        "change",
+        function () {
+
+            displayBookings();
+
+        }
+    );
+
+
+/* ==========================================
+   OPEN EDIT MODAL
+========================================== */
+
+function openEditModal(id) {
+
+    const booking =
+        bookingsData.find(
+            function (item) {
+
+                return Number(item.id) ===
+                       Number(id);
+
+            }
+        );
+
+
+    if (!booking) {
+
+        alert(
+            "Booking not found."
+        );
+
+        return;
+
+    }
+
+
+    selectedBookingId =
+        id;
+
+
+    document.getElementById(
+        "editName"
+    ).value =
+        booking.name || "";
+
+
+    document.getElementById(
+        "editEmail"
+    ).value =
+        booking.email || "";
+
+
+    document.getElementById(
+        "editPhone"
+    ).value =
+        booking.phone || "";
+
+
+    document.getElementById(
+        "editDate"
+    ).value =
+        booking.bookingDate || "";
+
+
+    document.getElementById(
+        "editTime"
+    ).value =
+        booking.bookingTime || "";
+
+
+    document.getElementById(
+        "editModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* ==========================================
+   CLOSE MODAL
+========================================== */
+
+document
+    .getElementById("closeModal")
+    .addEventListener(
+        "click",
+        function () {
+
+            document.getElementById(
+                "editModal"
+            ).style.display =
+                "none";
+
+        }
+    );
+
+
+/* ==========================================
+   CLOSE MODAL OUTSIDE CLICK
+========================================== */
+
+window.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "editModal"
+            );
+
+
+        if (event.target === modal) {
+
+            modal.style.display =
+                "none";
+
         }
 
+    }
+);
 
-        /* ==========================================
-           RESPONSIVE
-        ========================================== */
 
-        @media (max-width: 1050px) {
+/* ==========================================
+   UPDATE BOOKING
+========================================== */
 
-            .admin-stats {
-                grid-template-columns: repeat(2, 1fr);
+document
+    .getElementById("editBookingForm")
+    .addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            if (!selectedBookingId) {
+
+                alert(
+                    "Booking ID not found."
+                );
+
+                return;
+
+            }
+
+
+            const originalBooking =
+                bookingsData.find(
+                    function (booking) {
+
+                        return Number(
+                            booking.id
+                        ) ===
+                        Number(
+                            selectedBookingId
+                        );
+
+                    }
+                );
+
+
+            const bookingData = {
+
+                name:
+                    document.getElementById(
+                        "editName"
+                    ).value.trim(),
+
+                email:
+                    document.getElementById(
+                        "editEmail"
+                    ).value.trim(),
+
+                phone:
+                    document.getElementById(
+                        "editPhone"
+                    ).value.trim(),
+
+                bookingDate:
+                    document.getElementById(
+                        "editDate"
+                    ).value,
+
+                bookingTime:
+                    document.getElementById(
+                        "editTime"
+                    ).value,
+
+                bookingType:
+                    originalBooking &&
+                    originalBooking.bookingType
+                        ? originalBooking.bookingType
+                        : "SERVICE"
+
+            };
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "/" +
+                        selectedBookingId,
+                        {
+
+                            method: "PUT",
+
+                            credentials:
+                                "include",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    bookingData
+                                )
+
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Update failed. Status: " +
+                        response.status
+                    );
+
+                }
+
+
+                alert(
+                    "Booking Updated Successfully!"
+                );
+
+
+                document.getElementById(
+                    "editModal"
+                ).style.display =
+                    "none";
+
+
+                selectedBookingId =
+                    null;
+
+
+                await loadBookings();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Update error:",
+                    error
+                );
+
+
+                alert(
+                    "Failed to update booking."
+                );
+
             }
 
         }
+    );
 
-        @media (max-width: 700px) {
 
-            .admin-navbar {
-                padding: 15px 20px;
-            }
+/* ==========================================
+   DELETE BOOKING
+========================================== */
 
-            .admin-logo {
-                font-size: 25px;
-            }
+async function deleteBooking(id) {
 
-            .admin-nav-right {
-                gap: 10px;
-            }
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this booking?"
+        );
 
-            .admin-nav-link {
-                display: none;
-            }
 
-            .admin-bookings {
-                padding: 45px 20px 60px;
-            }
+    if (!confirmDelete) {
+        return;
+    }
 
-            .admin-title h1 {
-                font-size: 42px;
-            }
 
-            .booking-filter {
-                justify-content: flex-start;
-                flex-wrap: wrap;
-            }
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/" +
+                id,
+                {
+
+                    method: "DELETE",
+
+                    credentials:
+                        "include"
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Delete failed. Status: " +
+                response.status
+            );
 
         }
 
-        @media (max-width: 550px) {
 
-            .admin-stats {
-                grid-template-columns: 1fr;
+        alert(
+            "Booking Deleted Successfully!"
+        );
+
+
+        await loadBookings();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete error:",
+            error
+        );
+
+
+        alert(
+            "Failed to delete booking."
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   ADMIN LOGOUT
+========================================== */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+            try {
+
+                await fetch(
+                    API_BASE_URL +
+                    "/api/admin/logout",
+                    {
+
+                        method: "POST",
+
+                        credentials:
+                            "include"
+
+                    }
+                );
+
             }
 
-            .admin-modal-content {
-                padding: 27px 22px;
+            catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
             }
+
+
+            localStorage.removeItem(
+                "loggedIn"
+            );
+
+
+            localStorage.removeItem(
+                "userToken"
+            );
+
+
+            localStorage.removeItem(
+                "adminToken"
+            );
+
+
+            localStorage.removeItem(
+                "virtualBooking"
+            );
+
+
+            localStorage.removeItem(
+                "selectedService"
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+    );
+
+
+/* ==========================================
+   START
+========================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const isAdmin =
+            await checkAdminLogin();
+
+
+        if (isAdmin) {
+
+            await loadBookings();
 
         }
 
-    </style>
+    }
+);
+
+</script>
 
 </head>
 
