@@ -1,794 +1,1186 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Admin Bookings | Nail Muse</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
+    <title>Admin Bookings | Nail Muse</title>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-<script>
+    <!-- GOOGLE FONTS -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
-/* ==========================================
-   API URL
-========================================== */
+</head>
 
-const API_BASE_URL =
-    "https://nail-studio-backend-k604.onrender.com";
 
-const API_URL =
-    API_BASE_URL + "/api/bookings";
+<body>
 
+    <!-- ==========================================
+         ADMIN NAVBAR
+    ========================================== -->
 
-let bookingsData = [];
+    <header>
 
-let selectedBookingId = null;
+        <nav class="admin-navbar">
 
+            <a href="admin-bookings.html" class="admin-logo">
+                Nail Muse
+            </a>
 
-/* ==========================================
-   CHECK ADMIN LOGIN
-========================================== */
 
-async function checkAdminLogin() {
+            <div class="admin-nav-right">
 
-    try {
+                <a
+                    href="admin-bookings.html"
+                    class="admin-nav-link">
 
-        const response =
-            await fetch(
-                API_BASE_URL + "/api/admin/check",
-                {
-                    method: "GET",
-                    credentials: "include",
-                    cache: "no-store"
-                }
-            );
+                    Customer Bookings
 
+                </a>
 
-        const result =
-            await response.text();
 
+                <button
+                    id="logoutBtn"
+                    class="logout-btn">
 
-        console.log(
-            "Admin Check:",
-            result
-        );
+                    Logout
 
+                </button>
 
-        if (!response.ok ||
-            result.trim() !== "Admin authenticated") {
+            </div>
 
-            window.location.href =
-                "admin-login.html";
+        </nav>
 
-            return false;
+    </header>
 
-        }
 
 
-        return true;
+    <!-- ==========================================
+         ADMIN BOOKINGS
+    ========================================== -->
 
-    }
+    <section class="admin-bookings">
 
-    catch (error) {
+        <div class="admin-container">
 
-        console.error(
-            "Admin authentication error:",
-            error
-        );
 
+            <!-- TITLE -->
 
-        window.location.href =
-            "admin-login.html";
+            <div class="admin-title">
 
+                <span>
+                    Nail Muse Administration
+                </span>
 
-        return false;
 
-    }
+                <h1>
+                    Customer Bookings
+                </h1>
 
-}
 
+                <p>
+                    Manage all customer appointments from one place.
+                </p>
 
-/* ==========================================
-   CHECK BOOKING TYPE
-========================================== */
+            </div>
 
-function getBookingType(booking) {
 
-    if (!booking) {
-        return "SERVICE";
-    }
 
+            <!-- ==========================================
+                 DASHBOARD STATS
+            ========================================== -->
 
-    const type =
-        String(
-            booking.bookingType || ""
-        )
-        .trim()
-        .toUpperCase();
+            <div class="admin-stats">
 
 
-    if (type === "VIRTUAL") {
-        return "VIRTUAL";
-    }
+                <div class="admin-stat-card">
 
+                    <div class="stat-icon"></div>
 
-    if (type === "OFFER") {
-        return "OFFER";
-    }
+                    <div class="stat-info">
 
+                        <h3>
+                            Total Bookings
+                        </h3>
 
-    if (type === "SERVICE") {
-        return "SERVICE";
-    }
-
-
-    if (isOldOfferBooking(booking)) {
-        return "OFFER";
-    }
-
-
-    return "SERVICE";
-
-}
-
-
-/* ==========================================
-   OLD OFFER BOOKING CHECK
-========================================== */
-
-function isOldOfferBooking(booking) {
-
-    if (!booking || !booking.service) {
-        return false;
-    }
-
-
-    const service =
-        String(
-            booking.service
-        )
-        .trim()
-        .toLowerCase();
-
-
-    return (
-
-        service === "first visit offer" ||
-
-        service === "birthday offer" ||
-
-        service === "nail art combo" ||
-
-        service === "festive special" ||
-
-        service === "loyalty rewards"
-
-    );
-
-}
-
-
-/* ==========================================
-   BOOKING TYPE CHECKS
-========================================== */
-
-function isOfferBooking(booking) {
-
-    return getBookingType(booking) === "OFFER";
-
-}
-
-
-function isVirtualBooking(booking) {
-
-    return getBookingType(booking) === "VIRTUAL";
-
-}
-
-
-function isServiceBooking(booking) {
-
-    return getBookingType(booking) === "SERVICE";
-
-}
-
-
-/* ==========================================
-   UPDATE DASHBOARD STATS
-========================================== */
-
-function updateDashboardStats() {
-
-    document.getElementById(
-        "totalBookings"
-    ).textContent =
-        bookingsData.length;
-
-
-    const offerCount =
-        bookingsData.filter(
-            function (booking) {
-
-                return isOfferBooking(
-                    booking
-                );
-
-            }
-        ).length;
-
-
-    document.getElementById(
-        "offerBookings"
-    ).textContent =
-        offerCount;
-
-
-    const serviceCount =
-        bookingsData.filter(
-            function (booking) {
-
-                return isServiceBooking(
-                    booking
-                );
-
-            }
-        ).length;
-
-
-    document.getElementById(
-        "serviceBookings"
-    ).textContent =
-        serviceCount;
-
-
-    const virtualCount =
-        bookingsData.filter(
-            function (booking) {
-
-                return isVirtualBooking(
-                    booking
-                );
-
-            }
-        ).length;
-
-
-    document.getElementById(
-        "virtualBookings"
-    ).textContent =
-        virtualCount;
-
-}
-
-
-/* ==========================================
-   LOAD BOOKINGS
-========================================== */
-
-async function loadBookings() {
-
-    const tableBody =
-        document.getElementById(
-            "bookingTableBody"
-        );
-
-
-    const loadingMessage =
-        document.getElementById(
-            "loadingMessage"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    loadingMessage.style.display =
-        "block";
-
-
-    loadingMessage.textContent =
-        "Loading bookings...";
-
-
-    emptyMessage.style.display =
-        "none";
-
-
-    tableBody.innerHTML =
-        "";
-
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL +
-                "?_=" +
-                new Date().getTime(),
-                {
-                    method: "GET",
-                    credentials: "include",
-                    cache: "no-store"
-                }
-            );
-
-
-        console.log(
-            "Bookings API status:",
-            response.status
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Failed to load bookings. Status: " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "Bookings API response:",
-            data
-        );
-
-
-        /*
-         * Supports both:
-         *
-         * 1. Direct array
-         * 2. Wrapper response { data: [...] }
-         */
-
-        if (Array.isArray(data)) {
-
-            bookingsData = data;
-
-        }
-
-        else if (
-            data &&
-            Array.isArray(data.data)
-        ) {
-
-            bookingsData =
-                data.data;
-
-        }
-
-        else {
-
-            bookingsData = [];
-
-        }
-
-
-        /* Newest booking first */
-
-        bookingsData.sort(
-            function (a, b) {
-
-                return Number(b.id) -
-                       Number(a.id);
-
-            }
-        );
-
-
-        loadingMessage.style.display =
-            "none";
-
-
-        displayBookings();
-
-        updateDashboardStats();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Error loading bookings:",
-            error
-        );
-
-
-        loadingMessage.style.display =
-            "block";
-
-
-        loadingMessage.innerHTML =
-            "Unable to load bookings. Please check the Spring Boot backend.";
-
-
-        bookingsData = [];
-
-
-        updateDashboardStats();
-
-    }
-
-}
-
-
-/* ==========================================
-   DISPLAY BOOKINGS
-========================================== */
-
-function displayBookings() {
-
-    const tableBody =
-        document.getElementById(
-            "bookingTableBody"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    const filter =
-        document.getElementById(
-            "bookingFilter"
-        ).value;
-
-
-    tableBody.innerHTML =
-        "";
-
-
-    let filteredBookings =
-        bookingsData.slice();
-
-
-    if (filter === "offer") {
-
-        filteredBookings =
-            bookingsData.filter(
-                function (booking) {
-
-                    return isOfferBooking(
-                        booking
-                    );
-
-                }
-            );
-
-    }
-
-
-    else if (filter === "service") {
-
-        filteredBookings =
-            bookingsData.filter(
-                function (booking) {
-
-                    return isServiceBooking(
-                        booking
-                    );
-
-                }
-            );
-
-    }
-
-
-    else if (filter === "virtual") {
-
-        filteredBookings =
-            bookingsData.filter(
-                function (booking) {
-
-                    return isVirtualBooking(
-                        booking
-                    );
-
-                }
-            );
-
-    }
-
-
-    if (filteredBookings.length === 0) {
-
-        emptyMessage.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    emptyMessage.style.display =
-        "none";
-
-
-    filteredBookings.forEach(
-        function (booking) {
-
-            const bookingType =
-                getBookingType(
-                    booking
-                );
-
-
-            let bookingTypeText = "";
-
-            let badgeClass = "";
-
-
-            if (bookingType === "OFFER") {
-
-                bookingTypeText =
-                    "Offer Booking";
-
-                badgeClass =
-                    "offer-badge";
-
-            }
-
-
-            else if (bookingType === "VIRTUAL") {
-
-                bookingTypeText =
-                    "Virtual Booking";
-
-                badgeClass =
-                    "virtual-badge";
-
-            }
-
-
-            else {
-
-                bookingTypeText =
-                    "Service Booking";
-
-                badgeClass =
-                    "service-badge";
-
-            }
-
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${booking.id || ""}
-                </td>
-
-                <td>
-                    ${booking.name || ""}
-                </td>
-
-                <td>
-                    ${booking.email || ""}
-                </td>
-
-                <td>
-                    ${booking.phone || ""}
-                </td>
-
-                <td>
-
-                    <span class="${badgeClass}">
-                        ${bookingTypeText}
-                    </span>
-
-                </td>
-
-                <td>
-                    ${booking.bookingDate || ""}
-                </td>
-
-                <td>
-                    ${booking.bookingTime || ""}
-                </td>
-
-                <td>
-
-                    <div class="action-buttons">
-
-                        <button
-                            class="edit-btn"
-                            onclick="openEditModal(${booking.id})">
-                            Edit
-                        </button>
-
-                        <button
-                            class="delete-btn"
-                            onclick="deleteBooking(${booking.id})">
-                            Delete
-                        </button>
+                        <p id="totalBookings">
+                            0
+                        </p>
 
                     </div>
 
-                </td>
-
-            `;
+                </div>
 
 
-            tableBody.appendChild(
-                row
-            );
 
-        }
-    );
+                <div class="admin-stat-card">
 
-}
+                    <div class="stat-icon"></div>
 
+                    <div class="stat-info">
 
-/* ==========================================
-   FILTER CHANGE
-========================================== */
+                        <h3>
+                            Offer Bookings
+                        </h3>
 
-document
-    .getElementById("bookingFilter")
-    .addEventListener(
-        "change",
-        function () {
+                        <p id="offerBookings">
+                            0
+                        </p>
 
-            displayBookings();
+                    </div>
 
-        }
-    );
+                </div>
 
 
-/* ==========================================
-   OPEN EDIT MODAL
-========================================== */
 
-function openEditModal(id) {
+                <div class="admin-stat-card">
 
-    const booking =
-        bookingsData.find(
-            function (item) {
+                    <div class="stat-icon"></div>
 
-                return Number(item.id) ===
-                       Number(id);
+                    <div class="stat-info">
+
+                        <h3>
+                            Service Bookings
+                        </h3>
+
+                        <p id="serviceBookings">
+                            0
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon"></div>
+
+                    <div class="stat-info">
+
+                        <h3>
+                            Virtual Bookings
+                        </h3>
+
+                        <p id="virtualBookings">
+                            0
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FILTER
+            ========================================== -->
+
+            <div class="booking-filter">
+
+                <label for="bookingFilter">
+                    Show:
+                </label>
+
+
+                <select id="bookingFilter">
+
+                    <option value="all">
+                        All Bookings
+                    </option>
+
+                    <option value="offer">
+                        Offer Bookings
+                    </option>
+
+                    <option value="service">
+                        Service Bookings
+                    </option>
+
+                    <option value="virtual">
+                        Virtual Bookings
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 BOOKING TABLE
+            ========================================== -->
+
+            <div class="table-wrapper">
+
+                <div class="table-container">
+
+
+                    <div
+                        id="loadingMessage"
+                        class="loading">
+
+                        Loading bookings...
+
+                    </div>
+
+
+
+                    <table id="bookingTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>Booking Type</th>
+
+                                <th>Date</th>
+
+                                <th>Time</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="bookingTableBody"></tbody>
+
+                    </table>
+
+
+
+                    <div
+                        id="emptyMessage"
+                        class="empty-message"
+                        style="display: none;">
+
+                        No bookings found.
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         EDIT MODAL
+    ========================================== -->
+
+    <div
+        id="editModal"
+        class="admin-modal">
+
+        <div class="admin-modal-content">
+
+
+            <span
+                class="admin-close-modal"
+                id="closeModal">
+
+                &times;
+
+            </span>
+
+
+
+            <h2>
+                Edit Booking
+            </h2>
+
+
+
+            <form id="editBookingForm">
+
+
+                <div class="edit-form-group">
+
+                    <label for="editName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        required>
+
+                </div>
+
+
+
+                <div class="edit-form-group">
+
+                    <label for="editEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="editEmail"
+                        required>
+
+                </div>
+
+
+
+                <div class="edit-form-group">
+
+                    <label for="editPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editPhone"
+                        pattern="[6-9][0-9]{9}"
+                        maxlength="10"
+                        required>
+
+                </div>
+
+
+
+                <div class="edit-form-group">
+
+                    <label for="editDate">
+                        Appointment Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editDate"
+                        required>
+
+                </div>
+
+
+
+                <div class="edit-form-group">
+
+                    <label for="editTime">
+                        Appointment Time
+                    </label>
+
+                    <select
+                        id="editTime"
+                        required>
+
+                        <option value="">
+                            Select a time
+                        </option>
+
+                        <option value="11:00 AM">
+                            11:00 AM
+                        </option>
+
+                        <option value="12:00 PM">
+                            12:00 PM
+                        </option>
+
+                        <option value="1:00 PM">
+                            1:00 PM
+                        </option>
+
+                        <option value="2:00 PM">
+                            2:00 PM
+                        </option>
+
+                        <option value="3:00 PM">
+                            3:00 PM
+                        </option>
+
+                        <option value="4:00 PM">
+                            4:00 PM
+                        </option>
+
+                        <option value="5:00 PM">
+                            5:00 PM
+                        </option>
+
+                        <option value="6:00 PM">
+                            6:00 PM
+                        </option>
+
+                        <option value="7:00 PM">
+                            7:00 PM
+                        </option>
+
+                        <option value="8:00 PM">
+                            8:00 PM
+                        </option>
+
+                        <option value="9:00 PM">
+                            9:00 PM
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="update-btn">
+
+                    Update Booking
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="admin-footer">
+    </footer>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+         
+         IMPORTANT:
+         Script is placed at the bottom so all
+         HTML elements are already loaded.
+    ========================================== -->
+
+    <script>
+
+        /* ==========================================
+           API URL
+        ========================================== */
+
+        const API_BASE_URL =
+            "https://nail-studio-backend-k604.onrender.com";
+
+        const API_URL =
+            API_BASE_URL + "/api/bookings";
+
+
+        let bookingsData = [];
+
+        let selectedBookingId = null;
+
+
+
+        /* ==========================================
+           CHECK ADMIN LOGIN
+        ========================================== */
+
+        async function checkAdminLogin() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_BASE_URL + "/api/admin/check",
+                        {
+                            method: "GET",
+                            credentials: "include",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                const result =
+                    await response.text();
+
+
+                console.log(
+                    "Admin Check:",
+                    result
+                );
+
+
+                if (
+                    !response.ok ||
+                    result.trim() !== "Admin authenticated"
+                ) {
+
+                    window.location.href =
+                        "admin-login.html";
+
+                    return false;
+
+                }
+
+
+                return true;
 
             }
-        );
+
+            catch (error) {
+
+                console.error(
+                    "Admin authentication error:",
+                    error
+                );
 
 
-    if (!booking) {
-
-        alert(
-            "Booking not found."
-        );
-
-        return;
-
-    }
+                window.location.href =
+                    "admin-login.html";
 
 
-    selectedBookingId =
-        id;
+                return false;
 
-
-    document.getElementById(
-        "editName"
-    ).value =
-        booking.name || "";
-
-
-    document.getElementById(
-        "editEmail"
-    ).value =
-        booking.email || "";
-
-
-    document.getElementById(
-        "editPhone"
-    ).value =
-        booking.phone || "";
-
-
-    document.getElementById(
-        "editDate"
-    ).value =
-        booking.bookingDate || "";
-
-
-    document.getElementById(
-        "editTime"
-    ).value =
-        booking.bookingTime || "";
-
-
-    document.getElementById(
-        "editModal"
-    ).style.display =
-        "flex";
-
-}
-
-
-/* ==========================================
-   CLOSE MODAL
-========================================== */
-
-document
-    .getElementById("closeModal")
-    .addEventListener(
-        "click",
-        function () {
-
-            document.getElementById(
-                "editModal"
-            ).style.display =
-                "none";
+            }
 
         }
-    );
 
 
-/* ==========================================
-   CLOSE MODAL OUTSIDE CLICK
-========================================== */
 
-window.addEventListener(
-    "click",
-    function (event) {
+        /* ==========================================
+           CHECK BOOKING TYPE
+        ========================================== */
 
-        const modal =
+        function getBookingType(booking) {
+
+            if (!booking) {
+
+                return "SERVICE";
+
+            }
+
+
+            const type =
+                String(
+                    booking.bookingType || ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if (type === "VIRTUAL") {
+
+                return "VIRTUAL";
+
+            }
+
+
+            if (type === "OFFER") {
+
+                return "OFFER";
+
+            }
+
+
+            if (type === "SERVICE") {
+
+                return "SERVICE";
+
+            }
+
+
+            if (isOldOfferBooking(booking)) {
+
+                return "OFFER";
+
+            }
+
+
+            return "SERVICE";
+
+        }
+
+
+
+        /* ==========================================
+           OLD OFFER BOOKING CHECK
+        ========================================== */
+
+        function isOldOfferBooking(booking) {
+
+            if (
+                !booking ||
+                !booking.service
+            ) {
+
+                return false;
+
+            }
+
+
+            const service =
+                String(
+                    booking.service
+                )
+                .trim()
+                .toLowerCase();
+
+
+            return (
+
+                service === "first visit offer" ||
+
+                service === "birthday offer" ||
+
+                service === "nail art combo" ||
+
+                service === "festive special" ||
+
+                service === "loyalty rewards"
+
+            );
+
+        }
+
+
+
+        /* ==========================================
+           BOOKING TYPE CHECKS
+        ========================================== */
+
+        function isOfferBooking(booking) {
+
+            return getBookingType(booking) === "OFFER";
+
+        }
+
+
+        function isVirtualBooking(booking) {
+
+            return getBookingType(booking) === "VIRTUAL";
+
+        }
+
+
+        function isServiceBooking(booking) {
+
+            return getBookingType(booking) === "SERVICE";
+
+        }
+
+
+
+        /* ==========================================
+           UPDATE DASHBOARD STATS
+        ========================================== */
+
+        function updateDashboardStats() {
+
             document.getElementById(
-                "editModal"
+                "totalBookings"
+            ).textContent =
+                bookingsData.length;
+
+
+            const offerCount =
+                bookingsData.filter(
+                    function (booking) {
+
+                        return isOfferBooking(
+                            booking
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "offerBookings"
+            ).textContent =
+                offerCount;
+
+
+            const serviceCount =
+                bookingsData.filter(
+                    function (booking) {
+
+                        return isServiceBooking(
+                            booking
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "serviceBookings"
+            ).textContent =
+                serviceCount;
+
+
+            const virtualCount =
+                bookingsData.filter(
+                    function (booking) {
+
+                        return isVirtualBooking(
+                            booking
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "virtualBookings"
+            ).textContent =
+                virtualCount;
+
+        }
+
+
+
+        /* ==========================================
+           LOAD BOOKINGS
+        ========================================== */
+
+        async function loadBookings() {
+
+            const tableBody =
+                document.getElementById(
+                    "bookingTableBody"
+                );
+
+
+            const loadingMessage =
+                document.getElementById(
+                    "loadingMessage"
+                );
+
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+
+            loadingMessage.style.display =
+                "block";
+
+
+            loadingMessage.textContent =
+                "Loading bookings...";
+
+
+            emptyMessage.style.display =
+                "none";
+
+
+            tableBody.innerHTML =
+                "";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "?_=" +
+                        new Date().getTime(),
+                        {
+                            method: "GET",
+                            credentials: "include",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                console.log(
+                    "Bookings API status:",
+                    response.status
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load bookings. Status: " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Bookings API response:",
+                    data
+                );
+
+
+                /*
+                 * Supports both:
+                 *
+                 * 1. Direct array
+                 * 2. Wrapper response { data: [...] }
+                 */
+
+                if (Array.isArray(data)) {
+
+                    bookingsData = data;
+
+                }
+
+                else if (
+                    data &&
+                    Array.isArray(data.data)
+                ) {
+
+                    bookingsData =
+                        data.data;
+
+                }
+
+                else {
+
+                    bookingsData = [];
+
+                }
+
+
+                /* Newest booking first */
+
+                bookingsData.sort(
+                    function (a, b) {
+
+                        return Number(b.id) -
+                               Number(a.id);
+
+                    }
+                );
+
+
+                loadingMessage.style.display =
+                    "none";
+
+
+                displayBookings();
+
+                updateDashboardStats();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Error loading bookings:",
+                    error
+                );
+
+
+                loadingMessage.style.display =
+                    "block";
+
+
+                loadingMessage.innerHTML =
+                    "Unable to load bookings. Please check the Spring Boot backend.";
+
+
+                bookingsData = [];
+
+
+                updateDashboardStats();
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           DISPLAY BOOKINGS
+        ========================================== */
+
+        function displayBookings() {
+
+            const tableBody =
+                document.getElementById(
+                    "bookingTableBody"
+                );
+
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+
+            const filter =
+                document.getElementById(
+                    "bookingFilter"
+                ).value;
+
+
+            tableBody.innerHTML =
+                "";
+
+
+            let filteredBookings =
+                bookingsData.slice();
+
+
+            if (filter === "offer") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        function (booking) {
+
+                            return isOfferBooking(
+                                booking
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            else if (filter === "service") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        function (booking) {
+
+                            return isServiceBooking(
+                                booking
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            else if (filter === "virtual") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        function (booking) {
+
+                            return isVirtualBooking(
+                                booking
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            if (filteredBookings.length === 0) {
+
+                emptyMessage.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            emptyMessage.style.display =
+                "none";
+
+
+            filteredBookings.forEach(
+                function (booking) {
+
+                    const bookingType =
+                        getBookingType(
+                            booking
+                        );
+
+
+                    let bookingTypeText = "";
+
+                    let badgeClass = "";
+
+
+                    if (
+                        bookingType === "OFFER"
+                    ) {
+
+                        bookingTypeText =
+                            "Offer Booking";
+
+                        badgeClass =
+                            "offer-badge";
+
+                    }
+
+
+                    else if (
+                        bookingType === "VIRTUAL"
+                    ) {
+
+                        bookingTypeText =
+                            "Virtual Booking";
+
+                        badgeClass =
+                            "virtual-badge";
+
+                    }
+
+
+                    else {
+
+                        bookingTypeText =
+                            "Service Booking";
+
+                        badgeClass =
+                            "service-badge";
+
+                    }
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${booking.id || ""}
+                        </td>
+
+                        <td>
+                            ${booking.name || ""}
+                        </td>
+
+                        <td>
+                            ${booking.email || ""}
+                        </td>
+
+                        <td>
+                            ${booking.phone || ""}
+                        </td>
+
+                        <td>
+
+                            <span class="${badgeClass}">
+                                ${bookingTypeText}
+                            </span>
+
+                        </td>
+
+                        <td>
+                            ${booking.bookingDate || ""}
+                        </td>
+
+                        <td>
+                            ${booking.bookingTime || ""}
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="edit-btn"
+                                    onclick="openEditModal(${booking.id})">
+
+                                    Edit
+
+                                </button>
+
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteBooking(${booking.id})">
+
+                                    Delete
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    tableBody.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           FILTER CHANGE
+        ========================================== */
+
+        document
+            .getElementById("bookingFilter")
+            .addEventListener(
+                "change",
+                function () {
+
+                    displayBookings();
+
+                }
             );
 
 
-        if (event.target === modal) {
 
-            modal.style.display =
-                "none";
+        /* ==========================================
+           OPEN EDIT MODAL
+        ========================================== */
 
-        }
+        function openEditModal(id) {
 
-    }
-);
+            const booking =
+                bookingsData.find(
+                    function (item) {
 
+                        return Number(item.id) ===
+                               Number(id);
 
-/* ==========================================
-   UPDATE BOOKING
-========================================== */
-
-document
-    .getElementById("editBookingForm")
-    .addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
+                    }
+                );
 
 
-            if (!selectedBookingId) {
+            if (!booking) {
 
                 alert(
-                    "Booking ID not found."
+                    "Booking not found."
                 );
 
                 return;
@@ -796,55 +1188,265 @@ document
             }
 
 
-            const originalBooking =
-                bookingsData.find(
-                    function (booking) {
+            selectedBookingId =
+                id;
 
-                        return Number(
-                            booking.id
-                        ) ===
-                        Number(
-                            selectedBookingId
+
+            document.getElementById(
+                "editName"
+            ).value =
+                booking.name || "";
+
+
+            document.getElementById(
+                "editEmail"
+            ).value =
+                booking.email || "";
+
+
+            document.getElementById(
+                "editPhone"
+            ).value =
+                booking.phone || "";
+
+
+            document.getElementById(
+                "editDate"
+            ).value =
+                booking.bookingDate || "";
+
+
+            document.getElementById(
+                "editTime"
+            ).value =
+                booking.bookingTime || "";
+
+
+            document.getElementById(
+                "editModal"
+            ).style.display =
+                "flex";
+
+        }
+
+
+
+        /* ==========================================
+           CLOSE MODAL
+        ========================================== */
+
+        document
+            .getElementById("closeModal")
+            .addEventListener(
+                "click",
+                function () {
+
+                    document.getElementById(
+                        "editModal"
+                    ).style.display =
+                        "none";
+
+                }
+            );
+
+
+
+        /* ==========================================
+           CLOSE MODAL OUTSIDE CLICK
+        ========================================== */
+
+        window.addEventListener(
+            "click",
+            function (event) {
+
+                const modal =
+                    document.getElementById(
+                        "editModal"
+                    );
+
+
+                if (event.target === modal) {
+
+                    modal.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+
+        /* ==========================================
+           UPDATE BOOKING
+        ========================================== */
+
+        document
+            .getElementById("editBookingForm")
+            .addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    if (!selectedBookingId) {
+
+                        alert(
+                            "Booking ID not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const originalBooking =
+                        bookingsData.find(
+                            function (booking) {
+
+                                return Number(
+                                    booking.id
+                                ) ===
+                                Number(
+                                    selectedBookingId
+                                );
+
+                            }
+                        );
+
+
+                    const bookingData = {
+
+                        name:
+                            document.getElementById(
+                                "editName"
+                            ).value.trim(),
+
+                        email:
+                            document.getElementById(
+                                "editEmail"
+                            ).value.trim(),
+
+                        phone:
+                            document.getElementById(
+                                "editPhone"
+                            ).value.trim(),
+
+                        bookingDate:
+                            document.getElementById(
+                                "editDate"
+                            ).value,
+
+                        bookingTime:
+                            document.getElementById(
+                                "editTime"
+                            ).value,
+
+                        bookingType:
+                            originalBooking &&
+                            originalBooking.bookingType
+                                ? originalBooking.bookingType
+                                : "SERVICE"
+
+                    };
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                API_URL +
+                                "/" +
+                                selectedBookingId,
+                                {
+
+                                    method: "PUT",
+
+                                    credentials:
+                                        "include",
+
+                                    headers: {
+
+                                        "Content-Type":
+                                            "application/json"
+
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            bookingData
+                                        )
+
+                                }
+                            );
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Update failed. Status: " +
+                                response.status
+                            );
+
+                        }
+
+
+                        alert(
+                            "Booking Updated Successfully!"
+                        );
+
+
+                        document.getElementById(
+                            "editModal"
+                        ).style.display =
+                            "none";
+
+
+                        selectedBookingId =
+                            null;
+
+
+                        await loadBookings();
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Update error:",
+                            error
+                        );
+
+
+                        alert(
+                            "Failed to update booking."
                         );
 
                     }
+
+                }
+            );
+
+
+
+        /* ==========================================
+           DELETE BOOKING
+        ========================================== */
+
+        async function deleteBooking(id) {
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this booking?"
                 );
 
 
-            const bookingData = {
+            if (!confirmDelete) {
 
-                name:
-                    document.getElementById(
-                        "editName"
-                    ).value.trim(),
+                return;
 
-                email:
-                    document.getElementById(
-                        "editEmail"
-                    ).value.trim(),
-
-                phone:
-                    document.getElementById(
-                        "editPhone"
-                    ).value.trim(),
-
-                bookingDate:
-                    document.getElementById(
-                        "editDate"
-                    ).value,
-
-                bookingTime:
-                    document.getElementById(
-                        "editTime"
-                    ).value,
-
-                bookingType:
-                    originalBooking &&
-                    originalBooking.bookingType
-                        ? originalBooking.bookingType
-                        : "SERVICE"
-
-            };
+            }
 
 
             try {
@@ -853,25 +1455,13 @@ document
                     await fetch(
                         API_URL +
                         "/" +
-                        selectedBookingId,
+                        id,
                         {
 
-                            method: "PUT",
+                            method: "DELETE",
 
                             credentials:
-                                "include",
-
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json"
-
-                            },
-
-                            body:
-                                JSON.stringify(
-                                    bookingData
-                                )
+                                "include"
 
                         }
                     );
@@ -880,7 +1470,7 @@ document
                 if (!response.ok) {
 
                     throw new Error(
-                        "Update failed. Status: " +
+                        "Delete failed. Status: " +
                         response.status
                     );
 
@@ -888,18 +1478,8 @@ document
 
 
                 alert(
-                    "Booking Updated Successfully!"
+                    "Booking Deleted Successfully!"
                 );
-
-
-                document.getElementById(
-                    "editModal"
-                ).style.display =
-                    "none";
-
-
-                selectedBookingId =
-                    null;
 
 
                 await loadBookings();
@@ -909,610 +1489,114 @@ document
             catch (error) {
 
                 console.error(
-                    "Update error:",
+                    "Delete error:",
                     error
                 );
 
 
                 alert(
-                    "Failed to update booking."
+                    "Failed to delete booking."
                 );
 
             }
 
         }
-    );
 
 
-/* ==========================================
-   DELETE BOOKING
-========================================== */
 
-async function deleteBooking(id) {
+        /* ==========================================
+           ADMIN LOGOUT
+        ========================================== */
 
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete this booking?"
-        );
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                async function () {
+
+                    try {
+
+                        await fetch(
+                            API_BASE_URL +
+                            "/api/admin/logout",
+                            {
+
+                                method: "POST",
+
+                                credentials:
+                                    "include"
+
+                            }
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
+
+                    }
 
 
-    if (!confirmDelete) {
-        return;
-    }
+                    localStorage.removeItem(
+                        "loggedIn"
+                    );
 
 
-    try {
+                    localStorage.removeItem(
+                        "userToken"
+                    );
 
-        const response =
-            await fetch(
-                API_URL +
-                "/" +
-                id,
-                {
 
-                    method: "DELETE",
+                    localStorage.removeItem(
+                        "adminToken"
+                    );
 
-                    credentials:
-                        "include"
+
+                    localStorage.removeItem(
+                        "virtualBooking"
+                    );
+
+
+                    localStorage.removeItem(
+                        "selectedService"
+                    );
+
+
+                    window.location.href =
+                        "admin-login.html";
 
                 }
             );
 
 
-        if (!response.ok) {
 
-            throw new Error(
-                "Delete failed. Status: " +
-                response.status
-            );
+        /* ==========================================
+           START
+        ========================================== */
 
-        }
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
 
-
-        alert(
-            "Booking Deleted Successfully!"
-        );
+                const isAdmin =
+                    await checkAdminLogin();
 
 
-        await loadBookings();
+                if (isAdmin) {
 
-    }
+                    await loadBookings();
 
-    catch (error) {
-
-        console.error(
-            "Delete error:",
-            error
-        );
-
-
-        alert(
-            "Failed to delete booking."
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   ADMIN LOGOUT
-========================================== */
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async function () {
-
-            try {
-
-                await fetch(
-                    API_BASE_URL +
-                    "/api/admin/logout",
-                    {
-
-                        method: "POST",
-
-                        credentials:
-                            "include"
-
-                    }
-                );
+                }
 
             }
+        );
 
-            catch (error) {
+    </script>
 
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-            }
-
-
-            localStorage.removeItem(
-                "loggedIn"
-            );
-
-
-            localStorage.removeItem(
-                "userToken"
-            );
-
-
-            localStorage.removeItem(
-                "adminToken"
-            );
-
-
-            localStorage.removeItem(
-                "virtualBooking"
-            );
-
-
-            localStorage.removeItem(
-                "selectedService"
-            );
-
-
-            window.location.href =
-                "admin-login.html";
-
-        }
-    );
-
-
-/* ==========================================
-   START
-========================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
-
-        const isAdmin =
-            await checkAdminLogin();
-
-
-        if (isAdmin) {
-
-            await loadBookings();
-
-        }
-
-    }
-);
-
-</script>
-
-</head>
-
-<body>
-
-<!-- ==========================================
-     ADMIN NAVBAR
-========================================== -->
-
-<header>
-
-```
-<nav class="admin-navbar">
-
-    <a href="admin-bookings.html" class="admin-logo">
-        Nail Muse
-    </a>
-
-
-    <div class="admin-nav-right">
-
-        <a
-            href="admin-bookings.html"
-            class="admin-nav-link">
-            Customer Bookings
-        </a>
-
-
-        <button
-            id="logoutBtn"
-            class="logout-btn">
-            Logout
-        </button>
-
-    </div>
-
-</nav>
-```
-
-</header>
-
-<!-- ==========================================
-     ADMIN BOOKINGS
-========================================== -->
-
-<section class="admin-bookings">
-
-```
-<div class="admin-container">
-
-
-    <!-- TITLE -->
-
-    <div class="admin-title">
-
-        <span>
-            Nail Muse Administration
-        </span>
-
-
-        <h1>
-            Customer Bookings
-        </h1>
-
-
-        <p>
-            Manage all customer appointments from one place.
-        </p>
-
-    </div>
-
-
-    <!-- ==========================================
-         DASHBOARD STATS
-    ========================================== -->
-
-    <div class="admin-stats">
-
-        <div class="admin-stat-card">
-
-            <div class="stat-icon"></div>
-
-            <div class="stat-info">
-
-                <h3>
-                    Total Bookings
-                </h3>
-
-                <p id="totalBookings">
-                    0
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="admin-stat-card">
-
-            <div class="stat-icon"></div>
-
-            <div class="stat-info">
-
-                <h3>
-                    Offer Bookings
-                </h3>
-
-                <p id="offerBookings">
-                    0
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="admin-stat-card">
-
-            <div class="stat-icon"></div>
-
-            <div class="stat-info">
-
-                <h3>
-                    Service Bookings
-                </h3>
-
-                <p id="serviceBookings">
-                    0
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="admin-stat-card">
-
-            <div class="stat-icon"></div>
-
-            <div class="stat-info">
-
-                <h3>
-                    Virtual Bookings
-                </h3>
-
-                <p id="virtualBookings">
-                    0
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- ==========================================
-         FILTER
-    ========================================== -->
-
-    <div class="booking-filter">
-
-        <label for="bookingFilter">
-            Show:
-        </label>
-
-
-        <select id="bookingFilter">
-
-            <option value="all">
-                All Bookings
-            </option>
-
-            <option value="offer">
-                Offer Bookings
-            </option>
-
-            <option value="service">
-                Service Bookings
-            </option>
-
-            <option value="virtual">
-                Virtual Bookings
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <!-- ==========================================
-         BOOKING TABLE
-    ========================================== -->
-
-    <div class="table-wrapper">
-
-        <div class="table-container">
-
-            <div
-                id="loadingMessage"
-                class="loading">
-                Loading bookings...
-            </div>
-
-
-            <table id="bookingTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-
-                        <th>Name</th>
-
-                        <th>Email</th>
-
-                        <th>Phone</th>
-
-                        <th>Booking Type</th>
-
-                        <th>Date</th>
-
-                        <th>Time</th>
-
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="bookingTableBody"></tbody>
-
-            </table>
-
-
-            <div
-                id="emptyMessage"
-                class="empty-message"
-                style="display:none;">
-
-                No bookings found.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-```
-
-</section>
-
-<!-- ==========================================
-     EDIT MODAL
-========================================== -->
-
-<div
-    id="editModal"
-    class="admin-modal">
-
-```
-<div class="admin-modal-content">
-
-    <span
-        class="admin-close-modal"
-        id="closeModal">
-
-        &times;
-
-    </span>
-
-
-    <h2>
-        Edit Booking
-    </h2>
-
-
-    <form id="editBookingForm">
-
-
-        <div class="edit-form-group">
-
-            <label for="editName">
-                Full Name
-            </label>
-
-            <input
-                type="text"
-                id="editName"
-                required>
-
-        </div>
-
-
-        <div class="edit-form-group">
-
-            <label for="editEmail">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="editEmail"
-                required>
-
-        </div>
-
-
-        <div class="edit-form-group">
-
-            <label for="editPhone">
-                Phone Number
-            </label>
-
-            <input
-                type="tel"
-                id="editPhone"
-                pattern="[6-9][0-9]{9}"
-                maxlength="10"
-                required>
-
-        </div>
-
-
-        <div class="edit-form-group">
-
-            <label for="editDate">
-                Appointment Date
-            </label>
-
-            <input
-                type="date"
-                id="editDate"
-                required>
-
-        </div>
-
-
-        <div class="edit-form-group">
-
-            <label for="editTime">
-                Appointment Time
-            </label>
-
-            <select
-                id="editTime"
-                required>
-
-                <option value="">
-                    Select a time
-                </option>
-
-                <option value="11:00 AM">
-                    11:00 AM
-                </option>
-
-                <option value="12:00 PM">
-                    12:00 PM
-                </option>
-
-                <option value="1:00 PM">
-                    1:00 PM
-                </option>
-
-                <option value="2:00 PM">
-                    2:00 PM
-                </option>
-
-                <option value="3:00 PM">
-                    3:00 PM
-                </option>
-
-                <option value="4:00 PM">
-                    4:00 PM
-                </option>
-
-                <option value="5:00 PM">
-                    5:00 PM
-                </option>
-
-                <option value="6:00 PM">
-                    6:00 PM
-                </option>
-
-                <option value="7:00 PM">
-                    7:00 PM
-                </option>
-
-                <option value="8:00 PM">
-                    8:00 PM
-                </option>
-
-                <option value="9:00 PM">
-                    9:00 PM
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="update-btn">
-
-            Update Booking
-
-        </button>
-
-    </form>
-
-</div>
-
-</div>
-
-<!-- ==========================================
-     FOOTER
-========================================== -->
-
-<footer class="admin-footer">
-
-
-
-</footer>
 
 </body>
 
