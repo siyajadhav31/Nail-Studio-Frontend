@@ -2129,442 +2129,230 @@ footer p{
 
 
 /* =========================================================
-   VIRTUAL NAIL PREVIEW
+   VIRTUAL NAIL PREVIEW MODAL
 ========================================================= */
 
 .preview-modal{
-    display:none;
-    position:fixed;
-    z-index:99999;
-    inset:0;
-    width:100%;
-    height:100%;
+    display:none !important;
+
+    position:fixed !important;
+
+    inset:0 !important;
+
+    width:100% !important;
+    height:100% !important;
+
+    z-index:999999 !important;
+
     background:rgba(25,20,18,.72);
+
     backdrop-filter:blur(6px);
+
     justify-content:center;
     align-items:center;
+
     padding:20px;
+
     overflow-y:auto;
+
+    box-sizing:border-box;
+
+    visibility:hidden;
+
+    opacity:0;
+
+    pointer-events:none;
 }
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+.preview-modal.open{
+    display:flex !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+    pointer-events:auto !important;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
 
 .preview-modal .modal-content{
     width:100%;
+
     max-width:950px;
+
     max-height:92vh;
+
     overflow-y:auto;
+
     background:white;
+
     border-radius:18px;
+
     padding:35px;
+
     position:relative;
-    box-shadow:0 20px 60px rgba(0,0,0,.20);
-    animation:previewModalOpen .35s ease;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.20);
+
+    animation:
+        previewModalOpen .35s ease;
+
+    box-sizing:border-box;
 }
 
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
 @keyframes previewModalOpen{
+
     from{
         opacity:0;
-        transform:translateY(25px) scale(.97);
+        transform:
+            translateY(25px)
+            scale(.97);
     }
 
     to{
         opacity:1;
-        transform:translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
+
 }
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
 
 .preview-modal .close-modal{
+
     position:absolute;
+
     top:16px;
     right:20px;
+
     width:36px;
     height:36px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
+
     font-size:26px;
+
     color:#777;
+
     cursor:pointer;
+
     transition:.3s;
+
+    z-index:10;
 }
+
 
 .preview-modal .close-modal:hover{
+
     background:#fff5e6;
+
     color:#b8860b;
+
 }
+
+
+/* =========================================================
+   MODAL TITLE
+========================================================= */
 
 .preview-modal .modal-content > h2{
-    font-family:'Cormorant Garamond',serif;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
     font-size:42px;
+
     font-weight:600;
+
     text-align:center;
+
     color:#49393e;
+
     margin-bottom:5px;
+
 }
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
 
 .preview-subtitle{
+
     text-align:center;
+
     color:#888;
+
     font-size:13px;
+
     margin-bottom:30px;
+
 }
 
-.preview-section{
-    margin-bottom:28px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:768px){
+
+    .preview-modal{
+
+        padding:12px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .preview-modal .modal-content{
+
+        margin-top:20px;
+
+        max-height:94vh;
+
+        padding:25px 18px;
+
+        border-radius:15px;
+
+    }
+
+
+    .preview-modal .modal-content > h2{
+
+        font-size:32px;
+
+        padding-right:25px;
+
+    }
+
 }
-
-.preview-section h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:25px;
-    font-weight:600;
-    color:#49393e;
-    margin-bottom:14px;
-}
-
-.preview-options{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-}
-
-.preview-option{
-    border:1px solid #ddd;
-    background:white;
-    color:#555;
-    padding:9px 17px;
-    border-radius:22px;
-    font-size:12px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.preview-option:hover{
-    border-color:#c89b3c;
-    color:#b8860b;
-}
-
-.preview-option.active{
-    background:#c89b3c;
-    border-color:#c89b3c;
-    color:white;
-    box-shadow:0 4px 12px rgba(184,134,11,.15);
-}
-
-.shade-options{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    align-items:center;
-}
-
-.shade-btn{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:3px solid white;
-    box-shadow:0 0 0 1px #ddd;
-    cursor:pointer;
-    transition:.3s;
-    position:relative;
-}
-
-.shade-btn:hover{
-    transform:scale(1.1);
-}
-
-.shade-btn.active{
-    transform:scale(1.13);
-    box-shadow:
-        0 0 0 2px #c89b3c,
-        0 5px 12px rgba(0,0,0,.12);
-}
-
-.shade-btn.active::after{
-    content:"✓";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-weight:bold;
-    text-shadow:0 1px 3px rgba(0,0,0,.5);
-}
-
-.selected-shade{
-    margin-top:13px;
-    color:#777;
-    font-size:13px;
-}
-
-.selected-shade strong{
-    color:#b8860b;
-}
-
-.nail-preview-stage{
-    min-height:320px;
-    padding:45px 20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:18px;
-    background:
-        radial-gradient(
-            circle at center,
-            #fffdfb 0%,
-            #fff8f4 65%,
-            #fdf0eb 100%
-        );
-    border:1px solid #f1ddd5;
-    border-radius:17px;
-    overflow:hidden;
-    position:relative;
-}
-
-.nail-preview-stage .virtual-nail{
-    width:58px;
-    height:155px;
-    background:#c89b3c;
-    position:relative;
-    border:3px solid rgba(255,255,255,.85);
-    border-radius:30px 30px 18px 18px;
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.10),
-        inset 0 2px 5px rgba(255,255,255,.45);
-    transition:all .35s ease;
-}
-
-.nail-preview-stage .nail-1{
-    height:140px;
-    transform:rotate(-8deg);
-}
-
-.nail-preview-stage .nail-2{
-    height:165px;
-    transform:rotate(-4deg);
-}
-
-.nail-preview-stage .nail-3{
-    height:175px;
-}
-
-.nail-preview-stage .nail-4{
-    height:165px;
-    transform:rotate(4deg);
-}
-
-.nail-preview-stage .nail-5{
-    height:140px;
-    transform:rotate(8deg);
-}
-
-.nail-preview-stage .virtual-nail:hover{
-    transform:
-        translateY(-8px)
-        rotate(0deg)
-        scale(1.05);
-}
-
-.nail-preview-stage.shape-almond .virtual-nail{
-    border-radius:50%;
-    clip-path:
-        polygon(
-            50% 0%,
-            78% 12%,
-            95% 38%,
-            100% 68%,
-            82% 100%,
-            18% 100%,
-            0% 68%,
-            5% 38%,
-            22% 12%
-        );
-}
-
-.nail-preview-stage.shape-square .virtual-nail{
-    border-radius:8px 8px 5px 5px;
-    clip-path:none;
-}
-
-.nail-preview-stage.shape-coffin .virtual-nail{
-    border-radius:20px 20px 5px 5px;
-    clip-path:
-        polygon(
-            18% 0%,
-            82% 0%,
-            100% 20%,
-            90% 100%,
-            10% 100%,
-            0% 20%
-        );
-}
-
-.nail-preview-stage.shape-oval .virtual-nail{
-    border-radius:50% 50% 45% 45%;
-    clip-path:none;
-}
-
-.nail-preview-stage.shape-stiletto .virtual-nail{
-    border-radius:50% 50% 10% 10%;
-    clip-path:
-        polygon(
-            50% 0%,
-            100% 78%,
-            82% 100%,
-            18% 100%,
-            0% 78%
-        );
-}
-
-.nail-preview-stage.design-classic-nude
-.virtual-nail{
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.10),
-        inset 0 2px 5px rgba(255,255,255,.45);
-}
-
-.nail-preview-stage.design-french-tips
-.virtual-nail{
-    background-image:
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            transparent 76%,
-            rgba(255,255,255,.95) 77%,
-            rgba(255,255,255,.95) 100%
-        );
-}
-
-.nail-preview-stage.design-chrome
-.virtual-nail{
-    background:
-        linear-gradient(
-            120deg,
-            #ffffff 0%,
-            #aaa 20%,
-            #ffffff 40%,
-            #777 60%,
-            #ffffff 80%,
-            #aaa 100%
-        );
-
-    box-shadow:
-        0 7px 20px rgba(0,0,0,.16),
-        inset 0 0 12px rgba(255,255,255,.8);
-}
-
-.nail-preview-stage.design-cat-eye
-.virtual-nail{
-    background-image:
-        linear-gradient(
-            115deg,
-            transparent 35%,
-            rgba(255,255,255,.85) 47%,
-            rgba(255,255,255,.25) 52%,
-            transparent 65%
-        );
-}
-
-.nail-preview-stage.design-glitter
-.virtual-nail{
-    background-image:
-        radial-gradient(
-            white 1.2px,
-            transparent 1.2px
-        );
-    background-size:8px 8px;
-}
-
-.nail-preview-stage.design-floral
-.virtual-nail::after{
-    content:"✿";
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    color:white;
-    font-size:24px;
-    text-shadow:0 2px 5px rgba(0,0,0,.15);
-}
-
-.nail-preview-stage .virtual-nail::before{
-    content:"";
-    position:absolute;
-    width:45%;
-    height:18%;
-    top:10px;
-    left:15%;
-    border-radius:50%;
-    background:rgba(255,255,255,.25);
-    transform:rotate(-20deg);
-    pointer-events:none;
-}
-
-.selected-look{
-    margin-top:25px;
-    padding:22px;
-    background:#fffaf5;
-    border:1px solid #ecd9b6;
-    border-radius:13px;
-}
-
-.selected-look h3{
-    text-align:center;
-    font-family:'Cormorant Garamond',serif;
-    font-size:27px;
-    font-weight:600;
-    color:#49393e;
-    margin-bottom:15px;
-}
-
-.selected-look p{
-    color:#777;
-    font-size:13px;
-    margin:7px 0;
-}
-
-.selected-look p strong{
-    color:#b8860b;
-}
-
-.selected-look span{
-    color:#555;
-    font-weight:500;
-}
-
-.virtual-book-btn{
-    display:block;
-    width:100%;
-    margin-top:25px;
-    padding:13px 25px;
-    border:none;
-    border-radius:6px;
-    background:#c89b3c;
-    color:white;
-    font-size:14px;
-    font-weight:500;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.virtual-book-btn:hover{
-    background:#b8860b;
-    transform:translateY(-2px);
-}
-
-.preview-modal .modal-content::-webkit-scrollbar{
-    width:6px;
-}
-
-.preview-modal .modal-content::-webkit-scrollbar-track{
-    background:#fffaf8;
-}
-
-.preview-modal .modal-content::-webkit-scrollbar-thumb{
-    background:#c89b3c;
-    border-radius:10px;
-}
-
 
 /* ==========================================
    HOME PAGE EXTRA SUPPORT
