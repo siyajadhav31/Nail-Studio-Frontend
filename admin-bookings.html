@@ -10,11 +10,9 @@
 
     <title>Admin Bookings | Nail Studio</title>
 
-
     <!-- CSS -->
     <link rel="stylesheet"
           href="css/style.css">
-
 
     <!-- GOOGLE FONTS -->
     <link
@@ -517,7 +515,6 @@
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
 
-
         const API_URL =
             API_BASE_URL + "/api/bookings";
 
@@ -530,118 +527,51 @@
 
         /* ==========================================
            CHECK ADMIN LOGIN
+
+           IMPORTANT:
+           We use localStorage here because the
+           cross-site JSESSIONID session is currently
+           not being retained by the browser.
         ========================================== */
 
-        async function checkAdminLogin() {
+        function checkAdminLogin() {
 
-            try {
+            const adminLoggedIn =
+                localStorage.getItem("adminLoggedIn");
 
-                console.log(
-                    "================================="
-                );
-
-                console.log(
-                    "CHECKING ADMIN AUTHENTICATION"
-                );
-
-                console.log(
-                    "Check URL:",
-                    API_BASE_URL + "/api/admin/check"
-                );
+            const adminEmail =
+                localStorage.getItem("adminEmail");
 
 
-                const response = await fetch(
-                    API_BASE_URL + "/api/admin/check",
-                    {
-                        method: "GET",
-
-                        credentials: "include",
-
-                        cache: "no-store",
-
-                        headers: {
-                            "Accept": "text/plain"
-                        }
-                    }
-                );
+            console.log("=================================");
+            console.log("CHECKING ADMIN LOGIN");
+            console.log("Admin logged in:", adminLoggedIn);
+            console.log("Admin email:", adminEmail);
+            console.log("=================================");
 
 
-                const result =
-                    await response.text();
-
+            if (
+                adminLoggedIn === "true" &&
+                adminEmail
+            ) {
 
                 console.log(
-                    "Admin Check Status:",
-                    response.status
+                    "ADMIN LOGIN VERIFIED FROM LOCAL STORAGE"
                 );
 
-                console.log(
-                    "Admin Check Response:",
-                    result
-                );
-
-
-                /* ==========================================
-                   AUTHENTICATED
-                ========================================== */
-
-                if (
-                    response.ok &&
-                    result.trim() === "Admin authenticated"
-                ) {
-
-                    console.log(
-                        "ADMIN AUTHENTICATION SUCCESSFUL"
-                    );
-
-                    console.log(
-                        "================================="
-                    );
-
-                    return true;
-                }
-
-
-                /* ==========================================
-                   NOT AUTHENTICATED
-                ========================================== */
-
-                console.error(
-                    "ADMIN AUTHENTICATION FAILED"
-                );
-
-
-                localStorage.removeItem(
-                    "adminLoggedIn"
-                );
-
-                localStorage.removeItem(
-                    "adminEmail"
-                );
-
-
-                window.location.href =
-                    "admin-login.html";
-
-
-                return false;
-
+                return true;
             }
 
-            catch (error) {
 
-                console.error(
-                    "Admin authentication error:",
-                    error
-                );
+            console.error(
+                "ADMIN LOGIN NOT FOUND"
+            );
 
 
-                window.location.href =
-                    "admin-login.html";
+            window.location.href =
+                "admin-login.html";
 
-
-                return false;
-            }
+            return false;
         }
 
 
@@ -859,7 +789,6 @@
             loadingMessage.style.display =
                 "block";
 
-
             loadingMessage.textContent =
                 "Loading bookings...";
 
@@ -996,6 +925,7 @@
 
                 loadingMessage.textContent =
                     "Unable to load bookings. Please check the Spring Boot backend.";
+
             }
         }
 
@@ -1261,6 +1191,7 @@
                     tableBody.appendChild(
                         row
                     );
+
                 }
             );
         }
@@ -1784,7 +1715,7 @@
 
 
                 const isAdmin =
-                    await checkAdminLogin();
+                    checkAdminLogin();
 
 
                 if (isAdmin) {
