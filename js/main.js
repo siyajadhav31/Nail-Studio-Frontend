@@ -432,7 +432,7 @@ async function handleBookingSubmit(event) {
 
 
     /* =====================================================
-       BOOKING DATA
+       💅 NORMAL BOOKING DATA
     ===================================================== */
 
     const bookingData = {
@@ -449,18 +449,22 @@ async function handleBookingSubmit(event) {
         service:
             service,
 
+        /* Backend-compatible date */
+        bookingDate:
+            date,
+
+        /* Backend-compatible time */
+        bookingTime:
+            time,
+
+        /* Keep old fields */
         date:
             date,
 
         time:
             time,
 
-        bookingDate:
-            date,
-
-        bookingTime:
-            time,
-
+        /* IMPORTANT */
         bookingType:
             "SERVICE",
 
@@ -471,8 +475,34 @@ async function handleBookingSubmit(event) {
 
 
     console.log(
-        "💅 Sending normal booking:",
+        "================================="
+    );
+
+    console.log(
+        "💅 SENDING NORMAL SERVICE BOOKING"
+    );
+
+    console.log(
         bookingData
+    );
+
+    console.log(
+        "Booking Type:",
+        bookingData.bookingType
+    );
+
+    console.log(
+        "Booking Date:",
+        bookingData.bookingDate
+    );
+
+    console.log(
+        "Booking Time:",
+        bookingData.bookingTime
+    );
+
+    console.log(
+        "================================="
     );
 
 
@@ -486,11 +516,13 @@ async function handleBookingSubmit(event) {
                         "POST",
 
                     headers: {
+
                         "Content-Type":
                             "application/json",
 
                         "Accept":
                             "application/json"
+
                     },
 
                     body:
@@ -572,6 +604,10 @@ async function handleVirtualBookingSubmit(event) {
         event.target;
 
 
+    /* =====================================================
+       BASIC DETAILS
+    ===================================================== */
+
     const name =
         getInputValue(
             form,
@@ -593,29 +629,56 @@ async function handleVirtualBookingSubmit(event) {
         );
 
 
+    /* =====================================================
+       SERVICE
+    ===================================================== */
+
     const service =
         getInputValue(
             form,
             "service"
+        ) ||
+        document
+            .getElementById("previewService")
+            ?.textContent
+            .trim() ||
+        "Gel Nails";
+
+
+    /* =====================================================
+       DATE
+    ===================================================== */
+
+    const dateInput =
+        form.querySelector(
+            '[name="bookingDate"]'
         );
 
 
     const date =
-        getInputValue(
-            form,
-            "bookingDate"
+        dateInput
+            ? dateInput.value.trim()
+            : "";
+
+
+    /* =====================================================
+       TIME
+    ===================================================== */
+
+    const timeInput =
+        form.querySelector(
+            '[name="time"]'
         );
 
 
     const time =
-        getInputValue(
-            form,
-            "time"
-        );
+        timeInput
+            ? timeInput.value.trim()
+            : "";
 
 
     /* =====================================================
-       SELECTED DESIGN
+       DESIGN
     ===================================================== */
 
     const bookingDesignElement =
@@ -631,7 +694,7 @@ async function handleVirtualBookingSubmit(event) {
 
 
     /* =====================================================
-       SELECTED SHADE
+       SHADE
     ===================================================== */
 
     const bookingShadeElement =
@@ -647,7 +710,7 @@ async function handleVirtualBookingSubmit(event) {
 
 
     /* =====================================================
-       SELECTED SHAPE
+       SHAPE
     ===================================================== */
 
     const previewShapeElement =
@@ -759,29 +822,43 @@ async function handleVirtualBookingSubmit(event) {
         service:
             service,
 
-        /* Backend-compatible fields */
+        /* IMPORTANT */
+        bookingType:
+            "VIRTUAL",
+
+        /* Backend-compatible */
         bookingDate:
             date,
 
         bookingTime:
             time,
 
-        /* Keep old fields too */
+        /* Keep old fields */
         date:
             date,
 
         time:
             time,
 
-        /* VERY IMPORTANT */
-        bookingType:
-            "VIRTUAL",
+        /* Virtual preview details */
+        design:
+            design,
+
+        shape:
+            shape,
+
+        shade:
+            shade,
 
         notes:
             `Virtual Preview | Shape: ${shape} | Design: ${design} | Shade: ${shade}`
 
     };
 
+
+    /* =====================================================
+       DEBUG LOG
+    ===================================================== */
 
     console.log(
         "================================="
@@ -792,6 +869,61 @@ async function handleVirtualBookingSubmit(event) {
     );
 
     console.log(
+        "================================="
+    );
+
+    console.log(
+        "Name:",
+        bookingData.name
+    );
+
+    console.log(
+        "Email:",
+        bookingData.email
+    );
+
+    console.log(
+        "Phone:",
+        bookingData.phone
+    );
+
+    console.log(
+        "Service:",
+        bookingData.service
+    );
+
+    console.log(
+        "Booking Type:",
+        bookingData.bookingType
+    );
+
+    console.log(
+        "Booking Date:",
+        bookingData.bookingDate
+    );
+
+    console.log(
+        "Booking Time:",
+        bookingData.bookingTime
+    );
+
+    console.log(
+        "Shape:",
+        bookingData.shape
+    );
+
+    console.log(
+        "Design:",
+        bookingData.design
+    );
+
+    console.log(
+        "Shade:",
+        bookingData.shade
+    );
+
+    console.log(
+        "Complete Data:",
         bookingData
     );
 
@@ -799,6 +931,10 @@ async function handleVirtualBookingSubmit(event) {
         "================================="
     );
 
+
+    /* =====================================================
+       SEND TO BACKEND
+    ===================================================== */
 
     try {
 
@@ -860,6 +996,50 @@ async function handleVirtualBookingSubmit(event) {
 
 
         form.reset();
+
+
+        /* Restore default virtual service */
+
+        const virtualService =
+            document.getElementById(
+                "virtualService"
+            );
+
+
+        if (virtualService) {
+
+            virtualService.value =
+                "Gel Nails";
+
+        }
+
+
+        const previewService =
+            document.getElementById(
+                "previewService"
+            );
+
+
+        if (previewService) {
+
+            previewService.textContent =
+                "Gel Nails";
+
+        }
+
+
+        const bookingService =
+            document.getElementById(
+                "bookingService"
+            );
+
+
+        if (bookingService) {
+
+            bookingService.textContent =
+                "Gel Nails";
+
+        }
 
 
         localStorage.removeItem(
@@ -1201,7 +1381,7 @@ function initializeVirtualPreview() {
 
 
     /* =====================================================
-       OPEN PREVIEW FUNCTION
+       OPEN PREVIEW
     ===================================================== */
 
     function openVirtualPreview() {
@@ -1225,9 +1405,11 @@ function initializeVirtualPreview() {
                 "❌ #previewModal NOT FOUND"
             );
 
+
             alert(
                 "Virtual Preview modal not found."
             );
+
 
             return;
 
@@ -1290,7 +1472,6 @@ function initializeVirtualPreview() {
 
     /* =====================================================
        PREVIEW BUTTON
-       Works with both IDs
     ===================================================== */
 
     document.addEventListener(
@@ -1309,6 +1490,7 @@ function initializeVirtualPreview() {
 
 
             event.preventDefault();
+
 
             event.stopPropagation();
 
@@ -1335,7 +1517,9 @@ function initializeVirtualPreview() {
 
                 event.preventDefault();
 
+
                 event.stopPropagation();
+
 
                 closeVirtualPreview();
 
@@ -1472,7 +1656,7 @@ function initializeVirtualPreview() {
 
 
                     console.log(
-                        "Selected service:",
+                        "Selected virtual service:",
                         service
                     );
 
@@ -2441,9 +2625,8 @@ document.addEventListener(
         }
 
 
-        /* ================================================
-           IMPORTANT:
-           VIRTUAL PREVIEW BUTTON KO TOUCH NAHI KARNA
+        /* =================================================
+           💅 DO NOT TOUCH VIRTUAL PREVIEW
         ================================================= */
 
         if (
