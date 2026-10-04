@@ -1,5 +1,5 @@
 /* =========================================================
-   NAIL STUDIO - MAIN JAVASCRIPT
+   💅 NAIL STUDIO - MAIN JAVASCRIPT
 ========================================================= */
 
 
@@ -18,7 +18,7 @@ const API_URL =
 function initializeWebsite() {
 
     console.log("=================================");
-    console.log("NAIL STUDIO MAIN JS LOADED");
+    console.log("💅 NAIL STUDIO MAIN JS LOADED");
     console.log("=================================");
     console.log("Backend API:", API_URL);
 
@@ -96,7 +96,7 @@ function initializeWebsite() {
 
 
     /* =====================================================
-       VIRTUAL PREVIEW
+       💅 VIRTUAL NAIL PREVIEW
     ===================================================== */
 
     initializeVirtualPreview();
@@ -110,7 +110,7 @@ function initializeWebsite() {
 
 
     console.log(
-        "All website functions initialized."
+        "💅 All Nail Studio functions initialized."
     );
 
 }
@@ -455,6 +455,15 @@ async function handleBookingSubmit(event) {
         time:
             time,
 
+        bookingDate:
+            date,
+
+        bookingTime:
+            time,
+
+        bookingType:
+            "SERVICE",
+
         notes:
             notes
 
@@ -462,7 +471,7 @@ async function handleBookingSubmit(event) {
 
 
     console.log(
-        "Sending booking:",
+        "💅 Sending normal booking:",
         bookingData
     );
 
@@ -478,6 +487,9 @@ async function handleBookingSubmit(event) {
 
                     headers: {
                         "Content-Type":
+                            "application/json",
+
+                        "Accept":
                             "application/json"
                     },
 
@@ -516,7 +528,7 @@ async function handleBookingSubmit(event) {
 
 
         showMessage(
-            "Your appointment has been booked successfully!",
+            "💅 Your appointment has been booked successfully!",
             "success"
         );
 
@@ -532,7 +544,7 @@ async function handleBookingSubmit(event) {
     } catch (error) {
 
         console.error(
-            "Booking error:",
+            "❌ Booking error:",
             error
         );
 
@@ -548,7 +560,7 @@ async function handleBookingSubmit(event) {
 
 
 /* =========================================================
-   VIRTUAL BOOKING
+   💅 VIRTUAL BOOKING
 ========================================================= */
 
 async function handleVirtualBookingSubmit(event) {
@@ -587,10 +599,6 @@ async function handleVirtualBookingSubmit(event) {
             "service"
         );
 
-
-    /* =====================================================
-       VIRTUAL BOOKING DATE
-    ===================================================== */
 
     const date =
         getInputValue(
@@ -734,7 +742,7 @@ async function handleVirtualBookingSubmit(event) {
 
 
     /* =====================================================
-       VIRTUAL BOOKING DATA
+       💅 VIRTUAL BOOKING DATA
     ===================================================== */
 
     const bookingData = {
@@ -751,11 +759,23 @@ async function handleVirtualBookingSubmit(event) {
         service:
             service,
 
+        /* Backend-compatible fields */
+        bookingDate:
+            date,
+
+        bookingTime:
+            time,
+
+        /* Keep old fields too */
         date:
             date,
 
         time:
             time,
+
+        /* VERY IMPORTANT */
+        bookingType:
+            "VIRTUAL",
 
         notes:
             `Virtual Preview | Shape: ${shape} | Design: ${design} | Shade: ${shade}`
@@ -764,8 +784,19 @@ async function handleVirtualBookingSubmit(event) {
 
 
     console.log(
-        "Sending virtual booking:",
+        "================================="
+    );
+
+    console.log(
+        "💅 SENDING VIRTUAL BOOKING"
+    );
+
+    console.log(
         bookingData
+    );
+
+    console.log(
+        "================================="
     );
 
 
@@ -779,8 +810,13 @@ async function handleVirtualBookingSubmit(event) {
                         "POST",
 
                     headers: {
+
                         "Content-Type":
+                            "application/json",
+
+                        "Accept":
                             "application/json"
+
                     },
 
                     body:
@@ -826,13 +862,18 @@ async function handleVirtualBookingSubmit(event) {
         form.reset();
 
 
+        localStorage.removeItem(
+            "selectedService"
+        );
+
+
         closeVirtualPreview();
 
 
     } catch (error) {
 
         console.error(
-            "Virtual booking error:",
+            "❌ Virtual booking error:",
             error
         );
 
@@ -1113,23 +1154,14 @@ function showMessage(
 
 
 /* =========================================================
-   VIRTUAL NAIL PREVIEW
+   💅 VIRTUAL NAIL PREVIEW
 ========================================================= */
 
 function initializeVirtualPreview() {
 
     console.log(
-        "Initializing Virtual Preview..."
+        "💅 Initializing Virtual Preview..."
     );
-
-
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const previewBtn =
-        document.getElementById("previewBtn") ||
-        document.getElementById("previewBtnBottom");
 
 
     const previewModal =
@@ -1151,12 +1183,6 @@ function initializeVirtualPreview() {
 
 
     console.log(
-        "Preview Button:",
-        previewBtn
-    );
-
-
-    console.log(
         "Preview Modal:",
         previewModal
     );
@@ -1175,135 +1201,123 @@ function initializeVirtualPreview() {
 
 
     /* =====================================================
-       OPEN VIRTUAL PREVIEW
+       OPEN PREVIEW FUNCTION
     ===================================================== */
 
-    if (
-        previewBtn &&
-        previewModal
-    ) {
+    function openVirtualPreview() {
 
-        previewBtn.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-
-                event.stopImmediatePropagation();
-
-
-                console.log(
-                    "================================="
-                );
-
-
-                console.log(
-                    "✨ TRY VIRTUAL PREVIEW CLICKED"
-                );
-
-
-                console.log(
-                    "================================="
-                );
-
-
-                /* =========================================
-                   OPEN MODAL
-                ========================================= */
-
-                previewModal.classList.add(
-                    "open"
-                );
-
-
-                previewModal.style.setProperty(
-                    "display",
-                    "flex",
-                    "important"
-                );
-
-
-                previewModal.style.setProperty(
-                    "visibility",
-                    "visible",
-                    "important"
-                );
-
-
-                previewModal.style.setProperty(
-                    "opacity",
-                    "1",
-                    "important"
-                );
-
-
-                previewModal.style.setProperty(
-                    "pointer-events",
-                    "auto",
-                    "important"
-                );
-
-
-                previewModal.style.setProperty(
-                    "z-index",
-                    "999999",
-                    "important"
-                );
-
-
-                document.body.style.overflow =
-                    "hidden";
-
-
-                /* =========================================
-                   UPDATE PREVIEW
-                ========================================= */
-
-                updateVirtualPreview();
-
-
-                console.log(
-                    "Modal display:",
-                    getComputedStyle(
-                        previewModal
-                    ).display
-                );
-
-
-                console.log(
-                    "Modal visibility:",
-                    getComputedStyle(
-                        previewModal
-                    ).visibility
-                );
-
-
-                console.log(
-                    "Modal opacity:",
-                    getComputedStyle(
-                        previewModal
-                    ).opacity
-                );
-
-            },
-            true
+        console.log(
+            "================================="
         );
 
-    } else {
-
-        console.error(
-            "❌ Virtual Preview Button or Modal NOT FOUND!"
+        console.log(
+            "✨ TRY VIRTUAL PREVIEW CLICKED"
         );
 
-        console.error(
-            "Button expected: #previewBtn"
+        console.log(
+            "================================="
         );
 
-        console.error(
-            "Modal expected: #previewModal"
+
+        if (!previewModal) {
+
+            console.error(
+                "❌ #previewModal NOT FOUND"
+            );
+
+            alert(
+                "Virtual Preview modal not found."
+            );
+
+            return;
+
+        }
+
+
+        previewModal.classList.add(
+            "open"
+        );
+
+
+        previewModal.style.setProperty(
+            "display",
+            "flex",
+            "important"
+        );
+
+
+        previewModal.style.setProperty(
+            "visibility",
+            "visible",
+            "important"
+        );
+
+
+        previewModal.style.setProperty(
+            "opacity",
+            "1",
+            "important"
+        );
+
+
+        previewModal.style.setProperty(
+            "pointer-events",
+            "auto",
+            "important"
+        );
+
+
+        previewModal.style.setProperty(
+            "z-index",
+            "999999",
+            "important"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+
+        updateVirtualPreview();
+
+
+        console.log(
+            "💅 Virtual Preview OPENED"
         );
 
     }
+
+
+    /* =====================================================
+       PREVIEW BUTTON
+       Works with both IDs
+    ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    "#previewBtn, #previewBtnBottom"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            openVirtualPreview();
+
+        },
+        true
+    );
 
 
     /* =====================================================
@@ -1332,7 +1346,7 @@ function initializeVirtualPreview() {
 
 
     /* =====================================================
-       CLOSE WHEN CLICKING BACKDROP
+       CLOSE BACKDROP
     ===================================================== */
 
     if (previewModal) {
@@ -1937,7 +1951,7 @@ function initializeVirtualPreview() {
 
 
     console.log(
-        "Virtual Preview initialized successfully."
+        "💅 Virtual Preview initialized successfully."
     );
 
 }
@@ -2162,7 +2176,7 @@ function closeVirtualPreview() {
 
 
     console.log(
-        "Virtual Preview closed."
+        "💅 Virtual Preview closed."
     );
 
 }
@@ -2427,14 +2441,17 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           DO NOT INTERFERE WITH VIRTUAL PREVIEW
+        /* ================================================
+           IMPORTANT:
+           VIRTUAL PREVIEW BUTTON KO TOUCH NAHI KARNA
         ================================================= */
 
         if (
             link.id === "previewBtn" ||
             link.id === "previewBtnBottom"
         ) {
+
+            event.preventDefault();
 
             return;
 
@@ -2451,6 +2468,8 @@ document.addEventListener(
             !targetId ||
             targetId === "#"
         ) {
+
+            event.preventDefault();
 
             return;
 
@@ -2489,11 +2508,13 @@ document.addEventListener(
 
 
         target.scrollIntoView({
+
             behavior:
                 "smooth",
 
             block:
                 "start"
+
         });
 
     }
@@ -2505,5 +2526,5 @@ document.addEventListener(
 ========================================================= */
 
 console.log(
-    "Nail Studio main.js file loaded."
+    "💅 Nail Studio main.js file loaded successfully."
 );
