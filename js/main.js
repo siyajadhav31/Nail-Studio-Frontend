@@ -173,7 +173,9 @@ function initializeMobileNavbar() {
                 "click",
                 function () {
 
-                    navLinks.classList.remove("active");
+                    navLinks.classList.remove(
+                        "active"
+                    );
 
                 }
             );
@@ -228,7 +230,8 @@ function setMinimumDate() {
     dateInputs.forEach(
         function (input) {
 
-            input.min = todayString;
+            input.min =
+                todayString;
 
         }
     );
@@ -252,7 +255,9 @@ function loadSelectedService() {
 
 
     const selectedService =
-        localStorage.getItem("selectedService");
+        localStorage.getItem(
+            "selectedService"
+        );
 
 
     if (!selectedService) {
@@ -261,7 +266,9 @@ function loadSelectedService() {
 
 
     const options =
-        serviceSelect.querySelectorAll("option");
+        serviceSelect.querySelectorAll(
+            "option"
+        );
 
 
     options.forEach(
@@ -272,7 +279,8 @@ function loadSelectedService() {
                 option.textContent.trim() === selectedService
             ) {
 
-                option.selected = true;
+                option.selected =
+                    true;
 
             }
 
@@ -296,31 +304,52 @@ async function handleBookingSubmit(event) {
 
 
     const name =
-        getInputValue(form, "name");
+        getInputValue(
+            form,
+            "name"
+        );
 
 
     const email =
-        getInputValue(form, "email");
+        getInputValue(
+            form,
+            "email"
+        );
 
 
     const phone =
-        getInputValue(form, "phone");
+        getInputValue(
+            form,
+            "phone"
+        );
 
 
     const service =
-        getInputValue(form, "service");
+        getInputValue(
+            form,
+            "service"
+        );
 
 
     const date =
-        getInputValue(form, "date");
+        getInputValue(
+            form,
+            "date"
+        );
 
 
     const time =
-        getInputValue(form, "time");
+        getInputValue(
+            form,
+            "time"
+        );
 
 
     const notes =
-        getInputValue(form, "notes");
+        getInputValue(
+            form,
+            "notes"
+        );
 
 
     /* =====================================================
@@ -402,21 +431,32 @@ async function handleBookingSubmit(event) {
     }
 
 
+    /* =====================================================
+       BOOKING DATA
+    ===================================================== */
+
     const bookingData = {
 
-        name: name,
+        name:
+            name,
 
-        email: email,
+        email:
+            email,
 
-        phone: phone,
+        phone:
+            phone,
 
-        service: service,
+        service:
+            service,
 
-        date: date,
+        date:
+            date,
 
-        time: time,
+        time:
+            time,
 
-        notes: notes
+        notes:
+            notes
 
     };
 
@@ -433,7 +473,8 @@ async function handleBookingSubmit(event) {
             await fetch(
                 API_URL,
                 {
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
                         "Content-Type":
@@ -549,9 +590,6 @@ async function handleVirtualBookingSubmit(event) {
 
     /* =====================================================
        VIRTUAL BOOKING DATE
-
-       HTML:
-       name="bookingDate"
     ===================================================== */
 
     const date =
@@ -701,17 +739,23 @@ async function handleVirtualBookingSubmit(event) {
 
     const bookingData = {
 
-        name: name,
+        name:
+            name,
 
-        email: email,
+        email:
+            email,
 
-        phone: phone,
+        phone:
+            phone,
 
-        service: service,
+        service:
+            service,
 
-        date: date,
+        date:
+            date,
 
-        time: time,
+        time:
+            time,
 
         notes:
             `Virtual Preview | Shape: ${shape} | Design: ${design} | Shade: ${shade}`
@@ -731,7 +775,8 @@ async function handleVirtualBookingSubmit(event) {
             await fetch(
                 API_URL,
                 {
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
                         "Content-Type":
@@ -875,9 +920,14 @@ async function handleContactSubmit(event) {
     console.log(
         "Contact form:",
         {
-            name: name,
-            email: email,
-            message: message
+            name:
+                name,
+
+            email:
+                email,
+
+            message:
+                message
         }
     );
 
@@ -1078,9 +1128,8 @@ function initializeVirtualPreview() {
     ===================================================== */
 
     const previewBtn =
-        document.getElementById(
-            "previewBtnBottom"
-        );
+        document.getElementById("previewBtn") ||
+        document.getElementById("previewBtnBottom");
 
 
     const previewModal =
@@ -1127,10 +1176,6 @@ function initializeVirtualPreview() {
 
     /* =====================================================
        OPEN VIRTUAL PREVIEW
-
-       IMPORTANT:
-       Uses inline !important so it works even if CSS has
-       display:none !important.
     ===================================================== */
 
     if (
@@ -1151,20 +1196,24 @@ function initializeVirtualPreview() {
                     "================================="
                 );
 
-                console.log(
-                    "TRY VIRTUAL PREVIEW CLICKED"
-                );
 
                 console.log(
-                    "Opening preview modal..."
+                    "✨ TRY VIRTUAL PREVIEW CLICKED"
                 );
 
 
-                /* -----------------------------------------
-                   FORCE MODAL OPEN
-                ----------------------------------------- */
+                console.log(
+                    "================================="
+                );
 
-                previewModal.classList.add("open");
+
+                /* =========================================
+                   OPEN MODAL
+                ========================================= */
+
+                previewModal.classList.add(
+                    "open"
+                );
 
 
                 previewModal.style.setProperty(
@@ -1206,6 +1255,13 @@ function initializeVirtualPreview() {
                     "hidden";
 
 
+                /* =========================================
+                   UPDATE PREVIEW
+                ========================================= */
+
+                updateVirtualPreview();
+
+
                 console.log(
                     "Modal display:",
                     getComputedStyle(
@@ -1236,7 +1292,15 @@ function initializeVirtualPreview() {
     } else {
 
         console.error(
-            "Virtual Preview Button or Modal NOT FOUND!"
+            "❌ Virtual Preview Button or Modal NOT FOUND!"
+        );
+
+        console.error(
+            "Button expected: #previewBtn"
+        );
+
+        console.error(
+            "Modal expected: #previewModal"
         );
 
     }
@@ -1302,7 +1366,8 @@ function initializeVirtualPreview() {
 
             if (
                 event.key === "Escape" &&
-                previewModal
+                previewModal &&
+                previewModal.classList.contains("open")
             ) {
 
                 closeVirtualPreview();
@@ -1494,14 +1559,6 @@ function initializeVirtualPreview() {
 
     /* =====================================================
        DESIGN OPTIONS
-       
-       CSS CLASSES:
-       design-classic-nude
-       design-french-tips
-       design-chrome
-       design-cat-eye
-       design-glitter
-       design-floral
     ===================================================== */
 
     const designButtons =
@@ -1887,6 +1944,170 @@ function initializeVirtualPreview() {
 
 
 /* =========================================================
+   UPDATE VIRTUAL PREVIEW
+========================================================= */
+
+function updateVirtualPreview() {
+
+    const nailStage =
+        document.getElementById(
+            "nailPreviewStage"
+        );
+
+
+    if (!nailStage) {
+        return;
+    }
+
+
+    /* =====================================================
+       SHADE
+    ===================================================== */
+
+    const activeShade =
+        document.querySelector(
+            ".shade-btn.active"
+        );
+
+
+    if (activeShade) {
+
+        const color =
+            activeShade.dataset.color;
+
+
+        if (color) {
+
+            nailStage.style.setProperty(
+                "--nail-color",
+                color
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".virtual-nail"
+                )
+                .forEach(
+                    function (nail) {
+
+                        nail.style.backgroundColor =
+                            color;
+
+                    }
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SHAPE
+    ===================================================== */
+
+    const activeShape =
+        document.querySelector(
+            ".shape-option.active"
+        );
+
+
+    if (activeShape) {
+
+        const shape =
+            activeShape.dataset.shape;
+
+
+        if (shape) {
+
+            nailStage.classList.remove(
+                "shape-almond",
+                "shape-square",
+                "shape-coffin",
+                "shape-oval",
+                "shape-stiletto"
+            );
+
+
+            const shapeClass =
+                "shape-" +
+                shape
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+
+
+            nailStage.classList.add(
+                shapeClass
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       DESIGN
+    ===================================================== */
+
+    const activeDesign =
+        document.querySelector(
+            ".design-option.active"
+        );
+
+
+    if (activeDesign) {
+
+        const design =
+            activeDesign.dataset.design;
+
+
+        const designClasses = {
+
+            "Classic Nude":
+                "design-classic-nude",
+
+            "French Tips":
+                "design-french-tips",
+
+            "Chrome":
+                "design-chrome",
+
+            "Cat Eye":
+                "design-cat-eye",
+
+            "Glitter":
+                "design-glitter",
+
+            "Floral":
+                "design-floral"
+
+        };
+
+
+        nailStage.classList.remove(
+            "design-classic-nude",
+            "design-french-tips",
+            "design-chrome",
+            "design-cat-eye",
+            "design-glitter",
+            "design-floral"
+        );
+
+
+        if (designClasses[design]) {
+
+            nailStage.classList.add(
+                designClasses[design]
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
    CLOSE VIRTUAL PREVIEW
 ========================================================= */
 
@@ -1903,7 +2124,9 @@ function closeVirtualPreview() {
     }
 
 
-    previewModal.classList.remove("open");
+    previewModal.classList.remove(
+        "open"
+    );
 
 
     previewModal.style.setProperty(
@@ -1970,7 +2193,9 @@ function initializeGallery() {
                 function () {
 
                     const image =
-                        item.querySelector("img");
+                        item.querySelector(
+                            "img"
+                        );
 
 
                     if (!image) {
@@ -2079,7 +2304,8 @@ function openImageViewer(
     function escapeHandler(event) {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             overlay.remove();
@@ -2201,13 +2427,13 @@ document.addEventListener(
         }
 
 
-        /* -----------------------------------------------
-           NEVER INTERFERE WITH VIRTUAL PREVIEW
-        ------------------------------------------------ */
+        /* =================================================
+           DO NOT INTERFERE WITH VIRTUAL PREVIEW
+        ================================================= */
 
         if (
-            link.id ===
-            "previewBtnBottom"
+            link.id === "previewBtn" ||
+            link.id === "previewBtnBottom"
         ) {
 
             return;
@@ -2216,7 +2442,9 @@ document.addEventListener(
 
 
         const targetId =
-            link.getAttribute("href");
+            link.getAttribute(
+                "href"
+            );
 
 
         if (
@@ -2229,7 +2457,8 @@ document.addEventListener(
         }
 
 
-        let target = null;
+        let target =
+            null;
 
 
         try {
@@ -2260,8 +2489,11 @@ document.addEventListener(
 
 
         target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior:
+                "smooth",
+
+            block:
+                "start"
         });
 
     }
