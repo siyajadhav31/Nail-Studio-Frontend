@@ -4055,3 +4055,136 @@ footer p{
     }
 
 }
+
+/* ==========================================
+   ADMIN NAVBAR
+========================================== */
+
+.admin-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid #f1e8e3;
+    box-shadow: 0 4px 20px rgba(80, 50, 30, 0.05);
+    position: relative;
+    z-index: 1000;
+}
+
+.admin-logo {
+    text-decoration: none;
+    color: #4a2c2a;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.admin-logo:hover {
+    color: #c99522;
+}
+
+.admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.admin-nav-link {
+    text-decoration: none;
+    color: #5b4743;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.admin-nav-link:hover {
+    color: #c99522;
+}
+
+
+/* ==========================================
+   LOGOUT BUTTON
+========================================== */
+
+.logout-btn {
+    border: none;
+    outline: none;
+    background: #c99522;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(201, 149, 34, 0.18);
+}
+
+.logout-btn:hover {
+    background: #a97812;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201, 149, 34, 0.25);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   ADMIN FOOTER
+========================================== */
+
+.admin-footer {
+    min-height: 30px;
+    background: #fffaf8;
+}
+
+
+/* ==========================================
+   RESPONSIVE ADMIN NAVBAR
+========================================== */
+
+@media (max-width: 768px) {
+
+    .admin-navbar {
+        padding: 15px 5%;
+    }
+
+    .admin-logo {
+        font-size: 25px;
+    }
+
+    .admin-nav-right {
+        gap: 12px;
+    }
+
+    .admin-nav-link {
+        font-size: 12px;
+    }
+
+    .logout-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .admin-navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .admin-nav-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
