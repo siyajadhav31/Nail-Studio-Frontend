@@ -4,7 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Book Appointment | Nail Studio</title>
 
@@ -312,7 +314,9 @@
 
 
 
-                <!-- BACKEND COMPATIBILITY -->
+                <!-- ======================================
+                     BACKEND COMPATIBILITY
+                ======================================= -->
 
                 <input
                     type="hidden"
@@ -334,6 +338,7 @@
                 <button
                     type="submit"
                     class="booking-submit-btn"
+                    id="bookingSubmitBtn"
                 >
                     Confirm Appointment
                 </button>
@@ -401,6 +406,7 @@
                     <a
                         href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
                         target="_blank"
+                        rel="noopener"
                     >
                         Get Directions →
                     </a>
@@ -480,6 +486,7 @@
                 <a
                     href="https://wa.me/917715053174"
                     target="_blank"
+                    rel="noopener"
                 >
                     Chat on WhatsApp
                 </a>
@@ -511,237 +518,386 @@
 
 
 <!-- ==========================================
-     BOOKING PAGE JS
+     BOOKING PAGE JAVASCRIPT
 ========================================== -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-
-    /* ==========================================
-       SET MINIMUM DATE = TODAY
-    ========================================== */
-
-    const dateInput =
-        document.getElementById("bookingDate");
-
-
-    if (dateInput) {
-
-        const today = new Date();
-
-        const year =
-            today.getFullYear();
-
-        const month =
-            String(
-                today.getMonth() + 1
-            ).padStart(2, "0");
-
-        const day =
-            String(
-                today.getDate()
-            ).padStart(2, "0");
-
-        dateInput.min =
-            `${year}-${month}-${day}`;
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
         /* ==========================================
-           SUNDAY CLOSED
+           BACKEND URL
         ========================================== */
 
-        dateInput.addEventListener(
-            "change",
-            function () {
-
-                const selectedDate =
-                    new Date(
-                        this.value + "T00:00:00"
-                    );
-
-                const dayOfWeek =
-                    selectedDate.getDay();
+        const API_URL =
+            "https://nail-studio-backend-k604.onrender.com/api/bookings";
 
 
-                if (dayOfWeek === 0) {
+        /* ==========================================
+           GET ELEMENTS
+        ========================================== */
 
-                    alert(
-                        "Sorry! We are closed on Sundays. Please select another date."
-                    );
+        const dateInput =
+            document.getElementById("bookingDate");
 
-                    this.value = "";
+        const phoneInput =
+            document.getElementById("phone");
+
+        const bookingForm =
+            document.getElementById("bookingForm");
+
+        const bookingMessage =
+            document.getElementById("bookingMessage");
+
+        const bookingSubmitBtn =
+            document.getElementById("bookingSubmitBtn");
+
+
+
+        /* ==========================================
+           SET MINIMUM DATE = TODAY
+        ========================================== */
+
+        if (dateInput) {
+
+            const today =
+                new Date();
+
+            const year =
+                today.getFullYear();
+
+            const month =
+                String(
+                    today.getMonth() + 1
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    today.getDate()
+                ).padStart(2, "0");
+
+            dateInput.min =
+                year + "-" +
+                month + "-" +
+                day;
+
+
+
+            /* ==========================================
+               SUNDAY CLOSED
+            ========================================== */
+
+            dateInput.addEventListener(
+                "change",
+                function () {
+
+                    const selectedDate =
+                        new Date(
+                            this.value +
+                            "T00:00:00"
+                        );
+
+                    const dayOfWeek =
+                        selectedDate.getDay();
+
+
+                    if (
+                        dayOfWeek === 0
+                    ) {
+
+                        alert(
+                            "Sorry! We are closed on Sundays. Please select another date."
+                        );
+
+                        this.value = "";
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    }
+        }
 
 
 
-    /* ==========================================
-       MOBILE NUMBER VALIDATION
-    ========================================== */
+        /* ==========================================
+           MOBILE NUMBER VALIDATION
+        ========================================== */
 
-    const phoneInput =
-        document.getElementById("phone");
+        if (phoneInput) {
 
+            phoneInput.addEventListener(
+                "input",
+                function () {
 
-    if (phoneInput) {
-
-        phoneInput.addEventListener(
-            "input",
-            function () {
-
-                this.value =
-                    this.value.replace(
-                        /[^0-9]/g,
-                        ""
-                    );
-
-            }
-        );
-
-    }
-
-
-
-    /* ==========================================
-       SAVE BOOKING TO SPRING BOOT BACKEND
-    ========================================== */
-
-    const bookingForm =
-        document.getElementById("bookingForm");
-
-
-    const bookingMessage =
-        document.getElementById("bookingMessage");
-
-
-    if (bookingForm) {
-
-        bookingForm.addEventListener(
-            "submit",
-            async function (event) {
-
-                event.preventDefault();
-
-
-                bookingMessage.innerHTML =
-                    "Booking submitting...";
-
-
-                const bookingData = {
-
-                    name:
-                        document.getElementById("name").value.trim(),
-
-                    email:
-                        document.getElementById("email").value.trim(),
-
-                    phone:
-                        document.getElementById("phone").value.trim(),
-
-                    service:
-                        document.getElementById("service").value,
-
-                    design:
-                        document.getElementById("design").value,
-
-                    bookingDate:
-                        document.getElementById("bookingDate").value,
-
-                    bookingTime:
-                        document.getElementById("bookingTime").value,
-
-                    bookingType:
-                        "SERVICE"
-
-                };
-
-
-                try {
-
-                    const response =
-                        await fetch(
-                            "https://nail-studio-backend-k604.onrender.com/api/bookings",
-                            {
-
-                                method: "POST",
-
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
-
-                                body:
-                                    JSON.stringify(
-                                        bookingData
-                                    )
-
-                            }
+                    this.value =
+                        this.value.replace(
+                            /[^0-9]/g,
+                            ""
                         );
 
+                }
+            );
 
-                    if (!response.ok) {
+        }
 
-                        const errorText =
-                            await response.text();
 
-                        console.error(
-                            "Server response:",
-                            errorText
-                        );
 
-                        throw new Error(
-                            "Booking failed: " +
-                            response.status
-                        );
+        /* ==========================================
+           BOOKING FORM SUBMIT
+        ========================================== */
+
+        if (bookingForm) {
+
+            bookingForm.addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    /* ======================================
+                       BROWSER FORM VALIDATION
+                    ====================================== */
+
+                    if (
+                        !bookingForm.checkValidity()
+                    ) {
+
+                        bookingForm.reportValidity();
+
+                        return;
 
                     }
 
 
-                    const result =
-                        await response.json();
+                    /* ======================================
+                       SHOW LOADING
+                    ====================================== */
 
+                    bookingMessage.innerHTML =
+                        "Booking submitting...";
+
+                    bookingMessage.style.display =
+                        "block";
+
+
+                    bookingSubmitBtn.disabled =
+                        true;
+
+                    bookingSubmitBtn.textContent =
+                        "Booking...";
+
+
+
+                    /* ======================================
+                       GET FORM VALUES
+                    ====================================== */
+
+                    const bookingData = {
+
+                        name:
+                            document
+                                .getElementById("name")
+                                .value
+                                .trim(),
+
+                        email:
+                            document
+                                .getElementById("email")
+                                .value
+                                .trim(),
+
+                        phone:
+                            document
+                                .getElementById("phone")
+                                .value
+                                .trim(),
+
+                        service:
+                            document
+                                .getElementById("service")
+                                .value,
+
+                        design:
+                            document
+                                .getElementById("design")
+                                .value,
+
+                        bookingDate:
+                            document
+                                .getElementById("bookingDate")
+                                .value,
+
+                        bookingTime:
+                            document
+                                .getElementById("bookingTime")
+                                .value
+
+                    };
+
+
+
+                    /* ======================================
+                       DEBUG
+                    ====================================== */
 
                     console.log(
-                        "Booking saved:",
-                        result
+                        "Sending booking data:",
+                        bookingData
                     );
 
 
-                    bookingMessage.innerHTML =
-                        "✅ Appointment booked successfully!";
+
+                    /* ======================================
+                       SEND TO SPRING BOOT
+                    ====================================== */
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                API_URL,
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            bookingData
+                                        )
+                                }
+                            );
 
 
-                    bookingForm.reset();
+                        console.log(
+                            "Booking API status:",
+                            response.status
+                        );
 
+
+
+                        /* ==================================
+                           GET SERVER RESPONSE
+                        ================================== */
+
+                        const responseText =
+                            await response.text();
+
+
+                        console.log(
+                            "Booking API response:",
+                            responseText
+                        );
+
+
+
+                        /* ==================================
+                           CHECK ERROR
+                        ================================== */
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Booking failed. Status: " +
+                                response.status +
+                                " Response: " +
+                                responseText
+                            );
+
+                        }
+
+
+
+                        /* ==================================
+                           SUCCESS
+                        ================================== */
+
+                        bookingMessage.innerHTML =
+                            "✅ Appointment booked successfully!";
+
+
+                        bookingMessage.className =
+                            "booking-message success";
+
+
+                        bookingForm.reset();
+
+
+                        /* ==================================
+                           RESTORE DATE MIN
+                        ================================== */
+
+                        if (dateInput) {
+
+                            const today =
+                                new Date();
+
+                            const year =
+                                today.getFullYear();
+
+                            const month =
+                                String(
+                                    today.getMonth() + 1
+                                ).padStart(2, "0");
+
+                            const day =
+                                String(
+                                    today.getDate()
+                                ).padStart(2, "0");
+
+                            dateInput.min =
+                                year + "-" +
+                                month + "-" +
+                                day;
+
+                        }
+
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Booking Error:",
+                            error
+                        );
+
+
+                        bookingMessage.innerHTML =
+                            "❌ Booking failed. Please try again.";
+
+
+                        bookingMessage.className =
+                            "booking-message error";
+
+                    }
+
+
+                    /* ======================================
+                       RESTORE BUTTON
+                    ====================================== */
+
+                    bookingSubmitBtn.disabled =
+                        false;
+
+                    bookingSubmitBtn.textContent =
+                        "Confirm Appointment";
 
                 }
+            );
 
-                catch (error) {
-
-                    console.error(
-                        "Booking Error:",
-                        error
-                    );
-
-
-                    bookingMessage.innerHTML =
-                        "❌ Booking failed. Please try again.";
-
-                }
-
-            }
-        );
+        }
 
     }
-
-});
+);
 
 </script>
 

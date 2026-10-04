@@ -99,7 +99,7 @@
                 </div>
 
 
-                <!-- ERROR MESSAGE -->
+                <!-- LOGIN MESSAGE -->
 
                 <div
                     id="loginMessage"
@@ -145,9 +145,17 @@
 
     <script>
 
-        const API_BASE_URL =
-            "http://localhost:8080";
+        /* ==========================================
+           LIVE SPRING BOOT BACKEND
+        =========================================== */
 
+        const API_BASE_URL =
+            "https://nail-studio-backend-k604.onrender.com";
+
+
+        /* ==========================================
+           GET HTML ELEMENTS
+        =========================================== */
 
         const adminLoginForm =
             document.getElementById(
@@ -178,6 +186,10 @@
                 event.preventDefault();
 
 
+                /* ==========================================
+                   GET EMAIL
+                =========================================== */
+
                 const email =
                     document
                         .getElementById(
@@ -187,6 +199,10 @@
                         .trim();
 
 
+                /* ==========================================
+                   GET PASSWORD
+                =========================================== */
+
                 const password =
                     document
                         .getElementById(
@@ -194,6 +210,10 @@
                         )
                         .value;
 
+
+                /* ==========================================
+                   VALIDATION
+                =========================================== */
 
                 if (!email || !password) {
 
@@ -208,7 +228,12 @@
                 }
 
 
-                adminLoginBtn.disabled = true;
+                /* ==========================================
+                   BUTTON LOADING
+                =========================================== */
+
+                adminLoginBtn.disabled =
+                    true;
 
                 adminLoginBtn.textContent =
                     "Logging in...";
@@ -219,6 +244,21 @@
 
 
                 try {
+
+
+                    /* ==========================================
+                       SEND LOGIN REQUEST
+                    =========================================== */
+
+                    console.log(
+                        "Sending admin login request..."
+                    );
+
+                    console.log(
+                        "Backend:",
+                        API_BASE_URL
+                    );
+
 
                     const response =
                         await fetch(
@@ -231,22 +271,40 @@
                                 credentials: "include",
 
                                 headers: {
+
                                     "Content-Type":
                                         "application/json"
+
                                 },
 
                                 body:
                                     JSON.stringify({
 
-                                        email: email,
+                                        email:
+                                            email,
 
-                                        password: password
+                                        password:
+                                            password
 
                                     })
 
                             }
                         );
 
+
+                    /* ==========================================
+                       RESPONSE STATUS
+                    =========================================== */
+
+                    console.log(
+                        "Admin login status:",
+                        response.status
+                    );
+
+
+                    /* ==========================================
+                       READ RESPONSE
+                    =========================================== */
 
                     const result =
                         await response.text();
@@ -258,6 +316,10 @@
                     );
 
 
+                    /* ==========================================
+                       LOGIN SUCCESS
+                    =========================================== */
+
                     if (
                         response.ok &&
                         result.trim() ===
@@ -265,9 +327,9 @@
                     ) {
 
 
-                        /*
-                         * Store admin information
-                         */
+                        /* ==========================================
+                           SAVE ADMIN LOGIN
+                        =========================================== */
 
                         localStorage.setItem(
                             "adminLoggedIn",
@@ -281,6 +343,10 @@
                         );
 
 
+                        /* ==========================================
+                           SUCCESS MESSAGE
+                        =========================================== */
+
                         loginMessage.textContent =
                             "Login successful! Redirecting...";
 
@@ -289,9 +355,9 @@
                             "admin-login-message success";
 
 
-                        /*
-                         * Redirect to admin dashboard
-                         */
+                        /* ==========================================
+                           REDIRECT
+                        =========================================== */
 
                         setTimeout(
                             function () {
@@ -300,12 +366,17 @@
                                     "admin-bookings.html";
 
                             },
-                            500
+                            700
                         );
 
+                    }
 
-                    } else {
 
+                    /* ==========================================
+                       LOGIN FAILED
+                    =========================================== */
+
+                    else {
 
                         loginMessage.textContent =
                             result ||
@@ -327,6 +398,11 @@
 
                 }
 
+
+                /* ==========================================
+                   CONNECTION ERROR
+                =========================================== */
+
                 catch (error) {
 
                     console.error(
@@ -336,7 +412,7 @@
 
 
                     loginMessage.textContent =
-                        "Unable to connect to server. Please make sure Spring Boot is running.";
+                        "Unable to connect to server. Please try again.";
 
 
                     loginMessage.className =
