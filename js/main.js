@@ -116,10 +116,9 @@ function initializeWebsite() {
 }
 
 
-/*
-   Works whether main.js is loaded normally,
-   with defer, or after DOMContentLoaded.
-*/
+/* =========================================================
+   START WEBSITE
+========================================================= */
 
 if (document.readyState === "loading") {
 
@@ -133,7 +132,6 @@ if (document.readyState === "loading") {
     initializeWebsite();
 
 }
-
 
 
 /* =========================================================
@@ -158,9 +156,7 @@ function initializeMobileNavbar() {
         "click",
         function () {
 
-            navLinks.classList.toggle(
-                "active"
-            );
+            navLinks.classList.toggle("active");
 
         }
     );
@@ -177,9 +173,7 @@ function initializeMobileNavbar() {
                 "click",
                 function () {
 
-                    navLinks.classList.remove(
-                        "active"
-                    );
+                    navLinks.classList.remove("active");
 
                 }
             );
@@ -188,7 +182,6 @@ function initializeMobileNavbar() {
     );
 
 }
-
 
 
 /* =========================================================
@@ -235,14 +228,12 @@ function setMinimumDate() {
     dateInputs.forEach(
         function (input) {
 
-            input.min =
-                todayString;
+            input.min = todayString;
 
         }
     );
 
 }
-
 
 
 /* =========================================================
@@ -252,9 +243,7 @@ function setMinimumDate() {
 function loadSelectedService() {
 
     const serviceSelect =
-        document.getElementById(
-            "service"
-        );
+        document.getElementById("service");
 
 
     if (!serviceSelect) {
@@ -263,9 +252,7 @@ function loadSelectedService() {
 
 
     const selectedService =
-        localStorage.getItem(
-            "selectedService"
-        );
+        localStorage.getItem("selectedService");
 
 
     if (!selectedService) {
@@ -274,23 +261,18 @@ function loadSelectedService() {
 
 
     const options =
-        serviceSelect.querySelectorAll(
-            "option"
-        );
+        serviceSelect.querySelectorAll("option");
 
 
     options.forEach(
         function (option) {
 
             if (
-                option.value ===
-                    selectedService ||
-                option.textContent.trim() ===
-                    selectedService
+                option.value === selectedService ||
+                option.textContent.trim() === selectedService
             ) {
 
-                option.selected =
-                    true;
+                option.selected = true;
 
             }
 
@@ -298,7 +280,6 @@ function loadSelectedService() {
     );
 
 }
-
 
 
 /* =========================================================
@@ -315,52 +296,31 @@ async function handleBookingSubmit(event) {
 
 
     const name =
-        getInputValue(
-            form,
-            "name"
-        );
+        getInputValue(form, "name");
 
 
     const email =
-        getInputValue(
-            form,
-            "email"
-        );
+        getInputValue(form, "email");
 
 
     const phone =
-        getInputValue(
-            form,
-            "phone"
-        );
+        getInputValue(form, "phone");
 
 
     const service =
-        getInputValue(
-            form,
-            "service"
-        );
+        getInputValue(form, "service");
 
 
     const date =
-        getInputValue(
-            form,
-            "date"
-        );
+        getInputValue(form, "date");
 
 
     const time =
-        getInputValue(
-            form,
-            "time"
-        );
+        getInputValue(form, "time");
 
 
     const notes =
-        getInputValue(
-            form,
-            "notes"
-        );
+        getInputValue(form, "notes");
 
 
     /* =====================================================
@@ -546,7 +506,6 @@ async function handleBookingSubmit(event) {
 }
 
 
-
 /* =========================================================
    VIRTUAL BOOKING
 ========================================================= */
@@ -588,14 +547,12 @@ async function handleVirtualBookingSubmit(event) {
         );
 
 
-    /*
-       IMPORTANT:
-       Your HTML uses:
+    /* =====================================================
+       VIRTUAL BOOKING DATE
 
+       HTML:
        name="bookingDate"
-
-       NOT name="date"
-    */
+    ===================================================== */
 
     const date =
         getInputValue(
@@ -824,22 +781,7 @@ async function handleVirtualBookingSubmit(event) {
         form.reset();
 
 
-        const previewModal =
-            document.getElementById(
-                "previewModal"
-            );
-
-
-        if (previewModal) {
-
-            previewModal.style.display =
-                "none";
-
-        }
-
-
-        document.body.style.overflow =
-            "";
+        closeVirtualPreview();
 
 
     } catch (error) {
@@ -858,7 +800,6 @@ async function handleVirtualBookingSubmit(event) {
     }
 
 }
-
 
 
 /* =========================================================
@@ -952,7 +893,6 @@ async function handleContactSubmit(event) {
 }
 
 
-
 /* =========================================================
    GET INPUT VALUE
 ========================================================= */
@@ -983,7 +923,6 @@ function getInputValue(
 }
 
 
-
 /* =========================================================
    EMAIL VALIDATION
 ========================================================= */
@@ -994,12 +933,9 @@ function validateEmail(email) {
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-    return emailPattern.test(
-        email
-    );
+    return emailPattern.test(email);
 
 }
-
 
 
 /* =========================================================
@@ -1126,7 +1062,6 @@ function showMessage(
 }
 
 
-
 /* =========================================================
    VIRTUAL NAIL PREVIEW
 ========================================================= */
@@ -1139,7 +1074,7 @@ function initializeVirtualPreview() {
 
 
     /* =====================================================
-       IMPORTANT ELEMENTS
+       ELEMENTS
     ===================================================== */
 
     const previewBtn =
@@ -1192,6 +1127,10 @@ function initializeVirtualPreview() {
 
     /* =====================================================
        OPEN VIRTUAL PREVIEW
+
+       IMPORTANT:
+       Uses inline !important so it works even if CSS has
+       display:none !important.
     ===================================================== */
 
     if (
@@ -1205,46 +1144,94 @@ function initializeVirtualPreview() {
 
                 event.preventDefault();
 
-                event.stopPropagation();
+                event.stopImmediatePropagation();
 
 
                 console.log(
                     "================================="
                 );
 
-
                 console.log(
                     "TRY VIRTUAL PREVIEW CLICKED"
                 );
-
 
                 console.log(
                     "Opening preview modal..."
                 );
 
 
-                previewModal.style.display =
-                    "flex";
+                /* -----------------------------------------
+                   FORCE MODAL OPEN
+                ----------------------------------------- */
+
+                previewModal.classList.add("open");
 
 
-                previewModal.style.visibility =
-                    "visible";
+                previewModal.style.setProperty(
+                    "display",
+                    "flex",
+                    "important"
+                );
 
 
-                previewModal.style.opacity =
-                    "1";
+                previewModal.style.setProperty(
+                    "visibility",
+                    "visible",
+                    "important"
+                );
 
 
-                previewModal.style.pointerEvents =
-                    "auto";
+                previewModal.style.setProperty(
+                    "opacity",
+                    "1",
+                    "important"
+                );
+
+
+                previewModal.style.setProperty(
+                    "pointer-events",
+                    "auto",
+                    "important"
+                );
+
+
+                previewModal.style.setProperty(
+                    "z-index",
+                    "999999",
+                    "important"
+                );
 
 
                 document.body.style.overflow =
                     "hidden";
 
-            }
-        );
 
+                console.log(
+                    "Modal display:",
+                    getComputedStyle(
+                        previewModal
+                    ).display
+                );
+
+
+                console.log(
+                    "Modal visibility:",
+                    getComputedStyle(
+                        previewModal
+                    ).visibility
+                );
+
+
+                console.log(
+                    "Modal opacity:",
+                    getComputedStyle(
+                        previewModal
+                    ).opacity
+                );
+
+            },
+            true
+        );
 
     } else {
 
@@ -1271,7 +1258,6 @@ function initializeVirtualPreview() {
                 event.preventDefault();
 
                 event.stopPropagation();
-
 
                 closeVirtualPreview();
 
@@ -1480,9 +1466,15 @@ function initializeVirtualPreview() {
                         );
 
 
-                        nailStage.classList.add(
+                        const shapeClass =
                             "shape-" +
-                            shape.toLowerCase()
+                            shape
+                                .toLowerCase()
+                                .replace(/\s+/g, "-");
+
+
+                        nailStage.classList.add(
+                            shapeClass
                         );
 
                     }
@@ -1502,6 +1494,14 @@ function initializeVirtualPreview() {
 
     /* =====================================================
        DESIGN OPTIONS
+       
+       CSS CLASSES:
+       design-classic-nude
+       design-french-tips
+       design-chrome
+       design-cat-eye
+       design-glitter
+       design-floral
     ===================================================== */
 
     const designButtons =
@@ -1568,8 +1568,8 @@ function initializeVirtualPreview() {
                     if (nailStage) {
 
                         nailStage.classList.remove(
-                            "design-nude",
-                            "design-french",
+                            "design-classic-nude",
+                            "design-french-tips",
                             "design-chrome",
                             "design-cat-eye",
                             "design-glitter",
@@ -1580,10 +1580,10 @@ function initializeVirtualPreview() {
                         const designClasses = {
 
                             "Classic Nude":
-                                "design-nude",
+                                "design-classic-nude",
 
                             "French Tips":
-                                "design-french",
+                                "design-french-tips",
 
                             "Chrome":
                                 "design-chrome",
@@ -1783,12 +1783,107 @@ function initializeVirtualPreview() {
     }
 
 
+    /* =====================================================
+       DEFAULT SHAPE
+    ===================================================== */
+
+    const defaultShape =
+        document.querySelector(
+            ".shape-option.active"
+        );
+
+
+    if (
+        defaultShape &&
+        nailStage
+    ) {
+
+        const defaultShapeValue =
+            defaultShape.dataset.shape;
+
+
+        if (defaultShapeValue) {
+
+            const shapeClass =
+                "shape-" +
+                defaultShapeValue
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+
+
+            nailStage.classList.add(
+                shapeClass
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       DEFAULT DESIGN
+    ===================================================== */
+
+    const defaultDesign =
+        document.querySelector(
+            ".design-option.active"
+        );
+
+
+    if (
+        defaultDesign &&
+        nailStage
+    ) {
+
+        const defaultDesignValue =
+            defaultDesign.dataset.design;
+
+
+        const defaultDesignClasses = {
+
+            "Classic Nude":
+                "design-classic-nude",
+
+            "French Tips":
+                "design-french-tips",
+
+            "Chrome":
+                "design-chrome",
+
+            "Cat Eye":
+                "design-cat-eye",
+
+            "Glitter":
+                "design-glitter",
+
+            "Floral":
+                "design-floral"
+
+        };
+
+
+        const defaultDesignClass =
+            defaultDesignClasses[
+                defaultDesignValue
+            ];
+
+
+        if (defaultDesignClass) {
+
+            nailStage.classList.add(
+                defaultDesignClass
+            );
+
+        }
+
+    }
+
+
     console.log(
         "Virtual Preview initialized successfully."
     );
 
 }
-
 
 
 /* =========================================================
@@ -1808,25 +1903,39 @@ function closeVirtualPreview() {
     }
 
 
-    previewModal.style.display =
-        "none";
+    previewModal.classList.remove("open");
 
 
-    previewModal.style.visibility =
-        "hidden";
+    previewModal.style.setProperty(
+        "display",
+        "none",
+        "important"
+    );
 
 
-    previewModal.style.opacity =
-        "0";
+    previewModal.style.setProperty(
+        "visibility",
+        "hidden",
+        "important"
+    );
 
 
-    previewModal.style.pointerEvents =
-        "none";
+    previewModal.style.setProperty(
+        "opacity",
+        "0",
+        "important"
+    );
+
+
+    previewModal.style.setProperty(
+        "pointer-events",
+        "none",
+        "important"
+    );
 
 
     document.body.style.overflow =
         "";
-
 
 
     console.log(
@@ -1834,7 +1943,6 @@ function closeVirtualPreview() {
     );
 
 }
-
 
 
 /* =========================================================
@@ -1862,9 +1970,7 @@ function initializeGallery() {
                 function () {
 
                     const image =
-                        item.querySelector(
-                            "img"
-                        );
+                        item.querySelector("img");
 
 
                     if (!image) {
@@ -1884,7 +1990,6 @@ function initializeGallery() {
     );
 
 }
-
 
 
 /* =========================================================
@@ -1971,12 +2076,10 @@ function openImageViewer(
     );
 
 
-
     function escapeHandler(event) {
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             overlay.remove();
@@ -1998,7 +2101,6 @@ function openImageViewer(
     );
 
 }
-
 
 
 /* =========================================================
@@ -2044,7 +2146,6 @@ document.addEventListener(
 );
 
 
-
 /* =========================================================
    BOOK NOW BUTTONS
 ========================================================= */
@@ -2081,7 +2182,6 @@ document.addEventListener(
 );
 
 
-
 /* =========================================================
    SMOOTH SCROLL
 ========================================================= */
@@ -2101,10 +2201,9 @@ document.addEventListener(
         }
 
 
-        /*
-           IMPORTANT:
-           Do not interfere with Virtual Preview.
-        */
+        /* -----------------------------------------------
+           NEVER INTERFERE WITH VIRTUAL PREVIEW
+        ------------------------------------------------ */
 
         if (
             link.id ===
@@ -2117,9 +2216,7 @@ document.addEventListener(
 
 
         const targetId =
-            link.getAttribute(
-                "href"
-            );
+            link.getAttribute("href");
 
 
         if (
@@ -2132,10 +2229,26 @@ document.addEventListener(
         }
 
 
-        const target =
-            document.querySelector(
+        let target = null;
+
+
+        try {
+
+            target =
+                document.querySelector(
+                    targetId
+                );
+
+        } catch (error) {
+
+            console.warn(
+                "Invalid smooth-scroll target:",
                 targetId
             );
+
+            return;
+
+        }
 
 
         if (!target) {
@@ -2153,7 +2266,6 @@ document.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
