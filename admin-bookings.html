@@ -10,14 +10,461 @@
 
     <title>💅 Admin Bookings | Nail Studio</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet"
-          href="css/style.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+
+    <!-- ==========================================
+         ADMIN BOOKING EXTRA CSS
+    =========================================== -->
+
+    <style>
+
+        /* ==========================================
+           BOOKING TYPE BADGES
+        =========================================== */
+
+        .service-badge,
+        .offer-badge,
+        .virtual-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            line-height: 1;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==========================================
+           SERVICE BADGE
+        =========================================== */
+
+        .service-badge {
+
+            background: #fff0d2;
+
+            color: #a86b00;
+
+        }
+
+
+        /* ==========================================
+           OFFER BADGE
+        =========================================== */
+
+        .offer-badge {
+
+            background: #fde7f0;
+
+            color: #d63c72;
+
+        }
+
+
+        /* ==========================================
+           VIRTUAL BADGE
+        =========================================== */
+
+        .virtual-badge {
+
+            background: #eee5ff;
+
+            color: #7b4fc4;
+
+        }
+
+
+        /* ==========================================
+           ACTION BUTTONS
+        =========================================== */
+
+        .action-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            flex-wrap: nowrap;
+
+        }
+
+
+        .action-buttons button {
+
+            border: none;
+
+            cursor: pointer;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            padding: 8px 13px;
+
+            border-radius: 6px;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        /* EDIT */
+
+        .edit-btn {
+
+            background: #c89b3c;
+
+            color: #ffffff;
+
+        }
+
+
+        .edit-btn:hover {
+
+            background: #ae812b;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* DELETE */
+
+        .delete-btn {
+
+            background: #e63950;
+
+            color: #ffffff;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #c9253b;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* ==========================================
+           TABLE
+        =========================================== */
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        #bookingTable {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 1050px;
+
+        }
+
+
+        #bookingTable th {
+
+            white-space: nowrap;
+
+        }
+
+
+        #bookingTable td {
+
+            white-space: nowrap;
+
+        }
+
+
+        /* ==========================================
+           EDIT MODAL
+        =========================================== */
+
+        .admin-modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 999999;
+
+            background: rgba(30, 25, 23, 0.70);
+
+            backdrop-filter: blur(6px);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .admin-modal-content {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 520px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: #fffaf8;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+        }
+
+
+        .admin-modal-content h2 {
+
+            margin-top: 0;
+
+            margin-bottom: 25px;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 32px;
+
+            color: #3a2a26;
+
+        }
+
+
+        .admin-close-modal {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 20px;
+
+            font-size: 30px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            color: #7d6b65;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .admin-close-modal:hover {
+
+            color: #b8860b;
+
+            transform: rotate(90deg);
+
+        }
+
+
+        .edit-form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .edit-form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            color: #55453f;
+
+        }
+
+
+        .edit-form-group input,
+
+        .edit-form-group select {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 12px 14px;
+
+            border: 1px solid #e4d8d2;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #3d302b;
+
+            font-family: 'Poppins', sans-serif;
+
+            outline: none;
+
+        }
+
+
+        .edit-form-group input:focus,
+
+        .edit-form-group select:focus {
+
+            border-color: #c89b3c;
+
+            box-shadow: 0 0 0 3px rgba(200,155,60,0.10);
+
+        }
+
+
+        .update-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 13px 20px;
+
+            border-radius: 8px;
+
+            background: #c89b3c;
+
+            color: #ffffff;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .update-btn:hover {
+
+            background: #ae812b;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* ==========================================
+           LOADING
+        =========================================== */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #8b7770;
+
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+
+        /* ==========================================
+           EMPTY MESSAGE
+        =========================================== */
+
+        .empty-message {
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            color: #8b7770;
+
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        =========================================== */
+
+        @media (max-width: 768px) {
+
+            .admin-modal-content {
+
+                padding: 25px 20px;
+
+            }
+
+
+            .action-buttons {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .action-buttons button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -54,6 +501,7 @@
 
 
                 <button
+                    type="button"
                     id="logoutBtn"
                     class="logout-btn">
 
@@ -340,8 +788,7 @@
             </h2>
 
 
-            <form
-                id="editBookingForm">
+            <form id="editBookingForm">
 
 
                 <!-- NAME -->
@@ -513,6 +960,7 @@
 
     <script>
 
+
         /* ==========================================
            API CONFIGURATION
         ========================================== */
@@ -599,7 +1047,9 @@
         function getBookingType(booking) {
 
             if (!booking) {
+
                 return "SERVICE";
+
             }
 
 
@@ -612,22 +1062,32 @@
 
 
             if (type === "VIRTUAL") {
+
                 return "VIRTUAL";
+
             }
 
 
             if (type === "OFFER") {
+
                 return "OFFER";
+
             }
 
 
             if (type === "SERVICE") {
+
                 return "SERVICE";
+
             }
 
 
+            /* OLD OFFER SUPPORT */
+
             if (isOldOfferBooking(booking)) {
+
                 return "OFFER";
+
             }
 
 
@@ -648,6 +1108,7 @@
             ) {
 
                 return false;
+
             }
 
 
@@ -672,6 +1133,7 @@
                 service === "loyalty rewards"
 
             );
+
         }
 
 
@@ -683,24 +1145,30 @@
         function isOfferBooking(booking) {
 
             return (
-                getBookingType(booking) === "OFFER"
+                getBookingType(booking) ===
+                "OFFER"
             );
+
         }
 
 
         function isVirtualBooking(booking) {
 
             return (
-                getBookingType(booking) === "VIRTUAL"
+                getBookingType(booking) ===
+                "VIRTUAL"
             );
+
         }
 
 
         function isServiceBooking(booking) {
 
             return (
-                getBookingType(booking) === "SERVICE"
+                getBookingType(booking) ===
+                "SERVICE"
             );
+
         }
 
 
@@ -710,6 +1178,7 @@
         ========================================== */
 
         function updateDashboardStats() {
+
 
             document.getElementById(
                 "totalBookings"
@@ -769,6 +1238,7 @@
                 "virtualBookings"
             ).textContent =
                 virtualCount;
+
         }
 
 
@@ -784,10 +1254,12 @@
                     "bookingTableBody"
                 );
 
+
             const loadingMessage =
                 document.getElementById(
                     "loadingMessage"
                 );
+
 
             const emptyMessage =
                 document.getElementById(
@@ -797,6 +1269,7 @@
 
             loadingMessage.style.display =
                 "block";
+
 
             loadingMessage.textContent =
                 "Loading bookings...";
@@ -818,6 +1291,7 @@
                         "?_=" +
                         new Date().getTime(),
                         {
+
                             method: "GET",
 
                             credentials: "include",
@@ -825,9 +1299,12 @@
                             cache: "no-store",
 
                             headers: {
+
                                 "Accept":
                                     "application/json"
+
                             }
+
                         }
                     );
 
@@ -854,6 +1331,7 @@
                         "Failed to load bookings. Status: " +
                         response.status
                     );
+
                 }
 
 
@@ -890,6 +1368,8 @@
 
                 }
 
+
+                /* SORT NEWEST FIRST */
 
                 bookingsData.sort(
                     function (a, b) {
@@ -972,6 +1452,7 @@
                     /'/g,
                     "&#039;"
                 );
+
         }
 
 
@@ -987,10 +1468,12 @@
                     "bookingTableBody"
                 );
 
+
             const emptyMessage =
                 document.getElementById(
                     "emptyMessage"
                 );
+
 
             const filter =
                 document.getElementById(
@@ -1005,6 +1488,8 @@
             let filteredBookings =
                 bookingsData.slice();
 
+
+            /* OFFER FILTER */
 
             if (filter === "offer") {
 
@@ -1022,6 +1507,8 @@
             }
 
 
+            /* SERVICE FILTER */
+
             else if (filter === "service") {
 
                 filteredBookings =
@@ -1037,6 +1524,8 @@
 
             }
 
+
+            /* VIRTUAL FILTER */
 
             else if (filter === "virtual") {
 
@@ -1054,6 +1543,8 @@
             }
 
 
+            /* NO BOOKINGS */
+
             if (
                 filteredBookings.length === 0
             ) {
@@ -1062,6 +1553,7 @@
                     "block";
 
                 return;
+
             }
 
 
@@ -1069,8 +1561,11 @@
                 "none";
 
 
+            /* CREATE ROWS */
+
             filteredBookings.forEach(
                 function (booking) {
+
 
                     const bookingType =
                         getBookingType(
@@ -1078,12 +1573,17 @@
                         );
 
 
+                    /* DEFAULT */
+
                     let bookingTypeText =
                         "Service Booking";
+
 
                     let badgeClass =
                         "service-badge";
 
+
+                    /* OFFER */
 
                     if (
                         bookingType === "OFFER"
@@ -1097,6 +1597,8 @@
 
                     }
 
+
+                    /* VIRTUAL */
 
                     else if (
                         bookingType === "VIRTUAL"
@@ -1127,7 +1629,7 @@
                         "";
 
 
-                    /* ROW */
+                    /* CREATE ROW */
 
                     const row =
                         document.createElement(
@@ -1143,11 +1645,13 @@
                             )}
                         </td>
 
+
                         <td>
                             ${escapeHTML(
                                 booking.name || ""
                             )}
                         </td>
+
 
                         <td>
                             ${escapeHTML(
@@ -1155,11 +1659,13 @@
                             )}
                         </td>
 
+
                         <td>
                             ${escapeHTML(
                                 booking.phone || ""
                             )}
                         </td>
+
 
                         <td>
 
@@ -1172,11 +1678,13 @@
 
                         </td>
 
+
                         <td>
                             ${escapeHTML(
                                 bookingDate
                             )}
                         </td>
+
 
                         <td>
                             ${escapeHTML(
@@ -1184,12 +1692,15 @@
                             )}
                         </td>
 
+
                         <td>
 
                             <div
                                 class="action-buttons">
 
+
                                 <button
+                                    type="button"
                                     class="edit-btn"
                                     onclick="openEditModal(${Number(
                                         booking.id
@@ -1201,6 +1712,7 @@
 
 
                                 <button
+                                    type="button"
                                     class="delete-btn"
                                     onclick="deleteBooking(${Number(
                                         booking.id
@@ -1209,6 +1721,7 @@
                                     🗑 Delete
 
                                 </button>
+
 
                             </div>
 
@@ -1253,6 +1766,7 @@
 
         function openEditModal(id) {
 
+
             const booking =
                 bookingsData.find(
                     function (item) {
@@ -1273,6 +1787,7 @@
                 );
 
                 return;
+
             }
 
 
@@ -1385,6 +1900,7 @@
                 "submit",
                 async function (event) {
 
+
                     event.preventDefault();
 
 
@@ -1397,6 +1913,7 @@
                         );
 
                         return;
+
                     }
 
 
@@ -1417,6 +1934,17 @@
                         );
 
 
+                    if (!originalBooking) {
+
+                        alert(
+                            "Original booking not found."
+                        );
+
+                        return;
+
+                    }
+
+
                     const selectedDate =
                         document
                             .getElementById(
@@ -1433,6 +1961,12 @@
                             .value;
 
 
+                    /*
+                     * IMPORTANT:
+                     * Preserve service, design
+                     * and booking type.
+                     */
+
                     const updatedBooking = {
 
                         name:
@@ -1443,6 +1977,7 @@
                                 .value
                                 .trim(),
 
+
                         email:
                             document
                                 .getElementById(
@@ -1450,6 +1985,7 @@
                                 )
                                 .value
                                 .trim(),
+
 
                         phone:
                             document
@@ -1459,34 +1995,54 @@
                                 .value
                                 .trim(),
 
+
+                        service:
+                            originalBooking.service ||
+                            "",
+
+
+                        design:
+                            originalBooking.design ||
+                            "",
+
+
                         bookingDate:
                             selectedDate,
 
-                        date:
-                            selectedDate,
 
                         bookingTime:
                             selectedTime,
 
-                        time:
-                            selectedTime,
 
                         bookingType:
-                            originalBooking &&
-                            originalBooking.bookingType
-                                ? originalBooking.bookingType
-                                : "SERVICE"
+                            originalBooking.bookingType ||
+                            "SERVICE"
 
                     };
 
 
                     console.log(
-                        "Updating booking:",
+                        "================================="
+                    );
+
+
+                    console.log(
+                        "UPDATING BOOKING"
+                    );
+
+
+                    console.log(
                         updatedBooking
                     );
 
 
+                    console.log(
+                        "================================="
+                    );
+
+
                     try {
+
 
                         const response =
                             await fetch(
@@ -1497,8 +2053,10 @@
 
                                     method: "PUT",
 
+
                                     credentials:
                                         "include",
+
 
                                     headers: {
 
@@ -1510,6 +2068,7 @@
 
                                     },
 
+
                                     body:
                                         JSON.stringify(
                                             updatedBooking
@@ -1519,24 +2078,31 @@
                             );
 
 
+                        const responseText =
+                            await response.text();
+
+
+                        console.log(
+                            "Update status:",
+                            response.status
+                        );
+
+
+                        console.log(
+                            "Update response:",
+                            responseText
+                        );
+
+
                         if (
                             !response.ok
                         ) {
 
-                            const errorText =
-                                await response.text();
-
-
-                            console.error(
-                                "Update API error:",
-                                errorText
-                            );
-
-
                             throw new Error(
-                                "Update failed. Status: " +
-                                response.status
+                                responseText ||
+                                "Update failed"
                             );
+
                         }
 
 
@@ -1558,6 +2124,7 @@
 
 
                         await loadBookings();
+
 
                     }
                     catch (error) {
@@ -1585,6 +2152,7 @@
 
         async function deleteBooking(id) {
 
+
             const confirmDelete =
                 confirm(
                     "Are you sure you want to delete this booking?"
@@ -1592,11 +2160,14 @@
 
 
             if (!confirmDelete) {
+
                 return;
+
             }
 
 
             try {
+
 
                 const response =
                     await fetch(
@@ -1621,23 +2192,29 @@
                     );
 
 
+                const responseText =
+                    await response.text();
+
+
+                console.log(
+                    "Delete status:",
+                    response.status
+                );
+
+
+                console.log(
+                    "Delete response:",
+                    responseText
+                );
+
+
                 if (
                     !response.ok
                 ) {
 
-                    const errorText =
-                        await response.text();
-
-
-                    console.error(
-                        "Delete API error:",
-                        errorText
-                    );
-
-
                     throw new Error(
-                        "Delete failed. Status: " +
-                        response.status
+                        responseText ||
+                        "Delete failed"
                     );
 
                 }
@@ -1649,6 +2226,7 @@
 
 
                 await loadBookings();
+
 
             }
             catch (error) {
@@ -1721,25 +2299,31 @@
                         "loggedIn"
                     );
 
+
                     localStorage.removeItem(
                         "userToken"
                     );
+
 
                     localStorage.removeItem(
                         "adminToken"
                     );
 
+
                     localStorage.removeItem(
                         "virtualBooking"
                     );
+
 
                     localStorage.removeItem(
                         "selectedService"
                     );
 
+
                     localStorage.removeItem(
                         "adminLoggedIn"
                     );
+
 
                     localStorage.removeItem(
                         "adminEmail"
@@ -1762,18 +2346,22 @@
             "DOMContentLoaded",
             async function () {
 
+
                 console.log(
                     "================================="
                 );
+
 
                 console.log(
                     "💅 ADMIN BOOKINGS PAGE LOADED"
                 );
 
+
                 console.log(
                     "Backend:",
                     API_BASE_URL
                 );
+
 
                 console.log(
                     "================================="
