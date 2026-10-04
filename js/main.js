@@ -15,9 +15,11 @@ const API_URL =
    DOM READY
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+function initializeWebsite() {
 
-    console.log("Main JS Loaded");
+    console.log("=================================");
+    console.log("NAIL STUDIO MAIN JS LOADED");
+    console.log("=================================");
     console.log("Backend API:", API_URL);
 
 
@@ -25,43 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
        MOBILE NAVBAR
     ===================================================== */
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    if (menuToggle && navLinks) {
-
-        menuToggle.addEventListener("click", function () {
-
-            navLinks.classList.toggle("active");
-
-        });
-
-    }
+    initializeMobileNavbar();
 
 
     /* =====================================================
-       CLOSE MOBILE MENU AFTER CLICK
-    ===================================================== */
-
-    if (navLinks) {
-
-        const links = navLinks.querySelectorAll("a");
-
-        links.forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                navLinks.classList.remove("active");
-
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       BOOKING FORM
+       NORMAL BOOKING
     ===================================================== */
 
     const bookingForm =
@@ -78,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       VIRTUAL BOOKING FORM
+       VIRTUAL BOOKING
     ===================================================== */
 
     const virtualBookingForm =
@@ -112,21 +82,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       DATE MINIMUM
+       DATE
     ===================================================== */
 
     setMinimumDate();
 
 
     /* =====================================================
-       LOAD SELECTED SERVICE
+       SERVICE
     ===================================================== */
 
     loadSelectedService();
 
 
     /* =====================================================
-       VIRTUAL NAIL PREVIEW
+       VIRTUAL PREVIEW
     ===================================================== */
 
     initializeVirtualPreview();
@@ -138,11 +108,91 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializeGallery();
 
-});
+
+    console.log(
+        "All website functions initialized."
+    );
+
+}
+
+
+/*
+   Works whether main.js is loaded normally,
+   with defer, or after DOMContentLoaded.
+*/
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeWebsite
+    );
+
+} else {
+
+    initializeWebsite();
+
+}
+
 
 
 /* =========================================================
-   SET MINIMUM BOOKING DATE
+   MOBILE NAVBAR
+========================================================= */
+
+function initializeMobileNavbar() {
+
+    const menuToggle =
+        document.querySelector(".menu-toggle");
+
+    const navLinks =
+        document.querySelector(".nav-links");
+
+
+    if (!menuToggle || !navLinks) {
+        return;
+    }
+
+
+    menuToggle.addEventListener(
+        "click",
+        function () {
+
+            navLinks.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+
+    const links =
+        navLinks.querySelectorAll("a");
+
+
+    links.forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   SET MINIMUM DATE
 ========================================================= */
 
 function setMinimumDate() {
@@ -152,35 +202,47 @@ function setMinimumDate() {
             'input[type="date"]'
         );
 
+
     if (!dateInputs.length) {
         return;
     }
 
-    const today = new Date();
+
+    const today =
+        new Date();
+
 
     const year =
         today.getFullYear();
+
 
     const month =
         String(
             today.getMonth() + 1
         ).padStart(2, "0");
 
+
     const day =
         String(
             today.getDate()
         ).padStart(2, "0");
 
+
     const todayString =
         `${year}-${month}-${day}`;
 
-    dateInputs.forEach(function (input) {
 
-        input.min = todayString;
+    dateInputs.forEach(
+        function (input) {
 
-    });
+            input.min =
+                todayString;
+
+        }
+    );
 
 }
+
 
 
 /* =========================================================
@@ -190,76 +252,120 @@ function setMinimumDate() {
 function loadSelectedService() {
 
     const serviceSelect =
-        document.getElementById("service");
+        document.getElementById(
+            "service"
+        );
+
 
     if (!serviceSelect) {
         return;
     }
+
 
     const selectedService =
         localStorage.getItem(
             "selectedService"
         );
 
+
     if (!selectedService) {
         return;
     }
 
+
     const options =
-        serviceSelect.querySelectorAll("option");
+        serviceSelect.querySelectorAll(
+            "option"
+        );
 
-    options.forEach(function (option) {
 
-        if (
-            option.value === selectedService ||
-            option.textContent.trim() === selectedService
-        ) {
+    options.forEach(
+        function (option) {
 
-            option.selected = true;
+            if (
+                option.value ===
+                    selectedService ||
+                option.textContent.trim() ===
+                    selectedService
+            ) {
+
+                option.selected =
+                    true;
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
+
 /* =========================================================
-   BOOKING SUBMIT
+   NORMAL BOOKING
 ========================================================= */
 
 async function handleBookingSubmit(event) {
 
     event.preventDefault();
 
+
     const form =
         event.target;
 
+
     const name =
-        getInputValue(form, "name");
+        getInputValue(
+            form,
+            "name"
+        );
+
 
     const email =
-        getInputValue(form, "email");
+        getInputValue(
+            form,
+            "email"
+        );
+
 
     const phone =
-        getInputValue(form, "phone");
+        getInputValue(
+            form,
+            "phone"
+        );
+
 
     const service =
-        getInputValue(form, "service");
+        getInputValue(
+            form,
+            "service"
+        );
+
 
     const date =
-        getInputValue(form, "date");
+        getInputValue(
+            form,
+            "date"
+        );
+
 
     const time =
-        getInputValue(form, "time");
+        getInputValue(
+            form,
+            "time"
+        );
+
 
     const notes =
-        getInputValue(form, "notes");
+        getInputValue(
+            form,
+            "notes"
+        );
 
 
-    /* -----------------------------------------------------
+    /* =====================================================
        VALIDATION
-    ----------------------------------------------------- */
+    ===================================================== */
 
     if (!name) {
 
@@ -285,10 +391,13 @@ async function handleBookingSubmit(event) {
     }
 
 
-    if (!phone) {
+    if (
+        !phone ||
+        !/^[0-9]{10}$/.test(phone)
+    ) {
 
         showMessage(
-            "Please enter your phone number.",
+            "Please enter a valid 10-digit phone number.",
             "error"
         );
 
@@ -332,10 +441,6 @@ async function handleBookingSubmit(event) {
 
     }
 
-
-    /* -----------------------------------------------------
-       BOOKING DATA
-    ----------------------------------------------------- */
 
     const bookingData = {
 
@@ -383,14 +488,15 @@ async function handleBookingSubmit(event) {
             );
 
 
+        const responseText =
+            await response.text();
+
+
         console.log(
             "Booking status:",
             response.status
         );
 
-
-        const responseText =
-            await response.text();
 
         console.log(
             "Booking response:",
@@ -407,10 +513,6 @@ async function handleBookingSubmit(event) {
 
         }
 
-
-        /* -------------------------------------------------
-           SUCCESS
-        ------------------------------------------------- */
 
         showMessage(
             "Your appointment has been booked successfully!",
@@ -444,43 +546,122 @@ async function handleBookingSubmit(event) {
 }
 
 
+
 /* =========================================================
-   VIRTUAL BOOKING SUBMIT
+   VIRTUAL BOOKING
 ========================================================= */
 
 async function handleVirtualBookingSubmit(event) {
 
     event.preventDefault();
 
+
     const form =
         event.target;
 
 
     const name =
-        getInputValue(form, "name");
+        getInputValue(
+            form,
+            "name"
+        );
+
 
     const email =
-        getInputValue(form, "email");
+        getInputValue(
+            form,
+            "email"
+        );
+
 
     const phone =
-        getInputValue(form, "phone");
+        getInputValue(
+            form,
+            "phone"
+        );
+
 
     const service =
-        getInputValue(form, "service");
+        getInputValue(
+            form,
+            "service"
+        );
+
+
+    /*
+       IMPORTANT:
+       Your HTML uses:
+
+       name="bookingDate"
+
+       NOT name="date"
+    */
 
     const date =
-        getInputValue(form, "date");
+        getInputValue(
+            form,
+            "bookingDate"
+        );
+
 
     const time =
-        getInputValue(form, "time");
+        getInputValue(
+            form,
+            "time"
+        );
 
-    const notes =
-        getInputValue(form, "notes");
+
+    /* =====================================================
+       SELECTED DESIGN
+    ===================================================== */
+
+    const bookingDesignElement =
+        document.getElementById(
+            "bookingDesign"
+        );
 
 
-    /* -----------------------------------------------------
+    const design =
+        bookingDesignElement
+            ? bookingDesignElement.textContent.trim()
+            : "Classic Nude";
+
+
+    /* =====================================================
+       SELECTED SHADE
+    ===================================================== */
+
+    const bookingShadeElement =
+        document.getElementById(
+            "bookingShade"
+        );
+
+
+    const shade =
+        bookingShadeElement
+            ? bookingShadeElement.textContent.trim()
+            : "Royal Gold";
+
+
+    /* =====================================================
+       SELECTED SHAPE
+    ===================================================== */
+
+    const previewShapeElement =
+        document.getElementById(
+            "previewShape"
+        );
+
+
+    const shape =
+        previewShapeElement
+            ? previewShapeElement.textContent.trim()
+            : "Almond";
+
+
+    /* =====================================================
        VALIDATION
-    ----------------------------------------------------- */
+    ===================================================== */
 
     if (!name) {
 
@@ -506,10 +687,13 @@ async function handleVirtualBookingSubmit(event) {
     }
 
 
-    if (!phone) {
+    if (
+        !phone ||
+        !/^[0-9]{10}$/.test(phone)
+    ) {
 
         showMessage(
-            "Please enter your phone number.",
+            "Please enter a valid 10-digit phone number.",
             "error"
         );
 
@@ -533,7 +717,7 @@ async function handleVirtualBookingSubmit(event) {
     if (!date) {
 
         showMessage(
-            "Please select a date.",
+            "Please select a booking date.",
             "error"
         );
 
@@ -545,7 +729,7 @@ async function handleVirtualBookingSubmit(event) {
     if (!time) {
 
         showMessage(
-            "Please select a time.",
+            "Please select an appointment time.",
             "error"
         );
 
@@ -554,9 +738,9 @@ async function handleVirtualBookingSubmit(event) {
     }
 
 
-    /* -----------------------------------------------------
-       DATA
-    ----------------------------------------------------- */
+    /* =====================================================
+       VIRTUAL BOOKING DATA
+    ===================================================== */
 
     const bookingData = {
 
@@ -572,7 +756,8 @@ async function handleVirtualBookingSubmit(event) {
 
         time: time,
 
-        notes: notes
+        notes:
+            `Virtual Preview | Shape: ${shape} | Design: ${design} | Shade: ${shade}`
 
     };
 
@@ -609,6 +794,12 @@ async function handleVirtualBookingSubmit(event) {
 
 
         console.log(
+            "Virtual booking status:",
+            response.status
+        );
+
+
+        console.log(
             "Virtual booking response:",
             responseText
         );
@@ -625,12 +816,30 @@ async function handleVirtualBookingSubmit(event) {
 
 
         showMessage(
-            "Your virtual appointment has been booked successfully!",
+            "✨ Your virtual appointment has been booked successfully!",
             "success"
         );
 
 
         form.reset();
+
+
+        const previewModal =
+            document.getElementById(
+                "previewModal"
+            );
+
+
+        if (previewModal) {
+
+            previewModal.style.display =
+                "none";
+
+        }
+
+
+        document.body.style.overflow =
+            "";
 
 
     } catch (error) {
@@ -651,6 +860,7 @@ async function handleVirtualBookingSubmit(event) {
 }
 
 
+
 /* =========================================================
    CONTACT FORM
 ========================================================= */
@@ -659,18 +869,30 @@ async function handleContactSubmit(event) {
 
     event.preventDefault();
 
+
     const form =
         event.target;
 
 
     const name =
-        getInputValue(form, "name");
+        getInputValue(
+            form,
+            "name"
+        );
+
 
     const email =
-        getInputValue(form, "email");
+        getInputValue(
+            form,
+            "email"
+        );
+
 
     const message =
-        getInputValue(form, "message");
+        getInputValue(
+            form,
+            "message"
+        );
 
 
     if (!name) {
@@ -712,19 +934,11 @@ async function handleContactSubmit(event) {
     console.log(
         "Contact form:",
         {
-            name,
-            email,
-            message
+            name: name,
+            email: email,
+            message: message
         }
     );
-
-
-    /*
-       Contact endpoint can be connected here
-       if your backend has one.
-
-       For now this gives a successful UI response.
-    */
 
 
     showMessage(
@@ -738,11 +952,15 @@ async function handleContactSubmit(event) {
 }
 
 
+
 /* =========================================================
    GET INPUT VALUE
 ========================================================= */
 
-function getInputValue(form, name) {
+function getInputValue(
+    form,
+    name
+) {
 
     if (!form) {
         return "";
@@ -765,6 +983,7 @@ function getInputValue(form, name) {
 }
 
 
+
 /* =========================================================
    EMAIL VALIDATION
 ========================================================= */
@@ -774,11 +993,13 @@ function validateEmail(email) {
     const emailPattern =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
     return emailPattern.test(
         email
     );
 
 }
+
 
 
 /* =========================================================
@@ -790,20 +1011,11 @@ function showMessage(
     type = "success"
 ) {
 
-    /*
-       Try existing message container first.
-    */
-
     let messageBox =
         document.getElementById(
             "formMessage"
         );
 
-
-    /*
-       If it doesn't exist,
-       create one automatically.
-    */
 
     if (!messageBox) {
 
@@ -812,39 +1024,54 @@ function showMessage(
                 "div"
             );
 
+
         messageBox.id =
             "formMessage";
 
-        messageBox.style.marginTop =
-            "15px";
+
+        messageBox.style.position =
+            "fixed";
+
+
+        messageBox.style.top =
+            "20px";
+
+
+        messageBox.style.right =
+            "20px";
+
+
+        messageBox.style.zIndex =
+            "9999999";
+
+
+        messageBox.style.maxWidth =
+            "400px";
+
 
         messageBox.style.padding =
-            "12px 15px";
+            "15px 20px";
+
 
         messageBox.style.borderRadius =
-            "8px";
+            "10px";
+
 
         messageBox.style.fontSize =
             "14px";
 
-        const form =
-            document.querySelector(
-                "form"
-            );
 
-        if (form) {
+        messageBox.style.fontFamily =
+            "Arial, sans-serif";
 
-            form.appendChild(
-                messageBox
-            );
 
-        } else {
+        messageBox.style.boxShadow =
+            "0 10px 30px rgba(0,0,0,.15)";
 
-            document.body.appendChild(
-                messageBox
-            );
 
-        }
+        document.body.appendChild(
+            messageBox
+        );
 
     }
 
@@ -882,22 +1109,22 @@ function showMessage(
         "block";
 
 
-    /*
-       Automatically hide after 5 seconds.
-    */
+    setTimeout(
+        function () {
 
-    setTimeout(function () {
+            if (messageBox) {
 
-        if (messageBox) {
+                messageBox.style.display =
+                    "none";
 
-            messageBox.style.display =
-                "none";
+            }
 
-        }
-
-    }, 5000);
+        },
+        5000
+    );
 
 }
+
 
 
 /* =========================================================
@@ -906,60 +1133,218 @@ function showMessage(
 
 function initializeVirtualPreview() {
 
-    const preview =
+    console.log(
+        "Initializing Virtual Preview..."
+    );
+
+
+    /* =====================================================
+       IMPORTANT ELEMENTS
+    ===================================================== */
+
+    const previewBtn =
         document.getElementById(
-            "nailPreview"
+            "previewBtnBottom"
         );
 
 
-    if (!preview) {
-        return;
+    const previewModal =
+        document.getElementById(
+            "previewModal"
+        );
+
+
+    const closeModal =
+        document.getElementById(
+            "closeModal"
+        );
+
+
+    const nailStage =
+        document.getElementById(
+            "nailPreviewStage"
+        );
+
+
+    console.log(
+        "Preview Button:",
+        previewBtn
+    );
+
+
+    console.log(
+        "Preview Modal:",
+        previewModal
+    );
+
+
+    console.log(
+        "Close Button:",
+        closeModal
+    );
+
+
+    console.log(
+        "Nail Preview Stage:",
+        nailStage
+    );
+
+
+    /* =====================================================
+       OPEN VIRTUAL PREVIEW
+    ===================================================== */
+
+    if (
+        previewBtn &&
+        previewModal
+    ) {
+
+        previewBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                console.log(
+                    "================================="
+                );
+
+
+                console.log(
+                    "TRY VIRTUAL PREVIEW CLICKED"
+                );
+
+
+                console.log(
+                    "Opening preview modal..."
+                );
+
+
+                previewModal.style.display =
+                    "flex";
+
+
+                previewModal.style.visibility =
+                    "visible";
+
+
+                previewModal.style.opacity =
+                    "1";
+
+
+                previewModal.style.pointerEvents =
+                    "auto";
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+
+    } else {
+
+        console.error(
+            "Virtual Preview Button or Modal NOT FOUND!"
+        );
+
     }
 
 
-    const colorButtons =
+    /* =====================================================
+       CLOSE BUTTON
+    ===================================================== */
+
+    if (
+        closeModal &&
+        previewModal
+    ) {
+
+        closeModal.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                closeVirtualPreview();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CLOSE WHEN CLICKING BACKDROP
+    ===================================================== */
+
+    if (previewModal) {
+
+        previewModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    previewModal
+                ) {
+
+                    closeVirtualPreview();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                previewModal
+            ) {
+
+                closeVirtualPreview();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       SERVICE OPTIONS
+    ===================================================== */
+
+    const serviceButtons =
         document.querySelectorAll(
-            "[data-color]"
+            ".service-option"
         );
 
 
-    const shapeButtons =
-        document.querySelectorAll(
-            "[data-shape]"
-        );
-
-
-    const lengthButtons =
-        document.querySelectorAll(
-            "[data-length]"
-        );
-
-
-    /* -----------------------------------------------------
-       COLOR
-    ----------------------------------------------------- */
-
-    colorButtons.forEach(
+    serviceButtons.forEach(
         function (button) {
 
             button.addEventListener(
                 "click",
                 function () {
 
-                    const color =
-                        button.dataset.color;
-
-                    if (color) {
-
-                        preview.style.setProperty(
-                            "--nail-color",
-                            color
-                        );
-
-                    }
-
-
-                    colorButtons.forEach(
+                    serviceButtons.forEach(
                         function (item) {
 
                             item.classList.remove(
@@ -974,6 +1359,58 @@ function initializeVirtualPreview() {
                         "active"
                     );
 
+
+                    const service =
+                        button.dataset.service;
+
+
+                    const previewService =
+                        document.getElementById(
+                            "previewService"
+                        );
+
+
+                    const bookingService =
+                        document.getElementById(
+                            "bookingService"
+                        );
+
+
+                    const virtualService =
+                        document.getElementById(
+                            "virtualService"
+                        );
+
+
+                    if (previewService) {
+
+                        previewService.textContent =
+                            service;
+
+                    }
+
+
+                    if (bookingService) {
+
+                        bookingService.textContent =
+                            service;
+
+                    }
+
+
+                    if (virtualService) {
+
+                        virtualService.value =
+                            service;
+
+                    }
+
+
+                    console.log(
+                        "Selected service:",
+                        service
+                    );
+
                 }
             );
 
@@ -981,9 +1418,15 @@ function initializeVirtualPreview() {
     );
 
 
-    /* -----------------------------------------------------
-       SHAPE
-    ----------------------------------------------------- */
+    /* =====================================================
+       SHAPE OPTIONS
+    ===================================================== */
+
+    const shapeButtons =
+        document.querySelectorAll(
+            ".shape-option"
+        );
+
 
     shapeButtons.forEach(
         function (button) {
@@ -991,14 +1434,6 @@ function initializeVirtualPreview() {
             button.addEventListener(
                 "click",
                 function () {
-
-                    const shape =
-                        button.dataset.shape;
-
-
-                    preview.dataset.shape =
-                        shape;
-
 
                     shapeButtons.forEach(
                         function (item) {
@@ -1015,6 +1450,49 @@ function initializeVirtualPreview() {
                         "active"
                     );
 
+
+                    const shape =
+                        button.dataset.shape;
+
+
+                    const previewShape =
+                        document.getElementById(
+                            "previewShape"
+                        );
+
+
+                    if (previewShape) {
+
+                        previewShape.textContent =
+                            shape;
+
+                    }
+
+
+                    if (nailStage) {
+
+                        nailStage.classList.remove(
+                            "shape-almond",
+                            "shape-square",
+                            "shape-coffin",
+                            "shape-oval",
+                            "shape-stiletto"
+                        );
+
+
+                        nailStage.classList.add(
+                            "shape-" +
+                            shape.toLowerCase()
+                        );
+
+                    }
+
+
+                    console.log(
+                        "Selected shape:",
+                        shape
+                    );
+
                 }
             );
 
@@ -1022,26 +1500,24 @@ function initializeVirtualPreview() {
     );
 
 
-    /* -----------------------------------------------------
-       LENGTH
-    ----------------------------------------------------- */
+    /* =====================================================
+       DESIGN OPTIONS
+    ===================================================== */
 
-    lengthButtons.forEach(
+    const designButtons =
+        document.querySelectorAll(
+            ".design-option"
+        );
+
+
+    designButtons.forEach(
         function (button) {
 
             button.addEventListener(
                 "click",
                 function () {
 
-                    const length =
-                        button.dataset.length;
-
-
-                    preview.dataset.length =
-                        length;
-
-
-                    lengthButtons.forEach(
+                    designButtons.forEach(
                         function (item) {
 
                             item.classList.remove(
@@ -1056,13 +1532,309 @@ function initializeVirtualPreview() {
                         "active"
                     );
 
+
+                    const design =
+                        button.dataset.design;
+
+
+                    const previewDesign =
+                        document.getElementById(
+                            "previewDesign"
+                        );
+
+
+                    const bookingDesign =
+                        document.getElementById(
+                            "bookingDesign"
+                        );
+
+
+                    if (previewDesign) {
+
+                        previewDesign.textContent =
+                            design;
+
+                    }
+
+
+                    if (bookingDesign) {
+
+                        bookingDesign.textContent =
+                            design;
+
+                    }
+
+
+                    if (nailStage) {
+
+                        nailStage.classList.remove(
+                            "design-nude",
+                            "design-french",
+                            "design-chrome",
+                            "design-cat-eye",
+                            "design-glitter",
+                            "design-floral"
+                        );
+
+
+                        const designClasses = {
+
+                            "Classic Nude":
+                                "design-nude",
+
+                            "French Tips":
+                                "design-french",
+
+                            "Chrome":
+                                "design-chrome",
+
+                            "Cat Eye":
+                                "design-cat-eye",
+
+                            "Glitter":
+                                "design-glitter",
+
+                            "Floral":
+                                "design-floral"
+
+                        };
+
+
+                        const designClass =
+                            designClasses[
+                                design
+                            ];
+
+
+                        if (designClass) {
+
+                            nailStage.classList.add(
+                                designClass
+                            );
+
+                        }
+
+                    }
+
+
+                    console.log(
+                        "Selected design:",
+                        design
+                    );
+
                 }
             );
 
         }
     );
 
+
+    /* =====================================================
+       SHADE OPTIONS
+    ===================================================== */
+
+    const shadeButtons =
+        document.querySelectorAll(
+            ".shade-btn"
+        );
+
+
+    shadeButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    shadeButtons.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    const shade =
+                        button.dataset.shade;
+
+
+                    const color =
+                        button.dataset.color;
+
+
+                    const previewShade =
+                        document.getElementById(
+                            "previewShade"
+                        );
+
+
+                    const bookingShade =
+                        document.getElementById(
+                            "bookingShade"
+                        );
+
+
+                    if (previewShade) {
+
+                        previewShade.textContent =
+                            shade;
+
+                    }
+
+
+                    if (bookingShade) {
+
+                        bookingShade.textContent =
+                            shade;
+
+                    }
+
+
+                    const nails =
+                        document.querySelectorAll(
+                            ".virtual-nail"
+                        );
+
+
+                    nails.forEach(
+                        function (nail) {
+
+                            nail.style.backgroundColor =
+                                color;
+
+                        }
+                    );
+
+
+                    if (nailStage) {
+
+                        nailStage.style.setProperty(
+                            "--nail-color",
+                            color
+                        );
+
+                    }
+
+
+                    console.log(
+                        "Selected shade:",
+                        shade,
+                        color
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       DEFAULT SHADE
+    ===================================================== */
+
+    const defaultShade =
+        document.querySelector(
+            ".shade-btn.active"
+        );
+
+
+    if (defaultShade) {
+
+        const defaultColor =
+            defaultShade.dataset.color;
+
+
+        if (defaultColor) {
+
+            document
+                .querySelectorAll(
+                    ".virtual-nail"
+                )
+                .forEach(
+                    function (nail) {
+
+                        nail.style.backgroundColor =
+                            defaultColor;
+
+                    }
+                );
+
+
+            if (nailStage) {
+
+                nailStage.style.setProperty(
+                    "--nail-color",
+                    defaultColor
+                );
+
+            }
+
+        }
+
+    }
+
+
+    console.log(
+        "Virtual Preview initialized successfully."
+    );
+
 }
+
+
+
+/* =========================================================
+   CLOSE VIRTUAL PREVIEW
+========================================================= */
+
+function closeVirtualPreview() {
+
+    const previewModal =
+        document.getElementById(
+            "previewModal"
+        );
+
+
+    if (!previewModal) {
+        return;
+    }
+
+
+    previewModal.style.display =
+        "none";
+
+
+    previewModal.style.visibility =
+        "hidden";
+
+
+    previewModal.style.opacity =
+        "0";
+
+
+    previewModal.style.pointerEvents =
+        "none";
+
+
+    document.body.style.overflow =
+        "";
+
+
+
+    console.log(
+        "Virtual Preview closed."
+    );
+
+}
+
 
 
 /* =========================================================
@@ -1114,6 +1886,7 @@ function initializeGallery() {
 }
 
 
+
 /* =========================================================
    IMAGE VIEWER
 ========================================================= */
@@ -1138,6 +1911,7 @@ function openImageViewer(
         <div class="image-viewer-content">
 
             <button
+                type="button"
                 class="image-viewer-close"
                 aria-label="Close"
             >
@@ -1166,14 +1940,18 @@ function openImageViewer(
         );
 
 
-    closeButton.addEventListener(
-        "click",
-        function () {
+    if (closeButton) {
 
-            overlay.remove();
+        closeButton.addEventListener(
+            "click",
+            function () {
 
-        }
-    );
+                overlay.remove();
+
+            }
+        );
+
+    }
 
 
     overlay.addEventListener(
@@ -1181,7 +1959,8 @@ function openImageViewer(
         function (event) {
 
             if (
-                event.target === overlay
+                event.target ===
+                overlay
             ) {
 
                 overlay.remove();
@@ -1190,29 +1969,36 @@ function openImageViewer(
 
         }
     );
+
+
+
+    function escapeHandler(event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            overlay.remove();
+
+
+            document.removeEventListener(
+                "keydown",
+                escapeHandler
+            );
+
+        }
+
+    }
 
 
     document.addEventListener(
         "keydown",
-        function escapeHandler(event) {
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                overlay.remove();
-
-                document.removeEventListener(
-                    "keydown",
-                    escapeHandler
-                );
-
-            }
-
-        }
+        escapeHandler
     );
 
 }
+
 
 
 /* =========================================================
@@ -1258,6 +2044,7 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
    BOOK NOW BUTTONS
 ========================================================= */
@@ -1294,6 +2081,7 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
    SMOOTH SCROLL
 ========================================================= */
@@ -1310,6 +2098,21 @@ document.addEventListener(
 
         if (!link) {
             return;
+        }
+
+
+        /*
+           IMPORTANT:
+           Do not interfere with Virtual Preview.
+        */
+
+        if (
+            link.id ===
+            "previewBtnBottom"
+        ) {
+
+            return;
+
         }
 
 
@@ -1352,15 +2155,11 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
-   CONSOLE INFORMATION
+   FINAL LOG
 ========================================================= */
 
 console.log(
-    "Nail Studio main.js initialized successfully."
-);
-
-console.log(
-    "API URL:",
-    API_URL
+    "Nail Studio main.js file loaded."
 );
