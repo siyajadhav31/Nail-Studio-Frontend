@@ -10,8 +10,11 @@
 
     <title>Admin Bookings | Nail Studio</title>
 
+
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="css/style.css">
+
 
     <!-- GOOGLE FONTS -->
     <link
@@ -20,12 +23,13 @@
 
 </head>
 
+
 <body>
 
 
     <!-- ==========================================
          ADMIN NAVBAR
-    ========================================== -->
+    =========================================== -->
 
     <header>
 
@@ -66,9 +70,10 @@
     </header>
 
 
+
     <!-- ==========================================
          ADMIN BOOKINGS
-    ========================================== -->
+    =========================================== -->
 
     <section class="admin-bookings">
 
@@ -94,9 +99,10 @@
             </div>
 
 
+
             <!-- ==========================================
                  DASHBOARD STATS
-            ========================================== -->
+            =========================================== -->
 
             <div class="admin-stats">
 
@@ -124,6 +130,7 @@
                 </div>
 
 
+
                 <!-- OFFER BOOKINGS -->
 
                 <div class="admin-stat-card">
@@ -147,6 +154,7 @@
                 </div>
 
 
+
                 <!-- SERVICE BOOKINGS -->
 
                 <div class="admin-stat-card">
@@ -168,6 +176,7 @@
                     </div>
 
                 </div>
+
 
 
                 <!-- VIRTUAL BOOKINGS -->
@@ -195,9 +204,10 @@
             </div>
 
 
+
             <!-- ==========================================
                  FILTER
-            ========================================== -->
+            =========================================== -->
 
             <div class="booking-filter">
 
@@ -228,9 +238,10 @@
             </div>
 
 
+
             <!-- ==========================================
                  BOOKING TABLE
-            ========================================== -->
+            =========================================== -->
 
             <div class="table-wrapper">
 
@@ -303,9 +314,10 @@
     </section>
 
 
+
     <!-- ==========================================
          EDIT MODAL
-    ========================================== -->
+    =========================================== -->
 
     <div
         id="editModal"
@@ -482,17 +494,19 @@
     </div>
 
 
+
     <!-- ==========================================
          FOOTER
-    ========================================== -->
+    =========================================== -->
 
     <footer class="admin-footer">
     </footer>
 
 
+
     <!-- ==========================================
          JAVASCRIPT
-    ========================================== -->
+    =========================================== -->
 
     <script>
 
@@ -514,6 +528,7 @@
         let selectedBookingId = null;
 
 
+
         /* ==========================================
            CHECK ADMIN LOGIN
         ========================================== */
@@ -521,6 +536,16 @@
         async function checkAdminLogin() {
 
             try {
+
+                console.log(
+                    "Checking admin authentication..."
+                );
+
+                console.log(
+                    "Check URL:",
+                    API_BASE_URL + "/api/admin/check"
+                );
+
 
                 const response =
                     await fetch(
@@ -531,7 +556,11 @@
 
                             credentials: "include",
 
-                            cache: "no-store"
+                            cache: "no-store",
+
+                            headers: {
+                                "Accept": "text/plain"
+                            }
                         }
                     );
 
@@ -547,36 +576,68 @@
 
 
                 console.log(
-                    "Admin Check:",
+                    "Admin Check Response:",
                     result
                 );
 
 
+                /* ==========================================
+                   AUTHENTICATED
+                ========================================== */
+
                 if (
-                    !response.ok ||
-                    result.trim() !==
+                    response.ok &&
+                    result.trim() ===
                     "Admin authenticated"
                 ) {
 
-                    console.error(
-                        "Admin authentication failed."
+                    console.log(
+                        "Admin authentication successful."
                     );
 
-
-                    window.location.href =
-                        "admin-login.html";
-
-                    return false;
+                    return true;
 
                 }
 
 
-                console.log(
-                    "Admin authentication successful."
+                /* ==========================================
+                   NOT AUTHENTICATED
+                ========================================== */
+
+                console.error(
+                    "Admin authentication failed."
+                );
+
+                console.error(
+                    "Status:",
+                    response.status
+                );
+
+                console.error(
+                    "Response:",
+                    result
                 );
 
 
-                return true;
+                /*
+                   Remove old frontend login information
+                   so stale login state does not remain.
+                */
+
+                localStorage.removeItem(
+                    "adminLoggedIn"
+                );
+
+                localStorage.removeItem(
+                    "adminEmail"
+                );
+
+
+                window.location.href =
+                    "admin-login.html";
+
+
+                return false;
 
             }
 
@@ -597,6 +658,7 @@
             }
 
         }
+
 
 
         /* ==========================================
@@ -641,8 +703,6 @@
             }
 
 
-            /* OLD OFFER BOOKINGS */
-
             if (
                 isOldOfferBooking(booking)
             ) {
@@ -655,6 +715,7 @@
             return "SERVICE";
 
         }
+
 
 
         /* ==========================================
@@ -703,6 +764,7 @@
         }
 
 
+
         /* ==========================================
            TYPE CHECKS
         ========================================== */
@@ -737,22 +799,18 @@
         }
 
 
+
         /* ==========================================
            UPDATE DASHBOARD
         ========================================== */
 
         function updateDashboardStats() {
 
-
-            /* TOTAL */
-
             document.getElementById(
                 "totalBookings"
             ).textContent =
                 bookingsData.length;
 
-
-            /* OFFERS */
 
             const offerCount =
                 bookingsData.filter(
@@ -772,8 +830,6 @@
                 offerCount;
 
 
-            /* SERVICES */
-
             const serviceCount =
                 bookingsData.filter(
                     function (booking) {
@@ -791,8 +847,6 @@
             ).textContent =
                 serviceCount;
 
-
-            /* VIRTUAL */
 
             const virtualCount =
                 bookingsData.filter(
@@ -812,6 +866,7 @@
                 virtualCount;
 
         }
+
 
 
         /* ==========================================
@@ -866,7 +921,12 @@
 
                             credentials: "include",
 
-                            cache: "no-store"
+                            cache: "no-store",
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
                         }
                     );
 
@@ -878,6 +938,14 @@
 
 
                 if (!response.ok) {
+
+                    const errorText =
+                        await response.text();
+
+                    console.error(
+                        "Bookings API Error:",
+                        errorText
+                    );
 
                     throw new Error(
                         "Failed to load bookings. Status: " +
@@ -897,8 +965,6 @@
                 );
 
 
-                /* DIRECT ARRAY */
-
                 if (
                     Array.isArray(data)
                 ) {
@@ -907,9 +973,6 @@
                         data;
 
                 }
-
-
-                /* WRAPPER RESPONSE */
 
                 else if (
                     data &&
@@ -921,17 +984,12 @@
 
                 }
 
-
-                /* INVALID RESPONSE */
-
                 else {
 
                     bookingsData = [];
 
                 }
 
-
-                /* NEWEST FIRST */
 
                 bookingsData.sort(
                     function (a, b) {
@@ -981,6 +1039,7 @@
         }
 
 
+
         /* ==========================================
            ESCAPE HTML
         ========================================== */
@@ -1017,6 +1076,7 @@
         }
 
 
+
         /* ==========================================
            DISPLAY BOOKINGS
         ========================================== */
@@ -1049,8 +1109,6 @@
                 bookingsData.slice();
 
 
-            /* OFFER */
-
             if (
                 filter === "offer"
             ) {
@@ -1068,8 +1126,6 @@
 
             }
 
-
-            /* SERVICE */
 
             else if (
                 filter === "service"
@@ -1089,8 +1145,6 @@
             }
 
 
-            /* VIRTUAL */
-
             else if (
                 filter === "virtual"
             ) {
@@ -1109,8 +1163,6 @@
             }
 
 
-            /* EMPTY */
-
             if (
                 filteredBookings.length === 0
             ) {
@@ -1126,8 +1178,6 @@
             emptyMessage.style.display =
                 "none";
 
-
-            /* CREATE ROWS */
 
             filteredBookings.forEach(
                 function (booking) {
@@ -1146,8 +1196,6 @@
                         "service-badge";
 
 
-                    /* OFFER */
-
                     if (
                         bookingType ===
                         "OFFER"
@@ -1162,8 +1210,6 @@
                     }
 
 
-                    /* VIRTUAL */
-
                     else if (
                         bookingType ===
                         "VIRTUAL"
@@ -1177,8 +1223,6 @@
 
                     }
 
-
-                    /* TABLE ROW */
 
                     const row =
                         document.createElement(
@@ -1278,6 +1322,7 @@
         }
 
 
+
         /* ==========================================
            FILTER CHANGE
         ========================================== */
@@ -1294,6 +1339,7 @@
 
                 }
             );
+
 
 
         /* ==========================================
@@ -1368,6 +1414,7 @@
         }
 
 
+
         /* ==========================================
            CLOSE MODAL
         ========================================== */
@@ -1387,6 +1434,7 @@
 
                 }
             );
+
 
 
         /* ==========================================
@@ -1414,6 +1462,7 @@
 
             }
         );
+
 
 
         /* ==========================================
@@ -1528,6 +1577,9 @@
                                     headers: {
 
                                         "Content-Type":
+                                            "application/json",
+
+                                        "Accept":
                                             "application/json"
 
                                     },
@@ -1544,6 +1596,14 @@
                         if (
                             !response.ok
                         ) {
+
+                            const errorText =
+                                await response.text();
+
+                            console.error(
+                                "Update API error:",
+                                errorText
+                            );
 
                             throw new Error(
                                 "Update failed. Status: " +
@@ -1592,6 +1652,7 @@
             );
 
 
+
         /* ==========================================
            DELETE BOOKING
         ========================================== */
@@ -1624,7 +1685,12 @@
                                 "DELETE",
 
                             credentials:
-                                "include"
+                                "include",
+
+                            headers: {
+                                "Accept":
+                                    "text/plain"
+                            }
 
                         }
                     );
@@ -1633,6 +1699,14 @@
                 if (
                     !response.ok
                 ) {
+
+                    const errorText =
+                        await response.text();
+
+                    console.error(
+                        "Delete API error:",
+                        errorText
+                    );
 
                     throw new Error(
                         "Delete failed. Status: " +
@@ -1666,6 +1740,7 @@
             }
 
         }
+
 
 
         /* ==========================================
@@ -1712,31 +1787,25 @@
                         "loggedIn"
                     );
 
-
                     localStorage.removeItem(
                         "userToken"
                     );
-
 
                     localStorage.removeItem(
                         "adminToken"
                     );
 
-
                     localStorage.removeItem(
                         "virtualBooking"
                     );
-
 
                     localStorage.removeItem(
                         "selectedService"
                     );
 
-
                     localStorage.removeItem(
                         "adminLoggedIn"
                     );
-
 
                     localStorage.removeItem(
                         "adminEmail"
@@ -1750,6 +1819,7 @@
             );
 
 
+
         /* ==========================================
            START
         ========================================== */
@@ -1759,12 +1829,20 @@
             async function () {
 
                 console.log(
-                    "Admin bookings page loaded."
+                    "================================="
+                );
+
+                console.log(
+                    "ADMIN BOOKINGS PAGE LOADED"
                 );
 
                 console.log(
                     "Backend:",
                     API_BASE_URL
+                );
+
+                console.log(
+                    "================================="
                 );
 
 
