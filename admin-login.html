@@ -208,7 +208,7 @@ document
 
                 if (
                     response.ok &&
-                    result ===
+                    result.trim() ===
                     "Admin login successful"
                 ) {
 
@@ -219,6 +219,22 @@ document
 
                     message.textContent =
                         "Admin login successful!";
+
+
+                    /* ===============================
+                       SAVE ADMIN LOGIN
+                    =============================== */
+
+                    localStorage.setItem(
+                        "adminLoggedIn",
+                        "true"
+                    );
+
+
+                    localStorage.setItem(
+                        "adminEmail",
+                        email
+                    );
 
 
                     /* ===============================
@@ -251,7 +267,7 @@ document
 
 
                     message.textContent =
-                        result ||
+                        result.trim() ||
                         "Invalid admin email or password.";
 
                 }
