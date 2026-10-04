@@ -1174,7 +1174,9 @@
                     row.innerHTML = `
 
                         <td>
-                            ${booking.id || ""}
+                            ${escapeHTML(
+                                booking.id || ""
+                            )}
                         </td>
 
                         <td>
@@ -1225,7 +1227,9 @@
 
                                 <button
                                     class="edit-btn"
-                                    onclick="openEditModal(${booking.id})">
+                                    onclick="openEditModal(${Number(
+                                        booking.id
+                                    )})">
 
                                     Edit
 
@@ -1234,7 +1238,9 @@
 
                                 <button
                                     class="delete-btn"
-                                    onclick="deleteBooking(${booking.id})">
+                                    onclick="deleteBooking(${Number(
+                                        booking.id
+                                    )})">
 
                                     Delete
 
