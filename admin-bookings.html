@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
     <title>Admin Bookings | Nail Studio</title>
 
@@ -67,7 +67,6 @@
     </header>
 
 
-
     <!-- ==========================================
          ADMIN BOOKINGS
     ========================================== -->
@@ -85,18 +84,15 @@
                     Nail Studio Administration
                 </span>
 
-
                 <h1>
                     Customer Bookings
                 </h1>
-
 
                 <p>
                     Manage all customer appointments from one place.
                 </p>
 
             </div>
-
 
 
             <!-- ==========================================
@@ -110,7 +106,9 @@
 
                 <div class="admin-stat-card">
 
-                    <div class="stat-icon"></div>
+                    <div class="stat-icon">
+                        📋
+                    </div>
 
                     <div class="stat-info">
 
@@ -127,12 +125,13 @@
                 </div>
 
 
-
                 <!-- OFFER BOOKINGS -->
 
                 <div class="admin-stat-card">
 
-                    <div class="stat-icon"></div>
+                    <div class="stat-icon">
+                        🎁
+                    </div>
 
                     <div class="stat-info">
 
@@ -149,12 +148,13 @@
                 </div>
 
 
-
                 <!-- SERVICE BOOKINGS -->
 
                 <div class="admin-stat-card">
 
-                    <div class="stat-icon"></div>
+                    <div class="stat-icon">
+                        💅
+                    </div>
 
                     <div class="stat-info">
 
@@ -171,12 +171,13 @@
                 </div>
 
 
-
                 <!-- VIRTUAL BOOKINGS -->
 
                 <div class="admin-stat-card">
 
-                    <div class="stat-icon"></div>
+                    <div class="stat-icon">
+                        ✨
+                    </div>
 
                     <div class="stat-info">
 
@@ -195,7 +196,6 @@
             </div>
 
 
-
             <!-- ==========================================
                  FILTER
             ========================================== -->
@@ -205,7 +205,6 @@
                 <label for="bookingFilter">
                     Show:
                 </label>
-
 
                 <select id="bookingFilter">
 
@@ -230,7 +229,6 @@
             </div>
 
 
-
             <!-- ==========================================
                  BOOKING TABLE
             ========================================== -->
@@ -249,7 +247,6 @@
                         Loading bookings...
 
                     </div>
-
 
 
                     <!-- TABLE -->
@@ -281,12 +278,10 @@
                         </thead>
 
 
-                        <tbody
-                            id="bookingTableBody">
+                        <tbody id="bookingTableBody">
                         </tbody>
 
                     </table>
-
 
 
                     <!-- EMPTY -->
@@ -300,16 +295,13 @@
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
         </div>
 
     </section>
-
 
 
     <!-- ==========================================
@@ -334,11 +326,9 @@
             </span>
 
 
-
             <h2>
                 Edit Booking
             </h2>
-
 
 
             <form
@@ -361,7 +351,6 @@
                 </div>
 
 
-
                 <!-- EMAIL -->
 
                 <div class="edit-form-group">
@@ -376,7 +365,6 @@
                         required>
 
                 </div>
-
 
 
                 <!-- PHONE -->
@@ -397,7 +385,6 @@
                 </div>
 
 
-
                 <!-- DATE -->
 
                 <div class="edit-form-group">
@@ -412,7 +399,6 @@
                         required>
 
                 </div>
-
 
 
                 <!-- TIME -->
@@ -480,7 +466,6 @@
                 </div>
 
 
-
                 <!-- UPDATE -->
 
                 <button
@@ -491,14 +476,11 @@
 
                 </button>
 
-
             </form>
-
 
         </div>
 
     </div>
-
 
 
     <!-- ==========================================
@@ -509,7 +491,6 @@
     </footer>
 
 
-
     <!-- ==========================================
          JAVASCRIPT
     ========================================== -->
@@ -518,11 +499,11 @@
 
 
         /* ==========================================
-           LIVE BACKEND URL
+           LOCAL SPRING BOOT BACKEND
         ========================================== */
 
         const API_BASE_URL =
-            "https://nail-studio-backend-k604.onrender.com";
+            "http://localhost:8080";
 
 
         const API_URL =
@@ -532,7 +513,6 @@
         let bookingsData = [];
 
         let selectedBookingId = null;
-
 
 
         /* ==========================================
@@ -550,11 +530,9 @@
                         {
                             method: "GET",
 
-                            credentials:
-                                "include",
+                            credentials: "include",
 
-                            cache:
-                                "no-store"
+                            cache: "no-store"
                         }
                     );
 
@@ -606,7 +584,6 @@
         }
 
 
-
         /* ==========================================
            GET BOOKING TYPE
         ========================================== */
@@ -649,9 +626,7 @@
             }
 
 
-            /*
-             * Old offer bookings
-             */
+            /* OLD OFFER BOOKINGS */
 
             if (
                 isOldOfferBooking(booking)
@@ -665,7 +640,6 @@
             return "SERVICE";
 
         }
-
 
 
         /* ==========================================
@@ -714,7 +688,6 @@
         }
 
 
-
         /* ==========================================
            TYPE CHECKS
         ========================================== */
@@ -749,16 +722,14 @@
         }
 
 
-
         /* ==========================================
            UPDATE DASHBOARD
         ========================================== */
 
         function updateDashboardStats() {
 
-            /*
-             * Total
-             */
+
+            /* TOTAL */
 
             document.getElementById(
                 "totalBookings"
@@ -766,10 +737,7 @@
                 bookingsData.length;
 
 
-
-            /*
-             * Offers
-             */
+            /* OFFERS */
 
             const offerCount =
                 bookingsData.filter(
@@ -789,10 +757,7 @@
                 offerCount;
 
 
-
-            /*
-             * Services
-             */
+            /* SERVICES */
 
             const serviceCount =
                 bookingsData.filter(
@@ -812,10 +777,7 @@
                 serviceCount;
 
 
-
-            /*
-             * Virtual
-             */
+            /* VIRTUAL */
 
             const virtualCount =
                 bookingsData.filter(
@@ -835,7 +797,6 @@
                 virtualCount;
 
         }
-
 
 
         /* ==========================================
@@ -861,10 +822,6 @@
                     "emptyMessage"
                 );
 
-
-            /*
-             * Loading
-             */
 
             loadingMessage.style.display =
                 "block";
@@ -892,11 +849,9 @@
                         {
                             method: "GET",
 
-                            credentials:
-                                "include",
+                            credentials: "include",
 
-                            cache:
-                                "no-store"
+                            cache: "no-store"
                         }
                     );
 
@@ -927,9 +882,7 @@
                 );
 
 
-                /*
-                 * Direct array
-                 */
+                /* DIRECT ARRAY */
 
                 if (
                     Array.isArray(data)
@@ -941,9 +894,7 @@
                 }
 
 
-                /*
-                 * Wrapper response
-                 */
+                /* WRAPPER RESPONSE */
 
                 else if (
                     data &&
@@ -956,9 +907,7 @@
                 }
 
 
-                /*
-                 * Invalid response
-                 */
+                /* INVALID RESPONSE */
 
                 else {
 
@@ -967,10 +916,7 @@
                 }
 
 
-
-                /*
-                 * Newest first
-                 */
+                /* NEWEST FIRST */
 
                 bookingsData.sort(
                     function (a, b) {
@@ -1012,13 +958,12 @@
                     "block";
 
 
-                loadingMessage.innerHTML =
+                loadingMessage.textContent =
                     "Unable to load bookings. Please check the Spring Boot backend.";
 
             }
 
         }
-
 
 
         /* ==========================================
@@ -1057,7 +1002,6 @@
         }
 
 
-
         /* ==========================================
            DISPLAY BOOKINGS
         ========================================== */
@@ -1090,10 +1034,7 @@
                 bookingsData.slice();
 
 
-
-            /*
-             * OFFER
-             */
+            /* OFFER */
 
             if (
                 filter === "offer"
@@ -1113,10 +1054,7 @@
             }
 
 
-
-            /*
-             * SERVICE
-             */
+            /* SERVICE */
 
             else if (
                 filter === "service"
@@ -1136,10 +1074,7 @@
             }
 
 
-
-            /*
-             * VIRTUAL
-             */
+            /* VIRTUAL */
 
             else if (
                 filter === "virtual"
@@ -1159,10 +1094,7 @@
             }
 
 
-
-            /*
-             * Empty
-             */
+            /* EMPTY */
 
             if (
                 filteredBookings.length === 0
@@ -1180,10 +1112,7 @@
                 "none";
 
 
-
-            /*
-             * Create rows
-             */
+            /* CREATE ROWS */
 
             filteredBookings.forEach(
                 function (booking) {
@@ -1202,10 +1131,7 @@
                         "service-badge";
 
 
-
-                    /*
-                     * Offer
-                     */
+                    /* OFFER */
 
                     if (
                         bookingType ===
@@ -1221,10 +1147,7 @@
                     }
 
 
-
-                    /*
-                     * Virtual
-                     */
+                    /* VIRTUAL */
 
                     else if (
                         bookingType ===
@@ -1240,10 +1163,7 @@
                     }
 
 
-
-                    /*
-                     * Table row
-                     */
+                    /* TABLE ROW */
 
                     const row =
                         document.createElement(
@@ -1287,11 +1207,15 @@
                         </td>
 
                         <td>
-                            ${booking.bookingDate || ""}
+                            ${escapeHTML(
+                                booking.bookingDate || ""
+                            )}
                         </td>
 
                         <td>
-                            ${booking.bookingTime || ""}
+                            ${escapeHTML(
+                                booking.bookingTime || ""
+                            )}
                         </td>
 
                         <td>
@@ -1333,7 +1257,6 @@
         }
 
 
-
         /* ==========================================
            FILTER CHANGE
         ========================================== */
@@ -1350,7 +1273,6 @@
 
                 }
             );
-
 
 
         /* ==========================================
@@ -1425,7 +1347,6 @@
         }
 
 
-
         /* ==========================================
            CLOSE MODAL
         ========================================== */
@@ -1445,7 +1366,6 @@
 
                 }
             );
-
 
 
         /* ==========================================
@@ -1473,7 +1393,6 @@
 
             }
         );
-
 
 
         /* ==========================================
@@ -1531,7 +1450,6 @@
                                 .value
                                 .trim(),
 
-
                         email:
                             document
                                 .getElementById(
@@ -1539,7 +1457,6 @@
                                 )
                                 .value
                                 .trim(),
-
 
                         phone:
                             document
@@ -1549,7 +1466,6 @@
                                 .value
                                 .trim(),
 
-
                         bookingDate:
                             document
                                 .getElementById(
@@ -1557,14 +1473,12 @@
                                 )
                                 .value,
 
-
                         bookingTime:
                             document
                                 .getElementById(
                                     "editTime"
                                 )
                                 .value,
-
 
                         bookingType:
                             originalBooking &&
@@ -1657,7 +1571,6 @@
             );
 
 
-
         /* ==========================================
            DELETE BOOKING
         ========================================== */
@@ -1734,7 +1647,6 @@
         }
 
 
-
         /* ==========================================
            ADMIN LOGOUT
         ========================================== */
@@ -1800,12 +1712,21 @@
                     );
 
 
+                    localStorage.removeItem(
+                        "adminLoggedIn"
+                    );
+
+
+                    localStorage.removeItem(
+                        "adminEmail"
+                    );
+
+
                     window.location.href =
                         "admin-login.html";
 
                 }
             );
-
 
 
         /* ==========================================
