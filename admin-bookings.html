@@ -37,7 +37,7 @@
                 href="admin-bookings.html"
                 class="admin-logo">
 
-                Nail Studio
+                💅 Nail Studio
 
             </a>
 
@@ -83,7 +83,7 @@
             <div class="admin-title">
 
                 <span>
-                    Nail Studio Administration
+                    💅 Nail Studio Administration
                 </span>
 
                 <h1>
@@ -336,7 +336,7 @@
 
 
             <h2>
-                Edit Booking
+                💅 Edit Booking
             </h2>
 
 
@@ -481,7 +481,7 @@
                     type="submit"
                     class="update-btn">
 
-                    Update Booking
+                    💅 Update Booking
 
                 </button>
 
@@ -498,6 +498,11 @@
     =========================================== -->
 
     <footer class="admin-footer">
+
+        <p>
+            💅 Nail Studio — Admin Panel
+        </p>
+
     </footer>
 
 
@@ -508,8 +513,9 @@
 
     <script>
 
+
         /* ==========================================
-           LIVE RENDER SPRING BOOT BACKEND
+           API CONFIGURATION
         ========================================== */
 
         const API_BASE_URL =
@@ -527,11 +533,6 @@
 
         /* ==========================================
            CHECK ADMIN LOGIN
-
-           IMPORTANT:
-           We use localStorage here because the
-           cross-site JSESSIONID session is currently
-           not being retained by the browser.
         ========================================== */
 
         function checkAdminLogin() {
@@ -543,11 +544,27 @@
                 localStorage.getItem("adminEmail");
 
 
-            console.log("=================================");
-            console.log("CHECKING ADMIN LOGIN");
-            console.log("Admin logged in:", adminLoggedIn);
-            console.log("Admin email:", adminEmail);
-            console.log("=================================");
+            console.log(
+                "================================="
+            );
+
+            console.log(
+                "CHECKING ADMIN LOGIN"
+            );
+
+            console.log(
+                "Admin logged in:",
+                adminLoggedIn
+            );
+
+            console.log(
+                "Admin email:",
+                adminEmail
+            );
+
+            console.log(
+                "================================="
+            );
 
 
             if (
@@ -556,7 +573,7 @@
             ) {
 
                 console.log(
-                    "ADMIN LOGIN VERIFIED FROM LOCAL STORAGE"
+                    "ADMIN LOGIN VERIFIED"
                 );
 
                 return true;
@@ -809,6 +826,7 @@
                         "?_=" +
                         new Date().getTime(),
                         {
+
                             method: "GET",
 
                             credentials: "include",
@@ -816,8 +834,10 @@
                             cache: "no-store",
 
                             headers: {
+
                                 "Accept":
                                     "application/json"
+
                             }
                         }
                     );
@@ -1062,6 +1082,11 @@
             filteredBookings.forEach(
                 function (booking) {
 
+
+                    /* ==========================================
+                       BOOKING TYPE
+                    ========================================== */
+
                     const bookingType =
                         getBookingType(
                             booking
@@ -1099,6 +1124,50 @@
                             "virtual-badge";
                     }
 
+
+
+                    /* ==========================================
+                       DATE
+                       SUPPORTS BOTH:
+                       bookingDate
+                       date
+                    ========================================== */
+
+                    const bookingDate =
+                        booking.bookingDate ||
+                        booking.date ||
+                        "";
+
+
+
+                    /* ==========================================
+                       TIME
+                       SUPPORTS BOTH:
+                       bookingTime
+                       time
+                    ========================================== */
+
+                    const bookingTime =
+                        booking.bookingTime ||
+                        booking.time ||
+                        "";
+
+
+
+                    console.log(
+                        "Booking:",
+                        booking.id,
+                        "Date:",
+                        bookingDate,
+                        "Time:",
+                        bookingTime
+                    );
+
+
+
+                    /* ==========================================
+                       CREATE ROW
+                    ========================================== */
 
                     const row =
                         document.createElement(
@@ -1145,13 +1214,13 @@
 
                         <td>
                             ${escapeHTML(
-                                booking.bookingDate || ""
+                                bookingDate
                             )}
                         </td>
 
                         <td>
                             ${escapeHTML(
-                                booking.bookingTime || ""
+                                bookingTime
                             )}
                         </td>
 
@@ -1250,11 +1319,17 @@
                 id;
 
 
+
+            /* NAME */
+
             document.getElementById(
                 "editName"
             ).value =
                 booking.name || "";
 
+
+
+            /* EMAIL */
 
             document.getElementById(
                 "editEmail"
@@ -1262,23 +1337,39 @@
                 booking.email || "";
 
 
+
+            /* PHONE */
+
             document.getElementById(
                 "editPhone"
             ).value =
                 booking.phone || "";
 
 
+
+            /* DATE */
+
             document.getElementById(
                 "editDate"
             ).value =
-                booking.bookingDate || "";
+                booking.bookingDate ||
+                booking.date ||
+                "";
 
+
+
+            /* TIME */
 
             document.getElementById(
                 "editTime"
             ).value =
-                booking.bookingTime || "";
+                booking.bookingTime ||
+                booking.time ||
+                "";
 
+
+
+            /* OPEN MODAL */
 
             document.getElementById(
                 "editModal"
@@ -1381,6 +1472,28 @@
                         );
 
 
+
+                    const selectedDate =
+                        document
+                            .getElementById(
+                                "editDate"
+                            )
+                            .value;
+
+
+                    const selectedTime =
+                        document
+                            .getElementById(
+                                "editTime"
+                            )
+                            .value;
+
+
+
+                    /* ==========================================
+                       UPDATED BOOKING
+                    ========================================== */
+
                     const updatedBooking = {
 
                         name:
@@ -1408,25 +1521,32 @@
                                 .trim(),
 
                         bookingDate:
-                            document
-                                .getElementById(
-                                    "editDate"
-                                )
-                                .value,
+                            selectedDate,
+
+                        date:
+                            selectedDate,
 
                         bookingTime:
-                            document
-                                .getElementById(
-                                    "editTime"
-                                )
-                                .value,
+                            selectedTime,
+
+                        time:
+                            selectedTime,
 
                         bookingType:
                             originalBooking &&
                             originalBooking.bookingType
                                 ? originalBooking.bookingType
                                 : "SERVICE"
+
                     };
+
+
+
+                    console.log(
+                        "Updating booking:",
+                        updatedBooking
+                    );
+
 
 
                     try {
@@ -1483,7 +1603,7 @@
 
 
                         alert(
-                            "Booking Updated Successfully!"
+                            "💅 Booking Updated Successfully!"
                         );
 
 
@@ -1585,7 +1705,7 @@
 
 
                 alert(
-                    "Booking Deleted Successfully!"
+                    "💅 Booking Deleted Successfully!"
                 );
 
 
@@ -1621,6 +1741,7 @@
                 "click",
                 async function () {
 
+
                     try {
 
                         await fetch(
@@ -1634,8 +1755,10 @@
                                     "include",
 
                                 headers: {
+
                                     "Accept":
                                         "text/plain"
+
                                 }
                             }
                         );
@@ -1650,6 +1773,9 @@
                         );
                     }
 
+
+
+                    /* CLEAR LOGIN DATA */
 
                     localStorage.removeItem(
                         "loggedIn"
@@ -1680,6 +1806,7 @@
                     );
 
 
+
                     window.location.href =
                         "admin-login.html";
 
@@ -1701,7 +1828,7 @@
                 );
 
                 console.log(
-                    "ADMIN BOOKINGS PAGE LOADED"
+                    "💅 ADMIN BOOKINGS PAGE LOADED"
                 );
 
                 console.log(
