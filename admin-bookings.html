@@ -10,24 +10,18 @@
 
     <title>💅 Admin Bookings | Nail Studio</title>
 
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="css/style.css">
 
-    <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
-
-    <!-- ==========================================
-         ADMIN BOOKING EXTRA CSS
-    =========================================== -->
-
     <style>
 
         /* ==========================================
-           BOOKING TYPE BADGES
-        =========================================== */
+           ADMIN BOOKING TYPE BADGES
+        ========================================== */
 
         .service-badge,
         .offer-badge,
@@ -41,7 +35,7 @@
 
             padding: 7px 14px;
 
-            border-radius: 20px;
+            border-radius: 30px;
 
             font-family: 'Poppins', sans-serif;
 
@@ -49,55 +43,53 @@
 
             font-weight: 500;
 
-            line-height: 1;
-
             white-space: nowrap;
 
         }
 
 
-        /* ==========================================
-           SERVICE BADGE
-        =========================================== */
+        /* SERVICE */
 
         .service-badge {
 
             background: #fff0d2;
 
-            color: #a86b00;
+            color: #a66a00;
+
+            border: 1px solid #f3d79c;
 
         }
 
 
-        /* ==========================================
-           OFFER BADGE
-        =========================================== */
+        /* OFFER */
 
         .offer-badge {
 
-            background: #fde7f0;
+            background: #fde5ef;
 
-            color: #d63c72;
+            color: #c23b72;
+
+            border: 1px solid #f3c2d7;
 
         }
 
 
-        /* ==========================================
-           VIRTUAL BADGE
-        =========================================== */
+        /* VIRTUAL */
 
         .virtual-badge {
 
-            background: #eee5ff;
+            background: #eee3ff;
 
-            color: #7b4fc4;
+            color: #7b42b8;
+
+            border: 1px solid #d8c1f5;
 
         }
 
 
         /* ==========================================
            ACTION BUTTONS
-        =========================================== */
+        ========================================== */
 
         .action-buttons {
 
@@ -107,14 +99,19 @@
 
             gap: 7px;
 
-            flex-wrap: nowrap;
+            white-space: nowrap;
 
         }
 
 
-        .action-buttons button {
+        .edit-btn,
+        .delete-btn {
 
             border: none;
+
+            border-radius: 6px;
+
+            padding: 9px 13px;
 
             cursor: pointer;
 
@@ -124,49 +121,41 @@
 
             font-weight: 500;
 
-            padding: 8px 13px;
-
-            border-radius: 6px;
-
-            transition: all 0.25s ease;
+            transition: .25s ease;
 
         }
 
 
-        /* EDIT */
-
         .edit-btn {
 
-            background: #c89b3c;
+            background: #c99a35;
 
-            color: #ffffff;
+            color: white;
 
         }
 
 
         .edit-btn:hover {
 
-            background: #ae812b;
+            background: #ae8127;
 
             transform: translateY(-1px);
 
         }
 
 
-        /* DELETE */
-
         .delete-btn {
 
-            background: #e63950;
+            background: #dc3545;
 
-            color: #ffffff;
+            color: white;
 
         }
 
 
         .delete-btn:hover {
 
-            background: #c9253b;
+            background: #b92332;
 
             transform: translateY(-1px);
 
@@ -174,12 +163,158 @@
 
 
         /* ==========================================
+           REFRESH BUTTON
+        ========================================== */
+
+        .admin-refresh-btn {
+
+            border: none;
+
+            background: #c99a35;
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            transition: .25s ease;
+
+        }
+
+
+        .admin-refresh-btn:hover {
+
+            background: #aa812c;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* ==========================================
+           FILTER AREA
+        ========================================== */
+
+        .booking-filter {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .booking-filter label {
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        .booking-filter select {
+
+            min-width: 160px;
+
+            padding: 11px 14px;
+
+            border: 1px solid #e5d7d0;
+
+            border-radius: 8px;
+
+            background: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            color: #5d4a42;
+
+            outline: none;
+
+        }
+
+
+        /* ==========================================
+           TOP CONTROLS
+        ========================================== */
+
+        .booking-controls {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* ==========================================
+           LOADING
+        ========================================== */
+
+        .loading {
+
+            padding: 30px;
+
+            text-align: center;
+
+            font-family: 'Poppins', sans-serif;
+
+            color: #8c7770;
+
+        }
+
+
+        /* ==========================================
+           ERROR
+        ========================================== */
+
+        .booking-error {
+
+            display: none;
+
+            margin: 15px 0;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            background: #fff0f0;
+
+            border: 1px solid #f1b5b5;
+
+            color: #b42323;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            text-align: center;
+
+        }
+
+
+        /* ==========================================
            TABLE
-        =========================================== */
+        ========================================== */
 
         .table-container {
-
-            width: 100%;
 
             overflow-x: auto;
 
@@ -191,8 +326,6 @@
             width: 100%;
 
             border-collapse: collapse;
-
-            min-width: 1050px;
 
         }
 
@@ -208,12 +341,14 @@
 
             white-space: nowrap;
 
+            vertical-align: middle;
+
         }
 
 
         /* ==========================================
-           EDIT MODAL
-        =========================================== */
+           MODAL
+        ========================================== */
 
         .admin-modal {
 
@@ -223,11 +358,9 @@
 
             inset: 0;
 
-            z-index: 999999;
+            z-index: 99999;
 
-            background: rgba(30, 25, 23, 0.70);
-
-            backdrop-filter: blur(6px);
+            background: rgba(30, 20, 18, .65);
 
             align-items: center;
 
@@ -244,34 +377,26 @@
 
             width: 100%;
 
-            max-width: 520px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
+            max-width: 500px;
 
             background: #fffaf8;
 
-            border-radius: 18px;
+            border-radius: 14px;
 
             padding: 35px;
 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
 
         }
 
 
         .admin-modal-content h2 {
 
-            margin-top: 0;
-
             margin-bottom: 25px;
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: 32px;
-
-            color: #3a2a26;
+            font-size: 30px;
 
         }
 
@@ -280,28 +405,15 @@
 
             position: absolute;
 
-            top: 15px;
+            top: 12px;
 
-            right: 20px;
+            right: 18px;
 
             font-size: 30px;
 
-            line-height: 1;
-
             cursor: pointer;
 
-            color: #7d6b65;
-
-            transition: 0.2s ease;
-
-        }
-
-
-        .admin-close-modal:hover {
-
-            color: #b8860b;
-
-            transform: rotate(90deg);
+            color: #8b756c;
 
         }
 
@@ -319,11 +431,11 @@
 
             margin-bottom: 7px;
 
+            font-family: 'Poppins', sans-serif;
+
             font-size: 13px;
 
-            font-weight: 500;
-
-            color: #55453f;
+            color: #5e4b43;
 
         }
 
@@ -334,32 +446,19 @@
 
             width: 100%;
 
-            box-sizing: border-box;
+            padding: 12px;
 
-            padding: 12px 14px;
+            border: 1px solid #dfd0c9;
 
-            border: 1px solid #e4d8d2;
+            border-radius: 7px;
 
-            border-radius: 8px;
-
-            background: #ffffff;
-
-            color: #3d302b;
+            background: white;
 
             font-family: 'Poppins', sans-serif;
 
             outline: none;
 
-        }
-
-
-        .edit-form-group input:focus,
-
-        .edit-form-group select:focus {
-
-            border-color: #c89b3c;
-
-            box-shadow: 0 0 0 3px rgba(200,155,60,0.10);
+            box-sizing: border-box;
 
         }
 
@@ -370,79 +469,61 @@
 
             border: none;
 
-            padding: 13px 20px;
+            background: #c99a35;
 
-            border-radius: 8px;
+            color: white;
 
-            background: #c89b3c;
+            padding: 13px;
 
-            color: #ffffff;
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 14px;
-
-            font-weight: 500;
+            border-radius: 7px;
 
             cursor: pointer;
 
-            transition: 0.25s ease;
+            font-family: 'Poppins', sans-serif;
+
+            font-weight: 500;
 
         }
 
 
         .update-btn:hover {
 
-            background: #ae812b;
-
-            transform: translateY(-1px);
-
-        }
-
-
-        /* ==========================================
-           LOADING
-        =========================================== */
-
-        .loading {
-
-            text-align: center;
-
-            padding: 30px;
-
-            color: #8b7770;
-
-            font-family: 'Poppins', sans-serif;
-
-        }
-
-
-        /* ==========================================
-           EMPTY MESSAGE
-        =========================================== */
-
-        .empty-message {
-
-            text-align: center;
-
-            padding: 40px 20px;
-
-            color: #8b7770;
-
-            font-family: 'Poppins', sans-serif;
+            background: #aa812c;
 
         }
 
 
         /* ==========================================
            MOBILE
-        =========================================== */
+        ========================================== */
 
         @media (max-width: 768px) {
 
-            .admin-modal-content {
+            .booking-controls {
 
-                padding: 25px 20px;
+                flex-direction: column;
+
+                gap: 12px;
+
+                align-items: stretch;
+
+            }
+
+
+            .booking-filter {
+
+                justify-content: center;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .booking-filter select {
+
+                width: 100%;
 
             }
 
@@ -456,7 +537,8 @@
             }
 
 
-            .action-buttons button {
+            .edit-btn,
+            .delete-btn {
 
                 width: 100%;
 
@@ -474,7 +556,7 @@
 
     <!-- ==========================================
          ADMIN NAVBAR
-    =========================================== -->
+    ========================================== -->
 
     <header>
 
@@ -501,7 +583,6 @@
 
 
                 <button
-                    type="button"
                     id="logoutBtn"
                     class="logout-btn">
 
@@ -519,7 +600,7 @@
 
     <!-- ==========================================
          ADMIN BOOKINGS
-    =========================================== -->
+    ========================================== -->
 
     <section class="admin-bookings">
 
@@ -548,7 +629,7 @@
 
             <!-- ==========================================
                  DASHBOARD STATS
-            =========================================== -->
+            ========================================== -->
 
             <div class="admin-stats">
 
@@ -652,42 +733,65 @@
 
 
             <!-- ==========================================
-                 FILTER
-            =========================================== -->
+                 CONTROLS
+            ========================================== -->
 
-            <div class="booking-filter">
+            <div class="booking-controls">
 
-                <label for="bookingFilter">
-                    Show:
-                </label>
+                <button
+                    type="button"
+                    class="admin-refresh-btn"
+                    id="refreshBookings">
 
-                <select id="bookingFilter">
+                    🔄 Refresh Bookings
 
-                    <option value="all">
-                        All Bookings
-                    </option>
+                </button>
 
-                    <option value="offer">
-                        Offer Bookings
-                    </option>
 
-                    <option value="service">
-                        Service Bookings
-                    </option>
+                <div class="booking-filter">
 
-                    <option value="virtual">
-                        Virtual Bookings
-                    </option>
+                    <label for="bookingFilter">
+                        Show:
+                    </label>
 
-                </select>
+                    <select id="bookingFilter">
 
+                        <option value="all">
+                            All Bookings
+                        </option>
+
+                        <option value="offer">
+                            Offer Bookings
+                        </option>
+
+                        <option value="service">
+                            Service Bookings
+                        </option>
+
+                        <option value="virtual">
+                            Virtual Bookings
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ERROR -->
+
+            <div
+                id="bookingError"
+                class="booking-error">
             </div>
 
 
 
             <!-- ==========================================
                  BOOKING TABLE
-            =========================================== -->
+            ========================================== -->
 
             <div class="table-wrapper">
 
@@ -763,7 +867,7 @@
 
     <!-- ==========================================
          EDIT MODAL
-    =========================================== -->
+    ========================================== -->
 
     <div
         id="editModal"
@@ -771,8 +875,6 @@
 
         <div class="admin-modal-content">
 
-
-            <!-- CLOSE -->
 
             <span
                 class="admin-close-modal"
@@ -791,8 +893,6 @@
             <form id="editBookingForm">
 
 
-                <!-- NAME -->
-
                 <div class="edit-form-group">
 
                     <label for="editName">
@@ -807,7 +907,6 @@
                 </div>
 
 
-                <!-- EMAIL -->
 
                 <div class="edit-form-group">
 
@@ -823,7 +922,6 @@
                 </div>
 
 
-                <!-- PHONE -->
 
                 <div class="edit-form-group">
 
@@ -841,7 +939,6 @@
                 </div>
 
 
-                <!-- DATE -->
 
                 <div class="edit-form-group">
 
@@ -857,7 +954,6 @@
                 </div>
 
 
-                <!-- TIME -->
 
                 <div class="edit-form-group">
 
@@ -922,7 +1018,6 @@
                 </div>
 
 
-                <!-- UPDATE -->
 
                 <button
                     type="submit"
@@ -942,7 +1037,7 @@
 
     <!-- ==========================================
          FOOTER
-    =========================================== -->
+    ========================================== -->
 
     <footer class="admin-footer">
 
@@ -956,10 +1051,9 @@
 
     <!-- ==========================================
          JAVASCRIPT
-    =========================================== -->
+    ========================================== -->
 
     <script>
-
 
         /* ==========================================
            API CONFIGURATION
@@ -991,27 +1085,11 @@
                 localStorage.getItem("adminEmail");
 
 
-            console.log(
-                "================================="
-            );
-
-            console.log(
-                "CHECKING ADMIN LOGIN"
-            );
-
-            console.log(
-                "Admin logged in:",
-                adminLoggedIn
-            );
-
-            console.log(
-                "Admin email:",
-                adminEmail
-            );
-
-            console.log(
-                "================================="
-            );
+            console.log("=================================");
+            console.log("CHECKING ADMIN LOGIN");
+            console.log("Admin logged in:", adminLoggedIn);
+            console.log("Admin email:", adminEmail);
+            console.log("=================================");
 
 
             if (
@@ -1082,8 +1160,6 @@
             }
 
 
-            /* OLD OFFER SUPPORT */
-
             if (isOldOfferBooking(booking)) {
 
                 return "OFFER";
@@ -1097,7 +1173,7 @@
 
 
         /* ==========================================
-           OLD OFFER BOOKING CHECK
+           OLD OFFER CHECK
         ========================================== */
 
         function isOldOfferBooking(booking) {
@@ -1145,8 +1221,7 @@
         function isOfferBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "OFFER"
+                getBookingType(booking) === "OFFER"
             );
 
         }
@@ -1155,8 +1230,7 @@
         function isVirtualBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "VIRTUAL"
+                getBookingType(booking) === "VIRTUAL"
             );
 
         }
@@ -1165,8 +1239,7 @@
         function isServiceBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "SERVICE"
+                getBookingType(booking) === "SERVICE"
             );
 
         }
@@ -1174,28 +1247,37 @@
 
 
         /* ==========================================
-           UPDATE DASHBOARD
+           DASHBOARD STATS
         ========================================== */
 
         function updateDashboardStats() {
 
-
-            document.getElementById(
-                "totalBookings"
-            ).textContent =
+            const total =
                 bookingsData.length;
 
 
             const offerCount =
                 bookingsData.filter(
-                    function (booking) {
-
-                        return isOfferBooking(
-                            booking
-                        );
-
-                    }
+                    isOfferBooking
                 ).length;
+
+
+            const serviceCount =
+                bookingsData.filter(
+                    isServiceBooking
+                ).length;
+
+
+            const virtualCount =
+                bookingsData.filter(
+                    isVirtualBooking
+                ).length;
+
+
+            document.getElementById(
+                "totalBookings"
+            ).textContent =
+                total;
 
 
             document.getElementById(
@@ -1204,40 +1286,27 @@
                 offerCount;
 
 
-            const serviceCount =
-                bookingsData.filter(
-                    function (booking) {
-
-                        return isServiceBooking(
-                            booking
-                        );
-
-                    }
-                ).length;
-
-
             document.getElementById(
                 "serviceBookings"
             ).textContent =
                 serviceCount;
 
 
-            const virtualCount =
-                bookingsData.filter(
-                    function (booking) {
-
-                        return isVirtualBooking(
-                            booking
-                        );
-
-                    }
-                ).length;
-
-
             document.getElementById(
                 "virtualBookings"
             ).textContent =
                 virtualCount;
+
+
+            console.log(
+                "Dashboard:",
+                {
+                    total,
+                    offerCount,
+                    serviceCount,
+                    virtualCount
+                }
+            );
 
         }
 
@@ -1267,6 +1336,12 @@
                 );
 
 
+            const errorBox =
+                document.getElementById(
+                    "bookingError"
+                );
+
+
             loadingMessage.style.display =
                 "block";
 
@@ -1279,17 +1354,46 @@
                 "none";
 
 
+            errorBox.style.display =
+                "none";
+
+
             tableBody.innerHTML =
                 "";
 
 
+            console.log("=================================");
+            console.log("LOADING BOOKINGS");
+            console.log("API:", API_URL);
+            console.log("=================================");
+
+
             try {
+
+                /*
+                 * Abort request if Render takes too long.
+                 */
+
+                const controller =
+                    new AbortController();
+
+
+                const timeout =
+                    setTimeout(
+                        function () {
+
+                            controller.abort();
+
+                        },
+                        20000
+                    );
+
 
                 const response =
                     await fetch(
                         API_URL +
                         "?_=" +
-                        new Date().getTime(),
+                        Date.now(),
                         {
 
                             method: "GET",
@@ -1297,6 +1401,9 @@
                             credentials: "include",
 
                             cache: "no-store",
+
+                            signal:
+                                controller.signal,
 
                             headers: {
 
@@ -1309,34 +1416,53 @@
                     );
 
 
+                clearTimeout(timeout);
+
+
                 console.log(
                     "Bookings API Status:",
                     response.status
                 );
 
 
+                const responseText =
+                    await response.text();
+
+
+                console.log(
+                    "Bookings API Raw Response:",
+                    responseText
+                );
+
+
                 if (!response.ok) {
 
-                    const errorText =
-                        await response.text();
-
-
-                    console.error(
-                        "Bookings API Error:",
-                        errorText
-                    );
-
-
                     throw new Error(
-                        "Failed to load bookings. Status: " +
+                        "Backend returned HTTP " +
                         response.status
                     );
 
                 }
 
 
-                const data =
-                    await response.json();
+                let data;
+
+
+                try {
+
+                    data =
+                        JSON.parse(
+                            responseText
+                        );
+
+                }
+                catch (jsonError) {
+
+                    throw new Error(
+                        "Backend did not return valid JSON."
+                    );
+
+                }
 
 
                 console.log(
@@ -1369,14 +1495,60 @@
                 }
 
 
-                /* SORT NEWEST FIRST */
+                /*
+                 * Sort newest booking first.
+                 */
 
                 bookingsData.sort(
                     function (a, b) {
 
                         return (
-                            Number(b.id) -
-                            Number(a.id)
+                            Number(b.id || 0) -
+                            Number(a.id || 0)
+                        );
+
+                    }
+                );
+
+
+                console.log(
+                    "Total bookings received:",
+                    bookingsData.length
+                );
+
+
+                /*
+                 * Debug every booking.
+                 */
+
+                bookingsData.forEach(
+                    function (booking) {
+
+                        console.log(
+                            "BOOKING:",
+                            {
+                                id:
+                                    booking.id,
+
+                                name:
+                                    booking.name,
+
+                                type:
+                                    booking.bookingType,
+
+                                date:
+                                    booking.bookingDate,
+
+                                time:
+                                    booking.bookingTime,
+
+                                service:
+                                    booking.service,
+
+                                design:
+                                    booking.design
+
+                            }
                         );
 
                     }
@@ -1391,12 +1563,13 @@
 
                 updateDashboardStats();
 
-
             }
+
+
             catch (error) {
 
                 console.error(
-                    "Error loading bookings:",
+                    "ERROR LOADING BOOKINGS:",
                     error
                 );
 
@@ -1408,11 +1581,33 @@
 
 
                 loadingMessage.style.display =
+                    "none";
+
+
+                emptyMessage.style.display =
+                    "none";
+
+
+                errorBox.style.display =
                     "block";
 
 
-                loadingMessage.textContent =
-                    "Unable to load bookings. Please check the Spring Boot backend.";
+                if (
+                    error.name ===
+                    "AbortError"
+                ) {
+
+                    errorBox.textContent =
+                        "⚠️ Backend response is taking too long. Render backend may be waking up. Click Refresh Bookings.";
+
+                }
+
+                else {
+
+                    errorBox.textContent =
+                        "⚠️ Unable to load bookings. Check your Spring Boot backend and Render deployment.";
+
+                }
 
             }
 
@@ -1489,61 +1684,35 @@
                 bookingsData.slice();
 
 
-            /* OFFER FILTER */
-
             if (filter === "offer") {
 
                 filteredBookings =
                     bookingsData.filter(
-                        function (booking) {
-
-                            return isOfferBooking(
-                                booking
-                            );
-
-                        }
+                        isOfferBooking
                     );
 
             }
 
-
-            /* SERVICE FILTER */
 
             else if (filter === "service") {
 
                 filteredBookings =
                     bookingsData.filter(
-                        function (booking) {
-
-                            return isServiceBooking(
-                                booking
-                            );
-
-                        }
+                        isServiceBooking
                     );
 
             }
 
-
-            /* VIRTUAL FILTER */
 
             else if (filter === "virtual") {
 
                 filteredBookings =
                     bookingsData.filter(
-                        function (booking) {
-
-                            return isVirtualBooking(
-                                booking
-                            );
-
-                        }
+                        isVirtualBooking
                     );
 
             }
 
-
-            /* NO BOOKINGS */
 
             if (
                 filteredBookings.length === 0
@@ -1561,19 +1730,14 @@
                 "none";
 
 
-            /* CREATE ROWS */
-
             filteredBookings.forEach(
                 function (booking) {
-
 
                     const bookingType =
                         getBookingType(
                             booking
                         );
 
-
-                    /* DEFAULT */
 
                     let bookingTypeText =
                         "Service Booking";
@@ -1583,7 +1747,13 @@
                         "service-badge";
 
 
-                    /* OFFER */
+                    let bookingIcon =
+                        "💅";
+
+
+                    /*
+                     * OFFER
+                     */
 
                     if (
                         bookingType === "OFFER"
@@ -1595,10 +1765,15 @@
                         badgeClass =
                             "offer-badge";
 
+                        bookingIcon =
+                            "🎁";
+
                     }
 
 
-                    /* VIRTUAL */
+                    /*
+                     * VIRTUAL
+                     */
 
                     else if (
                         bookingType === "VIRTUAL"
@@ -1610,26 +1785,31 @@
                         badgeClass =
                             "virtual-badge";
 
+                        bookingIcon =
+                            "✨";
+
                     }
 
 
-                    /* DATE */
+                    /*
+                     * DATE
+                     */
 
                     const bookingDate =
                         booking.bookingDate ||
                         booking.date ||
-                        "";
+                        "—";
 
 
-                    /* TIME */
+                    /*
+                     * TIME
+                     */
 
                     const bookingTime =
                         booking.bookingTime ||
                         booking.time ||
-                        "";
+                        "—";
 
-
-                    /* CREATE ROW */
 
                     const row =
                         document.createElement(
@@ -1672,6 +1852,7 @@
                             <span
                                 class="${badgeClass}">
 
+                                ${bookingIcon}
                                 ${bookingTypeText}
 
                             </span>
@@ -1698,7 +1879,6 @@
                             <div
                                 class="action-buttons">
 
-
                                 <button
                                     type="button"
                                     class="edit-btn"
@@ -1722,7 +1902,6 @@
 
                                 </button>
 
-
                             </div>
 
                         </td>
@@ -1742,7 +1921,7 @@
 
 
         /* ==========================================
-           FILTER CHANGE
+           FILTER
         ========================================== */
 
         document
@@ -1761,11 +1940,49 @@
 
 
         /* ==========================================
+           REFRESH
+        ========================================== */
+
+        document
+            .getElementById(
+                "refreshBookings"
+            )
+            .addEventListener(
+                "click",
+                async function () {
+
+                    const button =
+                        this;
+
+
+                    button.disabled =
+                        true;
+
+
+                    button.textContent =
+                        "⏳ Loading...";
+
+
+                    await loadBookings();
+
+
+                    button.disabled =
+                        false;
+
+
+                    button.textContent =
+                        "🔄 Refresh Bookings";
+
+                }
+            );
+
+
+
+        /* ==========================================
            OPEN EDIT MODAL
         ========================================== */
 
         function openEditModal(id) {
-
 
             const booking =
                 bookingsData.find(
@@ -1860,10 +2077,6 @@
 
 
 
-        /* ==========================================
-           CLOSE MODAL OUTSIDE
-        ========================================== */
-
         window.addEventListener(
             "click",
             function (event) {
@@ -1900,7 +2113,6 @@
                 "submit",
                 async function (event) {
 
-
                     event.preventDefault();
 
 
@@ -1934,17 +2146,6 @@
                         );
 
 
-                    if (!originalBooking) {
-
-                        alert(
-                            "Original booking not found."
-                        );
-
-                        return;
-
-                    }
-
-
                     const selectedDate =
                         document
                             .getElementById(
@@ -1960,12 +2161,6 @@
                             )
                             .value;
 
-
-                    /*
-                     * IMPORTANT:
-                     * Preserve service, design
-                     * and booking type.
-                     */
 
                     const updatedBooking = {
 
@@ -1997,12 +2192,14 @@
 
 
                         service:
-                            originalBooking.service ||
+                            originalBooking
+                                ?.service ||
                             "",
 
 
                         design:
-                            originalBooking.design ||
+                            originalBooking
+                                ?.design ||
                             "",
 
 
@@ -2015,34 +2212,20 @@
 
 
                         bookingType:
-                            originalBooking.bookingType ||
+                            originalBooking
+                                ?.bookingType ||
                             "SERVICE"
 
                     };
 
 
                     console.log(
-                        "================================="
-                    );
-
-
-                    console.log(
-                        "UPDATING BOOKING"
-                    );
-
-
-                    console.log(
+                        "UPDATING BOOKING:",
                         updatedBooking
                     );
 
 
-                    console.log(
-                        "================================="
-                    );
-
-
                     try {
-
 
                         const response =
                             await fetch(
@@ -2051,12 +2234,11 @@
                                 selectedBookingId,
                                 {
 
-                                    method: "PUT",
-
+                                    method:
+                                        "PUT",
 
                                     credentials:
                                         "include",
-
 
                                     headers: {
 
@@ -2067,7 +2249,6 @@
                                             "application/json"
 
                                     },
-
 
                                     body:
                                         JSON.stringify(
@@ -2083,12 +2264,6 @@
 
 
                         console.log(
-                            "Update status:",
-                            response.status
-                        );
-
-
-                        console.log(
                             "Update response:",
                             responseText
                         );
@@ -2099,8 +2274,8 @@
                         ) {
 
                             throw new Error(
-                                responseText ||
-                                "Update failed"
+                                "Update failed. Status: " +
+                                response.status
                             );
 
                         }
@@ -2111,11 +2286,9 @@
                         );
 
 
-                        document
-                            .getElementById(
-                                "editModal"
-                            )
-                            .style.display =
+                        document.getElementById(
+                            "editModal"
+                        ).style.display =
                             "none";
 
 
@@ -2125,18 +2298,19 @@
 
                         await loadBookings();
 
-
                     }
+
+
                     catch (error) {
 
                         console.error(
-                            "Update error:",
+                            "UPDATE ERROR:",
                             error
                         );
 
 
                         alert(
-                            "Failed to update booking."
+                            "❌ Failed to update booking."
                         );
 
                     }
@@ -2151,7 +2325,6 @@
         ========================================== */
 
         async function deleteBooking(id) {
-
 
             const confirmDelete =
                 confirm(
@@ -2168,7 +2341,6 @@
 
             try {
 
-
                 const response =
                     await fetch(
                         API_URL +
@@ -2176,7 +2348,8 @@
                         id,
                         {
 
-                            method: "DELETE",
+                            method:
+                                "DELETE",
 
                             credentials:
                                 "include",
@@ -2192,29 +2365,13 @@
                     );
 
 
-                const responseText =
-                    await response.text();
-
-
-                console.log(
-                    "Delete status:",
-                    response.status
-                );
-
-
-                console.log(
-                    "Delete response:",
-                    responseText
-                );
-
-
                 if (
                     !response.ok
                 ) {
 
                     throw new Error(
-                        responseText ||
-                        "Delete failed"
+                        "Delete failed. Status: " +
+                        response.status
                     );
 
                 }
@@ -2227,18 +2384,19 @@
 
                 await loadBookings();
 
-
             }
+
+
             catch (error) {
 
                 console.error(
-                    "Delete error:",
+                    "DELETE ERROR:",
                     error
                 );
 
 
                 alert(
-                    "Failed to delete booking."
+                    "❌ Failed to delete booking."
                 );
 
             }
@@ -2248,7 +2406,7 @@
 
 
         /* ==========================================
-           ADMIN LOGOUT
+           LOGOUT
         ========================================== */
 
         document
@@ -2259,7 +2417,6 @@
                 "click",
                 async function () {
 
-
                     try {
 
                         await fetch(
@@ -2267,17 +2424,11 @@
                             "/api/admin/logout",
                             {
 
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 credentials:
-                                    "include",
-
-                                headers: {
-
-                                    "Accept":
-                                        "text/plain"
-
-                                }
+                                    "include"
 
                             }
                         );
@@ -2293,37 +2444,29 @@
                     }
 
 
-                    /* CLEAR LOGIN DATA */
-
                     localStorage.removeItem(
                         "loggedIn"
                     );
-
 
                     localStorage.removeItem(
                         "userToken"
                     );
 
-
                     localStorage.removeItem(
                         "adminToken"
                     );
-
 
                     localStorage.removeItem(
                         "virtualBooking"
                     );
 
-
                     localStorage.removeItem(
                         "selectedService"
                     );
 
-
                     localStorage.removeItem(
                         "adminLoggedIn"
                     );
-
 
                     localStorage.removeItem(
                         "adminEmail"
@@ -2346,22 +2489,23 @@
             "DOMContentLoaded",
             async function () {
 
-
                 console.log(
                     "================================="
                 );
 
-
                 console.log(
                     "💅 ADMIN BOOKINGS PAGE LOADED"
                 );
-
 
                 console.log(
                     "Backend:",
                     API_BASE_URL
                 );
 
+                console.log(
+                    "Bookings API:",
+                    API_URL
+                );
 
                 console.log(
                     "================================="
