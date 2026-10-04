@@ -510,7 +510,6 @@
 
     <script>
 
-
         /* ==========================================
            LIVE RENDER SPRING BOOT BACKEND
         ========================================== */
@@ -538,7 +537,11 @@
             try {
 
                 console.log(
-                    "Checking admin authentication..."
+                    "================================="
+                );
+
+                console.log(
+                    "CHECKING ADMIN AUTHENTICATION"
                 );
 
                 console.log(
@@ -547,22 +550,20 @@
                 );
 
 
-                const response =
-                    await fetch(
-                        API_BASE_URL +
-                        "/api/admin/check",
-                        {
-                            method: "GET",
+                const response = await fetch(
+                    API_BASE_URL + "/api/admin/check",
+                    {
+                        method: "GET",
 
-                            credentials: "include",
+                        credentials: "include",
 
-                            cache: "no-store",
+                        cache: "no-store",
 
-                            headers: {
-                                "Accept": "text/plain"
-                            }
+                        headers: {
+                            "Accept": "text/plain"
                         }
-                    );
+                    }
+                );
 
 
                 const result =
@@ -573,7 +574,6 @@
                     "Admin Check Status:",
                     response.status
                 );
-
 
                 console.log(
                     "Admin Check Response:",
@@ -587,16 +587,18 @@
 
                 if (
                     response.ok &&
-                    result.trim() ===
-                    "Admin authenticated"
+                    result.trim() === "Admin authenticated"
                 ) {
 
                     console.log(
-                        "Admin authentication successful."
+                        "ADMIN AUTHENTICATION SUCCESSFUL"
+                    );
+
+                    console.log(
+                        "================================="
                     );
 
                     return true;
-
                 }
 
 
@@ -605,24 +607,9 @@
                 ========================================== */
 
                 console.error(
-                    "Admin authentication failed."
+                    "ADMIN AUTHENTICATION FAILED"
                 );
 
-                console.error(
-                    "Status:",
-                    response.status
-                );
-
-                console.error(
-                    "Response:",
-                    result
-                );
-
-
-                /*
-                   Remove old frontend login information
-                   so stale login state does not remain.
-                */
 
                 localStorage.removeItem(
                     "adminLoggedIn"
@@ -654,9 +641,7 @@
 
 
                 return false;
-
             }
-
         }
 
 
@@ -670,7 +655,6 @@
             if (!booking) {
 
                 return "SERVICE";
-
             }
 
 
@@ -685,35 +669,28 @@
             if (type === "VIRTUAL") {
 
                 return "VIRTUAL";
-
             }
 
 
             if (type === "OFFER") {
 
                 return "OFFER";
-
             }
 
 
             if (type === "SERVICE") {
 
                 return "SERVICE";
-
             }
 
 
-            if (
-                isOldOfferBooking(booking)
-            ) {
+            if (isOldOfferBooking(booking)) {
 
                 return "OFFER";
-
             }
 
 
             return "SERVICE";
-
         }
 
 
@@ -730,7 +707,6 @@
             ) {
 
                 return false;
-
             }
 
 
@@ -744,23 +720,17 @@
 
             return (
 
-                service ===
-                    "first visit offer" ||
+                service === "first visit offer" ||
 
-                service ===
-                    "birthday offer" ||
+                service === "birthday offer" ||
 
-                service ===
-                    "nail art combo" ||
+                service === "nail art combo" ||
 
-                service ===
-                    "festive special" ||
+                service === "festive special" ||
 
-                service ===
-                    "loyalty rewards"
+                service === "loyalty rewards"
 
             );
-
         }
 
 
@@ -772,30 +742,24 @@
         function isOfferBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "OFFER"
+                getBookingType(booking) === "OFFER"
             );
-
         }
 
 
         function isVirtualBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "VIRTUAL"
+                getBookingType(booking) === "VIRTUAL"
             );
-
         }
 
 
         function isServiceBooking(booking) {
 
             return (
-                getBookingType(booking) ===
-                "SERVICE"
+                getBookingType(booking) === "SERVICE"
             );
-
         }
 
 
@@ -864,7 +828,6 @@
                 "virtualBookings"
             ).textContent =
                 virtualCount;
-
         }
 
 
@@ -942,16 +905,17 @@
                     const errorText =
                         await response.text();
 
+
                     console.error(
                         "Bookings API Error:",
                         errorText
                     );
 
+
                     throw new Error(
                         "Failed to load bookings. Status: " +
                         response.status
                     );
-
                 }
 
 
@@ -987,7 +951,6 @@
                 else {
 
                     bookingsData = [];
-
                 }
 
 
@@ -1033,9 +996,7 @@
 
                 loadingMessage.textContent =
                     "Unable to load bookings. Please check the Spring Boot backend.";
-
             }
-
         }
 
 
@@ -1072,7 +1033,6 @@
                     /'/g,
                     "&#039;"
                 );
-
         }
 
 
@@ -1109,9 +1069,7 @@
                 bookingsData.slice();
 
 
-            if (
-                filter === "offer"
-            ) {
+            if (filter === "offer") {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -1123,13 +1081,10 @@
 
                         }
                     );
-
             }
 
 
-            else if (
-                filter === "service"
-            ) {
+            else if (filter === "service") {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -1141,13 +1096,10 @@
 
                         }
                     );
-
             }
 
 
-            else if (
-                filter === "virtual"
-            ) {
+            else if (filter === "virtual") {
 
                 filteredBookings =
                     bookingsData.filter(
@@ -1159,7 +1111,6 @@
 
                         }
                     );
-
             }
 
 
@@ -1171,7 +1122,6 @@
                     "block";
 
                 return;
-
             }
 
 
@@ -1197,8 +1147,7 @@
 
 
                     if (
-                        bookingType ===
-                        "OFFER"
+                        bookingType === "OFFER"
                     ) {
 
                         bookingTypeText =
@@ -1206,13 +1155,11 @@
 
                         badgeClass =
                             "offer-badge";
-
                     }
 
 
                     else if (
-                        bookingType ===
-                        "VIRTUAL"
+                        bookingType === "VIRTUAL"
                     ) {
 
                         bookingTypeText =
@@ -1220,7 +1167,6 @@
 
                         badgeClass =
                             "virtual-badge";
-
                     }
 
 
@@ -1315,10 +1261,8 @@
                     tableBody.appendChild(
                         row
                     );
-
                 }
             );
-
         }
 
 
@@ -1368,7 +1312,6 @@
                 );
 
                 return;
-
             }
 
 
@@ -1410,7 +1353,6 @@
                 "editModal"
             ).style.display =
                 "flex";
-
         }
 
 
@@ -1457,7 +1399,6 @@
 
                     modal.style.display =
                         "none";
-
                 }
 
             }
@@ -1489,7 +1430,6 @@
                         );
 
                         return;
-
                     }
 
 
@@ -1555,7 +1495,6 @@
                             originalBooking.bookingType
                                 ? originalBooking.bookingType
                                 : "SERVICE"
-
                     };
 
 
@@ -1568,8 +1507,7 @@
                                 selectedBookingId,
                                 {
 
-                                    method:
-                                        "PUT",
+                                    method: "PUT",
 
                                     credentials:
                                         "include",
@@ -1588,7 +1526,6 @@
                                         JSON.stringify(
                                             updatedBooking
                                         )
-
                                 }
                             );
 
@@ -1600,16 +1537,17 @@
                             const errorText =
                                 await response.text();
 
+
                             console.error(
                                 "Update API error:",
                                 errorText
                             );
 
+
                             throw new Error(
                                 "Update failed. Status: " +
                                 response.status
                             );
-
                         }
 
 
@@ -1645,7 +1583,6 @@
                         alert(
                             "Failed to update booking."
                         );
-
                     }
 
                 }
@@ -1668,7 +1605,6 @@
             if (!confirmDelete) {
 
                 return;
-
             }
 
 
@@ -1681,17 +1617,17 @@
                         id,
                         {
 
-                            method:
-                                "DELETE",
+                            method: "DELETE",
 
                             credentials:
                                 "include",
 
                             headers: {
+
                                 "Accept":
                                     "text/plain"
-                            }
 
+                            }
                         }
                     );
 
@@ -1703,16 +1639,17 @@
                     const errorText =
                         await response.text();
 
+
                     console.error(
                         "Delete API error:",
                         errorText
                     );
 
+
                     throw new Error(
                         "Delete failed. Status: " +
                         response.status
                     );
-
                 }
 
 
@@ -1736,9 +1673,7 @@
                 alert(
                     "Failed to delete booking."
                 );
-
             }
-
         }
 
 
@@ -1762,12 +1697,15 @@
                             "/api/admin/logout",
                             {
 
-                                method:
-                                    "POST",
+                                method: "POST",
 
                                 credentials:
-                                    "include"
+                                    "include",
 
+                                headers: {
+                                    "Accept":
+                                        "text/plain"
+                                }
                             }
                         );
 
@@ -1779,7 +1717,6 @@
                             "Logout error:",
                             error
                         );
-
                     }
 
 
