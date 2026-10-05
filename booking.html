@@ -321,16 +321,176 @@
 
 
                 <!-- ======================================
-                     BACKEND COMPATIBILITY
+                     SERVICE SELECTION
                 ======================================= -->
 
-                <input
-                    type="hidden"
-                    id="service"
-                    name="service"
-                    value="Appointment"
+                <div class="form-group">
+
+                    <label for="service">
+                        Nail Service <span>*</span>
+                    </label>
+
+                    <select
+                        id="service"
+                        name="service"
+                        required
+                    >
+
+                        <option value="">
+                            Select your nail service
+                        </option>
+
+                        <option
+                            value="Acrylic Extensions + Gel Polish"
+                            data-price="1800"
+                        >
+                            Acrylic Extensions + Gel Polish — ₹1,800
+                        </option>
+
+                        <option
+                            value="Hands Gel Polish"
+                            data-price="699"
+                        >
+                            Hands Gel Polish — ₹699
+                        </option>
+
+                        <option
+                            value="Bridal Nails"
+                            data-price="2499"
+                        >
+                            Bridal Nails — ₹2,499
+                        </option>
+
+                        <option
+                            value="Temporary Nails + Gel Polish"
+                            data-price="1199"
+                        >
+                            Temporary Nails + Gel Polish — ₹1,199
+                        </option>
+
+                        <option
+                            value="Burgundy Nails"
+                            data-price="1299"
+                        >
+                            Burgundy Nails — ₹1,299
+                        </option>
+
+                        <option
+                            value="French Nails"
+                            data-price="999"
+                        >
+                            French Nails — ₹999
+                        </option>
+
+                        <option
+                            value="Rouge Nails"
+                            data-price="1399"
+                        >
+                            Rouge Nails — ₹1,399
+                        </option>
+
+                        <option
+                            value="Polka Dot Nails"
+                            data-price="1099"
+                        >
+                            Polka Dot Nails — ₹1,099
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ======================================
+                     SELECTED SERVICE PRICE
+                ======================================= -->
+
+                <div
+                    id="priceBox"
+                    style="
+                        display:none;
+                        margin:15px 0 18px;
+                        padding:18px;
+                        background:#fff8ed;
+                        border:1px solid #ead5ad;
+                        border-radius:8px;
+                    "
                 >
 
+                    <div
+                        style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                            gap:15px;
+                        "
+                    >
+
+                        <div>
+
+                            <small
+                                style="
+                                    color:#8a6420;
+                                    font-size:12px;
+                                "
+                            >
+                                SELECTED SERVICE
+                            </small>
+
+                            <div
+                                id="selectedServiceName"
+                                style="
+                                    margin-top:4px;
+                                    font-size:15px;
+                                    font-weight:600;
+                                    color:#444;
+                                "
+                            >
+                                -
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            style="
+                                text-align:right;
+                            "
+                        >
+
+                            <small
+                                style="
+                                    color:#8a6420;
+                                    font-size:12px;
+                                "
+                            >
+                                APPOINTMENT PRICE
+                            </small>
+
+                            <div
+                                id="selectedServicePrice"
+                                style="
+                                    margin-top:4px;
+                                    font-size:22px;
+                                    font-weight:700;
+                                    color:#b8860b;
+                                "
+                            >
+                                ₹0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ======================================
+                     BACKEND COMPATIBILITY
+                ======================================= -->
 
                 <input
                     type="hidden"
@@ -678,6 +838,181 @@ document.addEventListener(
         const bookingSubmitBtn =
             document.getElementById("bookingSubmitBtn");
 
+        const serviceSelect =
+            document.getElementById("service");
+
+        const priceBox =
+            document.getElementById("priceBox");
+
+        const selectedServiceName =
+            document.getElementById("selectedServiceName");
+
+        const selectedServicePrice =
+            document.getElementById("selectedServicePrice");
+
+
+
+        // ==========================================
+        // GET SERVICE + PRICE FROM URL
+        // ==========================================
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const urlService =
+            urlParams.get("service");
+
+        const urlPrice =
+            urlParams.get("price");
+
+
+
+        // ==========================================
+        // FORMAT PRICE
+        // ==========================================
+
+        function formatPrice(price) {
+
+            const amount =
+                Number(price);
+
+            if (isNaN(amount)) {
+                return "₹0";
+            }
+
+            return "₹" +
+                amount.toLocaleString("en-IN");
+        }
+
+
+
+        // ==========================================
+        // UPDATE SERVICE PRICE
+        // ==========================================
+
+        function updateServicePrice() {
+
+            if (!serviceSelect) {
+                return;
+            }
+
+            const selectedOption =
+                serviceSelect.options[
+                    serviceSelect.selectedIndex
+                ];
+
+
+            if (
+                !selectedOption ||
+                !selectedOption.value
+            ) {
+
+                priceBox.style.display =
+                    "none";
+
+                selectedServiceName.textContent =
+                    "-";
+
+                selectedServicePrice.textContent =
+                    "₹0";
+
+                bookingSubmitBtn.textContent =
+                    "✅ Confirm Appointment";
+
+                return;
+            }
+
+
+            const serviceName =
+                selectedOption.value;
+
+
+            const servicePrice =
+                selectedOption.dataset.price ||
+                "0";
+
+
+            selectedServiceName.textContent =
+                serviceName;
+
+
+            selectedServicePrice.textContent =
+                formatPrice(servicePrice);
+
+
+            priceBox.style.display =
+                "block";
+
+
+            bookingSubmitBtn.textContent =
+                "✅ Confirm Appointment " +
+                formatPrice(servicePrice);
+
+        }
+
+
+
+        // ==========================================
+        // AUTO SELECT SERVICE FROM SERVICES PAGE
+        // ==========================================
+
+        if (urlService) {
+
+            let found = false;
+
+
+            for (
+                let i = 0;
+                i < serviceSelect.options.length;
+                i++
+            ) {
+
+                if (
+                    serviceSelect.options[i].value ===
+                    urlService
+                ) {
+
+                    serviceSelect.selectedIndex =
+                        i;
+
+                    found = true;
+
+                    break;
+
+                }
+
+            }
+
+
+            if (found) {
+
+                updateServicePrice();
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // SERVICE CHANGE
+        // ==========================================
+
+        if (serviceSelect) {
+
+            serviceSelect.addEventListener(
+                "change",
+                function () {
+
+                    updateServicePrice();
+
+                }
+            );
+
+        }
+
 
 
         // ==========================================
@@ -844,6 +1179,70 @@ document.addEventListener(
 
 
                     // ==================================
+                    // GET SELECTED SERVICE
+                    // ==================================
+
+                    const selectedOption =
+                        serviceSelect.options[
+                            serviceSelect.selectedIndex
+                        ];
+
+
+                    if (
+                        !selectedOption ||
+                        !selectedOption.value
+                    ) {
+
+                        bookingMessage.innerHTML =
+                            "❌ Please select a nail service.";
+
+                        bookingMessage.className =
+                            "booking-message error";
+
+                        bookingMessage.style.display =
+                            "block";
+
+                        return;
+
+                    }
+
+
+                    const selectedService =
+                        selectedOption.value;
+
+
+                    const selectedPrice =
+                        Number(
+                            selectedOption.dataset.price
+                        );
+
+
+
+                    // ==================================
+                    // CHECK PRICE
+                    // ==================================
+
+                    if (
+                        !selectedPrice ||
+                        selectedPrice <= 0
+                    ) {
+
+                        bookingMessage.innerHTML =
+                            "❌ Unable to determine service price.";
+
+                        bookingMessage.className =
+                            "booking-message error";
+
+                        bookingMessage.style.display =
+                            "block";
+
+                        return;
+
+                    }
+
+
+
+                    // ==================================
                     // GET PAYMENT METHOD
                     // ==================================
 
@@ -918,9 +1317,7 @@ document.addEventListener(
                                 .trim(),
 
                         service:
-                            document
-                                .getElementById("service")
-                                .value,
+                            selectedService,
 
                         design:
                             document
@@ -938,7 +1335,10 @@ document.addEventListener(
                                 .value,
 
                         paymentMethod:
-                            selectedPayment.value
+                            selectedPayment.value,
+
+                        paymentAmount:
+                            selectedPrice
 
                     };
 
@@ -1047,11 +1447,26 @@ document.addEventListener(
                             : "📱 Google Pay";
 
 
+                        const savedAmount =
+                            result &&
+                            result.paymentAmount
+                            ? result.paymentAmount
+                            : selectedPrice;
+
+
                         bookingMessage.innerHTML =
                             "✅ Your appointment has been confirmed successfully!<br>" +
-                            "<small>Payment Method: " +
+                            "<small>" +
+                            "Service: " +
+                            bookingData.service +
+                            "<br>" +
+                            "Appointment Price: " +
+                            formatPrice(savedAmount) +
+                            "<br>" +
+                            "Payment Method: " +
                             paymentText +
                             "</small>";
+
 
                         bookingMessage.className =
                             "booking-message success";
@@ -1066,6 +1481,15 @@ document.addEventListener(
                         // ==================================
 
                         bookingForm.reset();
+
+                        priceBox.style.display =
+                            "none";
+
+                        selectedServiceName.textContent =
+                            "-";
+
+                        selectedServicePrice.textContent =
+                            "₹0";
 
                         setMinimumDate();
 
