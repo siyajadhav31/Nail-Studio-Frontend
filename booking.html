@@ -10,13 +10,22 @@
 
     <title>Book Appointment | Nail Studio</title>
 
+
     <!-- CSS -->
+
     <link rel="stylesheet" href="css/style.css">
 
+
     <!-- GOOGLE FONTS -->
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+
+    <!-- RAZORPAY CHECKOUT -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </head>
 
@@ -32,6 +41,7 @@
 
     <nav class="navbar">
 
+
         <div class="logo">
             💅 Nail Studio
         </div>
@@ -45,11 +55,13 @@
                 </a>
             </li>
 
+
             <li>
                 <a href="about.html">
                     About
                 </a>
             </li>
+
 
             <li>
                 <a href="services.html">
@@ -57,11 +69,13 @@
                 </a>
             </li>
 
+
             <li>
                 <a href="offer.html">
                     Offers
                 </a>
             </li>
+
 
             <li>
                 <a href="faqs.html">
@@ -69,17 +83,20 @@
                 </a>
             </li>
 
+
             <li>
                 <a href="gallery.html">
                     Gallery
                 </a>
             </li>
 
+
             <li>
                 <a href="booking.html" class="active">
                     Booking
                 </a>
             </li>
+
 
             <li>
                 <a href="contact.html">
@@ -120,6 +137,7 @@
 
 <section class="booking">
 
+
     <div class="booking-layout">
 
 
@@ -128,6 +146,7 @@
         ======================================= -->
 
         <div class="booking-container">
+
 
             <span class="booking-subtitle">
                 ✨ Luxury Nail Experience
@@ -142,6 +161,7 @@
             <p class="booking-required">
                 All fields marked <span>*</span> are required.
             </p>
+
 
 
             <form id="bookingForm">
@@ -325,6 +345,7 @@
                     value="Appointment"
                 >
 
+
                 <input
                     type="hidden"
                     id="design"
@@ -333,14 +354,55 @@
                 >
 
 
-                <!-- SUBMIT -->
+
+                <!-- ======================================
+                     PAYMENT INFORMATION
+                ======================================= -->
+
+                <div
+                    style="
+                        margin:18px 0;
+                        padding:14px 16px;
+                        background:#fff8ed;
+                        border:1px solid #ead5ad;
+                        border-radius:8px;
+                        text-align:center;
+                    "
+                >
+
+                    <strong
+                        style="
+                            color:#8a6420;
+                            font-size:15px;
+                        "
+                    >
+                        💳 Booking Advance: ₹500
+                    </strong>
+
+                    <p
+                        style="
+                            margin:5px 0 0;
+                            font-size:12px;
+                            color:#777;
+                        "
+                    >
+                        Secure payment powered by Razorpay
+                    </p>
+
+                </div>
+
+
+
+                <!-- ======================================
+                     SUBMIT
+                ======================================= -->
 
                 <button
                     type="submit"
                     class="booking-submit-btn"
                     id="bookingSubmitBtn"
                 >
-                    Confirm Appointment
+                    💳 Pay ₹500 & Confirm Appointment
                 </button>
 
 
@@ -518,7 +580,7 @@
 
 
 <!-- ==========================================
-     BOOKING PAGE JAVASCRIPT
+     BOOKING + RAZORPAY JAVASCRIPT
 ========================================== -->
 
 <script>
@@ -528,17 +590,17 @@ document.addEventListener(
     function () {
 
 
-        /* ==========================================
-           BACKEND URL
-        ========================================== */
+        // ==========================================
+        // BACKEND PAYMENT URL
+        // ==========================================
 
-        const API_URL =
-            "https://nail-studio-backend-k604.onrender.com/api/bookings";
+        const PAYMENT_API_URL =
+            "https://nail-studio-backend-k604.onrender.com/api/payment";
 
 
-        /* ==========================================
-           GET ELEMENTS
-        ========================================== */
+        // ==========================================
+        // GET ELEMENTS
+        // ==========================================
 
         const dateInput =
             document.getElementById("bookingDate");
@@ -557,48 +619,72 @@ document.addEventListener(
 
 
 
-        /* ==========================================
-           SET MINIMUM DATE = TODAY
-        ========================================== */
+        // ==========================================
+        // SET MINIMUM DATE = TODAY
+        // ==========================================
 
-        if (dateInput) {
+        function setMinimumDate() {
+
+            if (!dateInput) {
+                return;
+            }
+
 
             const today =
                 new Date();
 
+
             const year =
                 today.getFullYear();
+
 
             const month =
                 String(
                     today.getMonth() + 1
                 ).padStart(2, "0");
 
+
             const day =
                 String(
                     today.getDate()
                 ).padStart(2, "0");
 
+
             dateInput.min =
-                year + "-" +
-                month + "-" +
+                year +
+                "-" +
+                month +
+                "-" +
                 day;
+        }
+
+
+        setMinimumDate();
 
 
 
-            /* ==========================================
-               SUNDAY CLOSED
-            ========================================== */
+        // ==========================================
+        // SUNDAY CLOSED
+        // ==========================================
+
+        if (dateInput) {
 
             dateInput.addEventListener(
                 "change",
                 function () {
+
+
+                    if (!this.value) {
+                        return;
+                    }
+
 
                     const selectedDate =
                         new Date(
                             this.value +
                             "T00:00:00"
                         );
+
 
                     const dayOfWeek =
                         selectedDate.getDay();
@@ -612,8 +698,8 @@ document.addEventListener(
                             "Sorry! We are closed on Sundays. Please select another date."
                         );
 
-                        this.value = "";
 
+                        this.value = "";
                     }
 
                 }
@@ -623,9 +709,9 @@ document.addEventListener(
 
 
 
-        /* ==========================================
-           MOBILE NUMBER VALIDATION
-        ========================================== */
+        // ==========================================
+        // MOBILE NUMBER VALIDATION
+        // ==========================================
 
         if (phoneInput) {
 
@@ -646,9 +732,9 @@ document.addEventListener(
 
 
 
-        /* ==========================================
-           BOOKING FORM SUBMIT
-        ========================================== */
+        // ==========================================
+        // BOOKING FORM SUBMIT
+        // ==========================================
 
         if (bookingForm) {
 
@@ -656,12 +742,14 @@ document.addEventListener(
                 "submit",
                 async function (event) {
 
+
                     event.preventDefault();
 
 
-                    /* ======================================
-                       BROWSER FORM VALIDATION
-                    ====================================== */
+
+                    // ==================================
+                    // BROWSER FORM VALIDATION
+                    // ==================================
 
                     if (
                         !bookingForm.checkValidity()
@@ -670,16 +758,41 @@ document.addEventListener(
                         bookingForm.reportValidity();
 
                         return;
-
                     }
 
 
-                    /* ======================================
-                       SHOW LOADING
-                    ====================================== */
+
+                    // ==================================
+                    // CHECK RAZORPAY
+                    // ==================================
+
+                    if (
+                        typeof Razorpay === "undefined"
+                    ) {
+
+                        bookingMessage.innerHTML =
+                            "❌ Payment system could not load. Please refresh the page and try again.";
+
+                        bookingMessage.className =
+                            "booking-message error";
+
+                        bookingMessage.style.display =
+                            "block";
+
+                        return;
+                    }
+
+
+
+                    // ==================================
+                    // SHOW LOADING
+                    // ==================================
 
                     bookingMessage.innerHTML =
-                        "Booking submitting...";
+                        "Preparing secure payment...";
+
+                    bookingMessage.className =
+                        "booking-message";
 
                     bookingMessage.style.display =
                         "block";
@@ -688,14 +801,15 @@ document.addEventListener(
                     bookingSubmitBtn.disabled =
                         true;
 
+
                     bookingSubmitBtn.textContent =
-                        "Booking...";
+                        "Preparing Payment...";
 
 
 
-                    /* ======================================
-                       GET FORM VALUES
-                    ====================================== */
+                    // ==================================
+                    // GET FORM VALUES
+                    // ==================================
 
                     const bookingData = {
 
@@ -741,155 +855,505 @@ document.addEventListener(
 
 
 
-                    /* ======================================
-                       DEBUG
-                    ====================================== */
-
                     console.log(
-                        "Sending booking data:",
+                        "Booking data:",
                         bookingData
                     );
 
 
 
-                    /* ======================================
-                       SEND TO SPRING BOOT
-                    ====================================== */
-
                     try {
 
-                        const response =
+
+                        // ==================================
+                        // STEP 1
+                        // CREATE RAZORPAY ORDER
+                        // ==================================
+
+                        const orderResponse =
                             await fetch(
-                                API_URL,
+                                PAYMENT_API_URL +
+                                "/create-order",
                                 {
                                     method: "POST",
 
                                     headers: {
                                         "Content-Type":
                                             "application/json"
-                                    },
-
-                                    body:
-                                        JSON.stringify(
-                                            bookingData
-                                        )
+                                    }
                                 }
                             );
 
 
                         console.log(
-                            "Booking API status:",
-                            response.status
+                            "Create order status:",
+                            orderResponse.status
                         );
 
 
 
-                        /* ==================================
-                           GET SERVER RESPONSE
-                        ================================== */
-
-                        const responseText =
-                            await response.text();
+                        const orderText =
+                            await orderResponse.text();
 
 
                         console.log(
-                            "Booking API response:",
-                            responseText
+                            "Create order response:",
+                            orderText
                         );
 
 
 
-                        /* ==================================
-                           CHECK ERROR
-                        ================================== */
-
-                        if (!response.ok) {
+                        if (
+                            !orderResponse.ok
+                        ) {
 
                             throw new Error(
-                                "Booking failed. Status: " +
-                                response.status +
-                                " Response: " +
-                                responseText
+                                "Unable to create payment order. Status: " +
+                                orderResponse.status
+                            );
+                        }
+
+
+
+                        const orderData =
+                            JSON.parse(
+                                orderText
                             );
 
+
+
+                        console.log(
+                            "Razorpay order:",
+                            orderData
+                        );
+
+
+
+                        // ==================================
+                        // CHECK ORDER ID
+                        // ==================================
+
+                        if (
+                            !orderData.orderId
+                        ) {
+
+                            throw new Error(
+                                "Razorpay order ID was not received."
+                            );
                         }
 
 
 
-                        /* ==================================
-                           SUCCESS
-                        ================================== */
+                        // ==================================
+                        // STEP 2
+                        // OPEN RAZORPAY CHECKOUT
+                        // ==================================
 
-                        bookingMessage.innerHTML =
-                            "✅ Appointment booked successfully!";
-
-
-                        bookingMessage.className =
-                            "booking-message success";
+                        bookingSubmitBtn.textContent =
+                            "Opening Payment...";
 
 
-                        bookingForm.reset();
+
+                        const options = {
+
+                            key:
+                                orderData.keyId,
+
+                            amount:
+                                orderData.amount,
+
+                            currency:
+                                orderData.currency,
+
+                            name:
+                                "Nail Studio",
+
+                            description:
+                                "Nail Studio Appointment Booking",
+
+                            order_id:
+                                orderData.orderId,
 
 
-                        /* ==================================
-                           RESTORE DATE MIN
-                        ================================== */
+                            prefill: {
 
-                        if (dateInput) {
+                                name:
+                                    bookingData.name,
 
-                            const today =
-                                new Date();
+                                email:
+                                    bookingData.email,
 
-                            const year =
-                                today.getFullYear();
+                                contact:
+                                    bookingData.phone
 
-                            const month =
-                                String(
-                                    today.getMonth() + 1
-                                ).padStart(2, "0");
+                            },
 
-                            const day =
-                                String(
-                                    today.getDate()
-                                ).padStart(2, "0");
 
-                            dateInput.min =
-                                year + "-" +
-                                month + "-" +
-                                day;
+                            notes: {
 
-                        }
+                                appointment_date:
+                                    bookingData.bookingDate,
+
+                                appointment_time:
+                                    bookingData.bookingTime,
+
+                                service:
+                                    bookingData.service
+
+                            },
+
+
+                            theme: {
+
+                                color:
+                                    "#c89b3c"
+
+                            },
+
+
+                            // ==================================
+                            // PAYMENT SUCCESS
+                            // ==================================
+
+                            handler:
+                                async function (
+                                    paymentResponse
+                                ) {
+
+
+                                    console.log(
+                                        "Razorpay payment response:",
+                                        paymentResponse
+                                    );
+
+
+                                    bookingMessage.innerHTML =
+                                        "Payment successful. Verifying your payment...";
+
+                                    bookingMessage.className =
+                                        "booking-message";
+
+                                    bookingSubmitBtn.disabled =
+                                        true;
+
+                                    bookingSubmitBtn.textContent =
+                                        "Verifying Payment...";
+
+
+                                    try {
+
+
+                                        // ==================================
+                                        // STEP 3
+                                        // VERIFY PAYMENT + SAVE BOOKING
+                                        // ==================================
+
+                                        const verifyData = {
+
+                                            razorpayOrderId:
+                                                paymentResponse
+                                                    .razorpay_order_id,
+
+                                            razorpayPaymentId:
+                                                paymentResponse
+                                                    .razorpay_payment_id,
+
+                                            razorpaySignature:
+                                                paymentResponse
+                                                    .razorpay_signature,
+
+
+                                            // BOOKING DETAILS
+
+                                            name:
+                                                bookingData.name,
+
+                                            email:
+                                                bookingData.email,
+
+                                            phone:
+                                                bookingData.phone,
+
+                                            service:
+                                                bookingData.service,
+
+                                            design:
+                                                bookingData.design,
+
+                                            bookingDate:
+                                                bookingData.bookingDate,
+
+                                            bookingTime:
+                                                bookingData.bookingTime
+
+                                        };
+
+
+
+                                        console.log(
+                                            "Sending payment verification:",
+                                            verifyData
+                                        );
+
+
+
+                                        const verifyResponse =
+                                            await fetch(
+                                                PAYMENT_API_URL +
+                                                "/verify",
+                                                {
+                                                    method: "POST",
+
+                                                    headers: {
+                                                        "Content-Type":
+                                                            "application/json"
+                                                    },
+
+                                                    body:
+                                                        JSON.stringify(
+                                                            verifyData
+                                                        )
+                                                }
+                                            );
+
+
+
+                                        console.log(
+                                            "Payment verification status:",
+                                            verifyResponse.status
+                                        );
+
+
+
+                                        const verifyText =
+                                            await verifyResponse.text();
+
+
+                                        console.log(
+                                            "Payment verification response:",
+                                            verifyText
+                                        );
+
+
+
+                                        let verifyResult = {};
+
+
+                                        try {
+
+                                            verifyResult =
+                                                JSON.parse(
+                                                    verifyText
+                                                );
+
+                                        }
+
+                                        catch (
+                                            jsonError
+                                        ) {
+
+                                            console.error(
+                                                "Invalid JSON response:",
+                                                jsonError
+                                            );
+
+                                        }
+
+
+
+                                        if (
+                                            !verifyResponse.ok ||
+                                            !verifyResult.success
+                                        ) {
+
+                                            throw new Error(
+                                                verifyResult.message ||
+                                                "Payment verification failed."
+                                            );
+                                        }
+
+
+
+                                        // ==================================
+                                        // FINAL SUCCESS
+                                        // ==================================
+
+                                        bookingMessage.innerHTML =
+                                            "✅ Payment successful! Your appointment has been confirmed.";
+
+                                        bookingMessage.className =
+                                            "booking-message success";
+
+                                        bookingMessage.style.display =
+                                            "block";
+
+
+
+                                        bookingForm.reset();
+
+
+
+                                        setMinimumDate();
+
+
+
+                                        console.log(
+                                            "✅ Booking confirmed:",
+                                            verifyResult
+                                        );
+
+
+                                    }
+
+                                    catch (
+                                        verificationError
+                                    ) {
+
+                                        console.error(
+                                            "Payment Verification Error:",
+                                            verificationError
+                                        );
+
+
+                                        bookingMessage.innerHTML =
+                                            "⚠️ Payment was received, but booking verification failed. Please contact Nail Studio with your payment ID: " +
+                                            paymentResponse.razorpay_payment_id;
+
+
+                                        bookingMessage.className =
+                                            "booking-message error";
+
+                                        bookingMessage.style.display =
+                                            "block";
+
+                                    }
+
+
+                                    bookingSubmitBtn.disabled =
+                                        false;
+
+
+                                    bookingSubmitBtn.textContent =
+                                        "💳 Pay ₹500 & Confirm Appointment";
+
+                                },
+
+
+                            // ==================================
+                            // PAYMENT MODAL CLOSED
+                            // ==================================
+
+                            modal: {
+
+                                ondismiss:
+                                    function () {
+
+                                        console.log(
+                                            "Razorpay checkout closed."
+                                        );
+
+
+                                        bookingMessage.innerHTML =
+                                            "Payment cancelled. Your appointment has not been confirmed.";
+
+                                        bookingMessage.className =
+                                            "booking-message error";
+
+                                        bookingMessage.style.display =
+                                            "block";
+
+
+                                        bookingSubmitBtn.disabled =
+                                            false;
+
+
+                                        bookingSubmitBtn.textContent =
+                                            "💳 Pay ₹500 & Confirm Appointment";
+
+                                    }
+
+                            }
+
+                        };
+
+
+
+                        // ==================================
+                        // OPEN RAZORPAY
+                        // ==================================
+
+                        const razorpay =
+                            new Razorpay(
+                                options
+                            );
+
+
+                        razorpay.on(
+                            "payment.failed",
+                            function (
+                                response
+                            ) {
+
+                                console.error(
+                                    "Payment failed:",
+                                    response
+                                );
+
+
+                                bookingMessage.innerHTML =
+                                    "❌ Payment failed. Please try again.";
+
+                                bookingMessage.className =
+                                    "booking-message error";
+
+                                bookingMessage.style.display =
+                                    "block";
+
+
+                                bookingSubmitBtn.disabled =
+                                    false;
+
+
+                                bookingSubmitBtn.textContent =
+                                    "💳 Pay ₹500 & Confirm Appointment";
+
+                            }
+                        );
+
+
+                        razorpay.open();
 
 
                     }
 
-                    catch (error) {
+                    catch (
+                        error
+                    ) {
 
                         console.error(
-                            "Booking Error:",
+                            "Payment Error:",
                             error
                         );
 
 
                         bookingMessage.innerHTML =
-                            "❌ Booking failed. Please try again.";
-
+                            "❌ Unable to start payment. Please try again.";
 
                         bookingMessage.className =
                             "booking-message error";
 
+                        bookingMessage.style.display =
+                            "block";
+
+
+                        bookingSubmitBtn.disabled =
+                            false;
+
+
+                        bookingSubmitBtn.textContent =
+                            "💳 Pay ₹500 & Confirm Appointment";
+
                     }
-
-
-                    /* ======================================
-                       RESTORE BUTTON
-                    ====================================== */
-
-                    bookingSubmitBtn.disabled =
-                        false;
-
-                    bookingSubmitBtn.textContent =
-                        "Confirm Appointment";
 
                 }
             );
@@ -897,6 +1361,7 @@ document.addEventListener(
         }
 
     }
+
 );
 
 </script>
