@@ -18,6 +18,506 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+
+    <!-- ==========================================
+         PREMIUM PAYMENT CSS
+    =========================================== -->
+
+    <style>
+
+        /* ==========================================
+           PREMIUM PAYMENT SECTION
+        =========================================== */
+
+        .premium-payment-section {
+
+            margin: 22px 0;
+
+            padding: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fffaf2,
+                    #fff8ed
+                );
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px rgba(120, 85, 25, 0.06);
+
+        }
+
+
+        /* PAYMENT HEADING */
+
+        .payment-heading {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .payment-kicker {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #b8860b;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .payment-heading h3 {
+
+            margin: 0 0 5px;
+
+            color: #3f3428;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 25px;
+
+            font-weight: 600;
+
+        }
+
+
+        .payment-heading p {
+
+            margin: 0;
+
+            color: #777;
+
+            font-size: 12px;
+
+        }
+
+
+        /* ==========================================
+           APPOINTMENT SUMMARY
+        =========================================== */
+
+        .payment-summary {
+
+            margin-bottom: 18px;
+
+            padding: 16px;
+
+            background: #ffffff;
+
+            border: 1px solid #eadfc9;
+
+            border-radius: 9px;
+
+        }
+
+
+        .summary-title {
+
+            margin-bottom: 12px;
+
+            color: #8a6420;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 7px 0;
+
+            color: #777;
+
+            font-size: 12px;
+
+            border-bottom: 1px solid #f1eadf;
+
+        }
+
+
+        .summary-row:last-of-type {
+
+            border-bottom: none;
+
+        }
+
+
+        .summary-row strong {
+
+            color: #444;
+
+            font-weight: 500;
+
+            text-align: right;
+
+        }
+
+
+        .summary-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 10px;
+
+            padding-top: 12px;
+
+            border-top: 1px solid #ead5ad;
+
+        }
+
+
+        .summary-total span {
+
+            color: #555;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+        }
+
+
+        .summary-total strong {
+
+            color: #b8860b;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* ==========================================
+           PAYMENT OPTIONS
+        =========================================== */
+
+        .payment-options {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+
+        }
+
+
+        .payment-card {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 15px;
+
+            background: #ffffff;
+
+            border: 1px solid #e5d7bd;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .payment-card:hover {
+
+            border-color: #c89b3c;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* HIDE RADIO */
+
+        .payment-card input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        /* PAYMENT ICON */
+
+        .payment-card-icon {
+
+            width: 43px;
+
+            height: 43px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fff8ed;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 8px;
+
+            font-size: 21px;
+
+        }
+
+
+        /* PAYMENT TEXT */
+
+        .payment-card-content {
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+        }
+
+
+        .payment-card-content strong {
+
+            color: #40362c;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .payment-card-content span {
+
+            color: #888;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+
+        }
+
+
+        /* CHECK */
+
+        .payment-card-check {
+
+            width: 23px;
+
+            height: 23px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid #d8c8aa;
+
+            border-radius: 50%;
+
+            color: transparent;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        /* SELECTED CARD */
+
+        .payment-card.selected {
+
+            border-color: #c89b3c;
+
+            background: #fffaf0;
+
+            box-shadow:
+                0 5px 16px rgba(184, 134, 11, 0.10);
+
+        }
+
+
+        .payment-card.selected .payment-card-icon {
+
+            background: #fdf2d9;
+
+            border-color: #c89b3c;
+
+        }
+
+
+        .payment-card.selected .payment-card-check {
+
+            background: #c89b3c;
+
+            border-color: #c89b3c;
+
+            color: #ffffff;
+
+        }
+
+
+        /* ==========================================
+           PAYMENT NOTE
+        =========================================== */
+
+        .payment-note {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 15px;
+
+            padding: 11px 12px;
+
+            background: #faf7f1;
+
+            border-radius: 7px;
+
+        }
+
+
+        .payment-note span {
+
+            color: #b8860b;
+
+            font-size: 13px;
+
+        }
+
+
+        .payment-note p {
+
+            margin: 0;
+
+            color: #888;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        =========================================== */
+
+        @media (max-width: 600px) {
+
+            .premium-payment-section {
+
+                padding: 18px 14px;
+
+            }
+
+
+            .payment-heading h3 {
+
+                font-size: 22px;
+
+            }
+
+
+            .payment-card {
+
+                padding: 13px;
+
+            }
+
+
+            .payment-card-icon {
+
+                width: 39px;
+
+                height: 39px;
+
+                font-size: 19px;
+
+            }
+
+
+            .payment-card-content strong {
+
+                font-size: 13px;
+
+            }
+
+
+            .payment-card-content span {
+
+                font-size: 10px;
+
+            }
+
+
+            .summary-row {
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
@@ -113,7 +613,6 @@
 </header>
 
 
-
 <!-- ==========================================
      BOOKING SECTION
 ========================================== -->
@@ -145,10 +644,9 @@
             </p>
 
 
-
             <!-- ==================================
                  BOOKING FORM
-            ================================== -->
+            =================================== -->
 
             <form id="bookingForm">
 
@@ -170,7 +668,6 @@
                     >
 
                 </div>
-
 
 
                 <!-- MOBILE + EMAIL -->
@@ -203,7 +700,6 @@
                     </div>
 
 
-
                     <!-- EMAIL -->
 
                     <div class="form-group">
@@ -223,7 +719,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- DATE + TIME -->
@@ -247,7 +742,6 @@
                         >
 
                     </div>
-
 
 
                     <!-- TIME -->
@@ -319,7 +813,6 @@
                 </div>
 
 
-
                 <!-- ======================================
                      SERVICE SELECTION
                 ======================================= -->
@@ -342,13 +835,9 @@
                         </option>
 
 
-
-                        <!-- ==================================
-                             NORMAL RANGE
-                        ================================== -->
+                        <!-- NORMAL -->
 
                         <optgroup label="💅 Normal Nails">
-
 
                             <option
                                 value="Basic Gel Polish"
@@ -357,14 +846,12 @@
                                 Basic Gel Polish — ₹500
                             </option>
 
-
                             <option
                                 value="Acrylic Overlay (Natural Nails)"
                                 data-price="800"
                             >
                                 Acrylic Overlay (Natural Nails) — ₹800
                             </option>
-
 
                             <option
                                 value="Basic Acrylic Extensions"
@@ -373,14 +860,12 @@
                                 Basic Acrylic Extensions — ₹1,200
                             </option>
 
-
                             <option
                                 value="Machine Printed Press-On Nails"
                                 data-price="300"
                             >
                                 Machine Printed Press-On Nails — ₹300
                             </option>
-
 
                             <option
                                 value="Cut Polish & Basic Nail Art"
@@ -389,7 +874,6 @@
                                 Cut Polish & Basic Nail Art — ₹400
                             </option>
 
-
                             <option
                                 value="Basic French Manicure"
                                 data-price="700"
@@ -397,17 +881,12 @@
                                 Basic French Manicure — ₹700
                             </option>
 
-
                         </optgroup>
 
 
-
-                        <!-- ==================================
-                             PREMIUM RANGE
-                        ================================== -->
+                        <!-- PREMIUM -->
 
                         <optgroup label="✨ Premium Nails">
-
 
                             <option
                                 value="Soft Gel Extensions"
@@ -416,14 +895,12 @@
                                 Soft Gel Extensions — ₹2,000
                             </option>
 
-
                             <option
                                 value="BIAB (Builder Gel) Extensions"
                                 data-price="2200"
                             >
                                 BIAB (Builder Gel) Extensions — ₹2,200
                             </option>
-
 
                             <option
                                 value="Ombre Gel Extensions"
@@ -432,14 +909,12 @@
                                 Ombre Gel Extensions — ₹2,500
                             </option>
 
-
                             <option
                                 value="Chrome Finish Gel Extensions"
                                 data-price="2200"
                             >
                                 Chrome Finish Gel Extensions — ₹2,200
                             </option>
-
 
                             <option
                                 value="Cat-Eye Gel Nails"
@@ -448,14 +923,12 @@
                                 Cat-Eye Gel Nails — ₹2,400
                             </option>
 
-
                             <option
                                 value="Custom Handmade Press-Ons"
                                 data-price="1200"
                             >
                                 Custom Handmade Press-Ons — ₹1,200
                             </option>
-
 
                             <option
                                 value="Rubber Base Gel Overlay"
@@ -464,14 +937,12 @@
                                 Rubber Base Gel Overlay — ₹1,800
                             </option>
 
-
                             <option
                                 value="Matte Finish Gel Extensions"
                                 data-price="2000"
                             >
                                 Matte Finish Gel Extensions — ₹2,000
                             </option>
-
 
                             <option
                                 value="Glitter Inbuilt Acrylic Extensions"
@@ -480,7 +951,6 @@
                                 Glitter Inbuilt Acrylic Extensions — ₹2,500
                             </option>
 
-
                             <option
                                 value="Minimalist Hand-Painted Art Extensions"
                                 data-price="2500"
@@ -488,17 +958,12 @@
                                 Minimalist Hand-Painted Art Extensions — ₹2,500
                             </option>
 
-
                         </optgroup>
 
 
-
-                        <!-- ==================================
-                             LUXURY RANGE
-                        ================================== -->
+                        <!-- LUXURY -->
 
                         <optgroup label="👑 Luxury Nails">
-
 
                             <option
                                 value="Polygel Sculpted Extensions"
@@ -507,14 +972,12 @@
                                 Polygel Sculpted Extensions — ₹3,500
                             </option>
 
-
                             <option
                                 value="Hard Gel Extensions"
                                 data-price="3800"
                             >
                                 Hard Gel Extensions — ₹3,800
                             </option>
-
 
                             <option
                                 value="3D Encapsulated Art Extensions"
@@ -523,14 +986,12 @@
                                 3D Encapsulated Art Extensions — ₹4,500
                             </option>
 
-
                             <option
                                 value="Swarovski & Crystal Studded Set"
                                 data-price="5000"
                             >
                                 Swarovski & Crystal Studded Set — ₹5,000
                             </option>
-
 
                             <option
                                 value="Bridal Luxury Customized Set"
@@ -539,14 +1000,12 @@
                                 Bridal Luxury Customized Set — ₹6,000
                             </option>
 
-
                             <option
                                 value="Glass/Clear Jelly Extensions with Foil"
                                 data-price="4000"
                             >
                                 Glass/Clear Jelly Extensions with Foil — ₹4,000
                             </option>
-
 
                             <option
                                 value="Russian Dry Manicure + Polygel Set"
@@ -555,14 +1014,12 @@
                                 Russian Dry Manicure + Polygel Set — ₹4,500
                             </option>
 
-
                             <option
                                 value="Metallic 3D Sculpted Charms Set"
                                 data-price="5000"
                             >
                                 Metallic 3D Sculpted Charms Set — ₹5,000
                             </option>
-
 
                             <option
                                 value="Hand-Sculpted Floral 3D Art Extensions"
@@ -571,13 +1028,11 @@
                                 Hand-Sculpted Floral 3D Art Extensions — ₹4,800
                             </option>
 
-
                         </optgroup>
 
                     </select>
 
                 </div>
-
 
 
                 <!-- ======================================
@@ -656,7 +1111,6 @@
                 </div>
 
 
-
                 <!-- ======================================
                      BACKEND COMPATIBILITY
                 ======================================= -->
@@ -669,130 +1123,186 @@
                 >
 
 
-
                 <!-- ======================================
-                     PAYMENT METHOD
+                     PREMIUM PAYMENT METHOD
                 ======================================= -->
 
-                <div
-                    style="
-                        margin:18px 0;
-                        padding:18px 16px;
-                        background:#fff8ed;
-                        border:1px solid #ead5ad;
-                        border-radius:8px;
-                    "
-                >
-
-                    <strong
-                        style="
-                            color:#8a6420;
-                            font-size:15px;
-                            display:block;
-                            margin-bottom:12px;
-                        "
-                    >
-                        💳 Payment Method
-                    </strong>
+                <div class="premium-payment-section">
 
 
-                    <p
-                        style="
-                            margin:0 0 12px;
-                            font-size:12px;
-                            color:#777;
-                        "
-                    >
-                        Choose your preferred payment method.
-                    </p>
+                    <!-- HEADING -->
 
+                    <div class="payment-heading">
 
-
-                    <!-- CASH -->
-
-                    <label
-                        style="
-                            display:flex;
-                            align-items:center;
-                            gap:10px;
-                            padding:12px;
-                            margin-bottom:10px;
-                            background:#ffffff;
-                            border:1px solid #ead5ad;
-                            border-radius:6px;
-                            cursor:pointer;
-                        "
-                    >
-
-                        <input
-                            type="radio"
-                            name="paymentMethod"
-                            value="CASH"
-                            required
-                        >
-
-                        <span
-                            style="
-                                font-size:14px;
-                                color:#444;
-                            "
-                        >
-                            💵 Cash
+                        <span class="payment-kicker">
+                            SIMPLE & SECURE
                         </span>
 
-                    </label>
+                        <h3>
+                            💳 Choose Payment Method
+                        </h3>
+
+                        <p>
+                            Select your preferred way to pay for your appointment.
+                        </p>
+
+                    </div>
 
 
+                    <!-- APPOINTMENT SUMMARY -->
 
-                    <!-- GOOGLE PAY -->
+                    <div class="payment-summary">
 
-                    <label
-                        style="
-                            display:flex;
-                            align-items:center;
-                            gap:10px;
-                            padding:12px;
-                            background:#ffffff;
-                            border:1px solid #ead5ad;
-                            border-radius:6px;
-                            cursor:pointer;
-                        "
-                    >
+                        <div class="summary-title">
+                            Appointment Summary
+                        </div>
 
-                        <input
-                            type="radio"
-                            name="paymentMethod"
-                            value="GOOGLE_PAY"
-                            required
-                        >
 
-                        <span
-                            style="
-                                font-size:14px;
-                                color:#444;
-                            "
-                        >
-                            📱 Google Pay
+                        <div class="summary-row">
+
+                            <span>
+                                Service
+                            </span>
+
+                            <strong id="paymentSummaryService">
+                                Select a service
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong id="paymentSummaryDate">
+                                Select date
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Time
+                            </span>
+
+                            <strong id="paymentSummaryTime">
+                                Select time
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <strong id="paymentSummaryPrice">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAYMENT OPTIONS -->
+
+                    <div class="payment-options">
+
+
+                        <!-- PAY AT STUDIO -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="CASH"
+                                required
+                            >
+
+                            <div class="payment-card-icon">
+                                💵
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Pay at Studio
+                                </strong>
+
+                                <span>
+                                    Pay when you arrive for your appointment
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+
+                        <!-- GOOGLE PAY -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="GOOGLE_PAY"
+                            >
+
+                            <div class="payment-card-icon">
+                                📱
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Google Pay / UPI
+                                </strong>
+
+                                <span>
+                                    Choose UPI as your preferred payment method
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- PAYMENT NOTE -->
+
+                    <div class="payment-note">
+
+                        <span>
+                            ⓘ
                         </span>
 
-                    </label>
+                        <p>
+                            Google Pay / UPI selection is saved as your
+                            preferred payment method. Online payment is not
+                            automatically verified through this booking form.
+                        </p>
 
-
-                    <p
-                        style="
-                            margin:12px 0 0;
-                            font-size:11px;
-                            color:#888;
-                            line-height:1.5;
-                        "
-                    >
-                        Note: Google Pay selection records your preferred
-                        payment method. Payment is not automatically
-                        verified through this booking form.
-                    </p>
+                    </div>
 
                 </div>
-
 
 
                 <!-- ======================================
@@ -811,7 +1321,6 @@
             </form>
 
 
-
             <!-- ======================================
                  BOOKING MESSAGE
             ======================================= -->
@@ -823,7 +1332,6 @@
 
 
         </div>
-
 
 
         <!-- ======================================
@@ -846,7 +1354,6 @@
                 </h2>
 
             </div>
-
 
 
             <!-- LOCATION -->
@@ -882,7 +1389,6 @@
             </div>
 
 
-
             <!-- BUSINESS HOURS -->
 
             <div class="studio-detail">
@@ -911,7 +1417,6 @@
             </div>
 
 
-
             <!-- CONTACT -->
 
             <div class="studio-detail">
@@ -933,7 +1438,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- WHATSAPP -->
@@ -959,14 +1463,11 @@
 
             </div>
 
-
         </div>
-
 
     </div>
 
 </section>
-
 
 
 <!-- ==========================================
@@ -980,7 +1481,6 @@
     </p>
 
 </footer>
-
 
 
 <!-- ==========================================
@@ -1009,29 +1509,69 @@ document.addEventListener(
         const dateInput =
             document.getElementById("bookingDate");
 
+
         const phoneInput =
             document.getElementById("phone");
+
 
         const bookingForm =
             document.getElementById("bookingForm");
 
+
         const bookingMessage =
             document.getElementById("bookingMessage");
+
 
         const bookingSubmitBtn =
             document.getElementById("bookingSubmitBtn");
 
+
         const serviceSelect =
             document.getElementById("service");
+
 
         const priceBox =
             document.getElementById("priceBox");
 
+
         const selectedServiceName =
             document.getElementById("selectedServiceName");
 
+
         const selectedServicePrice =
             document.getElementById("selectedServicePrice");
+
+
+        const timeInput =
+            document.getElementById("bookingTime");
+
+
+        // ==========================================
+        // PAYMENT SUMMARY ELEMENTS
+        // ==========================================
+
+        const paymentSummaryService =
+            document.getElementById(
+                "paymentSummaryService"
+            );
+
+
+        const paymentSummaryDate =
+            document.getElementById(
+                "paymentSummaryDate"
+            );
+
+
+        const paymentSummaryTime =
+            document.getElementById(
+                "paymentSummaryTime"
+            );
+
+
+        const paymentSummaryPrice =
+            document.getElementById(
+                "paymentSummaryPrice"
+            );
 
 
         // ==========================================
@@ -1042,6 +1582,7 @@ document.addEventListener(
             new URLSearchParams(
                 window.location.search
             );
+
 
         const urlService =
             urlParams.get("service");
@@ -1056,6 +1597,7 @@ document.addEventListener(
             const amount =
                 Number(price);
 
+
             if (
                 isNaN(amount) ||
                 amount <= 0
@@ -1065,8 +1607,106 @@ document.addEventListener(
 
             }
 
+
             return "₹" +
                 amount.toLocaleString("en-IN");
+
+        }
+
+
+        // ==========================================
+        // UPDATE PAYMENT SUMMARY
+        // ==========================================
+
+        function updatePaymentSummary() {
+
+
+            // SERVICE
+
+            if (
+                serviceSelect &&
+                serviceSelect.value
+            ) {
+
+                const selectedOption =
+                    serviceSelect.options[
+                        serviceSelect.selectedIndex
+                    ];
+
+
+                const price =
+                    Number(
+                        selectedOption.dataset.price
+                    );
+
+
+                paymentSummaryService.textContent =
+                    selectedOption.value;
+
+
+                paymentSummaryPrice.textContent =
+                    formatPrice(price);
+
+            } else {
+
+                paymentSummaryService.textContent =
+                    "Select a service";
+
+
+                paymentSummaryPrice.textContent =
+                    "₹0";
+
+            }
+
+
+            // DATE
+
+            if (
+                dateInput &&
+                dateInput.value
+            ) {
+
+                const date =
+                    new Date(
+                        dateInput.value +
+                        "T00:00:00"
+                    );
+
+
+                paymentSummaryDate.textContent =
+                    date.toLocaleDateString(
+                        "en-IN",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    );
+
+            } else {
+
+                paymentSummaryDate.textContent =
+                    "Select date";
+
+            }
+
+
+            // TIME
+
+            if (
+                timeInput &&
+                timeInput.value
+            ) {
+
+                paymentSummaryTime.textContent =
+                    timeInput.value;
+
+            } else {
+
+                paymentSummaryTime.textContent =
+                    "Select time";
+
+            }
 
         }
 
@@ -1076,6 +1716,7 @@ document.addEventListener(
         // ==========================================
 
         function updateServicePrice() {
+
 
             if (!serviceSelect) {
                 return;
@@ -1096,18 +1737,23 @@ document.addEventListener(
                 priceBox.style.display =
                     "none";
 
+
                 selectedServiceName.textContent =
                     "-";
 
+
                 selectedServicePrice.textContent =
                     "₹0";
+
+
+                updatePaymentSummary();
 
                 return;
 
             }
 
 
-            // Exact price from data-price
+            // EXACT PRICE
 
             const servicePrice =
                 Number(
@@ -1129,6 +1775,9 @@ document.addEventListener(
 
             priceBox.style.display =
                 "block";
+
+
+            updatePaymentSummary();
 
         }
 
@@ -1155,6 +1804,7 @@ document.addEventListener(
 
                     serviceSelect.selectedIndex =
                         i;
+
 
                     found = true;
 
@@ -1185,6 +1835,44 @@ document.addEventListener(
                 function () {
 
                     updateServicePrice();
+
+                    updatePaymentSummary();
+
+                }
+            );
+
+        }
+
+
+        // ==========================================
+        // DATE CHANGE
+        // ==========================================
+
+        if (dateInput) {
+
+            dateInput.addEventListener(
+                "change",
+                function () {
+
+                    updatePaymentSummary();
+
+                }
+            );
+
+        }
+
+
+        // ==========================================
+        // TIME CHANGE
+        // ==========================================
+
+        if (timeInput) {
+
+            timeInput.addEventListener(
+                "change",
+                function () {
+
+                    updatePaymentSummary();
 
                 }
             );
@@ -1246,6 +1934,7 @@ document.addEventListener(
                 "change",
                 function () {
 
+
                     if (!this.value) {
                         return;
                     }
@@ -1273,6 +1962,9 @@ document.addEventListener(
 
                         this.value =
                             "";
+
+
+                        updatePaymentSummary();
 
                     }
 
@@ -1305,6 +1997,64 @@ document.addEventListener(
 
 
         // ==========================================
+        // PAYMENT CARD SELECTION
+        // ==========================================
+
+        const paymentCards =
+            document.querySelectorAll(
+                ".payment-card"
+            );
+
+
+        paymentCards.forEach(
+            function (card) {
+
+
+                const radio =
+                    card.querySelector(
+                        'input[name="paymentMethod"]'
+                    );
+
+
+                radio.addEventListener(
+                    "change",
+                    function () {
+
+
+                        paymentCards.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                        if (radio.checked) {
+
+                            card.classList.add(
+                                "selected"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // INITIAL PAYMENT SUMMARY
+        // ==========================================
+
+        updatePaymentSummary();
+
+
+        // ==========================================
         // BOOKING FORM SUBMIT
         // ==========================================
 
@@ -1313,6 +2063,7 @@ document.addEventListener(
             bookingForm.addEventListener(
                 "submit",
                 async function (event) {
+
 
                     event.preventDefault();
 
@@ -1353,6 +2104,7 @@ document.addEventListener(
                                 "Sorry! We are closed on Sundays. Please select another date."
                             );
 
+
                             return;
 
                         }
@@ -1378,11 +2130,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a nail service.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -1415,11 +2170,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Unable to determine service price.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -1441,11 +2199,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a payment method.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -1459,8 +2220,10 @@ document.addEventListener(
                     bookingMessage.innerHTML =
                         "Saving your appointment...";
 
+
                     bookingMessage.className =
                         "booking-message";
+
 
                     bookingMessage.style.display =
                         "block";
@@ -1479,6 +2242,7 @@ document.addEventListener(
                     // ==================================
 
                     const bookingData = {
+
 
                         name:
                             document
@@ -1556,6 +2320,7 @@ document.addEventListener(
                     // ==================================
 
                     try {
+
 
                         const response =
                             await fetch(
@@ -1638,13 +2403,14 @@ document.addEventListener(
                         const paymentText =
                             bookingData.paymentMethod ===
                             "CASH"
-                            ? "💵 Cash"
-                            : "📱 Google Pay";
+                            ? "💵 Pay at Studio"
+                            : "📱 Google Pay / UPI";
 
 
                         bookingMessage.innerHTML =
 
-                            "✅ Your appointment has been confirmed successfully!<br><br>" +
+                            "✅ Your appointment has been confirmed successfully!" +
+                            "<br><br>" +
 
                             "<small>" +
 
@@ -1654,6 +2420,14 @@ document.addEventListener(
 
                             "<strong>Price:</strong> " +
                             formatPrice(servicePrice) +
+                            "<br>" +
+
+                            "<strong>Date:</strong> " +
+                            bookingData.bookingDate +
+                            "<br>" +
+
+                            "<strong>Time:</strong> " +
+                            bookingData.bookingTime +
                             "<br>" +
 
                             "<strong>Payment Method:</strong> " +
@@ -1693,6 +2467,24 @@ document.addEventListener(
                             "₹0";
 
 
+                        // RESET PAYMENT CARDS
+
+                        paymentCards.forEach(
+                            function (card) {
+
+                                card.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                        // RESET PAYMENT SUMMARY
+
+                        updatePaymentSummary();
+
+
                         setMinimumDate();
 
 
@@ -1703,6 +2495,7 @@ document.addEventListener(
 
 
                     } catch (error) {
+
 
                         console.error(
                             "Booking Error:",
@@ -1744,7 +2537,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 
 <!-- ==========================================
