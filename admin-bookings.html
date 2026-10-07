@@ -10,22 +10,17 @@
 
     <title>💅 Admin Bookings | Nail Studio</title>
 
-
     <!-- MAIN CSS -->
-
     <link rel="stylesheet"
           href="css/style.css">
 
-
     <!-- GOOGLE FONTS -->
-
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
 
     <style>
-
 
         /* =====================================================
            ADMIN PAGE
@@ -376,7 +371,7 @@
 
             width: 100%;
 
-            min-width: 1050px;
+            min-width: 920px;
 
             border-collapse: collapse;
 
@@ -425,6 +420,8 @@
 
             font-size: 12px;
 
+            word-break: break-word;
+
         }
 
 
@@ -451,18 +448,12 @@
 
         /* =====================================================
            COLUMN WIDTHS
-
-           Customer = 27%
-           Booking = 29%
-           Date/Time = 17%
-           Payment = 15%
-           Action = 12%
         ===================================================== */
 
         #bookingTable th:nth-child(1),
         #bookingTable td:nth-child(1) {
 
-            width: 27%;
+            width: 24%;
 
         }
 
@@ -470,7 +461,7 @@
         #bookingTable th:nth-child(2),
         #bookingTable td:nth-child(2) {
 
-            width: 29%;
+            width: 31%;
 
         }
 
@@ -486,7 +477,7 @@
         #bookingTable th:nth-child(4),
         #bookingTable td:nth-child(4) {
 
-            width: 15%;
+            width: 16%;
 
         }
 
@@ -509,7 +500,7 @@
 
             flex-direction: column;
 
-            gap: 3px;
+            gap: 4px;
 
         }
 
@@ -559,7 +550,7 @@
 
             min-width: 0;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
 
         }
 
@@ -568,7 +559,7 @@
 
             font-weight: 600;
 
-            line-height: 1.4;
+            line-height: 1.45;
 
             white-space: normal;
 
@@ -714,6 +705,8 @@
 
             flex-direction: column;
 
+            align-items: flex-start;
+
             gap: 5px;
 
         }
@@ -723,11 +716,13 @@
 
             font-family: 'Cormorant Garamond', serif;
 
-            font-size: 21px;
+            font-size: 22px;
 
             font-weight: 700;
 
             color: #49393e;
+
+            line-height: 1;
 
         }
 
@@ -797,6 +792,8 @@
             color: #8c7770;
 
             font-size: 10px;
+
+            line-height: 1.35;
 
         }
 
@@ -879,7 +876,7 @@
 
 
         /* =====================================================
-           LOADING
+           LOADING / EMPTY
         ===================================================== */
 
         .loading {
@@ -896,10 +893,6 @@
 
         }
 
-
-        /* =====================================================
-           EMPTY
-        ===================================================== */
 
         .empty-message {
 
@@ -1147,7 +1140,6 @@
 
         }
 
-
     </style>
 
 </head>
@@ -1199,7 +1191,6 @@
     </header>
 
 
-
     <!-- =====================================================
          ADMIN BOOKINGS
     ===================================================== -->
@@ -1228,15 +1219,12 @@
             </div>
 
 
-
             <!-- =================================================
                  DASHBOARD STATS
             ================================================= -->
 
             <div class="admin-stats">
 
-
-                <!-- TOTAL -->
 
                 <div class="admin-stat-card">
 
@@ -1259,8 +1247,6 @@
                 </div>
 
 
-                <!-- OFFER -->
-
                 <div class="admin-stat-card">
 
                     <div class="stat-icon">
@@ -1281,8 +1267,6 @@
 
                 </div>
 
-
-                <!-- SERVICE -->
 
                 <div class="admin-stat-card">
 
@@ -1305,8 +1289,6 @@
                 </div>
 
 
-                <!-- VIRTUAL -->
-
                 <div class="admin-stat-card">
 
                     <div class="stat-icon">
@@ -1328,7 +1310,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- =================================================
@@ -1378,14 +1359,12 @@
             </div>
 
 
-
             <!-- ERROR -->
 
             <div
                 id="bookingError"
                 class="booking-error">
             </div>
-
 
 
             <!-- =================================================
@@ -1397,8 +1376,6 @@
                 <div class="table-container">
 
 
-                    <!-- LOADING -->
-
                     <div
                         id="loadingMessage"
                         class="loading">
@@ -1407,8 +1384,6 @@
 
                     </div>
 
-
-                    <!-- TABLE -->
 
                     <table id="bookingTable">
 
@@ -1447,8 +1422,6 @@
                     </table>
 
 
-                    <!-- EMPTY -->
-
                     <div
                         id="emptyMessage"
                         class="empty-message"
@@ -1465,7 +1438,6 @@
         </div>
 
     </section>
-
 
 
     <!-- =====================================================
@@ -1579,53 +1551,18 @@
                             Select a time
                         </option>
 
-                        <option value="10:00 AM">
-                            10:00 AM
-                        </option>
-
-                        <option value="11:00 AM">
-                            11:00 AM
-                        </option>
-
-                        <option value="12:00 PM">
-                            12:00 PM
-                        </option>
-
-                        <option value="1:00 PM">
-                            1:00 PM
-                        </option>
-
-                        <option value="2:00 PM">
-                            2:00 PM
-                        </option>
-
-                        <option value="3:00 PM">
-                            3:00 PM
-                        </option>
-
-                        <option value="4:00 PM">
-                            4:00 PM
-                        </option>
-
-                        <option value="5:00 PM">
-                            5:00 PM
-                        </option>
-
-                        <option value="6:00 PM">
-                            6:00 PM
-                        </option>
-
-                        <option value="7:00 PM">
-                            7:00 PM
-                        </option>
-
-                        <option value="8:00 PM">
-                            8:00 PM
-                        </option>
-
-                        <option value="9:00 PM">
-                            9:00 PM
-                        </option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                        <option value="8:00 PM">8:00 PM</option>
+                        <option value="9:00 PM">9:00 PM</option>
 
                     </select>
 
@@ -1674,7 +1611,6 @@
     </div>
 
 
-
     <!-- =====================================================
          FOOTER
     ===================================================== -->
@@ -1686,7 +1622,6 @@
         </p>
 
     </footer>
-
 
 
     <!-- =====================================================
@@ -1713,7 +1648,6 @@
         let selectedBookingId = null;
 
 
-
         /* =====================================================
            CHECK ADMIN LOGIN
         ===================================================== */
@@ -1723,21 +1657,8 @@
             const adminLoggedIn =
                 localStorage.getItem("adminLoggedIn");
 
-
             const adminEmail =
                 localStorage.getItem("adminEmail");
-
-
-            console.log(
-                "Admin logged in:",
-                adminLoggedIn
-            );
-
-
-            console.log(
-                "Admin email:",
-                adminEmail
-            );
 
 
             if (
@@ -1757,7 +1678,6 @@
             return false;
 
         }
-
 
 
         /* =====================================================
@@ -1814,7 +1734,6 @@
         }
 
 
-
         /* =====================================================
            OLD OFFER CHECK
         ===================================================== */
@@ -1856,7 +1775,6 @@
         }
 
 
-
         /* =====================================================
            TYPE CHECKS
         ===================================================== */
@@ -1886,7 +1804,6 @@
             );
 
         }
-
 
 
         /* =====================================================
@@ -1939,239 +1856,6 @@
         }
 
 
-
-        /* =====================================================
-           LOAD BOOKINGS
-        ===================================================== */
-
-        async function loadBookings() {
-
-            const tableBody =
-                document.getElementById(
-                    "bookingTableBody"
-                );
-
-
-            const loadingMessage =
-                document.getElementById(
-                    "loadingMessage"
-                );
-
-
-            const emptyMessage =
-                document.getElementById(
-                    "emptyMessage"
-                );
-
-
-            const errorBox =
-                document.getElementById(
-                    "bookingError"
-                );
-
-
-            loadingMessage.style.display =
-                "block";
-
-
-            loadingMessage.textContent =
-                "Loading bookings...";
-
-
-            emptyMessage.style.display =
-                "none";
-
-
-            errorBox.style.display =
-                "none";
-
-
-            tableBody.innerHTML =
-                "";
-
-
-            try {
-
-                const controller =
-                    new AbortController();
-
-
-                const timeout =
-                    setTimeout(
-                        function () {
-
-                            controller.abort();
-
-                        },
-                        30000
-                    );
-
-
-                const response =
-                    await fetch(
-                        API_URL +
-                        "?_=" +
-                        Date.now(),
-                        {
-
-                            method: "GET",
-
-                            credentials: "include",
-
-                            cache: "no-store",
-
-                            signal:
-                                controller.signal,
-
-                            headers: {
-
-                                "Accept":
-                                    "application/json"
-
-                            }
-
-                        }
-                    );
-
-
-                clearTimeout(timeout);
-
-
-                const responseText =
-                    await response.text();
-
-
-                console.log(
-                    "Bookings API:",
-                    responseText
-                );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Backend returned HTTP " +
-                        response.status
-                    );
-
-                }
-
-
-                let data;
-
-
-                try {
-
-                    data =
-                        JSON.parse(
-                            responseText
-                        );
-
-                }
-
-                catch (error) {
-
-                    throw new Error(
-                        "Backend did not return valid JSON."
-                    );
-
-                }
-
-
-                if (Array.isArray(data)) {
-
-                    bookingsData =
-                        data;
-
-                }
-
-                else if (
-                    data &&
-                    Array.isArray(data.data)
-                ) {
-
-                    bookingsData =
-                        data.data;
-
-                }
-
-                else {
-
-                    bookingsData = [];
-
-                }
-
-
-                /* NEWEST FIRST */
-
-                bookingsData.sort(
-                    function (a, b) {
-
-                        return (
-                            Number(b.id || 0) -
-                            Number(a.id || 0)
-                        );
-
-                    }
-                );
-
-
-                loadingMessage.style.display =
-                    "none";
-
-
-                displayBookings();
-
-                updateDashboardStats();
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "ERROR LOADING BOOKINGS:",
-                    error
-                );
-
-
-                bookingsData = [];
-
-
-                updateDashboardStats();
-
-
-                loadingMessage.style.display =
-                    "none";
-
-
-                errorBox.style.display =
-                    "block";
-
-
-                if (
-                    error.name ===
-                    "AbortError"
-                ) {
-
-                    errorBox.textContent =
-                        "⚠️ Backend is taking too long. Render may be waking up. Please click Refresh Bookings.";
-
-                }
-
-                else {
-
-                    errorBox.textContent =
-                        "⚠️ Unable to load bookings. Please check your backend and Render deployment.";
-
-                }
-
-            }
-
-        }
-
-
-
         /* =====================================================
            ESCAPE HTML
         ===================================================== */
@@ -2180,33 +1864,204 @@
 
             return String(value ?? "")
 
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
+                .replace(/&/g, "&amp;")
 
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
+                .replace(/</g, "&lt;")
 
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
+                .replace(/>/g, "&gt;")
 
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
+                .replace(/"/g, "&quot;")
 
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
+                .replace(/'/g, "&#039;");
 
         }
 
+
+        /* =====================================================
+           NUMBER / PRICE HELPERS
+        ===================================================== */
+
+        function getPaymentAmount(booking) {
+
+            if (!booking) {
+
+                return "";
+
+            }
+
+
+            const possibleAmounts = [
+
+                booking.paymentAmount,
+
+                booking.amount,
+
+                booking.price,
+
+                booking.servicePrice
+
+            ];
+
+
+            for (
+                const value of possibleAmounts
+            ) {
+
+                if (
+                    value !== undefined &&
+                    value !== null &&
+                    value !== "" &&
+                    !Number.isNaN(
+                        Number(
+                            String(value)
+                                .replace(/[₹,\s]/g, "")
+                        )
+                    )
+                ) {
+
+                    return Number(
+                        String(value)
+                            .replace(/[₹,\s]/g, "")
+                    );
+
+                }
+
+            }
+
+
+            return "";
+
+        }
+
+
+        function formatINR(value) {
+
+            if (
+                value === "" ||
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            const number =
+                Number(value);
+
+
+            if (
+                !Number.isFinite(number)
+            ) {
+
+                return "";
+
+            }
+
+
+            return new Intl.NumberFormat(
+                "en-IN",
+                {
+                    style: "currency",
+                    currency: "INR",
+                    maximumFractionDigits: 0
+                }
+            ).format(number);
+
+        }
+
+
+        /* =====================================================
+           PAYMENT METHOD
+        ===================================================== */
+
+        function getPaymentMethodText(
+            booking,
+            status
+        ) {
+
+            const method =
+                String(
+                    booking?.paymentMethod || ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if (
+                method === "GOOGLE_PAY" ||
+                method === "GOOGLEPAY" ||
+                method === "UPI" ||
+                method === "GOOGLE PAY"
+            ) {
+
+                return "📱 Google Pay / UPI";
+
+            }
+
+
+            if (
+                method === "CASH" ||
+                method === "PAY_AT_STUDIO" ||
+                method === "PAY AT STUDIO"
+            ) {
+
+                return "💵 Pay at Studio";
+
+            }
+
+
+            if (status === "PAID") {
+
+                return "📱 Google Pay / UPI";
+
+            }
+
+
+            if (status === "PENDING") {
+
+                return "💵 Pay at Studio";
+
+            }
+
+
+            return "—";
+
+        }
+
+
+        /* =====================================================
+           PAYMENT STATUS
+        ===================================================== */
+
+        function getPaymentStatus(booking) {
+
+            const status =
+                String(
+                    booking?.paymentStatus || ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if (status === "PAID") {
+
+                return "PAID";
+
+            }
+
+
+            if (status === "PENDING") {
+
+                return "PENDING";
+
+            }
+
+
+            return "";
+
+        }
 
 
         /* =====================================================
@@ -2242,58 +2097,40 @@
             }
 
 
-            /* =================================================
-               PAYMENT AMOUNT
-
-               Supports:
-               paymentAmount
-               price
-               amount
-            ================================================= */
-
             const amount =
-                booking.paymentAmount ??
-                booking.price ??
-                booking.amount ??
-                "";
+                getPaymentAmount(booking);
 
 
             const formattedAmount =
-                amount !== ""
-                    ? Number(amount).toLocaleString("en-IN")
-                    : "—";
+                formatINR(amount);
+
+
+            const amountHTML =
+                formattedAmount
+                    ? `
+                        <span class="payment-amount">
+                            ${escapeHTML(
+                                formattedAmount
+                            )}
+                        </span>
+                    `
+                    : `
+                        <span class="payment-amount">
+                            —
+                        </span>
+                    `;
 
 
             const status =
-                String(
-                    booking.paymentStatus || ""
-                )
-                .trim()
-                .toUpperCase();
+                getPaymentStatus(booking);
 
 
-            const method =
-                String(
-                    booking.paymentMethod || ""
-                )
-                .trim()
-                .toUpperCase();
-
-
-            const amountHTML = `
-
-                <span class="payment-amount">
-
-                    ₹${escapeHTML(
-                        formattedAmount
-                    )}
-
-                </span>
-
-            `;
-
-
-            /* PAID */
+            /*
+             * IMPORTANT:
+             *
+             * We do NOT invent PAID.
+             * PAID must come from backend/local payment data.
+             */
 
             if (status === "PAID") {
 
@@ -2303,21 +2140,18 @@
 
                         ${amountHTML}
 
-
                         <span class="paid-badge">
                             ✅ PAID
                         </span>
 
-
                         <span class="payment-method">
 
-                            ${
-                                method === "GOOGLE_PAY"
-                                    ? "Google Pay / UPI"
-                                    : escapeHTML(
-                                        method || "Paid"
-                                    )
-                            }
+                            ${escapeHTML(
+                                getPaymentMethodText(
+                                    booking,
+                                    "PAID"
+                                )
+                            )}
 
                         </span>
 
@@ -2328,27 +2162,24 @@
             }
 
 
-            /* PENDING */
-
             return `
 
                 <div class="payment-detail">
 
                     ${amountHTML}
 
-
                     <span class="pending-badge">
                         ⏳ PENDING
                     </span>
 
-
                     <span class="payment-method">
 
-                        ${
-                            method === "GOOGLE_PAY"
-                                ? "Google Pay / UPI"
-                                : "💵 Pay at Studio"
-                        }
+                        ${escapeHTML(
+                            getPaymentMethodText(
+                                booking,
+                                "PENDING"
+                            )
+                        )}
 
                     </span>
 
@@ -2357,7 +2188,6 @@
             `;
 
         }
-
 
 
         /* =====================================================
@@ -2392,11 +2222,8 @@
 
                         </span>
 
-
                         <span class="booking-detail-sub">
-
                             Offer Appointment
-
                         </span>
 
                     </div>
@@ -2428,11 +2255,8 @@
 
                         </span>
 
-
                         <span class="booking-detail-sub">
-
                             Virtual Nail Shape
-
                         </span>
 
                     </div>
@@ -2461,11 +2285,8 @@
 
                     </span>
 
-
                     <span class="booking-detail-sub">
-
                         Service Appointment
-
                     </span>
 
                 </div>
@@ -2473,7 +2294,6 @@
             `;
 
         }
-
 
 
         /* =====================================================
@@ -2513,15 +2333,12 @@
                     : "all";
 
 
-            tableBody.innerHTML =
-                "";
+            tableBody.innerHTML = "";
 
 
             let filteredBookings =
                 bookingsData.slice();
 
-
-            /* FILTER */
 
             if (filter === "offer") {
 
@@ -2553,8 +2370,6 @@
             }
 
 
-            /* EMPTY */
-
             if (
                 filteredBookings.length === 0
             ) {
@@ -2571,15 +2386,11 @@
                 "none";
 
 
-            /* CREATE ROWS */
-
             filteredBookings.forEach(
                 function (booking) {
 
                     const bookingType =
-                        getBookingType(
-                            booking
-                        );
+                        getBookingType(booking);
 
 
                     let bookingTypeText =
@@ -2639,13 +2450,10 @@
 
 
                     const row =
-                        document.createElement(
-                            "tr"
-                        );
+                        document.createElement("tr");
 
 
                     row.innerHTML = `
-
 
                         <!-- CUSTOMER -->
 
@@ -2653,43 +2461,28 @@
 
                             <div class="customer-detail">
 
-                                <span
-                                    class="customer-name">
-
+                                <span class="customer-name">
                                     ${escapeHTML(
-                                        booking.name ||
-                                        "—"
+                                        booking.name || "—"
                                     )}
-
                                 </span>
 
-
-                                <span
-                                    class="customer-email">
-
+                                <span class="customer-email">
                                     ${escapeHTML(
-                                        booking.email ||
-                                        "—"
+                                        booking.email || "—"
                                     )}
-
                                 </span>
 
-
-                                <span
-                                    class="customer-phone">
-
+                                <span class="customer-phone">
                                     📞
                                     ${escapeHTML(
-                                        booking.phone ||
-                                        "—"
+                                        booking.phone || "—"
                                     )}
-
                                 </span>
 
                             </div>
 
                         </td>
-
 
 
                         <!-- BOOKING -->
@@ -2700,9 +2493,7 @@
                                 booking
                             )}
 
-
-                            <span
-                                class="${badgeClass}">
+                            <span class="${badgeClass}">
 
                                 ${bookingIcon}
                                 ${bookingTypeText}
@@ -2712,17 +2503,13 @@
                         </td>
 
 
-
                         <!-- DATE / TIME -->
 
                         <td>
 
-                            <div
-                                class="date-time-detail">
+                            <div class="date-time-detail">
 
-
-                                <span
-                                    class="booking-date">
+                                <span class="booking-date">
 
                                     📅
                                     ${escapeHTML(
@@ -2731,9 +2518,7 @@
 
                                 </span>
 
-
-                                <span
-                                    class="booking-time">
+                                <span class="booking-time">
 
                                     🕐
                                     ${escapeHTML(
@@ -2742,11 +2527,9 @@
 
                                 </span>
 
-
                             </div>
 
                         </td>
-
 
 
                         <!-- PAYMENT -->
@@ -2760,14 +2543,11 @@
                         </td>
 
 
-
                         <!-- ACTION -->
 
                         <td>
 
-                            <div
-                                class="action-buttons">
-
+                            <div class="action-buttons">
 
                                 <button
                                     type="button"
@@ -2792,24 +2572,19 @@
 
                                 </button>
 
-
                             </div>
 
                         </td>
 
-
                     `;
 
 
-                    tableBody.appendChild(
-                        row
-                    );
+                    tableBody.appendChild(row);
 
                 }
             );
 
         }
-
 
 
         /* =====================================================
@@ -2836,7 +2611,6 @@
         }
 
 
-
         /* =====================================================
            REFRESH
         ===================================================== */
@@ -2853,13 +2627,10 @@
                 "click",
                 async function () {
 
-                    const button =
-                        this;
+                    const button = this;
 
 
-                    button.disabled =
-                        true;
-
+                    button.disabled = true;
 
                     button.textContent =
                         "⏳ Loading...";
@@ -2868,9 +2639,7 @@
                     await loadBookings();
 
 
-                    button.disabled =
-                        false;
-
+                    button.disabled = false;
 
                     button.textContent =
                         "🔄 Refresh Bookings";
@@ -2879,7 +2648,6 @@
             );
 
         }
-
 
 
         /* =====================================================
@@ -2912,8 +2680,7 @@
             }
 
 
-            selectedBookingId =
-                id;
+            selectedBookingId = id;
 
 
             document.getElementById(
@@ -2951,11 +2718,7 @@
 
 
             const paymentStatus =
-                String(
-                    booking.paymentStatus ||
-                    "PENDING"
-                )
-                .toUpperCase();
+                getPaymentStatus(booking);
 
 
             document.getElementById(
@@ -2965,8 +2728,6 @@
                     ? "PAID"
                     : "PENDING";
 
-
-            /* VIRTUAL = NO PAYMENT */
 
             const paymentGroup =
                 document.getElementById(
@@ -2979,9 +2740,7 @@
                 paymentGroup.style.display =
                     getBookingType(booking) ===
                     "VIRTUAL"
-
                         ? "none"
-
                         : "block";
 
             }
@@ -3001,7 +2760,6 @@
             }
 
         }
-
 
 
         /* =====================================================
@@ -3039,11 +2797,6 @@
         }
 
 
-
-        /* =====================================================
-           CLOSE MODAL OUTSIDE
-        ===================================================== */
-
         window.addEventListener(
             "click",
             function (event) {
@@ -3066,7 +2819,6 @@
 
             }
         );
-
 
 
         /* =====================================================
@@ -3134,19 +2886,15 @@
 
 
                     const selectedDate =
-                        document
-                            .getElementById(
-                                "editDate"
-                            )
-                            .value;
+                        document.getElementById(
+                            "editDate"
+                        ).value;
 
 
                     const selectedTime =
-                        document
-                            .getElementById(
-                                "editTime"
-                            )
-                            .value;
+                        document.getElementById(
+                            "editTime"
+                        ).value;
 
 
                     /* =========================================
@@ -3156,30 +2904,21 @@
                     const updatedBooking = {
 
                         name:
-                            document
-                                .getElementById(
-                                    "editName"
-                                )
-                                .value
-                                .trim(),
+                            document.getElementById(
+                                "editName"
+                            ).value.trim(),
 
 
                         email:
-                            document
-                                .getElementById(
-                                    "editEmail"
-                                )
-                                .value
-                                .trim(),
+                            document.getElementById(
+                                "editEmail"
+                            ).value.trim(),
 
 
                         phone:
-                            document
-                                .getElementById(
-                                    "editPhone"
-                                )
-                                .value
-                                .trim(),
+                            document.getElementById(
+                                "editPhone"
+                            ).value.trim(),
 
 
                         service:
@@ -3206,13 +2945,18 @@
 
 
                         bookingType:
-                            bookingType
+                            bookingType,
+
+
+                        notes:
+                            originalBooking.notes ||
+                            ""
 
                     };
 
 
                     /* =========================================
-                       PRESERVE PAYMENT INFORMATION
+                       PRESERVE PAYMENT
                     ========================================= */
 
                     if (
@@ -3220,33 +2964,37 @@
                         "VIRTUAL"
                     ) {
 
-                        updatedBooking.paymentMethod =
-                            originalBooking.paymentMethod ||
-                            "CASH";
+                        const selectedStatus =
+                            document.getElementById(
+                                "editPaymentStatus"
+                            ).value;
 
 
                         updatedBooking.paymentStatus =
-                            document
-                                .getElementById(
-                                    "editPaymentStatus"
-                                )
-                                .value;
+                            selectedStatus;
 
 
-                        /*
-                         * VERY IMPORTANT:
-                         * Preserve existing amount.
-                         */
+                        updatedBooking.paymentMethod =
+                            originalBooking.paymentMethod ||
+                            (
+                                selectedStatus === "PAID"
+                                    ? "GOOGLE_PAY"
+                                    : "CASH"
+                            );
+
+
+                        const amount =
+                            getPaymentAmount(
+                                originalBooking
+                            );
+
 
                         if (
-                            originalBooking.paymentAmount !==
-                            undefined &&
-                            originalBooking.paymentAmount !==
-                            null
+                            amount !== ""
                         ) {
 
                             updatedBooking.paymentAmount =
-                                originalBooking.paymentAmount;
+                                amount;
 
                         }
 
@@ -3260,6 +3008,9 @@
 
                         updatedBooking.paymentStatus =
                             "";
+
+                        updatedBooking.paymentAmount =
+                            0;
 
                     }
 
@@ -3302,8 +3053,7 @@
                                 selectedBookingId,
                                 {
 
-                                    method:
-                                        "PUT",
+                                    method: "PUT",
 
                                     credentials:
                                         "include",
@@ -3366,8 +3116,7 @@
                         }
 
 
-                        selectedBookingId =
-                            null;
+                        selectedBookingId = null;
 
 
                         await loadBookings();
@@ -3411,7 +3160,6 @@
         }
 
 
-
         /* =====================================================
            DELETE BOOKING
         ===================================================== */
@@ -3440,8 +3188,7 @@
                         id,
                         {
 
-                            method:
-                                "DELETE",
+                            method: "DELETE",
 
                             credentials:
                                 "include",
@@ -3507,7 +3254,6 @@
         }
 
 
-
         /* =====================================================
            LOGOUT
         ===================================================== */
@@ -3531,8 +3277,7 @@
                             "/api/admin/logout",
                             {
 
-                                method:
-                                    "POST",
+                                method: "POST",
 
                                 credentials:
                                     "include"
@@ -3556,31 +3301,25 @@
                         "loggedIn"
                     );
 
-
                     localStorage.removeItem(
                         "userToken"
                     );
-
 
                     localStorage.removeItem(
                         "adminToken"
                     );
 
-
                     localStorage.removeItem(
                         "virtualBooking"
                     );
-
 
                     localStorage.removeItem(
                         "selectedService"
                     );
 
-
                     localStorage.removeItem(
                         "adminLoggedIn"
                     );
-
 
                     localStorage.removeItem(
                         "adminEmail"
@@ -3594,7 +3333,6 @@
             );
 
         }
-
 
 
         /* =====================================================
@@ -3635,9 +3373,7 @@
             }
         );
 
-
     </script>
-
 
 </body>
 
