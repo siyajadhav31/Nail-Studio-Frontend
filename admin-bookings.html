@@ -10,11 +10,9 @@
 
     <title>💅 Admin Bookings | Nail Studio</title>
 
-    <!-- MAIN CSS -->
     <link rel="stylesheet"
           href="css/style.css">
 
-    <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
@@ -491,7 +489,7 @@
 
 
         /* =====================================================
-           CUSTOMER DETAILS
+           CUSTOMER
         ===================================================== */
 
         .customer-detail {
@@ -537,7 +535,7 @@
 
 
         /* =====================================================
-           BOOKING DETAILS
+           BOOKING
         ===================================================== */
 
         .booking-detail {
@@ -599,7 +597,7 @@
 
 
         /* =====================================================
-           BOOKING TYPE BADGES
+           BADGES
         ===================================================== */
 
         .service-badge,
@@ -663,7 +661,7 @@
 
 
         /* =====================================================
-           DATE & TIME
+           DATE TIME
         ===================================================== */
 
         .date-time-detail {
@@ -799,7 +797,7 @@
 
 
         /* =====================================================
-           ACTION BUTTONS
+           ACTION
         ===================================================== */
 
         .action-buttons {
@@ -876,7 +874,7 @@
 
 
         /* =====================================================
-           LOADING / EMPTY
+           LOADING EMPTY
         ===================================================== */
 
         .loading {
@@ -1200,8 +1198,6 @@
         <div class="admin-container">
 
 
-            <!-- TITLE -->
-
             <div class="admin-title">
 
                 <span>
@@ -1385,7 +1381,9 @@
                     </div>
 
 
-                    <table id="bookingTable">
+                    <table
+                        id="bookingTable"
+                        style="display:none;">
 
                         <thead>
 
@@ -1469,8 +1467,6 @@
             <form id="editBookingForm">
 
 
-                <!-- NAME -->
-
                 <div class="edit-form-group">
 
                     <label for="editName">
@@ -1485,8 +1481,6 @@
                 </div>
 
 
-                <!-- EMAIL -->
-
                 <div class="edit-form-group">
 
                     <label for="editEmail">
@@ -1500,8 +1494,6 @@
 
                 </div>
 
-
-                <!-- PHONE -->
 
                 <div class="edit-form-group">
 
@@ -1519,8 +1511,6 @@
                 </div>
 
 
-                <!-- DATE -->
-
                 <div class="edit-form-group">
 
                     <label for="editDate">
@@ -1534,8 +1524,6 @@
 
                 </div>
 
-
-                <!-- TIME -->
 
                 <div class="edit-form-group">
 
@@ -1569,8 +1557,6 @@
                 </div>
 
 
-                <!-- PAYMENT STATUS -->
-
                 <div
                     class="edit-form-group"
                     id="paymentEditGroup">
@@ -1593,8 +1579,6 @@
 
                 </div>
 
-
-                <!-- UPDATE -->
 
                 <button
                     type="submit"
@@ -1630,14 +1614,12 @@
 
     <script>
 
-
         /* =====================================================
            API CONFIGURATION
         ===================================================== */
 
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
-
 
         const API_URL =
             API_BASE_URL + "/api/bookings";
@@ -1673,7 +1655,6 @@
 
             window.location.href =
                 "admin-login.html";
-
 
             return false;
 
@@ -1878,7 +1859,7 @@
 
 
         /* =====================================================
-           NUMBER / PRICE HELPERS
+           PAYMENT AMOUNT
         ===================================================== */
 
         function getPaymentAmount(booking) {
@@ -1933,6 +1914,10 @@
 
         }
 
+
+        /* =====================================================
+           FORMAT INR
+        ===================================================== */
 
         function formatINR(value) {
 
@@ -2097,6 +2082,33 @@
             }
 
 
+            /* OFFER */
+
+            if (type === "OFFER") {
+
+                return `
+
+                    <div class="payment-detail">
+
+                        <span class="payment-amount">
+                            Free / Offer
+                        </span>
+
+                        <span class="pending-badge">
+                            ⏳ PENDING
+                        </span>
+
+                        <span class="payment-method">
+                            💵 Pay at Studio
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+
             const amount =
                 getPaymentAmount(booking);
 
@@ -2124,13 +2136,6 @@
             const status =
                 getPaymentStatus(booking);
 
-
-            /*
-             * IMPORTANT:
-             *
-             * We do NOT invent PAID.
-             * PAID must come from backend/local payment data.
-             */
 
             if (status === "PAID") {
 
@@ -2200,8 +2205,6 @@
                 getBookingType(booking);
 
 
-            /* OFFER */
-
             if (type === "OFFER") {
 
                 const offer =
@@ -2232,8 +2235,6 @@
 
             }
 
-
-            /* VIRTUAL */
 
             if (type === "VIRTUAL") {
 
@@ -2266,8 +2267,6 @@
             }
 
 
-            /* SERVICE */
-
             const service =
                 booking.service ||
                 "Service";
@@ -2292,6 +2291,258 @@
                 </div>
 
             `;
+
+        }
+
+
+        /* =====================================================
+           LOAD BOOKINGS
+        ===================================================== */
+
+        async function loadBookings() {
+
+            const loadingMessage =
+                document.getElementById(
+                    "loadingMessage"
+                );
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+            const bookingTable =
+                document.getElementById(
+                    "bookingTable"
+                );
+
+            const bookingError =
+                document.getElementById(
+                    "bookingError"
+                );
+
+
+            if (loadingMessage) {
+
+                loadingMessage.style.display =
+                    "block";
+
+                loadingMessage.textContent =
+                    "Loading bookings...";
+
+            }
+
+
+            if (emptyMessage) {
+
+                emptyMessage.style.display =
+                    "none";
+
+            }
+
+
+            if (bookingError) {
+
+                bookingError.style.display =
+                    "none";
+
+                bookingError.textContent =
+                    "";
+
+            }
+
+
+            try {
+
+                console.log(
+                    "📡 Loading bookings:",
+                    API_URL
+                );
+
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "?t=" +
+                        Date.now(),
+                        {
+
+                            method: "GET",
+
+                            credentials:
+                                "include",
+
+                            headers: {
+
+                                "Accept":
+                                    "application/json"
+
+                            },
+
+                            cache:
+                                "no-store"
+
+                        }
+                    );
+
+
+                const responseText =
+                    await response.text();
+
+
+                console.log(
+                    "Bookings response:",
+                    responseText
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load bookings. Status: " +
+                        response.status
+                    );
+
+                }
+
+
+                let bookings = [];
+
+
+                try {
+
+                    bookings =
+                        JSON.parse(
+                            responseText
+                        );
+
+                }
+
+                catch (parseError) {
+
+                    throw new Error(
+                        "Backend returned invalid booking data."
+                    );
+
+                }
+
+
+                if (!Array.isArray(bookings)) {
+
+                    if (
+                        bookings &&
+                        Array.isArray(
+                            bookings.content
+                        )
+                    ) {
+
+                        bookings =
+                            bookings.content;
+
+                    }
+
+                    else {
+
+                        bookings = [];
+
+                    }
+
+                }
+
+
+                bookingsData =
+                    bookings;
+
+
+                console.log(
+                    "✅ Bookings loaded:",
+                    bookingsData
+                );
+
+
+                updateDashboardStats();
+
+                displayBookings();
+
+
+                if (loadingMessage) {
+
+                    loadingMessage.style.display =
+                        "none";
+
+                }
+
+
+                if (bookingTable) {
+
+                    bookingTable.style.display =
+                        "table";
+
+                }
+
+
+                if (
+                    bookingsData.length === 0 &&
+                    emptyMessage
+                ) {
+
+                    emptyMessage.style.display =
+                        "block";
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "❌ LOAD BOOKINGS ERROR:",
+                    error
+                );
+
+
+                bookingsData = [];
+
+
+                updateDashboardStats();
+
+
+                if (loadingMessage) {
+
+                    loadingMessage.style.display =
+                        "none";
+
+                }
+
+
+                if (bookingTable) {
+
+                    bookingTable.style.display =
+                        "none";
+
+                }
+
+
+                if (emptyMessage) {
+
+                    emptyMessage.style.display =
+                        "none";
+
+                }
+
+
+                if (bookingError) {
+
+                    bookingError.style.display =
+                        "block";
+
+                    bookingError.textContent =
+                        "❌ Unable to load bookings. " +
+                        error.message;
+
+                }
+
+            }
 
         }
 
@@ -2349,7 +2600,6 @@
 
             }
 
-
             else if (filter === "service") {
 
                 filteredBookings =
@@ -2358,7 +2608,6 @@
                     );
 
             }
-
 
             else if (filter === "virtual") {
 
@@ -2374,32 +2623,40 @@
                 filteredBookings.length === 0
             ) {
 
-                emptyMessage.style.display =
-                    "block";
+                if (emptyMessage) {
+
+                    emptyMessage.style.display =
+                        "block";
+
+                }
 
                 return;
 
             }
 
 
-            emptyMessage.style.display =
-                "none";
+            if (emptyMessage) {
+
+                emptyMessage.style.display =
+                    "none";
+
+            }
 
 
             filteredBookings.forEach(
                 function (booking) {
 
                     const bookingType =
-                        getBookingType(booking);
+                        getBookingType(
+                            booking
+                        );
 
 
                     let bookingTypeText =
                         "Service Booking";
 
-
                     let badgeClass =
                         "service-badge";
-
 
                     let bookingIcon =
                         "💅";
@@ -2450,34 +2707,43 @@
 
 
                     const row =
-                        document.createElement("tr");
+                        document.createElement(
+                            "tr"
+                        );
 
 
                     row.innerHTML = `
-
-                        <!-- CUSTOMER -->
 
                         <td>
 
                             <div class="customer-detail">
 
                                 <span class="customer-name">
+
                                     ${escapeHTML(
-                                        booking.name || "—"
+                                        booking.name ||
+                                        "—"
                                     )}
+
                                 </span>
 
                                 <span class="customer-email">
+
                                     ${escapeHTML(
-                                        booking.email || "—"
+                                        booking.email ||
+                                        "—"
                                     )}
+
                                 </span>
 
                                 <span class="customer-phone">
+
                                     📞
                                     ${escapeHTML(
-                                        booking.phone || "—"
+                                        booking.phone ||
+                                        "—"
                                     )}
+
                                 </span>
 
                             </div>
@@ -2485,15 +2751,14 @@
                         </td>
 
 
-                        <!-- BOOKING -->
-
                         <td>
 
                             ${getBookingDetailHTML(
                                 booking
                             )}
 
-                            <span class="${badgeClass}">
+                            <span
+                                class="${badgeClass}">
 
                                 ${bookingIcon}
                                 ${bookingTypeText}
@@ -2502,8 +2767,6 @@
 
                         </td>
 
-
-                        <!-- DATE / TIME -->
 
                         <td>
 
@@ -2532,8 +2795,6 @@
                         </td>
 
 
-                        <!-- PAYMENT -->
-
                         <td>
 
                             ${getPaymentHTML(
@@ -2542,8 +2803,6 @@
 
                         </td>
 
-
-                        <!-- ACTION -->
 
                         <td>
 
@@ -2579,7 +2838,9 @@
                     `;
 
 
-                    tableBody.appendChild(row);
+                    tableBody.appendChild(
+                        row
+                    );
 
                 }
             );
@@ -2588,7 +2849,7 @@
 
 
         /* =====================================================
-           FILTER EVENT
+           FILTER
         ===================================================== */
 
         const bookingFilter =
@@ -2627,22 +2888,32 @@
                 "click",
                 async function () {
 
-                    const button = this;
+                    const button =
+                        this;
 
 
-                    button.disabled = true;
+                    button.disabled =
+                        true;
 
                     button.textContent =
                         "⏳ Loading...";
 
 
-                    await loadBookings();
+                    try {
 
+                        await loadBookings();
 
-                    button.disabled = false;
+                    }
 
-                    button.textContent =
-                        "🔄 Refresh Bookings";
+                    finally {
+
+                        button.disabled =
+                            false;
+
+                        button.textContent =
+                            "🔄 Refresh Bookings";
+
+                    }
 
                 }
             );
@@ -2680,7 +2951,8 @@
             }
 
 
-            selectedBookingId = id;
+            selectedBookingId =
+                id;
 
 
             document.getElementById(
@@ -2718,7 +2990,9 @@
 
 
             const paymentStatus =
-                getPaymentStatus(booking);
+                getPaymentStatus(
+                    booking
+                );
 
 
             document.getElementById(
@@ -2738,8 +3012,9 @@
             if (paymentGroup) {
 
                 paymentGroup.style.display =
-                    getBookingType(booking) ===
-                    "VIRTUAL"
+                    getBookingType(
+                        booking
+                    ) === "VIRTUAL"
                         ? "none"
                         : "block";
 
@@ -2897,10 +3172,6 @@
                         ).value;
 
 
-                    /* =========================================
-                       UPDATED BOOKING
-                    ========================================= */
-
                     const updatedBooking = {
 
                         name:
@@ -2936,6 +3207,11 @@
                             "",
 
 
+                        shade:
+                            originalBooking.shade ||
+                            "",
+
+
                         bookingDate:
                             selectedDate,
 
@@ -2955,9 +3231,7 @@
                     };
 
 
-                    /* =========================================
-                       PRESERVE PAYMENT
-                    ========================================= */
+                    /* PAYMENT */
 
                     if (
                         bookingType !==
@@ -3000,14 +3274,13 @@
 
                     }
 
-
                     else {
 
                         updatedBooking.paymentMethod =
                             "";
 
                         updatedBooking.paymentStatus =
-                            "";
+                            "N/A";
 
                         updatedBooking.paymentAmount =
                             0;
@@ -3091,7 +3364,9 @@
 
                             throw new Error(
                                 "Update failed. Status: " +
-                                response.status
+                                response.status +
+                                " | " +
+                                responseText
                             );
 
                         }
@@ -3116,7 +3391,8 @@
                         }
 
 
-                        selectedBookingId = null;
+                        selectedBookingId =
+                            null;
 
 
                         await loadBookings();
