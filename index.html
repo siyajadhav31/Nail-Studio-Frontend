@@ -4,12 +4,15 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Nail Studio | Luxury Nail Experience</title>
 
+    <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
@@ -323,7 +326,7 @@
 
 
         /* ==========================================
-           NEW VIRTUAL PREVIEW MODAL
+           VIRTUAL PREVIEW MODAL
         ========================================== */
 
         .preview-modal {
@@ -537,14 +540,16 @@
 
 
         /* ==========================================
-           HAND-LIKE NAIL ARRANGEMENT
+           VIRTUAL NAIL
         ========================================== */
 
         .virtual-nail {
             position: relative;
             width: 48px;
             height: 155px;
+
             background: #c89b3c;
+
             border: 2px solid rgba(80, 50, 30, 0.20);
 
             box-shadow:
@@ -553,12 +558,12 @@
             overflow: hidden;
 
             transition:
-                width 0.4s ease,
-                height 0.4s ease,
-                border-radius 0.4s ease,
-                clip-path 0.4s ease,
-                background 0.3s ease,
-                transform 0.3s ease;
+                width 0.45s ease,
+                height 0.45s ease,
+                border-radius 0.45s ease,
+                clip-path 0.45s ease,
+                transform 0.45s ease,
+                background 0.3s ease;
         }
 
         .nail-1,
@@ -604,292 +609,233 @@
         }
 
 
-       /* ==========================================
-   VIRTUAL NAIL SHAPES
-=========================================== */
-
-
-/* ==========================================
-   ALMOND
-=========================================== */
-
-.shape-almond .virtual-nail {
-    width: 48px;
-    height: 155px;
-
-    border-radius:
-        50% 50% 18% 18% /
-        30% 30% 8% 8%;
-
-    clip-path: none;
-}
-
-
-/* ==========================================
-   SQUARE
-=========================================== */
-
-.shape-square .virtual-nail {
-    width: 52px;
-    height: 150px;
-
-    border-radius: 8px 8px 3px 3px;
-
-    clip-path: none;
-}
-
-
-/* ==========================================
-   COFFIN
-=========================================== */
-
-.shape-coffin .virtual-nail {
-    width: 56px;
-    height: 155px;
-
-    clip-path: polygon(
-        18% 0,
-        82% 0,
-        100% 100%,
-        0 100%
-    );
-
-    border-radius: 8px 8px 3px 3px;
-}
-
-
-/* ==========================================
-   OVAL
-=========================================== */
-
-.shape-oval .virtual-nail {
-    width: 48px;
-    height: 150px;
-
-    border-radius:
-        50% 50% 35% 35% /
-        28% 28% 18% 18%;
-
-    clip-path: none;
-}
-
-
-/* ==========================================
-   STILETTO
-=========================================== */
-
-.shape-stiletto .virtual-nail {
-    width: 52px;
-    height: 170px;
-
-    clip-path: polygon(
-        50% 0,
-        96% 100%,
-        4% 100%
-    );
-
-    border-radius: 30px 30px 3px 3px;
-}
-
-
-/* ==========================================
-   SQUOVAL
-=========================================== */
-
-.shape-squoval .virtual-nail {
-    width: 52px;
-    height: 150px;
-
-    border-radius:
-        18px 18px 7px 7px;
-
-    clip-path: none;
-}
-
-
-/* ==========================================
-   BALLERINA
-=========================================== */
-
-.shape-ballerina .virtual-nail {
-    width: 56px;
-    height: 158px;
-
-    clip-path: polygon(
-        18% 0,
-        82% 0,
-        100% 100%,
-        0 100%
-    );
-
-    border-radius: 18px 18px 4px 4px;
-}
-
-
-/* ==========================================
-   LIPSTICK
-=========================================== */
-
-.shape-lipstick .virtual-nail {
-    width: 52px;
-    height: 155px;
-
-    clip-path: polygon(
-        20% 0,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
-
-    border-radius: 18px 4px 4px 4px;
-}
-
-
-/* ==========================================
-   FLARE
-=========================================== */
-
-.shape-flare .virtual-nail {
-    width: 62px;
-    height: 155px;
-
-    clip-path: polygon(
-        35% 0,
-        65% 0,
-        100% 100%,
-        0 100%
-    );
-
-    border-radius: 12px 12px 3px 3px;
-}
-
-
-/* ==========================================
-   EDGE
-=========================================== */
-
-.shape-edge .virtual-nail {
-    width: 54px;
-    height: 160px;
-
-    clip-path: polygon(
-        50% 0,
-        88% 12%,
-        100% 100%,
-        0 100%,
-        12% 12%
-    );
-
-    border-radius: 12px 12px 3px 3px;
-}
-
-
-/* ==========================================
-   SMOOTH SHAPE TRANSITION
-=========================================== */
-
-.virtual-nail {
-    transition:
-        width 0.45s ease,
-        height 0.45s ease,
-        border-radius 0.45s ease,
-        clip-path 0.45s ease,
-        transform 0.45s ease;
-}
-
-
-/* ==========================================
-   SHAPE INFO BOX
-=========================================== */
-
-.shape-info-box {
-    margin-top: 12px;
-    padding: 16px;
-
-    background: rgba(200, 155, 60, 0.08);
-
-    border: 1px solid rgba(200, 155, 60, 0.25);
-
-    border-radius: 14px;
-}
-
-
-.shape-info-box h4 {
-    margin: 0 0 7px;
-
-    color: #b8860b;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 20px;
-}
-
-
-.shape-info-box p {
-    margin: 0;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-    color: #49393e;
-}
-
-
-/* ==========================================
-   PREVIEW HINT
-=========================================== */
-
-.preview-hint {
-    margin-top: 18px;
-
-    text-align: center;
-
-    font-size: 12px;
-
-    color: #8b7355;
-
-    font-style: italic;
-}
         /* ==========================================
-           SHADE OPTIONS
+           ALMOND
         ========================================== */
 
-        .shade-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
+        .shape-almond .virtual-nail {
+            width: 48px;
+            height: 155px;
+
+            border-radius:
+                50% 50% 18% 18% /
+                30% 30% 8% 8%;
+
+            clip-path: none;
         }
 
-        .shade-btn {
-            width: 31px;
-            height: 31px;
-            border-radius: 50%;
-            border: 3px solid white;
-            outline: 1px solid #ddd;
-            cursor: pointer;
-            transition: 0.25s ease;
+
+        /* ==========================================
+           SQUARE
+        ========================================== */
+
+        .shape-square .virtual-nail {
+            width: 52px;
+            height: 150px;
+
+            border-radius: 8px 8px 3px 3px;
+
+            clip-path: none;
         }
 
-        .shade-btn:hover {
-            transform: scale(1.12);
+
+        /* ==========================================
+           COFFIN
+        ========================================== */
+
+        .shape-coffin .virtual-nail {
+            width: 56px;
+            height: 155px;
+
+            clip-path: polygon(
+                18% 0,
+                82% 0,
+                100% 100%,
+                0 100%
+            );
+
+            border-radius: 8px 8px 3px 3px;
         }
 
-        .shade-btn.active {
-            outline: 2px solid #b8860b;
-            transform: scale(1.12);
+
+        /* ==========================================
+           OVAL
+        ========================================== */
+
+        .shape-oval .virtual-nail {
+            width: 48px;
+            height: 150px;
+
+            border-radius:
+                50% 50% 35% 35% /
+                28% 28% 18% 18%;
+
+            clip-path: none;
         }
 
-        .selected-shade {
-            font-size: 11px;
-            color: #777;
-            margin: 10px 0 0;
+
+        /* ==========================================
+           STILETTO
+        ========================================== */
+
+        .shape-stiletto .virtual-nail {
+            width: 52px;
+            height: 170px;
+
+            clip-path: polygon(
+                50% 0,
+                96% 100%,
+                4% 100%
+            );
+
+            border-radius: 30px 30px 3px 3px;
         }
 
-        .selected-shade strong {
-            color: #a4771c;
+
+        /* ==========================================
+           SQUOVAL
+        ========================================== */
+
+        .shape-squoval .virtual-nail {
+            width: 52px;
+            height: 150px;
+
+            border-radius:
+                18px 18px 7px 7px;
+
+            clip-path: none;
+        }
+
+
+        /* ==========================================
+           BALLERINA
+        ========================================== */
+
+        .shape-ballerina .virtual-nail {
+            width: 56px;
+            height: 158px;
+
+            clip-path: polygon(
+                18% 0,
+                82% 0,
+                100% 100%,
+                0 100%
+            );
+
+            border-radius: 18px 18px 4px 4px;
+        }
+
+
+        /* ==========================================
+           LIPSTICK
+        ========================================== */
+
+        .shape-lipstick .virtual-nail {
+            width: 52px;
+            height: 155px;
+
+            clip-path: polygon(
+                20% 0,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
+
+            border-radius: 18px 4px 4px 4px;
+        }
+
+
+        /* ==========================================
+           FLARE
+        ========================================== */
+
+        .shape-flare .virtual-nail {
+            width: 62px;
+            height: 155px;
+
+            clip-path: polygon(
+                35% 0,
+                65% 0,
+                100% 100%,
+                0 100%
+            );
+
+            border-radius: 12px 12px 3px 3px;
+        }
+
+
+        /* ==========================================
+           EDGE
+        ========================================== */
+
+        .shape-edge .virtual-nail {
+            width: 54px;
+            height: 160px;
+
+            clip-path: polygon(
+                50% 0,
+                88% 12%,
+                100% 100%,
+                0 100%,
+                12% 12%
+            );
+
+            border-radius: 12px 12px 3px 3px;
+        }
+
+
+        /* ==========================================
+           SHAPE INFO BOX
+        ========================================== */
+
+        .shape-info-box {
+            margin-top: 12px;
+            padding: 16px;
+
+            background: rgba(200, 155, 60, 0.08);
+
+            border: 1px solid rgba(200, 155, 60, 0.25);
+
+            border-radius: 14px;
+        }
+
+        .shape-info-box h4 {
+            margin: 0 0 7px;
+
+            color: #b8860b;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 20px;
+        }
+
+        .shape-info-box p {
+            margin: 0;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            color: #49393e;
+        }
+
+
+        /* ==========================================
+           PREVIEW HINT
+        ========================================== */
+
+        .preview-hint {
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            color: #8b7355;
+
+            font-style: italic;
         }
 
 
@@ -1170,6 +1116,7 @@
             .home-why-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
         }
 
 
@@ -1241,9 +1188,8 @@
 
             <div class="logo">
                 💅 Nail Studio
-            </div>  
+            </div>
 
-            
 
             <ul class="nav-links">
 
@@ -1280,6 +1226,7 @@
                 </li>
 
             </ul>
+
 
             <div class="nav-buttons">
 
@@ -1325,6 +1272,7 @@
                 classics to glamorous nail art, your
                 perfect look starts here.
             </p>
+
 
             <div class="hero-buttons">
 
@@ -1378,6 +1326,7 @@
 
 
         <div class="home-service-grid">
+
 
             <div class="home-service-card">
 
@@ -1503,6 +1452,7 @@
 
         <div class="home-why-grid">
 
+
             <div class="home-why-card">
 
                 <div class="home-why-icon">
@@ -1591,14 +1541,14 @@
                 💅 ✨
             </div>
 
-           <h2>
-                  Find Your Perfect Nail Shape
-           </h2>
+            <h2>
+                Find Your Perfect Nail Shape
+            </h2>
 
             <p>
-                  Not sure which nail shape suits you?
-                  Try our Virtual Nail Shape Studio and
-                  preview different shapes before booking.
+                Not sure which nail shape suits you?
+                Try our Virtual Nail Shape Studio and
+                preview different shapes before booking.
             </p>
 
             <a
@@ -1638,125 +1588,188 @@
     </section>
 
 
-<!-- ==========================================
-     VIRTUAL NAIL SHAPE STUDIO
-=========================================== -->
+    <!-- ==========================================
+         VIRTUAL NAIL SHAPE STUDIO
+    =========================================== -->
 
-<div id="previewModal" class="preview-modal">
+    <div id="previewModal" class="preview-modal">
 
-    <div class="modal-content">
-
-        <!-- CLOSE BUTTON -->
-        <span id="closeModal" class="close-modal">
-            &times;
-        </span>
+        <div class="modal-content">
 
 
-        <!-- TITLE -->
+            <!-- CLOSE BUTTON -->
 
-        <h2>
-            💅 Virtual Nail Shape Studio
-        </h2>
-
-        <p class="preview-subtitle">
-            Choose your perfect nail shape • Preview it • Book it
-        </p>
+            <span id="closeModal" class="close-modal">
+                &times;
+            </span>
 
 
-        <div class="virtual-preview-layout">
+            <!-- TITLE -->
+
+            <h2>
+                💅 Virtual Nail Shape Studio
+            </h2>
+
+            <p class="preview-subtitle">
+                Choose your perfect nail shape • Preview it • Book it
+            </p>
 
 
-            <!-- ==========================================
-                 LEFT PANEL - SHAPES
-            =========================================== -->
-
-            <div class="preview-control-panel">
-
-                <h3>
-                    Choose Your Shape
-                </h3>
+            <div class="virtual-preview-layout">
 
 
-                <!-- SHAPE SELECTION -->
+                <!-- ==========================================
+                     LEFT PANEL
+                =========================================== -->
 
-                <div class="preview-step">
+                <div class="preview-control-panel">
 
-                    <div class="preview-step-title">
-                        01 · Nail Shape
+                    <h3>
+                        Choose Your Shape
+                    </h3>
+
+
+                    <!-- SHAPE SELECTION -->
+
+                    <div class="preview-step">
+
+                        <div class="preview-step-title">
+                            01 · Nail Shape
+                        </div>
+
+
+                        <div class="preview-options">
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option active"
+                                data-shape="Almond">
+
+                                Almond
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Square">
+
+                                Square
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Coffin">
+
+                                Coffin
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Oval">
+
+                                Oval
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Stiletto">
+
+                                Stiletto
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Squoval">
+
+                                Squoval
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Ballerina">
+
+                                Ballerina
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Lipstick">
+
+                                Lipstick
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Flare">
+
+                                Flare
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="preview-option shape-option"
+                                data-shape="Edge">
+
+                                Edge
+
+                            </button>
+
+
+                        </div>
+
                     </div>
 
 
-                    <div class="preview-options">
+                    <!-- ==========================================
+                         SHAPE INFORMATION
+                    =========================================== -->
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option active"
-                            data-shape="Almond">
-                            Almond
-                        </button>
+                    <div class="preview-step">
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Square">
-                            Square
-                        </button>
+                        <div class="preview-step-title">
+                            02 · About The Shape
+                        </div>
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Coffin">
-                            Coffin
-                        </button>
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Oval">
-                            Oval
-                        </button>
+                        <div class="shape-info-box">
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Stiletto">
-                            Stiletto
-                        </button>
+                            <h4 id="selectedShapeTitle">
+                                Almond Shape
+                            </h4>
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Squoval">
-                            Squoval
-                        </button>
+                            <p id="selectedShapeDescription">
+                                Elegant and feminine with softly
+                                tapered sides. Perfect for a classy
+                                and timeless look.
+                            </p>
 
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Ballerina">
-                            Ballerina
-                        </button>
-
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Lipstick">
-                            Lipstick
-                        </button>
-
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Flare">
-                            Flare
-                        </button>
-
-                        <button
-                            type="button"
-                            class="preview-option shape-option"
-                            data-shape="Edge">
-                            Edge
-                        </button>
+                        </div>
 
                     </div>
 
@@ -1764,339 +1777,320 @@
 
 
                 <!-- ==========================================
-                     SHAPE INFORMATION
+                     CENTER PREVIEW
                 =========================================== -->
 
-                <div class="preview-step">
+                <div class="preview-center-panel">
 
-                    <div class="preview-step-title">
-                        02 · About The Shape
+                    <h3 class="preview-center-title">
+                        Your Nail Preview
+                    </h3>
+
+                    <p class="preview-center-subtitle">
+                        See how your selected shape looks
+                    </p>
+
+
+                    <div
+                        class="nail-preview-stage"
+                        id="nailPreviewStage">
+
+
+                        <div class="virtual-nail nail-1">
+                            <span class="nail-design"></span>
+                        </div>
+
+
+                        <div class="virtual-nail nail-2">
+                            <span class="nail-design"></span>
+                        </div>
+
+
+                        <div class="virtual-nail nail-3">
+                            <span class="nail-design"></span>
+                        </div>
+
+
+                        <div class="virtual-nail nail-4">
+                            <span class="nail-design"></span>
+                        </div>
+
+
+                        <div class="virtual-nail nail-5">
+                            <span class="nail-design"></span>
+                        </div>
+
+
                     </div>
 
 
-                    <div class="shape-info-box">
+                    <p class="preview-hint">
+                        ✨ Select a shape to see the transformation
+                    </p>
 
-                        <h4 id="selectedShapeTitle">
-                            Almond Shape
-                        </h4>
+                </div>
 
-                        <p id="selectedShapeDescription">
-                            Elegant and feminine with softly
-                            tapered sides. Perfect for a classy
-                            and timeless look.
+
+                <!-- ==========================================
+                     RIGHT PANEL
+                =========================================== -->
+
+                <div class="preview-result-panel">
+
+                    <h3>
+                        ✨ Your Selected Shape
+                    </h3>
+
+
+                    <!-- SELECTED SHAPE -->
+
+                    <div class="selected-look">
+
+                        <h3>
+                            Selected Look
+                        </h3>
+
+
+                        <p>
+
+                            <strong>
+                                Nail Shape:
+                            </strong>
+
+                            <span id="previewShape">
+                                Almond
+                            </span>
+
                         </p>
 
                     </div>
 
-                </div>
 
-            </div>
+                    <!-- ==========================================
+                         VIRTUAL BOOKING
+                    =========================================== -->
 
+                    <div class="virtual-booking-section">
 
-            <!-- ==========================================
-                 CENTER - NAIL PREVIEW
-            =========================================== -->
-
-            <div class="preview-center-panel">
-
-                <h3 class="preview-center-title">
-                    Your Nail Preview
-                </h3>
-
-                <p class="preview-center-subtitle">
-                    See how your selected shape looks
-                </p>
+                        <h3>
+                            Book This Shape
+                        </h3>
 
 
-                <div
-                    class="nail-preview-stage"
-                    id="nailPreviewStage">
+                        <p class="virtual-booking-subtitle">
+                            Love this shape? Enter your details
+                            and reserve your appointment.
+                        </p>
 
 
-                    <div class="virtual-nail nail-1">
-                        <span class="nail-design"></span>
-                    </div>
-
-                    <div class="virtual-nail nail-2">
-                        <span class="nail-design"></span>
-                    </div>
-
-                    <div class="virtual-nail nail-3">
-                        <span class="nail-design"></span>
-                    </div>
-
-                    <div class="virtual-nail nail-4">
-                        <span class="nail-design"></span>
-                    </div>
-
-                    <div class="virtual-nail nail-5">
-                        <span class="nail-design"></span>
-                    </div>
-
-                </div>
+                        <form id="virtualBookingForm">
 
 
-                <p class="preview-hint">
-                    ✨ Select a shape to see the transformation
-                </p>
+                            <!-- NAME -->
 
-            </div>
+                            <div class="booking-field">
 
+                                <label for="virtualName">
+                                    Full Name
+                                </label>
 
-            <!-- ==========================================
-                 RIGHT PANEL - BOOKING
-            =========================================== -->
+                                <input
+                                    type="text"
+                                    id="virtualName"
+                                    name="name"
+                                    placeholder="Enter your full name"
+                                    required>
 
-            <div class="preview-result-panel">
-
-                <h3>
-                    ✨ Your Selected Shape
-                </h3>
-
-
-                <!-- SELECTED SHAPE -->
-
-                <div class="selected-look">
-
-                    <h3>
-                        Selected Look
-                    </h3>
+                            </div>
 
 
-                    <p>
-                        <strong>Nail Shape:</strong>
+                            <!-- EMAIL -->
 
-                        <span id="previewShape">
-                            Almond
-                        </span>
-                    </p>
+                            <div class="booking-field">
 
-                </div>
+                                <label for="virtualEmail">
+                                    Email Address
+                                </label>
 
+                                <input
+                                    type="email"
+                                    id="virtualEmail"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    required>
 
-                <!-- ==========================================
-                     VIRTUAL BOOKING
-                =========================================== -->
-
-                <div class="virtual-booking-section">
-
-                    <h3>
-                        Book This Shape
-                    </h3>
+                            </div>
 
 
-                    <p class="virtual-booking-subtitle">
-                        Love this shape? Enter your details
-                        and reserve your appointment.
-                    </p>
+                            <!-- PHONE -->
+
+                            <div class="booking-field">
+
+                                <label for="virtualPhone">
+                                    Contact Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="virtualPhone"
+                                    name="phone"
+                                    placeholder="10-digit contact number"
+                                    pattern="[0-9]{10}"
+                                    maxlength="10"
+                                    inputmode="numeric"
+                                    required>
+
+                            </div>
 
 
-                    <form id="virtualBookingForm">
+                            <!-- DATE -->
+
+                            <div class="booking-field">
+
+                                <label for="virtualBookingDate">
+                                    Booking Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="virtualBookingDate"
+                                    name="bookingDate"
+                                    required>
+
+                            </div>
 
 
-                        <!-- NAME -->
+                            <!-- TIME -->
 
-                        <div class="booking-field">
+                            <div class="form-group">
 
-                            <label for="virtualName">
-                                Full Name
-                            </label>
-
-                            <input
-                                type="text"
-                                id="virtualName"
-                                name="name"
-                                placeholder="Enter your full name"
-                                required>
-
-                        </div>
+                                <label for="time">
+                                    🕒 Appointment Time
+                                </label>
 
 
-                        <!-- EMAIL -->
+                                <select
+                                    id="time"
+                                    name="time"
+                                    required>
 
-                        <div class="booking-field">
+                                    <option value="">
+                                        Select a time
+                                    </option>
 
-                            <label for="virtualEmail">
-                                Email Address
-                            </label>
+                                    <option value="10:00 AM">
+                                        10:00 AM
+                                    </option>
 
-                            <input
-                                type="email"
-                                id="virtualEmail"
-                                name="email"
-                                placeholder="Enter your email"
-                                required>
+                                    <option value="11:00 AM">
+                                        11:00 AM
+                                    </option>
 
-                        </div>
+                                    <option value="12:00 PM">
+                                        12:00 PM
+                                    </option>
+
+                                    <option value="1:00 PM">
+                                        1:00 PM
+                                    </option>
+
+                                    <option value="2:00 PM">
+                                        2:00 PM
+                                    </option>
+
+                                    <option value="3:00 PM">
+                                        3:00 PM
+                                    </option>
+
+                                    <option value="4:00 PM">
+                                        4:00 PM
+                                    </option>
+
+                                    <option value="5:00 PM">
+                                        5:00 PM
+                                    </option>
+
+                                    <option value="6:00 PM">
+                                        6:00 PM
+                                    </option>
+
+                                </select>
+
+                            </div>
 
 
-                        <!-- PHONE -->
-
-                        <div class="booking-field">
-
-                            <label for="virtualPhone">
-                                Contact Number
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="virtualPhone"
-                                name="phone"
-                                placeholder="10-digit contact number"
-                                pattern="[0-9]{10}"
-                                maxlength="10"
-                                inputmode="numeric"
-                                required>
-
-                        </div>
-
-
-                        <!-- DATE -->
-
-                        <div class="booking-field">
-
-                            <label for="virtualBookingDate">
-                                Booking Date
-                            </label>
+                            <!-- ==========================================
+                                 HIDDEN BOOKING VALUES
+                            =========================================== -->
 
                             <input
-                                type="date"
-                                id="virtualBookingDate"
-                                name="bookingDate"
-                                required>
-
-                        </div>
+                                type="hidden"
+                                id="virtualService"
+                                name="service"
+                                value="Virtual Nail Shape">
 
 
-                        <!-- TIME -->
-
-                        <div class="form-group">
-
-                            <label for="time">
-                                🕒 Appointment Time
-                            </label>
+                            <input
+                                type="hidden"
+                                id="virtualShape"
+                                name="shape"
+                                value="Almond">
 
 
-                            <select
-                                id="time"
-                                name="time"
-                                required>
+                            <!-- ==========================================
+                                 BOOKING SUMMARY
+                            =========================================== -->
 
-                                <option value="">
-                                    Select a time
-                                </option>
+                            <div class="booking-summary">
 
-                                <option value="10:00 AM">
-                                    10:00 AM
-                                </option>
-
-                                <option value="11:00 AM">
-                                    11:00 AM
-                                </option>
-
-                                <option value="12:00 PM">
-                                    12:00 PM
-                                </option>
-
-                                <option value="1:00 PM">
-                                    1:00 PM
-                                </option>
-
-                                <option value="2:00 PM">
-                                    2:00 PM
-                                </option>
-
-                                <option value="3:00 PM">
-                                    3:00 PM
-                                </option>
-
-                                <option value="4:00 PM">
-                                    4:00 PM
-                                </option>
-
-                                <option value="5:00 PM">
-                                    5:00 PM
-                                </option>
-
-                                <option value="6:00 PM">
-                                    6:00 PM
-                                </option>
-
-                            </select>
-
-                        </div>
+                                <h4>
+                                    ✨ Booking Summary
+                                </h4>
 
 
-                        <!-- ==========================================
-                             HIDDEN BOOKING VALUES
-                        =========================================== -->
+                                <p>
 
-                        <input
-                            type="hidden"
-                            id="virtualService"
-                            name="service"
-                            value="Virtual Nail Shape">
+                                    <strong>
+                                        Service:
+                                    </strong>
 
+                                    <span id="bookingService">
+                                        Virtual Nail Shape
+                                    </span>
 
-                        <input
-                            type="hidden"
-                            id="virtualShape"
-                            name="shape"
-                            value="Almond">
+                                </p>
 
 
-                        <!-- ==========================================
-                             BOOKING SUMMARY
-                        =========================================== -->
+                                <p>
 
-                        <div class="booking-summary">
+                                    <strong>
+                                        Shape:
+                                    </strong>
 
-                            <h4>
-                                ✨ Booking Summary
-                            </h4>
+                                    <span id="bookingShape">
+                                        Almond
+                                    </span>
 
+                                </p>
 
-                            <p>
-
-                                <strong>
-                                    Service:
-                                </strong>
-
-                                <span id="bookingService">
-                                    Virtual Nail Shape
-                                </span>
-
-                            </p>
+                            </div>
 
 
-                            <p>
+                            <!-- BOOK BUTTON -->
 
-                                <strong>
-                                    Shape:
-                                </strong>
+                            <button
+                                type="submit"
+                                id="bookVirtualLook"
+                                class="virtual-book-btn">
 
-                                <span id="bookingShape">
-                                    Almond
-                                </span>
+                                💅 Book This Shape
 
-                            </p>
-
-                        </div>
+                            </button>
 
 
-                        <!-- BOOK BUTTON -->
+                        </form>
 
-                        <button
-                            type="submit"
-                            id="bookVirtualLook"
-                            class="virtual-book-btn">
-
-                            💅 Book This Shape
-
-                        </button>
-
-
-                    </form>
+                    </div>
 
                 </div>
 
@@ -2105,8 +2099,6 @@
         </div>
 
     </div>
-
-</div>
 
 
     <!-- ==========================================
@@ -2132,12 +2124,16 @@
     </footer>
 
 
-    <!-- MAIN JS -->
+    <!-- ==========================================
+         MAIN JS
+    =========================================== -->
 
     <script src="js/main.js"></script>
 
 
-    <!-- BOTTOM PREVIEW BUTTON -->
+    <!-- ==========================================
+         BOTTOM PREVIEW BUTTON
+    =========================================== -->
 
     <script>
 
@@ -2150,6 +2146,7 @@
                         "previewBtnBottom"
                     );
 
+
                 if (bottomPreview) {
 
                     bottomPreview.addEventListener(
@@ -2158,13 +2155,17 @@
 
                             event.preventDefault();
 
+
                             const previewButton =
                                 document.getElementById(
                                     "previewBtn"
                                 );
 
+
                             if (previewButton) {
+
                                 previewButton.click();
+
                             }
 
                         }
@@ -2176,6 +2177,7 @@
         );
 
     </script>
+
 
 </body>
 
