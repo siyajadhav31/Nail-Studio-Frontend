@@ -296,6 +296,33 @@
 
 
         /* =================================
+           SUNDAY CLOSED MESSAGE
+        ================================= */
+
+        .sunday-note {
+
+            margin-top: -8px;
+
+            margin-bottom: 20px;
+
+            padding: 10px 14px;
+
+            background: #fff7e6;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 9px;
+
+            color: #9a6a00;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =================================
            BOOK BUTTON
         ================================= */
 
@@ -729,7 +756,7 @@
                         type="tel"
                         id="offerPhone"
                         placeholder="Enter your phone number"
-                        pattern="[0-9]{10}"
+                        pattern="[6-9][0-9]{9}"
                         maxlength="10"
                         inputmode="numeric"
                         required>
@@ -753,6 +780,16 @@
                 </div>
 
 
+                <!-- SUNDAY NOTE -->
+
+                <div class="sunday-note">
+
+                    🗓️ <strong>Sunday is closed.</strong>
+                    Please select Monday to Saturday for your appointment.
+
+                </div>
+
+
                 <!-- TIME -->
 
                 <div class="form-group">
@@ -767,6 +804,10 @@
 
                         <option value="">
                             Select a time
+                        </option>
+
+                        <option value="10:00 AM">
+                            10:00 AM
                         </option>
 
                         <option value="11:00 AM">
@@ -840,8 +881,11 @@
                             margin-bottom: 6px;
                         "
                     >
+
                         💵 Payment
+
                     </div>
+
 
                     <div
                         style="
@@ -850,9 +894,12 @@
                             line-height: 1.6;
                         "
                     >
+
                         Payment will be made at the studio
                         after confirming the final offer price.
+
                     </div>
+
 
                     <div
                         style="
@@ -862,7 +909,9 @@
                             color: #9a6a00;
                         "
                     >
+
                         ⏳ Payment Status: PENDING
+
                     </div>
 
                 </div>
@@ -965,7 +1014,6 @@
             "DOMContentLoaded",
             function () {
 
-
                 console.log(
                     "================================="
                 );
@@ -1030,6 +1078,53 @@
 
                 dateInput.min =
                     today;
+
+
+                /* =================================
+                   SUNDAY DATE CHECK
+                ================================= */
+
+                dateInput.addEventListener(
+                    "change",
+                    function () {
+
+                        if (!this.value) {
+
+                            return;
+
+                        }
+
+
+                        const selectedDate =
+                            new Date(
+                                this.value +
+                                "T00:00:00"
+                            );
+
+
+                        /*
+                         * getDay()
+                         *
+                         * 0 = Sunday
+                         * 1 = Monday
+                         * ...
+                         * 6 = Saturday
+                         */
+
+                        if (
+                            selectedDate.getDay() === 0
+                        ) {
+
+                            alert(
+                                "🗓️ Sunday is closed. Please select another date."
+                            );
+
+                            this.value = "";
+
+                        }
+
+                    }
+                );
 
 
                 /* =================================
@@ -1298,11 +1393,11 @@
 
 
                         if (
-                            !/^[0-9]{10}$/.test(phone)
+                            !/^[6-9][0-9]{9}$/.test(phone)
                         ) {
 
                             showStatus(
-                                "Please enter a valid 10-digit phone number.",
+                                "Please enter a valid 10-digit Indian phone number.",
                                 "error"
                             );
 
@@ -1351,7 +1446,7 @@
                         ) {
 
                             showStatus(
-                                "Sunday is closed. Please select another date.",
+                                "🗓️ Sunday is closed. Please select another date.",
                                 "error"
                             );
 
