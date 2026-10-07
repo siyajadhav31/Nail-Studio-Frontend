@@ -10,32 +10,395 @@
 
     <title>💅 Admin Bookings | Nail Studio</title>
 
+
+    <!-- MAIN CSS -->
+
     <link rel="stylesheet"
           href="css/style.css">
+
+
+    <!-- GOOGLE FONTS -->
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+
     <style>
 
-        /* ==========================================
-           BOOKING TYPE BADGES
-        ========================================== */
 
-        .service-badge,
-        .offer-badge,
-        .virtual-badge {
+        /* =====================================================
+           ADMIN PAGE
+        ===================================================== */
 
-            display: inline-flex;
+        .admin-bookings {
+
+            padding: 55px 20px;
+
+            background: #fffaf8;
+
+            min-height: 80vh;
+
+        }
+
+
+        .admin-container {
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .admin-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .admin-title span {
+
+            display: inline-block;
+
+            color: #b8860b;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .admin-title h1 {
+
+            margin: 0;
+
+            color: #49393e;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 44px;
+
+            font-weight: 700;
+
+        }
+
+
+        .admin-title p {
+
+            margin-top: 8px;
+
+            color: #8c7770;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           DASHBOARD STATS
+        ===================================================== */
+
+        .admin-stats {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .admin-stat-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 22px;
+
+            background: #ffffff;
+
+            border: 1px solid #eadfd8;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 20px rgba(80, 50, 30, 0.06);
+
+        }
+
+
+        .stat-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
 
             align-items: center;
 
             justify-content: center;
 
-            padding: 7px 14px;
+            border-radius: 12px;
 
-            border-radius: 30px;
+            background: #fff4dc;
+
+            font-size: 22px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .stat-info h3 {
+
+            margin: 0 0 4px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            color: #8c7770;
+
+        }
+
+
+        .stat-info p {
+
+            margin: 0;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            color: #49393e;
+
+        }
+
+
+        /* =====================================================
+           CONTROLS
+        ===================================================== */
+
+        .booking-controls {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .admin-refresh-btn {
+
+            border: none;
+
+            background: #c89b3c;
+
+            color: #ffffff;
+
+            padding: 11px 19px;
+
+            border-radius: 8px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .admin-refresh-btn:hover {
+
+            background: #a87919;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .admin-refresh-btn:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        .booking-filter {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .booking-filter label {
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            color: #5d4a42;
+
+        }
+
+
+        .booking-filter select {
+
+            min-width: 180px;
+
+            padding: 10px 13px;
+
+            border: 1px solid #dfd0c9;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #5d4a42;
+
+            font-family: 'Poppins', sans-serif;
+
+            outline: none;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        .booking-error {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 14px 16px;
+
+            border-radius: 9px;
+
+            background: #fff0f0;
+
+            border: 1px solid #efb7b7;
+
+            color: #b42323;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            text-align: center;
+
+        }
+
+
+        /* =====================================================
+           TABLE CARD
+        ===================================================== */
+
+        .table-wrapper {
+
+            background: #ffffff;
+
+            border: 1px solid #eadfd8;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 30px rgba(80, 50, 30, 0.07);
+
+        }
+
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        #bookingTable {
+
+            width: 100%;
+
+            min-width: 1050px;
+
+            border-collapse: collapse;
+
+            table-layout: fixed;
+
+        }
+
+
+        #bookingTable thead {
+
+            background: #49393e;
+
+        }
+
+
+        #bookingTable th {
+
+            padding: 15px 16px;
+
+            text-align: left;
+
+            color: #ffffff;
 
             font-family: 'Poppins', sans-serif;
 
@@ -48,7 +411,232 @@
         }
 
 
-        /* SERVICE */
+        #bookingTable td {
+
+            padding: 17px 16px;
+
+            border-bottom: 1px solid #eee5e0;
+
+            vertical-align: middle;
+
+            color: #5d4a42;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+        }
+
+
+        #bookingTable tbody tr {
+
+            transition: 0.2s ease;
+
+        }
+
+
+        #bookingTable tbody tr:hover {
+
+            background: #fffaf5;
+
+        }
+
+
+        #bookingTable tbody tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+
+        /* =====================================================
+           COLUMN WIDTHS
+
+           Customer = 27%
+           Booking = 29%
+           Date/Time = 17%
+           Payment = 15%
+           Action = 12%
+        ===================================================== */
+
+        #bookingTable th:nth-child(1),
+        #bookingTable td:nth-child(1) {
+
+            width: 27%;
+
+        }
+
+
+        #bookingTable th:nth-child(2),
+        #bookingTable td:nth-child(2) {
+
+            width: 29%;
+
+        }
+
+
+        #bookingTable th:nth-child(3),
+        #bookingTable td:nth-child(3) {
+
+            width: 17%;
+
+        }
+
+
+        #bookingTable th:nth-child(4),
+        #bookingTable td:nth-child(4) {
+
+            width: 15%;
+
+        }
+
+
+        #bookingTable th:nth-child(5),
+        #bookingTable td:nth-child(5) {
+
+            width: 12%;
+
+        }
+
+
+        /* =====================================================
+           CUSTOMER DETAILS
+        ===================================================== */
+
+        .customer-detail {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+        }
+
+
+        .customer-name {
+
+            color: #49393e;
+
+            font-weight: 600;
+
+            font-size: 13px;
+
+        }
+
+
+        .customer-email {
+
+            color: #8c7770;
+
+            font-size: 11px;
+
+            word-break: break-all;
+
+        }
+
+
+        .customer-phone {
+
+            color: #8c7770;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================================
+           BOOKING DETAILS
+        ===================================================== */
+
+        .booking-detail {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            min-width: 0;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .booking-detail-main {
+
+            font-weight: 600;
+
+            line-height: 1.4;
+
+            white-space: normal;
+
+            word-break: break-word;
+
+        }
+
+
+        .booking-detail-sub {
+
+            font-size: 11px;
+
+            color: #8c7770;
+
+        }
+
+
+        .service-name {
+
+            color: #a66a00;
+
+        }
+
+
+        .offer-name {
+
+            color: #9a6a00;
+
+        }
+
+
+        .shape-name {
+
+            color: #7b42b8;
+
+        }
+
+
+        /* =====================================================
+           BOOKING TYPE BADGES
+        ===================================================== */
+
+        .service-badge,
+        .offer-badge,
+        .virtual-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: fit-content;
+
+            padding: 6px 11px;
+
+            border-radius: 30px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            white-space: nowrap;
+
+        }
+
 
         .service-badge {
 
@@ -61,8 +649,6 @@
         }
 
 
-        /* OFFER */
-
         .offer-badge {
 
             background: #fff4df;
@@ -73,8 +659,6 @@
 
         }
 
-
-        /* VIRTUAL */
 
         .virtual-badge {
 
@@ -87,9 +671,66 @@
         }
 
 
-        /* ==========================================
-           PAYMENT BADGES
-        ========================================== */
+        /* =====================================================
+           DATE & TIME
+        ===================================================== */
+
+        .date-time-detail {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .booking-date {
+
+            color: #49393e;
+
+            font-weight: 500;
+
+        }
+
+
+        .booking-time {
+
+            color: #8c7770;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================================
+           PAYMENT
+        ===================================================== */
+
+        .payment-detail {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .payment-amount {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            color: #49393e;
+
+        }
+
 
         .paid-badge,
         .pending-badge,
@@ -101,15 +742,17 @@
 
             justify-content: center;
 
-            padding: 6px 12px;
+            width: fit-content;
+
+            padding: 5px 9px;
 
             border-radius: 20px;
 
             font-family: 'Poppins', sans-serif;
 
-            font-size: 11px;
+            font-size: 10px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             white-space: nowrap;
 
@@ -149,71 +792,18 @@
         }
 
 
-        /* ==========================================
-           BOOKING DETAILS
-        ========================================== */
-
-        .booking-detail {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 4px;
-
-            min-width: 170px;
-
-        }
-
-
-        .booking-detail-main {
-
-            font-weight: 500;
-
-            color: #49393e;
-
-        }
-
-
-        .booking-detail-sub {
-
-            font-size: 11px;
+        .payment-method {
 
             color: #8c7770;
 
-        }
-
-
-        .shape-name {
-
-            color: #7b42b8;
-
-            font-weight: 500;
+            font-size: 10px;
 
         }
 
 
-        .offer-name {
-
-            color: #9a6a00;
-
-            font-weight: 500;
-
-        }
-
-
-        .service-name {
-
-            color: #a66a00;
-
-            font-weight: 500;
-
-        }
-
-
-        /* ==========================================
+        /* =====================================================
            ACTION BUTTONS
-        ========================================== */
+        ===================================================== */
 
         .action-buttons {
 
@@ -221,9 +811,9 @@
 
             align-items: center;
 
-            gap: 7px;
+            gap: 6px;
 
-            white-space: nowrap;
+            flex-wrap: wrap;
 
         }
 
@@ -235,33 +825,35 @@
 
             border-radius: 6px;
 
-            padding: 9px 13px;
+            padding: 8px 10px;
 
             cursor: pointer;
 
             font-family: 'Poppins', sans-serif;
 
-            font-size: 12px;
+            font-size: 10px;
 
             font-weight: 500;
 
-            transition: .25s ease;
+            transition: 0.25s ease;
+
+            white-space: nowrap;
 
         }
 
 
         .edit-btn {
 
-            background: #c99a35;
+            background: #c89b3c;
 
-            color: white;
+            color: #ffffff;
 
         }
 
 
         .edit-btn:hover {
 
-            background: #ae8127;
+            background: #a87919;
 
             transform: translateY(-1px);
 
@@ -272,7 +864,7 @@
 
             background: #dc3545;
 
-            color: white;
+            color: #ffffff;
 
         }
 
@@ -286,195 +878,47 @@
         }
 
 
-        /* ==========================================
-           REFRESH BUTTON
-        ========================================== */
-
-        .admin-refresh-btn {
-
-            border: none;
-
-            background: #c99a35;
-
-            color: white;
-
-            padding: 10px 18px;
-
-            border-radius: 7px;
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 13px;
-
-            cursor: pointer;
-
-            transition: .25s ease;
-
-        }
-
-
-        .admin-refresh-btn:hover {
-
-            background: #aa812c;
-
-            transform: translateY(-1px);
-
-        }
-
-
-        /* ==========================================
-           FILTER
-        ========================================== */
-
-        .booking-filter {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: flex-end;
-
-            gap: 10px;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .booking-filter label {
-
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 13px;
-
-        }
-
-
-        .booking-filter select {
-
-            min-width: 160px;
-
-            padding: 11px 14px;
-
-            border: 1px solid #e5d7d0;
-
-            border-radius: 8px;
-
-            background: white;
-
-            font-family: 'Poppins', sans-serif;
-
-            color: #5d4a42;
-
-            outline: none;
-
-        }
-
-
-        /* ==========================================
-           CONTROLS
-        ========================================== */
-
-        .booking-controls {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        /* ==========================================
+        /* =====================================================
            LOADING
-        ========================================== */
+        ===================================================== */
 
         .loading {
 
-            padding: 30px;
+            padding: 40px;
 
             text-align: center;
 
-            font-family: 'Poppins', sans-serif;
-
             color: #8c7770;
-
-        }
-
-
-        /* ==========================================
-           ERROR
-        ========================================== */
-
-        .booking-error {
-
-            display: none;
-
-            margin: 15px 0;
-
-            padding: 15px;
-
-            border-radius: 8px;
-
-            background: #fff0f0;
-
-            border: 1px solid #f1b5b5;
-
-            color: #b42323;
 
             font-family: 'Poppins', sans-serif;
 
             font-size: 13px;
 
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-message {
+
+            padding: 40px;
+
             text-align: center;
 
-        }
+            color: #8c7770;
 
+            font-family: 'Poppins', sans-serif;
 
-        /* ==========================================
-           TABLE
-        ========================================== */
-
-        .table-container {
-
-            overflow-x: auto;
+            font-size: 13px;
 
         }
 
 
-        #bookingTable {
-
-            width: 100%;
-
-            min-width: 1250px;
-
-            border-collapse: collapse;
-
-        }
-
-
-        #bookingTable th {
-
-            white-space: nowrap;
-
-        }
-
-
-        #bookingTable td {
-
-            white-space: nowrap;
-
-            vertical-align: middle;
-
-        }
-
-
-        /* ==========================================
+        /* =====================================================
            MODAL
-        ========================================== */
+        ===================================================== */
 
         .admin-modal {
 
@@ -486,7 +930,7 @@
 
             z-index: 99999;
 
-            background: rgba(30, 20, 18, .65);
+            background: rgba(30, 20, 18, 0.65);
 
             align-items: center;
 
@@ -515,14 +959,17 @@
 
             padding: 35px;
 
-            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.2);
 
         }
 
 
         .admin-modal-content h2 {
 
-            margin-bottom: 25px;
+            margin: 0 0 25px;
+
+            color: #49393e;
 
             font-family: 'Cormorant Garamond', serif;
 
@@ -561,11 +1008,11 @@
 
             margin-bottom: 7px;
 
+            color: #5e4b43;
+
             font-family: 'Poppins', sans-serif;
 
             font-size: 13px;
-
-            color: #5e4b43;
 
         }
 
@@ -575,19 +1022,19 @@
 
             width: 100%;
 
+            box-sizing: border-box;
+
             padding: 12px;
 
             border: 1px solid #dfd0c9;
 
             border-radius: 7px;
 
-            background: white;
+            background: #ffffff;
 
             font-family: 'Poppins', sans-serif;
 
             outline: none;
-
-            box-sizing: border-box;
 
         }
 
@@ -598,9 +1045,9 @@
 
             border: none;
 
-            background: #c99a35;
+            background: #c89b3c;
 
-            color: white;
+            color: #ffffff;
 
             padding: 13px;
 
@@ -622,17 +1069,47 @@
         }
 
 
-        /* ==========================================
+        /* =====================================================
            MOBILE
-        ========================================== */
+        ===================================================== */
 
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
+
+            .admin-stats {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .admin-bookings {
+
+                padding: 35px 12px;
+
+            }
+
+
+            .admin-title h1 {
+
+                font-size: 36px;
+
+            }
+
+
+            .admin-stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
 
             .booking-controls {
 
                 flex-direction: column;
-
-                gap: 12px;
 
                 align-items: stretch;
 
@@ -641,39 +1118,35 @@
 
             .booking-filter {
 
-                justify-content: center;
-
-                flex-direction: column;
-
-                align-items: stretch;
+                justify-content: space-between;
 
             }
 
 
             .booking-filter select {
 
+                flex: 1;
+
+                min-width: 0;
+
+            }
+
+
+            .admin-refresh-btn {
+
                 width: 100%;
 
             }
 
 
-            .action-buttons {
+            .admin-modal-content {
 
-                flex-direction: column;
-
-                align-items: stretch;
-
-            }
-
-
-            .edit-btn,
-            .delete-btn {
-
-                width: 100%;
+                padding: 25px 20px;
 
             }
 
         }
+
 
     </style>
 
@@ -683,9 +1156,9 @@
 <body>
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          ADMIN NAVBAR
-    ========================================== -->
+    ===================================================== -->
 
     <header>
 
@@ -727,9 +1200,9 @@
 
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          ADMIN BOOKINGS
-    ========================================== -->
+    ===================================================== -->
 
     <section class="admin-bookings">
 
@@ -756,9 +1229,9 @@
 
 
 
-            <!-- ==========================================
+            <!-- =================================================
                  DASHBOARD STATS
-            ========================================== -->
+            ================================================= -->
 
             <div class="admin-stats">
 
@@ -786,7 +1259,6 @@
                 </div>
 
 
-
                 <!-- OFFER -->
 
                 <div class="admin-stat-card">
@@ -810,7 +1282,6 @@
                 </div>
 
 
-
                 <!-- SERVICE -->
 
                 <div class="admin-stat-card">
@@ -832,7 +1303,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- VIRTUAL -->
@@ -861,9 +1331,9 @@
 
 
 
-            <!-- ==========================================
+            <!-- =================================================
                  CONTROLS
-            ========================================== -->
+            ================================================= -->
 
             <div class="booking-controls">
 
@@ -918,9 +1388,9 @@
 
 
 
-            <!-- ==========================================
+            <!-- =================================================
                  BOOKING TABLE
-            ========================================== -->
+            ================================================= -->
 
             <div class="table-wrapper">
 
@@ -946,25 +1416,25 @@
 
                             <tr>
 
-                                <th>ID</th>
+                                <th>
+                                    Customer
+                                </th>
 
-                                <th>Name</th>
+                                <th>
+                                    Booking
+                                </th>
 
-                                <th>Email</th>
+                                <th>
+                                    Date & Time
+                                </th>
 
-                                <th>Phone</th>
+                                <th>
+                                    Payment
+                                </th>
 
-                                <th>Booking Type</th>
-
-                                <th>Service / Offer / Shape</th>
-
-                                <th>Date</th>
-
-                                <th>Time</th>
-
-                                <th>Payment</th>
-
-                                <th>Action</th>
+                                <th>
+                                    Action
+                                </th>
 
                             </tr>
 
@@ -998,13 +1468,14 @@
 
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          EDIT MODAL
-    ========================================== -->
+    ===================================================== -->
 
     <div
         id="editModal"
         class="admin-modal">
+
 
         <div class="admin-modal-content">
 
@@ -1026,6 +1497,8 @@
             <form id="editBookingForm">
 
 
+                <!-- NAME -->
+
                 <div class="edit-form-group">
 
                     <label for="editName">
@@ -1040,6 +1513,7 @@
                 </div>
 
 
+                <!-- EMAIL -->
 
                 <div class="edit-form-group">
 
@@ -1055,6 +1529,7 @@
                 </div>
 
 
+                <!-- PHONE -->
 
                 <div class="edit-form-group">
 
@@ -1072,6 +1547,7 @@
                 </div>
 
 
+                <!-- DATE -->
 
                 <div class="edit-form-group">
 
@@ -1087,6 +1563,7 @@
                 </div>
 
 
+                <!-- TIME -->
 
                 <div class="edit-form-group">
 
@@ -1102,17 +1579,53 @@
                             Select a time
                         </option>
 
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                        <option value="7:00 PM">7:00 PM</option>
-                        <option value="8:00 PM">8:00 PM</option>
-                        <option value="9:00 PM">9:00 PM</option>
+                        <option value="10:00 AM">
+                            10:00 AM
+                        </option>
+
+                        <option value="11:00 AM">
+                            11:00 AM
+                        </option>
+
+                        <option value="12:00 PM">
+                            12:00 PM
+                        </option>
+
+                        <option value="1:00 PM">
+                            1:00 PM
+                        </option>
+
+                        <option value="2:00 PM">
+                            2:00 PM
+                        </option>
+
+                        <option value="3:00 PM">
+                            3:00 PM
+                        </option>
+
+                        <option value="4:00 PM">
+                            4:00 PM
+                        </option>
+
+                        <option value="5:00 PM">
+                            5:00 PM
+                        </option>
+
+                        <option value="6:00 PM">
+                            6:00 PM
+                        </option>
+
+                        <option value="7:00 PM">
+                            7:00 PM
+                        </option>
+
+                        <option value="8:00 PM">
+                            8:00 PM
+                        </option>
+
+                        <option value="9:00 PM">
+                            9:00 PM
+                        </option>
 
                     </select>
 
@@ -1144,6 +1657,7 @@
                 </div>
 
 
+                <!-- UPDATE -->
 
                 <button
                     type="submit"
@@ -1161,9 +1675,9 @@
 
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          FOOTER
-    ========================================== -->
+    ===================================================== -->
 
     <footer class="admin-footer">
 
@@ -1175,19 +1689,20 @@
 
 
 
-    <!-- ==========================================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================================== -->
+    ===================================================== -->
 
     <script>
 
 
-        /* ==========================================
+        /* =====================================================
            API CONFIGURATION
-        ========================================== */
+        ===================================================== */
 
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
+
 
         const API_URL =
             API_BASE_URL + "/api/bookings";
@@ -1199,24 +1714,30 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            CHECK ADMIN LOGIN
-        ========================================== */
+        ===================================================== */
 
         function checkAdminLogin() {
 
             const adminLoggedIn =
                 localStorage.getItem("adminLoggedIn");
 
+
             const adminEmail =
                 localStorage.getItem("adminEmail");
 
 
-            console.log("=================================");
-            console.log("CHECKING ADMIN LOGIN");
-            console.log("Admin logged in:", adminLoggedIn);
-            console.log("Admin email:", adminEmail);
-            console.log("=================================");
+            console.log(
+                "Admin logged in:",
+                adminLoggedIn
+            );
+
+
+            console.log(
+                "Admin email:",
+                adminEmail
+            );
 
 
             if (
@@ -1224,18 +1745,14 @@
                 adminEmail
             ) {
 
-                console.log("ADMIN LOGIN VERIFIED");
-
                 return true;
 
             }
 
 
-            console.error("ADMIN LOGIN NOT FOUND");
-
-
             window.location.href =
                 "admin-login.html";
+
 
             return false;
 
@@ -1243,9 +1760,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            GET BOOKING TYPE
-        ========================================== */
+        ===================================================== */
 
         function getBookingType(booking) {
 
@@ -1285,11 +1802,6 @@
             }
 
 
-            /*
-             * Old offer bookings may not have
-             * bookingType.
-             */
-
             if (isOldOfferBooking(booking)) {
 
                 return "OFFER";
@@ -1303,9 +1815,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            OLD OFFER CHECK
-        ========================================== */
+        ===================================================== */
 
         function isOldOfferBooking(booking) {
 
@@ -1345,9 +1857,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            TYPE CHECKS
-        ========================================== */
+        ===================================================== */
 
         function isOfferBooking(booking) {
 
@@ -1377,9 +1889,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            DASHBOARD STATS
-        ========================================== */
+        ===================================================== */
 
         function updateDashboardStats() {
 
@@ -1424,14 +1936,13 @@
                 "virtualBookings"
             ).textContent = virtualCount;
 
-
         }
 
 
 
-        /* ==========================================
+        /* =====================================================
            LOAD BOOKINGS
-        ========================================== */
+        ===================================================== */
 
         async function loadBookings() {
 
@@ -1479,16 +1990,6 @@
                 "";
 
 
-            console.log("=================================");
-            console.log("LOADING BOOKINGS");
-            console.log("API:", API_URL);
-            console.log("=================================");
-
-
-            const startTime =
-                performance.now();
-
-
             try {
 
                 const controller =
@@ -1502,7 +2003,7 @@
                             controller.abort();
 
                         },
-                        20000
+                        30000
                     );
 
 
@@ -1536,31 +2037,12 @@
                 clearTimeout(timeout);
 
 
-                const responseTime =
-                    (
-                        (performance.now() -
-                            startTime) / 1000
-                    ).toFixed(2);
-
-
-                console.log(
-                    "⏱ Response:",
-                    responseTime + " seconds"
-                );
-
-
-                console.log(
-                    "Bookings API Status:",
-                    response.status
-                );
-
-
                 const responseText =
                     await response.text();
 
 
                 console.log(
-                    "Bookings API Response:",
+                    "Bookings API:",
                     responseText
                 );
 
@@ -1587,7 +2069,7 @@
 
                 }
 
-                catch (jsonError) {
+                catch (error) {
 
                     throw new Error(
                         "Backend did not return valid JSON."
@@ -1620,9 +2102,7 @@
                 }
 
 
-                /* ==========================================
-                   SORT NEWEST FIRST
-                ========================================== */
+                /* NEWEST FIRST */
 
                 bookingsData.sort(
                     function (a, b) {
@@ -1636,18 +2116,8 @@
                 );
 
 
-                console.log(
-                    "Total bookings:",
-                    bookingsData.length
-                );
-
-
-                if (loadingMessage) {
-
-                    loadingMessage.style.display =
-                        "none";
-
-                }
+                loadingMessage.style.display =
+                    "none";
 
 
                 displayBookings();
@@ -1675,10 +2145,6 @@
                     "none";
 
 
-                emptyMessage.style.display =
-                    "none";
-
-
                 errorBox.style.display =
                     "block";
 
@@ -1689,14 +2155,14 @@
                 ) {
 
                     errorBox.textContent =
-                        "⚠️ Backend response is taking too long. Render backend may be waking up. Click Refresh Bookings.";
+                        "⚠️ Backend is taking too long. Render may be waking up. Please click Refresh Bookings.";
 
                 }
 
                 else {
 
                     errorBox.textContent =
-                        "⚠️ Unable to load bookings. Check your Spring Boot backend and Render deployment.";
+                        "⚠️ Unable to load bookings. Please check your backend and Render deployment.";
 
                 }
 
@@ -1706,9 +2172,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            ESCAPE HTML
-        ========================================== */
+        ===================================================== */
 
         function escapeHTML(value) {
 
@@ -1743,9 +2209,9 @@
 
 
 
-        /* ==========================================
-           GET PAYMENT HTML
-        ========================================== */
+        /* =====================================================
+           PAYMENT HTML
+        ===================================================== */
 
         function getPaymentHTML(booking) {
 
@@ -1753,17 +2219,49 @@
                 getBookingType(booking);
 
 
-            /* VIRTUAL = NO PAYMENT */
+            /* VIRTUAL */
 
             if (type === "VIRTUAL") {
 
                 return `
-                    <span class="no-payment-badge">
-                        ✨ No Payment
-                    </span>
+
+                    <div class="payment-detail">
+
+                        <span class="no-payment-badge">
+                            ✨ N/A
+                        </span>
+
+                        <span class="payment-method">
+                            Virtual Booking
+                        </span>
+
+                    </div>
+
                 `;
 
             }
+
+
+            /* =================================================
+               PAYMENT AMOUNT
+
+               Supports:
+               paymentAmount
+               price
+               amount
+            ================================================= */
+
+            const amount =
+                booking.paymentAmount ??
+                booking.price ??
+                booking.amount ??
+                "";
+
+
+            const formattedAmount =
+                amount !== ""
+                    ? Number(amount).toLocaleString("en-IN")
+                    : "—";
 
 
             const status =
@@ -1782,26 +2280,49 @@
                 .toUpperCase();
 
 
+            const amountHTML = `
+
+                <span class="payment-amount">
+
+                    ₹${escapeHTML(
+                        formattedAmount
+                    )}
+
+                </span>
+
+            `;
+
+
             /* PAID */
 
             if (status === "PAID") {
 
                 return `
-                    <div class="booking-detail">
+
+                    <div class="payment-detail">
+
+                        ${amountHTML}
+
 
                         <span class="paid-badge">
                             ✅ PAID
                         </span>
 
-                        <span class="booking-detail-sub">
-                            ${escapeHTML(
+
+                        <span class="payment-method">
+
+                            ${
                                 method === "GOOGLE_PAY"
                                     ? "Google Pay / UPI"
-                                    : method || "Paid"
-                            )}
+                                    : escapeHTML(
+                                        method || "Paid"
+                                    )
+                            }
+
                         </span>
 
                     </div>
+
                 `;
 
             }
@@ -1810,26 +2331,38 @@
             /* PENDING */
 
             return `
-                <div class="booking-detail">
+
+                <div class="payment-detail">
+
+                    ${amountHTML}
+
 
                     <span class="pending-badge">
                         ⏳ PENDING
                     </span>
 
-                    <span class="booking-detail-sub">
-                        💵 Pay at Studio
+
+                    <span class="payment-method">
+
+                        ${
+                            method === "GOOGLE_PAY"
+                                ? "Google Pay / UPI"
+                                : "💵 Pay at Studio"
+                        }
+
                     </span>
 
                 </div>
+
             `;
 
         }
 
 
 
-        /* ==========================================
-           GET BOOKING DETAIL HTML
-        ========================================== */
+        /* =====================================================
+           BOOKING DETAIL HTML
+        ===================================================== */
 
         function getBookingDetailHTML(booking) {
 
@@ -1837,9 +2370,7 @@
                 getBookingType(booking);
 
 
-            /* ==========================================
-               OFFER
-            ========================================== */
+            /* OFFER */
 
             if (type === "OFFER") {
 
@@ -1850,25 +2381,32 @@
 
 
                 return `
+
                     <div class="booking-detail">
 
-                        <span class="booking-detail-main offer-name">
-                            🎁 ${escapeHTML(offer)}
+                        <span
+                            class="booking-detail-main offer-name">
+
+                            🎁
+                            ${escapeHTML(offer)}
+
                         </span>
 
+
                         <span class="booking-detail-sub">
+
                             Offer Appointment
+
                         </span>
 
                     </div>
+
                 `;
 
             }
 
 
-            /* ==========================================
-               VIRTUAL
-            ========================================== */
+            /* VIRTUAL */
 
             if (type === "VIRTUAL") {
 
@@ -1879,25 +2417,32 @@
 
 
                 return `
+
                     <div class="booking-detail">
 
-                        <span class="booking-detail-main shape-name">
-                            ✨ ${escapeHTML(shape)}
+                        <span
+                            class="booking-detail-main shape-name">
+
+                            ✨
+                            ${escapeHTML(shape)}
+
                         </span>
 
+
                         <span class="booking-detail-sub">
+
                             Virtual Nail Shape
+
                         </span>
 
                     </div>
+
                 `;
 
             }
 
 
-            /* ==========================================
-               SERVICE
-            ========================================== */
+            /* SERVICE */
 
             const service =
                 booking.service ||
@@ -1905,26 +2450,35 @@
 
 
             return `
+
                 <div class="booking-detail">
 
-                    <span class="booking-detail-main service-name">
-                        💅 ${escapeHTML(service)}
+                    <span
+                        class="booking-detail-main service-name">
+
+                        💅
+                        ${escapeHTML(service)}
+
                     </span>
 
+
                     <span class="booking-detail-sub">
+
                         Service Appointment
+
                     </span>
 
                 </div>
+
             `;
 
         }
 
 
 
-        /* ==========================================
+        /* =====================================================
            DISPLAY BOOKINGS
-        ========================================== */
+        ===================================================== */
 
         function displayBookings() {
 
@@ -1967,9 +2521,7 @@
                 bookingsData.slice();
 
 
-            /* ==========================================
-               FILTER
-            ========================================== */
+            /* FILTER */
 
             if (filter === "offer") {
 
@@ -2001,9 +2553,7 @@
             }
 
 
-            /* ==========================================
-               EMPTY
-            ========================================== */
+            /* EMPTY */
 
             if (
                 filteredBookings.length === 0
@@ -2021,9 +2571,7 @@
                 "none";
 
 
-            /* ==========================================
-               CREATE ROWS
-            ========================================== */
+            /* CREATE ROWS */
 
             filteredBookings.forEach(
                 function (booking) {
@@ -2046,8 +2594,6 @@
                         "💅";
 
 
-                    /* OFFER */
-
                     if (
                         bookingType === "OFFER"
                     ) {
@@ -2063,8 +2609,6 @@
 
                     }
 
-
-                    /* VIRTUAL */
 
                     else if (
                         bookingType === "VIRTUAL"
@@ -2102,35 +2646,60 @@
 
                     row.innerHTML = `
 
+
+                        <!-- CUSTOMER -->
+
                         <td>
-                            ${escapeHTML(
-                                booking.id || ""
-                            )}
+
+                            <div class="customer-detail">
+
+                                <span
+                                    class="customer-name">
+
+                                    ${escapeHTML(
+                                        booking.name ||
+                                        "—"
+                                    )}
+
+                                </span>
+
+
+                                <span
+                                    class="customer-email">
+
+                                    ${escapeHTML(
+                                        booking.email ||
+                                        "—"
+                                    )}
+
+                                </span>
+
+
+                                <span
+                                    class="customer-phone">
+
+                                    📞
+                                    ${escapeHTML(
+                                        booking.phone ||
+                                        "—"
+                                    )}
+
+                                </span>
+
+                            </div>
+
                         </td>
 
 
+
+                        <!-- BOOKING -->
+
                         <td>
-                            ${escapeHTML(
-                                booking.name || ""
+
+                            ${getBookingDetailHTML(
+                                booking
                             )}
-                        </td>
 
-
-                        <td>
-                            ${escapeHTML(
-                                booking.email || ""
-                            )}
-                        </td>
-
-
-                        <td>
-                            ${escapeHTML(
-                                booking.phone || ""
-                            )}
-                        </td>
-
-
-                        <td>
 
                             <span
                                 class="${badgeClass}">
@@ -2143,28 +2712,44 @@
                         </td>
 
 
+
+                        <!-- DATE / TIME -->
+
                         <td>
 
-                            ${getBookingDetailHTML(
-                                booking
-                            )}
+                            <div
+                                class="date-time-detail">
+
+
+                                <span
+                                    class="booking-date">
+
+                                    📅
+                                    ${escapeHTML(
+                                        bookingDate
+                                    )}
+
+                                </span>
+
+
+                                <span
+                                    class="booking-time">
+
+                                    🕐
+                                    ${escapeHTML(
+                                        bookingTime
+                                    )}
+
+                                </span>
+
+
+                            </div>
 
                         </td>
 
 
-                        <td>
-                            ${escapeHTML(
-                                bookingDate
-                            )}
-                        </td>
 
-
-                        <td>
-                            ${escapeHTML(
-                                bookingTime
-                            )}
-                        </td>
-
+                        <!-- PAYMENT -->
 
                         <td>
 
@@ -2175,10 +2760,14 @@
                         </td>
 
 
+
+                        <!-- ACTION -->
+
                         <td>
 
                             <div
                                 class="action-buttons">
+
 
                                 <button
                                     type="button"
@@ -2187,7 +2776,7 @@
                                         booking.id
                                     )})">
 
-                                    💅 Edit
+                                    ✏️ Edit
 
                                 </button>
 
@@ -2203,9 +2792,11 @@
 
                                 </button>
 
+
                             </div>
 
                         </td>
+
 
                     `;
 
@@ -2221,9 +2812,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            FILTER EVENT
-        ========================================== */
+        ===================================================== */
 
         const bookingFilter =
             document.getElementById(
@@ -2246,9 +2837,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            REFRESH
-        ========================================== */
+        ===================================================== */
 
         const refreshBookings =
             document.getElementById(
@@ -2291,9 +2882,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            OPEN EDIT MODAL
-        ========================================== */
+        ===================================================== */
 
         function openEditModal(id) {
 
@@ -2361,7 +2952,8 @@
 
             const paymentStatus =
                 String(
-                    booking.paymentStatus || "PENDING"
+                    booking.paymentStatus ||
+                    "PENDING"
                 )
                 .toUpperCase();
 
@@ -2374,9 +2966,7 @@
                     : "PENDING";
 
 
-            /*
-             * Virtual bookings don't have payment.
-             */
+            /* VIRTUAL = NO PAYMENT */
 
             const paymentGroup =
                 document.getElementById(
@@ -2387,8 +2977,11 @@
             if (paymentGroup) {
 
                 paymentGroup.style.display =
-                    getBookingType(booking) === "VIRTUAL"
+                    getBookingType(booking) ===
+                    "VIRTUAL"
+
                         ? "none"
+
                         : "block";
 
             }
@@ -2411,9 +3004,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            CLOSE MODAL
-        ========================================== */
+        ===================================================== */
 
         const closeModal =
             document.getElementById(
@@ -2447,9 +3040,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            CLOSE MODAL OUTSIDE
-        ========================================== */
+        ===================================================== */
 
         window.addEventListener(
             "click",
@@ -2476,9 +3069,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            UPDATE BOOKING
-        ========================================== */
+        ===================================================== */
 
         const editBookingForm =
             document.getElementById(
@@ -2556,9 +3149,9 @@
                             .value;
 
 
-                    /*
-                     * Keep original booking information.
-                     */
+                    /* =========================================
+                       UPDATED BOOKING
+                    ========================================= */
 
                     const updatedBooking = {
 
@@ -2618,12 +3211,13 @@
                     };
 
 
-                    /*
-                     * SERVICE / OFFER payment
-                     */
+                    /* =========================================
+                       PRESERVE PAYMENT INFORMATION
+                    ========================================= */
 
                     if (
-                        bookingType !== "VIRTUAL"
+                        bookingType !==
+                        "VIRTUAL"
                     ) {
 
                         updatedBooking.paymentMethod =
@@ -2638,19 +3232,31 @@
                                 )
                                 .value;
 
+
+                        /*
+                         * VERY IMPORTANT:
+                         * Preserve existing amount.
+                         */
+
+                        if (
+                            originalBooking.paymentAmount !==
+                            undefined &&
+                            originalBooking.paymentAmount !==
+                            null
+                        ) {
+
+                            updatedBooking.paymentAmount =
+                                originalBooking.paymentAmount;
+
+                        }
+
                     }
 
-
-                    /*
-                     * VIRTUAL booking
-                     * has no payment.
-                     */
 
                     else {
 
                         updatedBooking.paymentMethod =
                             "";
-
 
                         updatedBooking.paymentStatus =
                             "";
@@ -2778,7 +3384,8 @@
 
 
                         alert(
-                            "❌ Failed to update booking."
+                            "❌ Failed to update booking.\n\n" +
+                            error.message
                         );
 
                     }
@@ -2805,9 +3412,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            DELETE BOOKING
-        ========================================== */
+        ===================================================== */
 
         async function deleteBooking(id) {
 
@@ -2822,12 +3429,6 @@
                 return;
 
             }
-
-
-            console.log(
-                "DELETING BOOKING:",
-                id
-            );
 
 
             try {
@@ -2858,12 +3459,6 @@
 
                 const responseText =
                     await response.text();
-
-
-                console.log(
-                    "Delete status:",
-                    response.status
-                );
 
 
                 console.log(
@@ -2913,9 +3508,9 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            LOGOUT
-        ========================================== */
+        ===================================================== */
 
         const logoutBtn =
             document.getElementById(
@@ -2961,25 +3556,31 @@
                         "loggedIn"
                     );
 
+
                     localStorage.removeItem(
                         "userToken"
                     );
+
 
                     localStorage.removeItem(
                         "adminToken"
                     );
 
+
                     localStorage.removeItem(
                         "virtualBooking"
                     );
+
 
                     localStorage.removeItem(
                         "selectedService"
                     );
 
+
                     localStorage.removeItem(
                         "adminLoggedIn"
                     );
+
 
                     localStorage.removeItem(
                         "adminEmail"
@@ -2996,34 +3597,28 @@
 
 
 
-        /* ==========================================
+        /* =====================================================
            START
-        ========================================== */
+        ===================================================== */
 
         document.addEventListener(
             "DOMContentLoaded",
             async function () {
 
                 console.log(
-                    "================================="
-                );
-
-                console.log(
                     "💅 ADMIN BOOKINGS PAGE LOADED"
                 );
+
 
                 console.log(
                     "Backend:",
                     API_BASE_URL
                 );
 
+
                 console.log(
                     "Bookings API:",
                     API_URL
-                );
-
-                console.log(
-                    "================================="
                 );
 
 
@@ -3039,6 +3634,7 @@
 
             }
         );
+
 
     </script>
 
