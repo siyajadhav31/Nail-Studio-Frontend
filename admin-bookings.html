@@ -20,7 +20,7 @@
     <style>
 
         /* ==========================================
-           ADMIN BOOKING TYPE BADGES
+           BOOKING TYPE BADGES
         ========================================== */
 
         .service-badge,
@@ -65,11 +65,11 @@
 
         .offer-badge {
 
-            background: #fde5ef;
+            background: #fff4df;
 
-            color: #c23b72;
+            color: #9a6a00;
 
-            border: 1px solid #f3c2d7;
+            border: 1px solid #ead09a;
 
         }
 
@@ -78,11 +78,135 @@
 
         .virtual-badge {
 
-            background: #eee3ff;
+            background: #f1eaff;
 
             color: #7b42b8;
 
             border: 1px solid #d8c1f5;
+
+        }
+
+
+        /* ==========================================
+           PAYMENT BADGES
+        ========================================== */
+
+        .paid-badge,
+        .pending-badge,
+        .no-payment-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            white-space: nowrap;
+
+        }
+
+
+        .paid-badge {
+
+            background: #edf9f1;
+
+            color: #247a42;
+
+            border: 1px solid #b9e3c5;
+
+        }
+
+
+        .pending-badge {
+
+            background: #fff7e6;
+
+            color: #9a6a00;
+
+            border: 1px solid #f1d79a;
+
+        }
+
+
+        .no-payment-badge {
+
+            background: #f4f4f4;
+
+            color: #777;
+
+            border: 1px solid #ddd;
+
+        }
+
+
+        /* ==========================================
+           BOOKING DETAILS
+        ========================================== */
+
+        .booking-detail {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+
+            min-width: 170px;
+
+        }
+
+
+        .booking-detail-main {
+
+            font-weight: 500;
+
+            color: #49393e;
+
+        }
+
+
+        .booking-detail-sub {
+
+            font-size: 11px;
+
+            color: #8c7770;
+
+        }
+
+
+        .shape-name {
+
+            color: #7b42b8;
+
+            font-weight: 500;
+
+        }
+
+
+        .offer-name {
+
+            color: #9a6a00;
+
+            font-weight: 500;
+
+        }
+
+
+        .service-name {
+
+            color: #a66a00;
+
+            font-weight: 500;
 
         }
 
@@ -199,7 +323,7 @@
 
 
         /* ==========================================
-           FILTER AREA
+           FILTER
         ========================================== */
 
         .booking-filter {
@@ -248,7 +372,7 @@
 
 
         /* ==========================================
-           TOP CONTROLS
+           CONTROLS
         ========================================== */
 
         .booking-controls {
@@ -325,6 +449,8 @@
 
             width: 100%;
 
+            min-width: 1250px;
+
             border-collapse: collapse;
 
         }
@@ -378,6 +504,10 @@
             width: 100%;
 
             max-width: 500px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
 
             background: #fffaf8;
 
@@ -441,7 +571,6 @@
 
 
         .edit-form-group input,
-
         .edit-form-group select {
 
             width: 100%;
@@ -761,15 +890,15 @@
                         </option>
 
                         <option value="offer">
-                            Offer Bookings
+                            🎁 Offer Bookings
                         </option>
 
                         <option value="service">
-                            Service Bookings
+                            💅 Service Bookings
                         </option>
 
                         <option value="virtual">
-                            Virtual Bookings
+                            ✨ Virtual Bookings
                         </option>
 
                     </select>
@@ -827,9 +956,13 @@
 
                                 <th>Booking Type</th>
 
+                                <th>Service / Offer / Shape</th>
+
                                 <th>Date</th>
 
                                 <th>Time</th>
+
+                                <th>Payment</th>
 
                                 <th>Action</th>
 
@@ -969,48 +1102,41 @@
                             Select a time
                         </option>
 
-                        <option value="11:00 AM">
-                            11:00 AM
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                        <option value="8:00 PM">8:00 PM</option>
+                        <option value="9:00 PM">9:00 PM</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PAYMENT STATUS -->
+
+                <div
+                    class="edit-form-group"
+                    id="paymentEditGroup">
+
+                    <label for="editPaymentStatus">
+                        Payment Status
+                    </label>
+
+                    <select id="editPaymentStatus">
+
+                        <option value="PENDING">
+                            ⏳ PENDING
                         </option>
 
-                        <option value="12:00 PM">
-                            12:00 PM
-                        </option>
-
-                        <option value="1:00 PM">
-                            1:00 PM
-                        </option>
-
-                        <option value="2:00 PM">
-                            2:00 PM
-                        </option>
-
-                        <option value="3:00 PM">
-                            3:00 PM
-                        </option>
-
-                        <option value="4:00 PM">
-                            4:00 PM
-                        </option>
-
-                        <option value="5:00 PM">
-                            5:00 PM
-                        </option>
-
-                        <option value="6:00 PM">
-                            6:00 PM
-                        </option>
-
-                        <option value="7:00 PM">
-                            7:00 PM
-                        </option>
-
-                        <option value="8:00 PM">
-                            8:00 PM
-                        </option>
-
-                        <option value="9:00 PM">
-                            9:00 PM
+                        <option value="PAID">
+                            ✅ PAID
                         </option>
 
                     </select>
@@ -1052,1339 +1178,362 @@
     <!-- ==========================================
          JAVASCRIPT
     ========================================== -->
-<script>
 
-/* ==========================================
-   API CONFIGURATION
-========================================== */
-
-const API_BASE_URL =
-    "https://nail-studio-backend-k604.onrender.com";
-
-const API_URL =
-    API_BASE_URL + "/api/bookings";
-
-
-let bookingsData = [];
-
-let selectedBookingId = null;
-
-
-/* ==========================================
-   CHECK ADMIN LOGIN
-========================================== */
-
-function checkAdminLogin() {
-
-    const adminLoggedIn =
-        localStorage.getItem("adminLoggedIn");
-
-    const adminEmail =
-        localStorage.getItem("adminEmail");
-
-
-    console.log("=================================");
-    console.log("CHECKING ADMIN LOGIN");
-    console.log("Admin logged in:", adminLoggedIn);
-    console.log("Admin email:", adminEmail);
-    console.log("=================================");
-
-
-    if (
-        adminLoggedIn === "true" &&
-        adminEmail
-    ) {
-
-        console.log("ADMIN LOGIN VERIFIED");
-
-        return true;
-    }
-
-
-    console.error("ADMIN LOGIN NOT FOUND");
-
-
-    window.location.href =
-        "admin-login.html";
-
-    return false;
-}
-
-
-/* ==========================================
-   GET BOOKING TYPE
-========================================== */
-
-function getBookingType(booking) {
-
-    if (!booking) {
-
-        return "SERVICE";
-    }
-
-
-    const type =
-        String(
-            booking.bookingType || ""
-        )
-        .trim()
-        .toUpperCase();
-
-
-    if (type === "VIRTUAL") {
-
-        return "VIRTUAL";
-    }
-
-
-    if (type === "OFFER") {
-
-        return "OFFER";
-    }
-
-
-    if (type === "SERVICE") {
-
-        return "SERVICE";
-    }
-
-
-    if (isOldOfferBooking(booking)) {
-
-        return "OFFER";
-    }
-
-
-    return "SERVICE";
-}
-
-
-/* ==========================================
-   OLD OFFER CHECK
-========================================== */
-
-function isOldOfferBooking(booking) {
-
-    if (
-        !booking ||
-        !booking.service
-    ) {
-
-        return false;
-    }
-
-
-    const service =
-        String(
-            booking.service
-        )
-        .trim()
-        .toLowerCase();
-
-
-    return (
-
-        service === "first visit offer" ||
-
-        service === "birthday offer" ||
-
-        service === "nail art combo" ||
-
-        service === "festive special" ||
-
-        service === "loyalty rewards"
-
-    );
-}
-
-
-/* ==========================================
-   TYPE CHECKS
-========================================== */
-
-function isOfferBooking(booking) {
-
-    return (
-        getBookingType(booking) === "OFFER"
-    );
-}
-
-
-function isVirtualBooking(booking) {
-
-    return (
-        getBookingType(booking) === "VIRTUAL"
-    );
-}
-
-
-function isServiceBooking(booking) {
-
-    return (
-        getBookingType(booking) === "SERVICE"
-    );
-}
-
-
-/* ==========================================
-   DASHBOARD STATS
-========================================== */
-
-function updateDashboardStats() {
-
-    const total =
-        bookingsData.length;
-
-
-    const offerCount =
-        bookingsData.filter(
-            isOfferBooking
-        ).length;
-
-
-    const serviceCount =
-        bookingsData.filter(
-            isServiceBooking
-        ).length;
-
-
-    const virtualCount =
-        bookingsData.filter(
-            isVirtualBooking
-        ).length;
-
-
-    const totalElement =
-        document.getElementById("totalBookings");
-
-    const offerElement =
-        document.getElementById("offerBookings");
-
-    const serviceElement =
-        document.getElementById("serviceBookings");
-
-    const virtualElement =
-        document.getElementById("virtualBookings");
-
-
-    if (totalElement) {
-
-        totalElement.textContent =
-            total;
-    }
-
-
-    if (offerElement) {
-
-        offerElement.textContent =
-            offerCount;
-    }
-
-
-    if (serviceElement) {
-
-        serviceElement.textContent =
-            serviceCount;
-    }
-
-
-    if (virtualElement) {
-
-        virtualElement.textContent =
-            virtualCount;
-    }
-
-
-    console.log(
-        "Dashboard:",
-        {
-            total,
-            offerCount,
-            serviceCount,
-            virtualCount
-        }
-    );
-}
-
-
-/* ==========================================
-   LOAD BOOKINGS
-========================================== */
-
-async function loadBookings() {
-
-    const tableBody =
-        document.getElementById(
-            "bookingTableBody"
-        );
-
-
-    const loadingMessage =
-        document.getElementById(
-            "loadingMessage"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    const errorBox =
-        document.getElementById(
-            "bookingError"
-        );
-
-
-    if (loadingMessage) {
-
-        loadingMessage.style.display =
-            "block";
-
-        loadingMessage.textContent =
-            "Loading bookings...";
-    }
-
-
-    if (emptyMessage) {
-
-        emptyMessage.style.display =
-            "none";
-    }
-
-
-    if (errorBox) {
-
-        errorBox.style.display =
-            "none";
-    }
-
-
-    if (tableBody) {
-
-        tableBody.innerHTML =
-            "";
-    }
-
-
-    console.log("=================================");
-    console.log("LOADING BOOKINGS");
-    console.log("API:", API_URL);
-    console.log("=================================");
-
-
-    const startTime =
-        performance.now();
-
-
-    try {
-
-        const controller =
-            new AbortController();
-
-
-        const timeout =
-            setTimeout(
-                function () {
-
-                    controller.abort();
-
-                },
-                20000
-            );
-
-
-        const response =
-            await fetch(
-                API_URL +
-                "?_=" +
-                Date.now(),
-                {
-
-                    method: "GET",
-
-                    credentials: "include",
-
-                    cache: "no-store",
-
-                    signal:
-                        controller.signal,
-
-                    headers: {
-
-                        "Accept":
-                            "application/json"
-
-                    }
-
-                }
-            );
-
-
-        clearTimeout(timeout);
-
-
-        const responseTime =
-            (
-                (performance.now() -
-                    startTime) / 1000
-            ).toFixed(2);
-
-
-        console.log(
-            "⏱ Bookings response time:",
-            responseTime + " seconds"
-        );
-
-
-        console.log(
-            "Bookings API Status:",
-            response.status
-        );
-
-
-        const responseText =
-            await response.text();
-
-
-        console.log(
-            "Bookings API Raw Response:",
-            responseText
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Backend returned HTTP " +
-                response.status
-            );
-        }
-
-
-        let data;
-
-
-        try {
-
-            data =
-                JSON.parse(
-                    responseText
-                );
-
-        }
-        catch (jsonError) {
-
-            throw new Error(
-                "Backend did not return valid JSON."
-            );
-        }
-
-
-        console.log(
-            "Bookings API Response:",
-            data
-        );
-
-
-        if (Array.isArray(data)) {
-
-            bookingsData =
-                data;
-
-        }
-
-        else if (
-            data &&
-            Array.isArray(data.data)
-        ) {
-
-            bookingsData =
-                data.data;
-
-        }
-
-        else {
-
-            bookingsData = [];
-        }
+    <script>
 
 
         /* ==========================================
-           SORT NEWEST BOOKING FIRST
+           API CONFIGURATION
         ========================================== */
 
-        bookingsData.sort(
-            function (a, b) {
+        const API_BASE_URL =
+            "https://nail-studio-backend-k604.onrender.com";
 
-                return (
-                    Number(b.id || 0) -
-                    Number(a.id || 0)
-                );
-
-            }
-        );
+        const API_URL =
+            API_BASE_URL + "/api/bookings";
 
 
-        console.log(
-            "Total bookings received:",
-            bookingsData.length
-        );
+        let bookingsData = [];
+
+        let selectedBookingId = null;
+
 
 
         /* ==========================================
-           DEBUG BOOKINGS
+           CHECK ADMIN LOGIN
         ========================================== */
 
-        bookingsData.forEach(
-            function (booking) {
+        function checkAdminLogin() {
 
-                console.log(
-                    "BOOKING:",
-                    {
-                        id:
-                            booking.id,
+            const adminLoggedIn =
+                localStorage.getItem("adminLoggedIn");
 
-                        name:
-                            booking.name,
+            const adminEmail =
+                localStorage.getItem("adminEmail");
 
-                        type:
-                            booking.bookingType,
 
-                        date:
-                            booking.bookingDate,
+            console.log("=================================");
+            console.log("CHECKING ADMIN LOGIN");
+            console.log("Admin logged in:", adminLoggedIn);
+            console.log("Admin email:", adminEmail);
+            console.log("=================================");
 
-                        time:
-                            booking.bookingTime,
 
-                        service:
-                            booking.service,
+            if (
+                adminLoggedIn === "true" &&
+                adminEmail
+            ) {
 
-                        design:
-                            booking.design
+                console.log("ADMIN LOGIN VERIFIED");
 
-                    }
-                );
+                return true;
 
             }
-        );
 
 
-        if (loadingMessage) {
+            console.error("ADMIN LOGIN NOT FOUND");
 
-            loadingMessage.style.display =
-                "none";
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+
         }
 
 
-        displayBookings();
 
-        updateDashboardStats();
+        /* ==========================================
+           GET BOOKING TYPE
+        ========================================== */
 
-    }
+        function getBookingType(booking) {
 
+            if (!booking) {
 
-    catch (error) {
+                return "SERVICE";
 
-        console.error(
-            "ERROR LOADING BOOKINGS:",
-            error
-        );
-
-
-        bookingsData = [];
+            }
 
 
-        updateDashboardStats();
+            const type =
+                String(
+                    booking.bookingType || ""
+                )
+                .trim()
+                .toUpperCase();
 
 
-        if (loadingMessage) {
+            if (type === "VIRTUAL") {
 
-            loadingMessage.style.display =
-                "none";
+                return "VIRTUAL";
+
+            }
+
+
+            if (type === "OFFER") {
+
+                return "OFFER";
+
+            }
+
+
+            if (type === "SERVICE") {
+
+                return "SERVICE";
+
+            }
+
+
+            /*
+             * Old offer bookings may not have
+             * bookingType.
+             */
+
+            if (isOldOfferBooking(booking)) {
+
+                return "OFFER";
+
+            }
+
+
+            return "SERVICE";
+
         }
 
 
-        if (emptyMessage) {
+
+        /* ==========================================
+           OLD OFFER CHECK
+        ========================================== */
+
+        function isOldOfferBooking(booking) {
+
+            if (
+                !booking ||
+                !booking.service
+            ) {
+
+                return false;
+
+            }
+
+
+            const service =
+                String(
+                    booking.service
+                )
+                .trim()
+                .toLowerCase();
+
+
+            return (
+
+                service === "first visit offer" ||
+
+                service === "birthday offer" ||
+
+                service === "nail art combo" ||
+
+                service === "festive special" ||
+
+                service === "loyalty rewards"
+
+            );
+
+        }
+
+
+
+        /* ==========================================
+           TYPE CHECKS
+        ========================================== */
+
+        function isOfferBooking(booking) {
+
+            return (
+                getBookingType(booking) === "OFFER"
+            );
+
+        }
+
+
+        function isVirtualBooking(booking) {
+
+            return (
+                getBookingType(booking) === "VIRTUAL"
+            );
+
+        }
+
+
+        function isServiceBooking(booking) {
+
+            return (
+                getBookingType(booking) === "SERVICE"
+            );
+
+        }
+
+
+
+        /* ==========================================
+           DASHBOARD STATS
+        ========================================== */
+
+        function updateDashboardStats() {
+
+            const total =
+                bookingsData.length;
+
+
+            const offerCount =
+                bookingsData.filter(
+                    isOfferBooking
+                ).length;
+
+
+            const serviceCount =
+                bookingsData.filter(
+                    isServiceBooking
+                ).length;
+
+
+            const virtualCount =
+                bookingsData.filter(
+                    isVirtualBooking
+                ).length;
+
+
+            document.getElementById(
+                "totalBookings"
+            ).textContent = total;
+
+
+            document.getElementById(
+                "offerBookings"
+            ).textContent = offerCount;
+
+
+            document.getElementById(
+                "serviceBookings"
+            ).textContent = serviceCount;
+
+
+            document.getElementById(
+                "virtualBookings"
+            ).textContent = virtualCount;
+
+
+        }
+
+
+
+        /* ==========================================
+           LOAD BOOKINGS
+        ========================================== */
+
+        async function loadBookings() {
+
+            const tableBody =
+                document.getElementById(
+                    "bookingTableBody"
+                );
+
+
+            const loadingMessage =
+                document.getElementById(
+                    "loadingMessage"
+                );
+
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+
+            const errorBox =
+                document.getElementById(
+                    "bookingError"
+                );
+
+
+            loadingMessage.style.display =
+                "block";
+
+
+            loadingMessage.textContent =
+                "Loading bookings...";
+
 
             emptyMessage.style.display =
                 "none";
-        }
 
-
-        if (errorBox) {
 
             errorBox.style.display =
-                "block";
-
-
-            if (
-                error.name ===
-                "AbortError"
-            ) {
-
-                errorBox.textContent =
-                    "⚠️ Backend response is taking too long. Render backend may be waking up. Click Refresh Bookings.";
-
-            }
-
-            else {
-
-                errorBox.textContent =
-                    "⚠️ Unable to load bookings. Check your Spring Boot backend and Render deployment.";
-
-            }
-
-        }
-
-    }
-
-}
-
-
-/* ==========================================
-   ESCAPE HTML
-========================================== */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-}
-
-
-/* ==========================================
-   DISPLAY BOOKINGS
-========================================== */
-
-function displayBookings() {
-
-    const tableBody =
-        document.getElementById(
-            "bookingTableBody"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    const filterElement =
-        document.getElementById(
-            "bookingFilter"
-        );
-
-
-    if (!tableBody) {
-
-        return;
-    }
-
-
-    const filter =
-        filterElement
-            ? filterElement.value
-            : "all";
-
-
-    tableBody.innerHTML =
-        "";
-
-
-    let filteredBookings =
-        bookingsData.slice();
-
-
-    /* ==========================================
-       FILTER
-    ========================================== */
-
-    if (filter === "offer") {
-
-        filteredBookings =
-            bookingsData.filter(
-                isOfferBooking
-            );
-    }
-
-
-    else if (filter === "service") {
-
-        filteredBookings =
-            bookingsData.filter(
-                isServiceBooking
-            );
-    }
-
-
-    else if (filter === "virtual") {
-
-        filteredBookings =
-            bookingsData.filter(
-                isVirtualBooking
-            );
-    }
-
-
-    /* ==========================================
-       EMPTY
-    ========================================== */
-
-    if (
-        filteredBookings.length === 0
-    ) {
-
-        if (emptyMessage) {
-
-            emptyMessage.style.display =
-                "block";
-        }
-
-        return;
-    }
-
-
-    if (emptyMessage) {
-
-        emptyMessage.style.display =
-            "none";
-    }
-
-
-    /* ==========================================
-       CREATE ROWS
-    ========================================== */
-
-    filteredBookings.forEach(
-        function (booking) {
-
-            const bookingType =
-                getBookingType(
-                    booking
-                );
-
-
-            let bookingTypeText =
-                "Service Booking";
-
-
-            let badgeClass =
-                "service-badge";
-
-
-            let bookingIcon =
-                "💅";
-
-
-            /* ==========================================
-               OFFER
-            ========================================== */
-
-            if (
-                bookingType === "OFFER"
-            ) {
-
-                bookingTypeText =
-                    "Offer Booking";
-
-                badgeClass =
-                    "offer-badge";
-
-                bookingIcon =
-                    "🎁";
-            }
-
-
-            /* ==========================================
-               VIRTUAL
-            ========================================== */
-
-            else if (
-                bookingType === "VIRTUAL"
-            ) {
-
-                bookingTypeText =
-                    "Virtual Booking";
-
-                badgeClass =
-                    "virtual-badge";
-
-                bookingIcon =
-                    "✨";
-            }
-
-
-            /* ==========================================
-               DATE
-            ========================================== */
-
-            const bookingDate =
-                booking.bookingDate ||
-                booking.date ||
-                "—";
-
-
-            /* ==========================================
-               TIME
-            ========================================== */
-
-            const bookingTime =
-                booking.bookingTime ||
-                booking.time ||
-                "—";
-
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${escapeHTML(
-                        booking.id || ""
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        booking.name || ""
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        booking.email || ""
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        booking.phone || ""
-                    )}
-                </td>
-
-                <td>
-
-                    <span
-                        class="${badgeClass}">
-
-                        ${bookingIcon}
-                        ${bookingTypeText}
-
-                    </span>
-
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        bookingDate
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        bookingTime
-                    )}
-                </td>
-
-                <td>
-
-                    <div
-                        class="action-buttons">
-
-                        <button
-                            type="button"
-                            class="edit-btn"
-                            onclick="openEditModal(${Number(
-                                booking.id
-                            )})">
-
-                            💅 Edit
-
-                        </button>
-
-                        <button
-                            type="button"
-                            class="delete-btn"
-                            onclick="deleteBooking(${Number(
-                                booking.id
-                            )})">
-
-                            🗑 Delete
-
-                        </button>
-
-                    </div>
-
-                </td>
-
-            `;
-
-
-            tableBody.appendChild(
-                row
-            );
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   FILTER
-========================================== */
-
-const bookingFilter =
-    document.getElementById(
-        "bookingFilter"
-    );
-
-
-if (bookingFilter) {
-
-    bookingFilter.addEventListener(
-        "change",
-        function () {
-
-            displayBookings();
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   REFRESH
-========================================== */
-
-const refreshBookings =
-    document.getElementById(
-        "refreshBookings"
-    );
-
-
-if (refreshBookings) {
-
-    refreshBookings.addEventListener(
-        "click",
-        async function () {
-
-            const button =
-                this;
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "⏳ Loading...";
-
-
-            await loadBookings();
-
-
-            button.disabled =
-                false;
-
-
-            button.textContent =
-                "🔄 Refresh Bookings";
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   OPEN EDIT MODAL
-========================================== */
-
-function openEditModal(id) {
-
-    const booking =
-        bookingsData.find(
-            function (item) {
-
-                return (
-                    Number(item.id) ===
-                    Number(id)
-                );
-
-            }
-        );
-
-
-    if (!booking) {
-
-        alert(
-            "Booking not found."
-        );
-
-        return;
-    }
-
-
-    selectedBookingId =
-        id;
-
-
-    const editName =
-        document.getElementById(
-            "editName"
-        );
-
-    const editEmail =
-        document.getElementById(
-            "editEmail"
-        );
-
-    const editPhone =
-        document.getElementById(
-            "editPhone"
-        );
-
-    const editDate =
-        document.getElementById(
-            "editDate"
-        );
-
-    const editTime =
-        document.getElementById(
-            "editTime"
-        );
-
-    const editModal =
-        document.getElementById(
-            "editModal"
-        );
-
-
-    if (editName) {
-
-        editName.value =
-            booking.name || "";
-    }
-
-
-    if (editEmail) {
-
-        editEmail.value =
-            booking.email || "";
-    }
-
-
-    if (editPhone) {
-
-        editPhone.value =
-            booking.phone || "";
-    }
-
-
-    if (editDate) {
-
-        editDate.value =
-            booking.bookingDate ||
-            booking.date ||
-            "";
-    }
-
-
-    if (editTime) {
-
-        editTime.value =
-            booking.bookingTime ||
-            booking.time ||
-            "";
-    }
-
-
-    if (editModal) {
-
-        editModal.style.display =
-            "flex";
-    }
-
-}
-
-
-/* ==========================================
-   CLOSE EDIT MODAL
-========================================== */
-
-const closeModal =
-    document.getElementById(
-        "closeModal"
-    );
-
-
-if (closeModal) {
-
-    closeModal.addEventListener(
-        "click",
-        function () {
-
-            const editModal =
-                document.getElementById(
-                    "editModal"
-                );
-
-
-            if (editModal) {
-
-                editModal.style.display =
-                    "none";
-            }
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   CLOSE MODAL OUTSIDE
-========================================== */
-
-window.addEventListener(
-    "click",
-    function (event) {
-
-        const modal =
-            document.getElementById(
-                "editModal"
-            );
-
-
-        if (
-            modal &&
-            event.target === modal
-        ) {
-
-            modal.style.display =
                 "none";
-        }
-
-    }
-);
 
 
-/* ==========================================
-   UPDATE BOOKING
-========================================== */
-
-const editBookingForm =
-    document.getElementById(
-        "editBookingForm"
-    );
+            tableBody.innerHTML =
+                "";
 
 
-if (editBookingForm) {
-
-    editBookingForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
+            console.log("=================================");
+            console.log("LOADING BOOKINGS");
+            console.log("API:", API_URL);
+            console.log("=================================");
 
 
-            if (!selectedBookingId) {
-
-                alert(
-                    "Booking ID not found."
-                );
-
-                return;
-            }
-
-
-            const originalBooking =
-                bookingsData.find(
-                    function (booking) {
-
-                        return (
-                            Number(
-                                booking.id
-                            ) ===
-                            Number(
-                                selectedBookingId
-                            )
-                        );
-
-                    }
-                );
-
-
-            if (!originalBooking) {
-
-                alert(
-                    "Original booking not found."
-                );
-
-                return;
-            }
-
-
-            const selectedDate =
-                document
-                    .getElementById(
-                        "editDate"
-                    )
-                    .value;
-
-
-            const selectedTime =
-                document
-                    .getElementById(
-                        "editTime"
-                    )
-                    .value;
-
-
-            const updatedBooking = {
-
-                name:
-                    document
-                        .getElementById(
-                            "editName"
-                        )
-                        .value
-                        .trim(),
-
-                email:
-                    document
-                        .getElementById(
-                            "editEmail"
-                        )
-                        .value
-                        .trim(),
-
-                phone:
-                    document
-                        .getElementById(
-                            "editPhone"
-                        )
-                        .value
-                        .trim(),
-
-                service:
-                    originalBooking.service ||
-                    "",
-
-                design:
-                    originalBooking.design ||
-                    "",
-
-                bookingDate:
-                    selectedDate,
-
-                bookingTime:
-                    selectedTime,
-
-                bookingType:
-                    originalBooking.bookingType ||
-                    "SERVICE"
-
-            };
-
-
-            console.log(
-                "UPDATING BOOKING:",
-                updatedBooking
-            );
-
-
-            const submitButton =
-                editBookingForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            const originalButtonText =
-                submitButton
-                    ? submitButton.innerHTML
-                    : "";
-
-
-            if (submitButton) {
-
-                submitButton.disabled =
-                    true;
-
-                submitButton.innerHTML =
-                    "⏳ Updating...";
-            }
+            const startTime =
+                performance.now();
 
 
             try {
 
-                const startTime =
-                    performance.now();
+                const controller =
+                    new AbortController();
+
+
+                const timeout =
+                    setTimeout(
+                        function () {
+
+                            controller.abort();
+
+                        },
+                        20000
+                    );
 
 
                 const response =
                     await fetch(
                         API_URL +
-                        "/" +
-                        selectedBookingId,
+                        "?_=" +
+                        Date.now(),
                         {
 
-                            method:
-                                "PUT",
+                            method: "GET",
 
-                            credentials:
-                                "include",
+                            credentials: "include",
+
+                            cache: "no-store",
+
+                            signal:
+                                controller.signal,
 
                             headers: {
-
-                                "Content-Type":
-                                    "application/json",
 
                                 "Accept":
                                     "application/json"
 
-                            },
-
-                            body:
-                                JSON.stringify(
-                                    updatedBooking
-                                )
+                            }
 
                         }
                     );
+
+
+                clearTimeout(timeout);
 
 
                 const responseTime =
@@ -2395,8 +1544,14 @@ if (editBookingForm) {
 
 
                 console.log(
-                    "⏱ Update response time:",
+                    "⏱ Response:",
                     responseTime + " seconds"
+                );
+
+
+                console.log(
+                    "Bookings API Status:",
+                    response.status
                 );
 
 
@@ -2405,42 +1560,1333 @@ if (editBookingForm) {
 
 
                 console.log(
-                    "Update response:",
+                    "Bookings API Response:",
                     responseText
                 );
 
 
-                if (
-                    !response.ok
-                ) {
+                if (!response.ok) {
 
                     throw new Error(
-                        "Update failed. Status: " +
+                        "Backend returned HTTP " +
                         response.status
                     );
+
                 }
 
 
-                alert(
-                    "💅 Booking Updated Successfully!"
+                let data;
+
+
+                try {
+
+                    data =
+                        JSON.parse(
+                            responseText
+                        );
+
+                }
+
+                catch (jsonError) {
+
+                    throw new Error(
+                        "Backend did not return valid JSON."
+                    );
+
+                }
+
+
+                if (Array.isArray(data)) {
+
+                    bookingsData =
+                        data;
+
+                }
+
+                else if (
+                    data &&
+                    Array.isArray(data.data)
+                ) {
+
+                    bookingsData =
+                        data.data;
+
+                }
+
+                else {
+
+                    bookingsData = [];
+
+                }
+
+
+                /* ==========================================
+                   SORT NEWEST FIRST
+                ========================================== */
+
+                bookingsData.sort(
+                    function (a, b) {
+
+                        return (
+                            Number(b.id || 0) -
+                            Number(a.id || 0)
+                        );
+
+                    }
                 );
 
 
-                const editModal =
+                console.log(
+                    "Total bookings:",
+                    bookingsData.length
+                );
+
+
+                if (loadingMessage) {
+
+                    loadingMessage.style.display =
+                        "none";
+
+                }
+
+
+                displayBookings();
+
+                updateDashboardStats();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "ERROR LOADING BOOKINGS:",
+                    error
+                );
+
+
+                bookingsData = [];
+
+
+                updateDashboardStats();
+
+
+                loadingMessage.style.display =
+                    "none";
+
+
+                emptyMessage.style.display =
+                    "none";
+
+
+                errorBox.style.display =
+                    "block";
+
+
+                if (
+                    error.name ===
+                    "AbortError"
+                ) {
+
+                    errorBox.textContent =
+                        "⚠️ Backend response is taking too long. Render backend may be waking up. Click Refresh Bookings.";
+
+                }
+
+                else {
+
+                    errorBox.textContent =
+                        "⚠️ Unable to load bookings. Check your Spring Boot backend and Render deployment.";
+
+                }
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           ESCAPE HTML
+        ========================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* ==========================================
+           GET PAYMENT HTML
+        ========================================== */
+
+        function getPaymentHTML(booking) {
+
+            const type =
+                getBookingType(booking);
+
+
+            /* VIRTUAL = NO PAYMENT */
+
+            if (type === "VIRTUAL") {
+
+                return `
+                    <span class="no-payment-badge">
+                        ✨ No Payment
+                    </span>
+                `;
+
+            }
+
+
+            const status =
+                String(
+                    booking.paymentStatus || ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            const method =
+                String(
+                    booking.paymentMethod || ""
+                )
+                .trim()
+                .toUpperCase();
+
+
+            /* PAID */
+
+            if (status === "PAID") {
+
+                return `
+                    <div class="booking-detail">
+
+                        <span class="paid-badge">
+                            ✅ PAID
+                        </span>
+
+                        <span class="booking-detail-sub">
+                            ${escapeHTML(
+                                method === "GOOGLE_PAY"
+                                    ? "Google Pay / UPI"
+                                    : method || "Paid"
+                            )}
+                        </span>
+
+                    </div>
+                `;
+
+            }
+
+
+            /* PENDING */
+
+            return `
+                <div class="booking-detail">
+
+                    <span class="pending-badge">
+                        ⏳ PENDING
+                    </span>
+
+                    <span class="booking-detail-sub">
+                        💵 Pay at Studio
+                    </span>
+
+                </div>
+            `;
+
+        }
+
+
+
+        /* ==========================================
+           GET BOOKING DETAIL HTML
+        ========================================== */
+
+        function getBookingDetailHTML(booking) {
+
+            const type =
+                getBookingType(booking);
+
+
+            /* ==========================================
+               OFFER
+            ========================================== */
+
+            if (type === "OFFER") {
+
+                const offer =
+                    booking.service ||
+                    booking.offer ||
+                    "Special Offer";
+
+
+                return `
+                    <div class="booking-detail">
+
+                        <span class="booking-detail-main offer-name">
+                            🎁 ${escapeHTML(offer)}
+                        </span>
+
+                        <span class="booking-detail-sub">
+                            Offer Appointment
+                        </span>
+
+                    </div>
+                `;
+
+            }
+
+
+            /* ==========================================
+               VIRTUAL
+            ========================================== */
+
+            if (type === "VIRTUAL") {
+
+                const shape =
+                    booking.shape ||
+                    booking.design ||
+                    "Shape not specified";
+
+
+                return `
+                    <div class="booking-detail">
+
+                        <span class="booking-detail-main shape-name">
+                            ✨ ${escapeHTML(shape)}
+                        </span>
+
+                        <span class="booking-detail-sub">
+                            Virtual Nail Shape
+                        </span>
+
+                    </div>
+                `;
+
+            }
+
+
+            /* ==========================================
+               SERVICE
+            ========================================== */
+
+            const service =
+                booking.service ||
+                "Service";
+
+
+            return `
+                <div class="booking-detail">
+
+                    <span class="booking-detail-main service-name">
+                        💅 ${escapeHTML(service)}
+                    </span>
+
+                    <span class="booking-detail-sub">
+                        Service Appointment
+                    </span>
+
+                </div>
+            `;
+
+        }
+
+
+
+        /* ==========================================
+           DISPLAY BOOKINGS
+        ========================================== */
+
+        function displayBookings() {
+
+            const tableBody =
+                document.getElementById(
+                    "bookingTableBody"
+                );
+
+
+            const emptyMessage =
+                document.getElementById(
+                    "emptyMessage"
+                );
+
+
+            const filterElement =
+                document.getElementById(
+                    "bookingFilter"
+                );
+
+
+            if (!tableBody) {
+
+                return;
+
+            }
+
+
+            const filter =
+                filterElement
+                    ? filterElement.value
+                    : "all";
+
+
+            tableBody.innerHTML =
+                "";
+
+
+            let filteredBookings =
+                bookingsData.slice();
+
+
+            /* ==========================================
+               FILTER
+            ========================================== */
+
+            if (filter === "offer") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        isOfferBooking
+                    );
+
+            }
+
+
+            else if (filter === "service") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        isServiceBooking
+                    );
+
+            }
+
+
+            else if (filter === "virtual") {
+
+                filteredBookings =
+                    bookingsData.filter(
+                        isVirtualBooking
+                    );
+
+            }
+
+
+            /* ==========================================
+               EMPTY
+            ========================================== */
+
+            if (
+                filteredBookings.length === 0
+            ) {
+
+                emptyMessage.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            emptyMessage.style.display =
+                "none";
+
+
+            /* ==========================================
+               CREATE ROWS
+            ========================================== */
+
+            filteredBookings.forEach(
+                function (booking) {
+
+                    const bookingType =
+                        getBookingType(
+                            booking
+                        );
+
+
+                    let bookingTypeText =
+                        "Service Booking";
+
+
+                    let badgeClass =
+                        "service-badge";
+
+
+                    let bookingIcon =
+                        "💅";
+
+
+                    /* OFFER */
+
+                    if (
+                        bookingType === "OFFER"
+                    ) {
+
+                        bookingTypeText =
+                            "Offer Booking";
+
+                        badgeClass =
+                            "offer-badge";
+
+                        bookingIcon =
+                            "🎁";
+
+                    }
+
+
+                    /* VIRTUAL */
+
+                    else if (
+                        bookingType === "VIRTUAL"
+                    ) {
+
+                        bookingTypeText =
+                            "Virtual Booking";
+
+                        badgeClass =
+                            "virtual-badge";
+
+                        bookingIcon =
+                            "✨";
+
+                    }
+
+
+                    const bookingDate =
+                        booking.bookingDate ||
+                        booking.date ||
+                        "—";
+
+
+                    const bookingTime =
+                        booking.bookingTime ||
+                        booking.time ||
+                        "—";
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${escapeHTML(
+                                booking.id || ""
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                booking.name || ""
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                booking.email || ""
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                booking.phone || ""
+                            )}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="${badgeClass}">
+
+                                ${bookingIcon}
+                                ${bookingTypeText}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            ${getBookingDetailHTML(
+                                booking
+                            )}
+
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                bookingDate
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                bookingTime
+                            )}
+                        </td>
+
+
+                        <td>
+
+                            ${getPaymentHTML(
+                                booking
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <div
+                                class="action-buttons">
+
+                                <button
+                                    type="button"
+                                    class="edit-btn"
+                                    onclick="openEditModal(${Number(
+                                        booking.id
+                                    )})">
+
+                                    💅 Edit
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    onclick="deleteBooking(${Number(
+                                        booking.id
+                                    )})">
+
+                                    🗑 Delete
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    tableBody.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           FILTER EVENT
+        ========================================== */
+
+        const bookingFilter =
+            document.getElementById(
+                "bookingFilter"
+            );
+
+
+        if (bookingFilter) {
+
+            bookingFilter.addEventListener(
+                "change",
+                function () {
+
+                    displayBookings();
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           REFRESH
+        ========================================== */
+
+        const refreshBookings =
+            document.getElementById(
+                "refreshBookings"
+            );
+
+
+        if (refreshBookings) {
+
+            refreshBookings.addEventListener(
+                "click",
+                async function () {
+
+                    const button =
+                        this;
+
+
+                    button.disabled =
+                        true;
+
+
+                    button.textContent =
+                        "⏳ Loading...";
+
+
+                    await loadBookings();
+
+
+                    button.disabled =
+                        false;
+
+
+                    button.textContent =
+                        "🔄 Refresh Bookings";
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           OPEN EDIT MODAL
+        ========================================== */
+
+        function openEditModal(id) {
+
+            const booking =
+                bookingsData.find(
+                    function (item) {
+
+                        return (
+                            Number(item.id) ===
+                            Number(id)
+                        );
+
+                    }
+                );
+
+
+            if (!booking) {
+
+                alert(
+                    "Booking not found."
+                );
+
+                return;
+
+            }
+
+
+            selectedBookingId =
+                id;
+
+
+            document.getElementById(
+                "editName"
+            ).value =
+                booking.name || "";
+
+
+            document.getElementById(
+                "editEmail"
+            ).value =
+                booking.email || "";
+
+
+            document.getElementById(
+                "editPhone"
+            ).value =
+                booking.phone || "";
+
+
+            document.getElementById(
+                "editDate"
+            ).value =
+                booking.bookingDate ||
+                booking.date ||
+                "";
+
+
+            document.getElementById(
+                "editTime"
+            ).value =
+                booking.bookingTime ||
+                booking.time ||
+                "";
+
+
+            const paymentStatus =
+                String(
+                    booking.paymentStatus || "PENDING"
+                )
+                .toUpperCase();
+
+
+            document.getElementById(
+                "editPaymentStatus"
+            ).value =
+                paymentStatus === "PAID"
+                    ? "PAID"
+                    : "PENDING";
+
+
+            /*
+             * Virtual bookings don't have payment.
+             */
+
+            const paymentGroup =
+                document.getElementById(
+                    "paymentEditGroup"
+                );
+
+
+            if (paymentGroup) {
+
+                paymentGroup.style.display =
+                    getBookingType(booking) === "VIRTUAL"
+                        ? "none"
+                        : "block";
+
+            }
+
+
+            const editModal =
+                document.getElementById(
+                    "editModal"
+                );
+
+
+            if (editModal) {
+
+                editModal.style.display =
+                    "flex";
+
+            }
+
+        }
+
+
+
+        /* ==========================================
+           CLOSE MODAL
+        ========================================== */
+
+        const closeModal =
+            document.getElementById(
+                "closeModal"
+            );
+
+
+        if (closeModal) {
+
+            closeModal.addEventListener(
+                "click",
+                function () {
+
+                    const editModal =
+                        document.getElementById(
+                            "editModal"
+                        );
+
+
+                    if (editModal) {
+
+                        editModal.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           CLOSE MODAL OUTSIDE
+        ========================================== */
+
+        window.addEventListener(
+            "click",
+            function (event) {
+
+                const modal =
                     document.getElementById(
                         "editModal"
                     );
 
 
-                if (editModal) {
+                if (
+                    modal &&
+                    event.target === modal
+                ) {
 
-                    editModal.style.display =
+                    modal.style.display =
                         "none";
+
+                }
+
+            }
+        );
+
+
+
+        /* ==========================================
+           UPDATE BOOKING
+        ========================================== */
+
+        const editBookingForm =
+            document.getElementById(
+                "editBookingForm"
+            );
+
+
+        if (editBookingForm) {
+
+            editBookingForm.addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    if (!selectedBookingId) {
+
+                        alert(
+                            "Booking ID not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const originalBooking =
+                        bookingsData.find(
+                            function (booking) {
+
+                                return (
+                                    Number(
+                                        booking.id
+                                    ) ===
+                                    Number(
+                                        selectedBookingId
+                                    )
+                                );
+
+                            }
+                        );
+
+
+                    if (!originalBooking) {
+
+                        alert(
+                            "Original booking not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const bookingType =
+                        getBookingType(
+                            originalBooking
+                        );
+
+
+                    const selectedDate =
+                        document
+                            .getElementById(
+                                "editDate"
+                            )
+                            .value;
+
+
+                    const selectedTime =
+                        document
+                            .getElementById(
+                                "editTime"
+                            )
+                            .value;
+
+
+                    /*
+                     * Keep original booking information.
+                     */
+
+                    const updatedBooking = {
+
+                        name:
+                            document
+                                .getElementById(
+                                    "editName"
+                                )
+                                .value
+                                .trim(),
+
+
+                        email:
+                            document
+                                .getElementById(
+                                    "editEmail"
+                                )
+                                .value
+                                .trim(),
+
+
+                        phone:
+                            document
+                                .getElementById(
+                                    "editPhone"
+                                )
+                                .value
+                                .trim(),
+
+
+                        service:
+                            originalBooking.service ||
+                            "",
+
+
+                        design:
+                            originalBooking.design ||
+                            "",
+
+
+                        shape:
+                            originalBooking.shape ||
+                            "",
+
+
+                        bookingDate:
+                            selectedDate,
+
+
+                        bookingTime:
+                            selectedTime,
+
+
+                        bookingType:
+                            bookingType
+
+                    };
+
+
+                    /*
+                     * SERVICE / OFFER payment
+                     */
+
+                    if (
+                        bookingType !== "VIRTUAL"
+                    ) {
+
+                        updatedBooking.paymentMethod =
+                            originalBooking.paymentMethod ||
+                            "CASH";
+
+
+                        updatedBooking.paymentStatus =
+                            document
+                                .getElementById(
+                                    "editPaymentStatus"
+                                )
+                                .value;
+
+                    }
+
+
+                    /*
+                     * VIRTUAL booking
+                     * has no payment.
+                     */
+
+                    else {
+
+                        updatedBooking.paymentMethod =
+                            "";
+
+
+                        updatedBooking.paymentStatus =
+                            "";
+
+                    }
+
+
+                    console.log(
+                        "UPDATING BOOKING:",
+                        updatedBooking
+                    );
+
+
+                    const submitButton =
+                        editBookingForm.querySelector(
+                            'button[type="submit"]'
+                        );
+
+
+                    const originalButtonText =
+                        submitButton
+                            ? submitButton.innerHTML
+                            : "";
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            true;
+
+                        submitButton.innerHTML =
+                            "⏳ Updating...";
+
+                    }
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                API_URL +
+                                "/" +
+                                selectedBookingId,
+                                {
+
+                                    method:
+                                        "PUT",
+
+                                    credentials:
+                                        "include",
+
+                                    headers: {
+
+                                        "Content-Type":
+                                            "application/json",
+
+                                        "Accept":
+                                            "application/json"
+
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            updatedBooking
+                                        )
+
+                                }
+                            );
+
+
+                        const responseText =
+                            await response.text();
+
+
+                        console.log(
+                            "Update response:",
+                            responseText
+                        );
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Update failed. Status: " +
+                                response.status
+                            );
+
+                        }
+
+
+                        alert(
+                            "💅 Booking Updated Successfully!"
+                        );
+
+
+                        const editModal =
+                            document.getElementById(
+                                "editModal"
+                            );
+
+
+                        if (editModal) {
+
+                            editModal.style.display =
+                                "none";
+
+                        }
+
+
+                        selectedBookingId =
+                            null;
+
+
+                        await loadBookings();
+
+                    }
+
+
+                    catch (error) {
+
+                        console.error(
+                            "UPDATE ERROR:",
+                            error
+                        );
+
+
+                        alert(
+                            "❌ Failed to update booking."
+                        );
+
+                    }
+
+
+                    finally {
+
+                        if (submitButton) {
+
+                            submitButton.disabled =
+                                false;
+
+                            submitButton.innerHTML =
+                                originalButtonText;
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* ==========================================
+           DELETE BOOKING
+        ========================================== */
+
+        async function deleteBooking(id) {
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this booking?"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            console.log(
+                "DELETING BOOKING:",
+                id
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "/" +
+                        id,
+                        {
+
+                            method:
+                                "DELETE",
+
+                            credentials:
+                                "include",
+
+                            headers: {
+
+                                "Accept":
+                                    "text/plain"
+
+                            }
+
+                        }
+                    );
+
+
+                const responseText =
+                    await response.text();
+
+
+                console.log(
+                    "Delete status:",
+                    response.status
+                );
+
+
+                console.log(
+                    "Delete response:",
+                    responseText
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Delete failed. Status: " +
+                        response.status +
+                        " | " +
+                        responseText
+                    );
+
                 }
 
 
-                selectedBookingId =
-                    null;
+                alert(
+                    "💅 Booking Deleted Successfully!"
+                );
 
 
                 await loadBookings();
@@ -2451,310 +2897,150 @@ if (editBookingForm) {
             catch (error) {
 
                 console.error(
-                    "UPDATE ERROR:",
+                    "DELETE ERROR:",
                     error
                 );
 
 
                 alert(
-                    "❌ Failed to update booking."
+                    "❌ Failed to delete booking.\n\n" +
+                    error.message
                 );
 
             }
 
-
-            finally {
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        false;
-
-                    submitButton.innerHTML =
-                        originalButtonText;
-                }
-
-            }
-
         }
-    );
-
-}
 
 
-/* ==========================================
-   DELETE BOOKING
-========================================== */
 
-async function deleteBooking(id) {
+        /* ==========================================
+           LOGOUT
+        ========================================== */
 
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete this booking?"
-        );
-
-
-    if (!confirmDelete) {
-
-        return;
-    }
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
 
 
-    console.log(
-        "================================="
-    );
+        if (logoutBtn) {
 
-    console.log(
-        "DELETING BOOKING"
-    );
+            logoutBtn.addEventListener(
+                "click",
+                async function () {
 
-    console.log(
-        "Booking ID:",
-        id
-    );
+                    try {
 
-    console.log(
-        "DELETE URL:",
-        API_URL + "/" + id
-    );
+                        await fetch(
+                            API_BASE_URL +
+                            "/api/admin/logout",
+                            {
 
-    console.log(
-        "================================="
-    );
+                                method:
+                                    "POST",
 
+                                credentials:
+                                    "include"
 
-    try {
-
-        const startTime =
-            performance.now();
-
-
-        const response =
-            await fetch(
-                API_URL +
-                "/" +
-                id,
-                {
-
-                    method:
-                        "DELETE",
-
-                    credentials:
-                        "include",
-
-                    headers: {
-
-                        "Accept":
-                            "text/plain"
+                            }
+                        );
 
                     }
+
+                    catch (error) {
+
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
+
+                    }
+
+
+                    localStorage.removeItem(
+                        "loggedIn"
+                    );
+
+                    localStorage.removeItem(
+                        "userToken"
+                    );
+
+                    localStorage.removeItem(
+                        "adminToken"
+                    );
+
+                    localStorage.removeItem(
+                        "virtualBooking"
+                    );
+
+                    localStorage.removeItem(
+                        "selectedService"
+                    );
+
+                    localStorage.removeItem(
+                        "adminLoggedIn"
+                    );
+
+                    localStorage.removeItem(
+                        "adminEmail"
+                    );
+
+
+                    window.location.href =
+                        "admin-login.html";
 
                 }
             );
 
-
-        const responseTime =
-            (
-                (performance.now() -
-                    startTime) / 1000
-            ).toFixed(2);
-
-
-        console.log(
-            "⏱ Delete response time:",
-            responseTime + " seconds"
-        );
-
-
-        const responseText =
-            await response.text();
-
-
-        console.log(
-            "Delete status:",
-            response.status
-        );
-
-
-        console.log(
-            "Delete response:",
-            responseText
-        );
-
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Delete failed. Status: " +
-                response.status +
-                " | " +
-                responseText
-            );
         }
 
 
-        alert(
-            "💅 Booking Deleted Successfully!"
-        );
 
+        /* ==========================================
+           START
+        ========================================== */
 
-        /*
-         * Reload bookings directly
-         * from Render backend.
-         */
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
 
-        await loadBookings();
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "DELETE ERROR:",
-            error
-        );
-
-
-        alert(
-            "❌ Failed to delete booking.\n\n" +
-            error.message
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-const logoutBtn =
-    document.getElementById(
-        "logoutBtn"
-    );
-
-
-if (logoutBtn) {
-
-    logoutBtn.addEventListener(
-        "click",
-        async function () {
-
-            try {
-
-                await fetch(
-                    API_BASE_URL +
-                    "/api/admin/logout",
-                    {
-
-                        method:
-                            "POST",
-
-                        credentials:
-                            "include"
-
-                    }
+                console.log(
+                    "================================="
                 );
 
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
+                console.log(
+                    "💅 ADMIN BOOKINGS PAGE LOADED"
                 );
 
+                console.log(
+                    "Backend:",
+                    API_BASE_URL
+                );
+
+                console.log(
+                    "Bookings API:",
+                    API_URL
+                );
+
+                console.log(
+                    "================================="
+                );
+
+
+                const isAdmin =
+                    checkAdminLogin();
+
+
+                if (isAdmin) {
+
+                    await loadBookings();
+
+                }
+
             }
-
-
-            localStorage.removeItem(
-                "loggedIn"
-            );
-
-            localStorage.removeItem(
-                "userToken"
-            );
-
-            localStorage.removeItem(
-                "adminToken"
-            );
-
-            localStorage.removeItem(
-                "virtualBooking"
-            );
-
-            localStorage.removeItem(
-                "selectedService"
-            );
-
-            localStorage.removeItem(
-                "adminLoggedIn"
-            );
-
-            localStorage.removeItem(
-                "adminEmail"
-            );
-
-
-            window.location.href =
-                "admin-login.html";
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   START
-========================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
-
-        console.log(
-            "================================="
         );
 
-        console.log(
-            "💅 ADMIN BOOKINGS PAGE LOADED"
-        );
-
-        console.log(
-            "Backend:",
-            API_BASE_URL
-        );
-
-        console.log(
-            "Bookings API:",
-            API_URL
-        );
-
-        console.log(
-            "================================="
-        );
-
-
-        const isAdmin =
-            checkAdminLogin();
-
-
-        if (isAdmin) {
-
-            await loadBookings();
-
-        }
-
-    }
-);
-
-</script>
+    </script>
 
 
 </body>
