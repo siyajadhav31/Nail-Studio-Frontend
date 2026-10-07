@@ -245,67 +245,124 @@ function setMinimumDate() {
 
 function loadSelectedService() {
 
-    const serviceSelect = document.getElementById("service");
+    const serviceSelect =
+        document.getElementById("service");
+
 
     if (!serviceSelect) {
         return;
     }
 
-    const priceBox = document.getElementById("priceBox");
+
+    const priceBox =
+        document.getElementById("priceBox");
+
+
     const selectedServiceName =
-        document.getElementById("selectedServiceName");
+        document.getElementById(
+            "selectedServiceName"
+        );
+
+
     const selectedServicePrice =
-        document.getElementById("selectedServicePrice");
+        document.getElementById(
+            "selectedServicePrice"
+        );
+
 
     const urlParams =
-        new URLSearchParams(window.location.search);
+        new URLSearchParams(
+            window.location.search
+        );
+
 
     const serviceFromURL =
         urlParams.get("service");
 
+
     const serviceFromStorage =
-        localStorage.getItem("selectedService");
+        localStorage.getItem(
+            "selectedService"
+        );
+
 
     const serviceToSelect =
-        serviceFromURL || serviceFromStorage;
+        serviceFromURL ||
+        serviceFromStorage;
+
 
     if (!serviceToSelect) {
         return;
     }
 
+
     const options =
-        serviceSelect.querySelectorAll("option");
+        serviceSelect.querySelectorAll(
+            "option"
+        );
 
-    let foundOption = null;
 
-    options.forEach(function (option) {
+    let foundOption =
+        null;
 
-        if (option.value === serviceToSelect) {
-            foundOption = option;
+
+    options.forEach(
+        function (option) {
+
+            if (
+                option.value ===
+                serviceToSelect
+            ) {
+
+                foundOption =
+                    option;
+
+            }
+
         }
+    );
 
-    });
 
     if (foundOption) {
 
-        foundOption.selected = true;
+        foundOption.selected =
+            true;
+
 
         const price =
-            foundOption.getAttribute("data-price");
+            foundOption.getAttribute(
+                "data-price"
+            );
+
 
         if (selectedServiceName) {
+
             selectedServiceName.textContent =
                 foundOption.value;
+
         }
+
 
         if (selectedServicePrice) {
+
             selectedServicePrice.textContent =
-                "₹" + Number(price || 0).toLocaleString("en-IN");
+                "₹" +
+                Number(
+                    price || 0
+                ).toLocaleString(
+                    "en-IN"
+                );
+
         }
 
+
         if (priceBox) {
-            priceBox.style.display = "block";
+
+            priceBox.style.display =
+                "block";
+
         }
+
 
         localStorage.setItem(
             "selectedService",
@@ -476,22 +533,18 @@ async function handleBookingSubmit(event) {
         service:
             service,
 
-        /* Backend-compatible date */
         bookingDate:
             date,
 
-        /* Backend-compatible time */
         bookingTime:
             time,
 
-        /* Keep old fields */
         date:
             date,
 
         time:
             time,
 
-        /* IMPORTANT */
         bookingType:
             "SERVICE",
 
@@ -511,21 +564,6 @@ async function handleBookingSubmit(event) {
 
     console.log(
         bookingData
-    );
-
-    console.log(
-        "Booking Type:",
-        bookingData.bookingType
-    );
-
-    console.log(
-        "Booking Date:",
-        bookingData.bookingDate
-    );
-
-    console.log(
-        "Booking Time:",
-        bookingData.bookingTime
     );
 
     console.log(
@@ -556,6 +594,7 @@ async function handleBookingSubmit(event) {
                         JSON.stringify(
                             bookingData
                         )
+
                 }
             );
 
@@ -657,7 +696,7 @@ async function handleVirtualBookingSubmit(event) {
 
 
     /* =====================================================
-       SERVICE
+       VIRTUAL SERVICE
     ===================================================== */
 
     const service =
@@ -665,11 +704,7 @@ async function handleVirtualBookingSubmit(event) {
             form,
             "service"
         ) ||
-        document
-            .getElementById("previewService")
-            ?.textContent
-            .trim() ||
-        "Gel Nails";
+        "Virtual Nail Shape";
 
 
     /* =====================================================
@@ -705,40 +740,20 @@ async function handleVirtualBookingSubmit(event) {
 
 
     /* =====================================================
-       DESIGN
-    ===================================================== */
-
-    const bookingDesignElement =
-        document.getElementById(
-            "bookingDesign"
-        );
-
-
-    const design =
-        bookingDesignElement
-            ? bookingDesignElement.textContent.trim()
-            : "Classic Nude";
-
-
-    /* =====================================================
-       SHADE
-    ===================================================== */
-
-    const bookingShadeElement =
-        document.getElementById(
-            "bookingShade"
-        );
-
-
-    const shade =
-        bookingShadeElement
-            ? bookingShadeElement.textContent.trim()
-            : "Royal Gold";
-
-
-    /* =====================================================
        SHAPE
     ===================================================== */
+
+    const virtualShapeInput =
+        document.getElementById(
+            "virtualShape"
+        );
+
+
+    const bookingShapeElement =
+        document.getElementById(
+            "bookingShape"
+        );
+
 
     const previewShapeElement =
         document.getElementById(
@@ -746,10 +761,35 @@ async function handleVirtualBookingSubmit(event) {
         );
 
 
-    const shape =
-        previewShapeElement
-            ? previewShapeElement.textContent.trim()
-            : "Almond";
+    let shape =
+        "Almond";
+
+
+    if (
+        virtualShapeInput &&
+        virtualShapeInput.value
+    ) {
+
+        shape =
+            virtualShapeInput.value;
+
+    } else if (
+        bookingShapeElement &&
+        bookingShapeElement.textContent
+    ) {
+
+        shape =
+            bookingShapeElement.textContent.trim();
+
+    } else if (
+        previewShapeElement &&
+        previewShapeElement.textContent
+    ) {
+
+        shape =
+            previewShapeElement.textContent.trim();
+
+    }
 
 
     /* =====================================================
@@ -787,18 +827,6 @@ async function handleVirtualBookingSubmit(event) {
 
         showMessage(
             "Please enter a valid 10-digit phone number.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (!service) {
-
-        showMessage(
-            "Please select a service.",
             "error"
         );
 
@@ -849,50 +877,42 @@ async function handleVirtualBookingSubmit(event) {
         service:
             service,
 
-        /* IMPORTANT */
         bookingType:
             "VIRTUAL",
 
-        /* Backend-compatible */
         bookingDate:
             date,
 
         bookingTime:
             time,
 
-        /* Keep old fields */
         date:
             date,
 
         time:
             time,
 
-        /* Virtual preview details */
-        design:
-            design,
-
         shape:
             shape,
 
+        design:
+            shape,
+
         shade:
-            shade,
+            "",
 
         notes:
-            `Virtual Preview | Shape: ${shape} | Design: ${design} | Shade: ${shade}`
+            `Virtual Nail Shape Booking | Shape: ${shape}`
 
     };
 
-
-    /* =====================================================
-       DEBUG LOG
-    ===================================================== */
 
     console.log(
         "================================="
     );
 
     console.log(
-        "💅 SENDING VIRTUAL BOOKING"
+        "💅 SENDING VIRTUAL NAIL SHAPE BOOKING"
     );
 
     console.log(
@@ -935,18 +955,8 @@ async function handleVirtualBookingSubmit(event) {
     );
 
     console.log(
-        "Shape:",
+        "Selected Shape:",
         bookingData.shape
-    );
-
-    console.log(
-        "Design:",
-        bookingData.design
-    );
-
-    console.log(
-        "Shade:",
-        bookingData.shade
     );
 
     console.log(
@@ -986,6 +996,7 @@ async function handleVirtualBookingSubmit(event) {
                         JSON.stringify(
                             bookingData
                         )
+
                 }
             );
 
@@ -1017,7 +1028,7 @@ async function handleVirtualBookingSubmit(event) {
 
 
         showMessage(
-            "✨ Your virtual appointment has been booked successfully!",
+            "✨ Your virtual nail shape appointment has been booked successfully!",
             "success"
         );
 
@@ -1025,53 +1036,141 @@ async function handleVirtualBookingSubmit(event) {
         form.reset();
 
 
-        /* Restore default virtual service */
+        /* =================================================
+           RESET SHAPE
+        ================================================= */
 
-        const virtualService =
+        const virtualShape =
             document.getElementById(
-                "virtualService"
+                "virtualShape"
             );
 
 
-        if (virtualService) {
+        if (virtualShape) {
 
-            virtualService.value =
-                "Gel Nails";
+            virtualShape.value =
+                "Almond";
 
         }
 
 
-        const previewService =
+        const previewShape =
             document.getElementById(
-                "previewService"
+                "previewShape"
             );
 
 
-        if (previewService) {
+        if (previewShape) {
 
-            previewService.textContent =
-                "Gel Nails";
+            previewShape.textContent =
+                "Almond";
 
         }
 
 
-        const bookingService =
+        const bookingShape =
             document.getElementById(
-                "bookingService"
+                "bookingShape"
             );
 
 
-        if (bookingService) {
+        if (bookingShape) {
 
-            bookingService.textContent =
-                "Gel Nails";
+            bookingShape.textContent =
+                "Almond";
 
         }
 
 
-        localStorage.removeItem(
-            "selectedService"
-        );
+        const selectedShapeTitle =
+            document.getElementById(
+                "selectedShapeTitle"
+            );
+
+
+        if (selectedShapeTitle) {
+
+            selectedShapeTitle.textContent =
+                "Almond Shape";
+
+        }
+
+
+        const selectedShapeDescription =
+            document.getElementById(
+                "selectedShapeDescription"
+            );
+
+
+        if (selectedShapeDescription) {
+
+            selectedShapeDescription.textContent =
+                "Elegant and feminine with softly tapered sides. Perfect for a classy and timeless look.";
+
+        }
+
+
+        /* =================================================
+           RESET NAIL SHAPE
+        ================================================= */
+
+        const nailStage =
+            document.getElementById(
+                "nailPreviewStage"
+            );
+
+
+        if (nailStage) {
+
+            nailStage.classList.remove(
+                "shape-almond",
+                "shape-square",
+                "shape-coffin",
+                "shape-oval",
+                "shape-stiletto",
+                "shape-squoval",
+                "shape-ballerina",
+                "shape-lipstick",
+                "shape-flare",
+                "shape-edge"
+            );
+
+
+            nailStage.classList.add(
+                "shape-almond"
+            );
+
+        }
+
+
+        /* =================================================
+           RESET ACTIVE BUTTON
+        ================================================= */
+
+        document
+            .querySelectorAll(
+                ".shape-option"
+            )
+            .forEach(
+                function (button) {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                    if (
+                        button.dataset.shape ===
+                        "Almond"
+                    ) {
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
 
 
         closeVirtualPreview();
@@ -1176,6 +1275,7 @@ async function handleContactSubmit(event) {
 
             message:
                 message
+
         }
     );
 
@@ -1367,7 +1467,7 @@ function showMessage(
 function initializeVirtualPreview() {
 
     console.log(
-        "💅 Initializing Virtual Preview..."
+        "💅 Initializing Virtual Nail Shape Studio..."
     );
 
 
@@ -1389,22 +1489,15 @@ function initializeVirtualPreview() {
         );
 
 
-    console.log(
-        "Preview Modal:",
-        previewModal
-    );
+    if (!previewModal) {
 
+        console.log(
+            "Virtual Preview not available on this page."
+        );
 
-    console.log(
-        "Close Button:",
-        closeModal
-    );
+        return;
 
-
-    console.log(
-        "Nail Preview Stage:",
-        nailStage
-    );
+    }
 
 
     /* =====================================================
@@ -1413,38 +1506,13 @@ function initializeVirtualPreview() {
 
     function openVirtualPreview() {
 
-        console.log(
-            "================================="
+        previewModal.classList.add(
+            "open"
         );
-
-        console.log(
-            "✨ TRY VIRTUAL PREVIEW CLICKED"
-        );
-
-        console.log(
-            "================================="
-        );
-
-
-        if (!previewModal) {
-
-            console.error(
-                "❌ #previewModal NOT FOUND"
-            );
-
-
-            alert(
-                "Virtual Preview modal not found."
-            );
-
-
-            return;
-
-        }
 
 
         previewModal.classList.add(
-            "open"
+            "show"
         );
 
 
@@ -1491,7 +1559,7 @@ function initializeVirtualPreview() {
 
 
         console.log(
-            "💅 Virtual Preview OPENED"
+            "💅 Virtual Nail Shape Studio OPENED"
         );
 
     }
@@ -1533,10 +1601,7 @@ function initializeVirtualPreview() {
        CLOSE BUTTON
     ===================================================== */
 
-    if (
-        closeModal &&
-        previewModal
-    ) {
+    if (closeModal) {
 
         closeModal.addEventListener(
             "click",
@@ -1544,9 +1609,7 @@ function initializeVirtualPreview() {
 
                 event.preventDefault();
 
-
                 event.stopPropagation();
-
 
                 closeVirtualPreview();
 
@@ -1560,25 +1623,21 @@ function initializeVirtualPreview() {
        CLOSE BACKDROP
     ===================================================== */
 
-    if (previewModal) {
+    previewModal.addEventListener(
+        "click",
+        function (event) {
 
-        previewModal.addEventListener(
-            "click",
-            function (event) {
+            if (
+                event.target ===
+                previewModal
+            ) {
 
-                if (
-                    event.target ===
-                    previewModal
-                ) {
-
-                    closeVirtualPreview();
-
-                }
+                closeVirtualPreview();
 
             }
-        );
 
-    }
+        }
+    );
 
 
     /* =====================================================
@@ -1591,7 +1650,6 @@ function initializeVirtualPreview() {
 
             if (
                 event.key === "Escape" &&
-                previewModal &&
                 previewModal.classList.contains("open")
             ) {
 
@@ -1604,98 +1662,7 @@ function initializeVirtualPreview() {
 
 
     /* =====================================================
-       SERVICE OPTIONS
-    ===================================================== */
-
-    const serviceButtons =
-        document.querySelectorAll(
-            ".service-option"
-        );
-
-
-    serviceButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    serviceButtons.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const service =
-                        button.dataset.service;
-
-
-                    const previewService =
-                        document.getElementById(
-                            "previewService"
-                        );
-
-
-                    const bookingService =
-                        document.getElementById(
-                            "bookingService"
-                        );
-
-
-                    const virtualService =
-                        document.getElementById(
-                            "virtualService"
-                        );
-
-
-                    if (previewService) {
-
-                        previewService.textContent =
-                            service;
-
-                    }
-
-
-                    if (bookingService) {
-
-                        bookingService.textContent =
-                            service;
-
-                    }
-
-
-                    if (virtualService) {
-
-                        virtualService.value =
-                            service;
-
-                    }
-
-
-                    console.log(
-                        "Selected virtual service:",
-                        service
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       SHAPE OPTIONS
+       💅 SHAPE OPTIONS - 10 SHAPES
     ===================================================== */
 
     const shapeButtons =
@@ -1704,6 +1671,149 @@ function initializeVirtualPreview() {
         );
 
 
+    const allShapeClasses = [
+
+        "shape-almond",
+
+        "shape-square",
+
+        "shape-coffin",
+
+        "shape-oval",
+
+        "shape-stiletto",
+
+        "shape-squoval",
+
+        "shape-ballerina",
+
+        "shape-lipstick",
+
+        "shape-flare",
+
+        "shape-edge"
+
+    ];
+
+
+    const shapeDescriptions = {
+
+        "Almond": {
+
+            title:
+                "Almond Shape",
+
+            description:
+                "Elegant and feminine with softly tapered sides. Perfect for a classy and timeless look."
+
+        },
+
+
+        "Square": {
+
+            title:
+                "Square Shape",
+
+            description:
+                "Clean, straight edges with a modern finish. Perfect for a bold and neat look."
+
+        },
+
+
+        "Coffin": {
+
+            title:
+                "Coffin Shape",
+
+            description:
+                "Long with tapered sides and a flat tip. A stylish and glamorous choice."
+
+        },
+
+
+        "Oval": {
+
+            title:
+                "Oval Shape",
+
+            description:
+                "Soft and rounded with a natural appearance. Perfect for an elegant everyday look."
+
+        },
+
+
+        "Stiletto": {
+
+            title:
+                "Stiletto Shape",
+
+            description:
+                "Sharp and dramatic with a pointed tip. Perfect for a bold statement look."
+
+        },
+
+
+        "Squoval": {
+
+            title:
+                "Squoval Shape",
+
+            description:
+                "A beautiful combination of square and oval. Soft corners with a clean finish."
+
+        },
+
+
+        "Ballerina": {
+
+            title:
+                "Ballerina Shape",
+
+            description:
+                "Long and tapered with a flat tip. Inspired by classic ballerina nails."
+
+        },
+
+
+        "Lipstick": {
+
+            title:
+                "Lipstick Shape",
+
+            description:
+                "A unique angled tip inspired by the shape of a lipstick. Perfect for a creative look."
+
+        },
+
+
+        "Flare": {
+
+            title:
+                "Flare Shape",
+
+            description:
+                "Nails that widen towards the tip for a fun and fashionable statement."
+
+        },
+
+
+        "Edge": {
+
+            title:
+                "Edge Shape",
+
+            description:
+                "A sharp geometric style with an edgy pointed finish. Perfect for a unique look."
+
+        }
+
+    };
+
+
+    /* =====================================================
+       SHAPE CLICK
+    ===================================================== */
+
     shapeButtons.forEach(
         function (button) {
 
@@ -1711,6 +1821,7 @@ function initializeVirtualPreview() {
                 "click",
                 function () {
 
+                    /* Remove active */
                     shapeButtons.forEach(
                         function (item) {
 
@@ -1722,6 +1833,7 @@ function initializeVirtualPreview() {
                     );
 
 
+                    /* Add active */
                     button.classList.add(
                         "active"
                     );
@@ -1731,9 +1843,58 @@ function initializeVirtualPreview() {
                         button.dataset.shape;
 
 
+                    if (!shape) {
+                        return;
+                    }
+
+
+                    /* =====================================
+                       CHANGE ACTUAL NAIL SHAPE
+                    ===================================== */
+
+                    if (nailStage) {
+
+                        nailStage.classList.remove(
+                            ...allShapeClasses
+                        );
+
+
+                        const shapeClass =
+                            "shape-" +
+                            shape
+                                .toLowerCase()
+                                .replace(
+                                    /\s+/g,
+                                    "-"
+                                );
+
+
+                        nailStage.classList.add(
+                            shapeClass
+                        );
+
+                    }
+
+
+                    /* =====================================
+                       SELECTED SHAPE
+                    ===================================== */
+
                     const previewShape =
                         document.getElementById(
                             "previewShape"
+                        );
+
+
+                    const bookingShape =
+                        document.getElementById(
+                            "bookingShape"
+                        );
+
+
+                    const virtualShape =
+                        document.getElementById(
+                            "virtualShape"
                         );
 
 
@@ -1745,33 +1906,66 @@ function initializeVirtualPreview() {
                     }
 
 
-                    if (nailStage) {
+                    if (bookingShape) {
 
-                        nailStage.classList.remove(
-                            "shape-almond",
-                            "shape-square",
-                            "shape-coffin",
-                            "shape-oval",
-                            "shape-stiletto"
+                        bookingShape.textContent =
+                            shape;
+
+                    }
+
+
+                    if (virtualShape) {
+
+                        virtualShape.value =
+                            shape;
+
+                    }
+
+
+                    /* =====================================
+                       SHAPE INFORMATION
+                    ===================================== */
+
+                    const selectedShapeTitle =
+                        document.getElementById(
+                            "selectedShapeTitle"
                         );
 
 
-                        const shapeClass =
-                            "shape-" +
+                    const selectedShapeDescription =
+                        document.getElementById(
+                            "selectedShapeDescription"
+                        );
+
+
+                    const info =
+                        shapeDescriptions[
                             shape
-                                .toLowerCase()
-                                .replace(/\s+/g, "-");
+                        ];
 
 
-                        nailStage.classList.add(
-                            shapeClass
-                        );
+                    if (info) {
+
+                        if (selectedShapeTitle) {
+
+                            selectedShapeTitle.textContent =
+                                info.title;
+
+                        }
+
+
+                        if (selectedShapeDescription) {
+
+                            selectedShapeDescription.textContent =
+                                info.description;
+
+                        }
 
                     }
 
 
                     console.log(
-                        "Selected shape:",
+                        "💅 Selected Shape:",
                         shape
                     );
 
@@ -1780,289 +1974,6 @@ function initializeVirtualPreview() {
 
         }
     );
-
-
-    /* =====================================================
-       DESIGN OPTIONS
-    ===================================================== */
-
-    const designButtons =
-        document.querySelectorAll(
-            ".design-option"
-        );
-
-
-    designButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    designButtons.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const design =
-                        button.dataset.design;
-
-
-                    const previewDesign =
-                        document.getElementById(
-                            "previewDesign"
-                        );
-
-
-                    const bookingDesign =
-                        document.getElementById(
-                            "bookingDesign"
-                        );
-
-
-                    if (previewDesign) {
-
-                        previewDesign.textContent =
-                            design;
-
-                    }
-
-
-                    if (bookingDesign) {
-
-                        bookingDesign.textContent =
-                            design;
-
-                    }
-
-
-                    if (nailStage) {
-
-                        nailStage.classList.remove(
-                            "design-classic-nude",
-                            "design-french-tips",
-                            "design-chrome",
-                            "design-cat-eye",
-                            "design-glitter",
-                            "design-floral"
-                        );
-
-
-                        const designClasses = {
-
-                            "Classic Nude":
-                                "design-classic-nude",
-
-                            "French Tips":
-                                "design-french-tips",
-
-                            "Chrome":
-                                "design-chrome",
-
-                            "Cat Eye":
-                                "design-cat-eye",
-
-                            "Glitter":
-                                "design-glitter",
-
-                            "Floral":
-                                "design-floral"
-
-                        };
-
-
-                        const designClass =
-                            designClasses[
-                                design
-                            ];
-
-
-                        if (designClass) {
-
-                            nailStage.classList.add(
-                                designClass
-                            );
-
-                        }
-
-                    }
-
-
-                    console.log(
-                        "Selected design:",
-                        design
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       SHADE OPTIONS
-    ===================================================== */
-
-    const shadeButtons =
-        document.querySelectorAll(
-            ".shade-btn"
-        );
-
-
-    shadeButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    shadeButtons.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const shade =
-                        button.dataset.shade;
-
-
-                    const color =
-                        button.dataset.color;
-
-
-                    const previewShade =
-                        document.getElementById(
-                            "previewShade"
-                        );
-
-
-                    const bookingShade =
-                        document.getElementById(
-                            "bookingShade"
-                        );
-
-
-                    if (previewShade) {
-
-                        previewShade.textContent =
-                            shade;
-
-                    }
-
-
-                    if (bookingShade) {
-
-                        bookingShade.textContent =
-                            shade;
-
-                    }
-
-
-                    const nails =
-                        document.querySelectorAll(
-                            ".virtual-nail"
-                        );
-
-
-                    nails.forEach(
-                        function (nail) {
-
-                            nail.style.backgroundColor =
-                                color;
-
-                        }
-                    );
-
-
-                    if (nailStage) {
-
-                        nailStage.style.setProperty(
-                            "--nail-color",
-                            color
-                        );
-
-                    }
-
-
-                    console.log(
-                        "Selected shade:",
-                        shade,
-                        color
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       DEFAULT SHADE
-    ===================================================== */
-
-    const defaultShade =
-        document.querySelector(
-            ".shade-btn.active"
-        );
-
-
-    if (defaultShade) {
-
-        const defaultColor =
-            defaultShade.dataset.color;
-
-
-        if (defaultColor) {
-
-            document
-                .querySelectorAll(
-                    ".virtual-nail"
-                )
-                .forEach(
-                    function (nail) {
-
-                        nail.style.backgroundColor =
-                            defaultColor;
-
-                    }
-                );
-
-
-            if (nailStage) {
-
-                nailStage.style.setProperty(
-                    "--nail-color",
-                    defaultColor
-                );
-
-            }
-
-        }
-
-    }
 
 
     /* =====================================================
@@ -2086,75 +1997,104 @@ function initializeVirtualPreview() {
 
         if (defaultShapeValue) {
 
-            const shapeClass =
+            nailStage.classList.remove(
+                ...allShapeClasses
+            );
+
+
+            const defaultShapeClass =
                 "shape-" +
                 defaultShapeValue
                     .toLowerCase()
-                    .replace(/\s+/g, "-");
+                    .replace(
+                        /\s+/g,
+                        "-"
+                    );
 
 
             nailStage.classList.add(
-                shapeClass
+                defaultShapeClass
             );
 
-        }
 
-    }
-
-
-    /* =====================================================
-       DEFAULT DESIGN
-    ===================================================== */
-
-    const defaultDesign =
-        document.querySelector(
-            ".design-option.active"
-        );
+            const previewShape =
+                document.getElementById(
+                    "previewShape"
+                );
 
 
-    if (
-        defaultDesign &&
-        nailStage
-    ) {
-
-        const defaultDesignValue =
-            defaultDesign.dataset.design;
+            const bookingShape =
+                document.getElementById(
+                    "bookingShape"
+                );
 
 
-        const defaultDesignClasses = {
-
-            "Classic Nude":
-                "design-classic-nude",
-
-            "French Tips":
-                "design-french-tips",
-
-            "Chrome":
-                "design-chrome",
-
-            "Cat Eye":
-                "design-cat-eye",
-
-            "Glitter":
-                "design-glitter",
-
-            "Floral":
-                "design-floral"
-
-        };
+            const virtualShape =
+                document.getElementById(
+                    "virtualShape"
+                );
 
 
-        const defaultDesignClass =
-            defaultDesignClasses[
-                defaultDesignValue
-            ];
+            if (previewShape) {
+
+                previewShape.textContent =
+                    defaultShapeValue;
+
+            }
 
 
-        if (defaultDesignClass) {
+            if (bookingShape) {
 
-            nailStage.classList.add(
-                defaultDesignClass
-            );
+                bookingShape.textContent =
+                    defaultShapeValue;
+
+            }
+
+
+            if (virtualShape) {
+
+                virtualShape.value =
+                    defaultShapeValue;
+
+            }
+
+
+            const info =
+                shapeDescriptions[
+                    defaultShapeValue
+                ];
+
+
+            if (info) {
+
+                const selectedShapeTitle =
+                    document.getElementById(
+                        "selectedShapeTitle"
+                    );
+
+
+                const selectedShapeDescription =
+                    document.getElementById(
+                        "selectedShapeDescription"
+                    );
+
+
+                if (selectedShapeTitle) {
+
+                    selectedShapeTitle.textContent =
+                        info.title;
+
+                }
+
+
+                if (selectedShapeDescription) {
+
+                    selectedShapeDescription.textContent =
+                        info.description;
+
+                }
+
+            }
 
         }
 
@@ -2162,7 +2102,7 @@ function initializeVirtualPreview() {
 
 
     console.log(
-        "💅 Virtual Preview initialized successfully."
+        "💅 10 Nail Shapes initialized successfully."
     );
 
 }
@@ -2185,50 +2125,39 @@ function updateVirtualPreview() {
     }
 
 
-    /* =====================================================
-       SHADE
-    ===================================================== */
-
-    const activeShade =
-        document.querySelector(
-            ".shade-btn.active"
+    const shapeButtons =
+        document.querySelectorAll(
+            ".shape-option"
         );
 
 
-    if (activeShade) {
+    const allShapeClasses = [
 
-        const color =
-            activeShade.dataset.color;
+        "shape-almond",
 
+        "shape-square",
 
-        if (color) {
+        "shape-coffin",
 
-            nailStage.style.setProperty(
-                "--nail-color",
-                color
-            );
+        "shape-oval",
 
+        "shape-stiletto",
 
-            document
-                .querySelectorAll(
-                    ".virtual-nail"
-                )
-                .forEach(
-                    function (nail) {
+        "shape-squoval",
 
-                        nail.style.backgroundColor =
-                            color;
+        "shape-ballerina",
 
-                    }
-                );
+        "shape-lipstick",
 
-        }
+        "shape-flare",
 
-    }
+        "shape-edge"
+
+    ];
 
 
     /* =====================================================
-       SHAPE
+       ACTIVE SHAPE
     ===================================================== */
 
     const activeShape =
@@ -2246,11 +2175,7 @@ function updateVirtualPreview() {
         if (shape) {
 
             nailStage.classList.remove(
-                "shape-almond",
-                "shape-square",
-                "shape-coffin",
-                "shape-oval",
-                "shape-stiletto"
+                ...allShapeClasses
             );
 
 
@@ -2258,12 +2183,57 @@ function updateVirtualPreview() {
                 "shape-" +
                 shape
                     .toLowerCase()
-                    .replace(/\s+/g, "-");
+                    .replace(
+                        /\s+/g,
+                        "-"
+                    );
 
 
             nailStage.classList.add(
                 shapeClass
             );
+
+
+            const previewShape =
+                document.getElementById(
+                    "previewShape"
+                );
+
+
+            const bookingShape =
+                document.getElementById(
+                    "bookingShape"
+                );
+
+
+            const virtualShape =
+                document.getElementById(
+                    "virtualShape"
+                );
+
+
+            if (previewShape) {
+
+                previewShape.textContent =
+                    shape;
+
+            }
+
+
+            if (bookingShape) {
+
+                bookingShape.textContent =
+                    shape;
+
+            }
+
+
+            if (virtualShape) {
+
+                virtualShape.value =
+                    shape;
+
+            }
 
         }
 
@@ -2271,61 +2241,19 @@ function updateVirtualPreview() {
 
 
     /* =====================================================
-       DESIGN
+       ENSURE ONLY ONE SHAPE IS ACTIVE
     ===================================================== */
 
-    const activeDesign =
-        document.querySelector(
-            ".design-option.active"
+    if (
+        shapeButtons.length &&
+        !document.querySelector(
+            ".shape-option.active"
+        )
+    ) {
+
+        shapeButtons[0].classList.add(
+            "active"
         );
-
-
-    if (activeDesign) {
-
-        const design =
-            activeDesign.dataset.design;
-
-
-        const designClasses = {
-
-            "Classic Nude":
-                "design-classic-nude",
-
-            "French Tips":
-                "design-french-tips",
-
-            "Chrome":
-                "design-chrome",
-
-            "Cat Eye":
-                "design-cat-eye",
-
-            "Glitter":
-                "design-glitter",
-
-            "Floral":
-                "design-floral"
-
-        };
-
-
-        nailStage.classList.remove(
-            "design-classic-nude",
-            "design-french-tips",
-            "design-chrome",
-            "design-cat-eye",
-            "design-glitter",
-            "design-floral"
-        );
-
-
-        if (designClasses[design]) {
-
-            nailStage.classList.add(
-                designClasses[design]
-            );
-
-        }
 
     }
 
@@ -2351,6 +2279,11 @@ function closeVirtualPreview() {
 
     previewModal.classList.remove(
         "open"
+    );
+
+
+    previewModal.classList.remove(
+        "show"
     );
 
 
