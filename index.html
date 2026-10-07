@@ -604,212 +604,255 @@
         }
 
 
-        /* ==========================================
-           ALMOND
-        ========================================== */
-
-        .shape-almond .virtual-nail {
-            width: 48px;
-            height: 155px;
-
-            border-radius:
-                50% 50% 25% 25% /
-                25% 25% 12% 12%;
-        }
+       /* ==========================================
+   VIRTUAL NAIL SHAPES
+=========================================== */
 
 
-        /* ==========================================
-           SQUARE
-        ========================================== */
+/* ==========================================
+   ALMOND
+=========================================== */
 
-        .shape-square .virtual-nail {
-            width: 52px;
-            height: 150px;
-            border-radius: 13px 13px 5px 5px;
-        }
+.shape-almond .virtual-nail {
+    width: 48px;
+    height: 155px;
 
+    border-radius:
+        50% 50% 18% 18% /
+        30% 30% 8% 8%;
 
-        /* ==========================================
-           COFFIN
-        ========================================== */
-
-        .shape-coffin .virtual-nail {
-            width: 55px;
-            height: 150px;
-
-            clip-path: polygon(
-                13% 0,
-                87% 0,
-                100% 100%,
-                0 100%
-            );
-
-            border-radius: 10px 10px 3px 3px;
-        }
+    clip-path: none;
+}
 
 
-        /* ==========================================
-           OVAL
-        ========================================== */
+/* ==========================================
+   SQUARE
+=========================================== */
 
-        .shape-oval .virtual-nail {
-            width: 48px;
-            height: 150px;
+.shape-square .virtual-nail {
+    width: 52px;
+    height: 150px;
 
-            border-radius:
-                50% 50% 30% 30% /
-                30% 30% 15% 15%;
-        }
+    border-radius: 8px 8px 3px 3px;
 
-
-        /* ==========================================
-           STILETTO
-        ========================================== */
-
-        .shape-stiletto .virtual-nail {
-            width: 50px;
-            height: 165px;
-
-            clip-path: polygon(
-                50% 0,
-                95% 100%,
-                5% 100%
-            );
-
-            border-radius: 30px 30px 5px 5px;
-        }
+    clip-path: none;
+}
 
 
-        /* ==========================================
-           CLASSIC NUDE
-        ========================================== */
+/* ==========================================
+   COFFIN
+=========================================== */
 
-        .design-classic-nude .nail-design::before {
-            content: "";
-            width: 60%;
-            height: 45%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.35);
-        }
+.shape-coffin .virtual-nail {
+    width: 56px;
+    height: 155px;
 
+    clip-path: polygon(
+        18% 0,
+        82% 0,
+        100% 100%,
+        0 100%
+    );
 
-        /* ==========================================
-           FRENCH TIPS
-        ========================================== */
-
-        .design-french-tips .nail-design {
-            align-items: flex-end;
-        }
-
-        .design-french-tips .nail-design::before {
-            content: "";
-            width: 100%;
-            height: 25px;
-            background: white;
-
-            border-radius:
-                50% 50% 0 0;
-
-            box-shadow:
-                0 -2px 4px rgba(0, 0, 0, 0.08);
-        }
+    border-radius: 8px 8px 3px 3px;
+}
 
 
-        /* ==========================================
-           CHROME
-        ========================================== */
+/* ==========================================
+   OVAL
+=========================================== */
 
-        .design-chrome .nail-design {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.65),
-                    transparent 35%,
-                    rgba(255, 255, 255, 0.65) 50%,
-                    transparent 70%
-                );
-        }
+.shape-oval .virtual-nail {
+    width: 48px;
+    height: 150px;
 
-        .design-chrome .nail-design::before {
-            content: "✦";
-            font-size: 25px;
-            color: rgba(255, 255, 255, 0.85);
+    border-radius:
+        50% 50% 35% 35% /
+        28% 28% 18% 18%;
 
-            text-shadow:
-                0 0 8px white,
-                0 0 15px white;
-        }
+    clip-path: none;
+}
 
 
-        /* ==========================================
-           CAT EYE
-        ========================================== */
+/* ==========================================
+   STILETTO
+=========================================== */
 
-        .design-cat-eye .nail-design {
-            background:
-                linear-gradient(
-                    110deg,
-                    transparent 25%,
-                    rgba(255, 255, 255, 0.85) 45%,
-                    transparent 65%
-                );
-        }
+.shape-stiletto .virtual-nail {
+    width: 52px;
+    height: 170px;
 
-        .design-cat-eye .nail-design::before {
-            content: "✦";
-            color: white;
-            font-size: 24px;
+    clip-path: polygon(
+        50% 0,
+        96% 100%,
+        4% 100%
+    );
 
-            text-shadow:
-                0 0 10px white;
-        }
+    border-radius: 30px 30px 3px 3px;
+}
 
 
-        /* ==========================================
-           GLITTER
-        ========================================== */
+/* ==========================================
+   SQUOVAL
+=========================================== */
 
-        .design-glitter .nail-design {
-            background-image:
-                radial-gradient(
-                    circle,
-                    rgba(255, 255, 255, 0.95) 1px,
-                    transparent 2px
-                );
+.shape-squoval .virtual-nail {
+    width: 52px;
+    height: 150px;
 
-            background-size: 12px 12px;
-        }
+    border-radius:
+        18px 18px 7px 7px;
 
-        .design-glitter .nail-design::before {
-            content: "✦";
-            color: white;
-            font-size: 20px;
-        }
+    clip-path: none;
+}
 
 
-        /* ==========================================
-           FLORAL
-        ========================================== */
+/* ==========================================
+   BALLERINA
+=========================================== */
 
-        .design-floral .nail-design::before {
-            content: "🌸";
-            font-size: 26px;
+.shape-ballerina .virtual-nail {
+    width: 56px;
+    height: 158px;
 
-            filter:
-                drop-shadow(
-                    0 2px 3px rgba(0, 0, 0, 0.15)
-                );
-        }
+    clip-path: polygon(
+        18% 0,
+        82% 0,
+        100% 100%,
+        0 100%
+    );
 
-        .design-floral .nail-design::after {
-            content: "•";
-            position: absolute;
-            color: #ffd54f;
-            font-size: 18px;
-            transform: translate(1px, 1px);
-        }
+    border-radius: 18px 18px 4px 4px;
+}
 
 
+/* ==========================================
+   LIPSTICK
+=========================================== */
+
+.shape-lipstick .virtual-nail {
+    width: 52px;
+    height: 155px;
+
+    clip-path: polygon(
+        20% 0,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    border-radius: 18px 4px 4px 4px;
+}
+
+
+/* ==========================================
+   FLARE
+=========================================== */
+
+.shape-flare .virtual-nail {
+    width: 62px;
+    height: 155px;
+
+    clip-path: polygon(
+        35% 0,
+        65% 0,
+        100% 100%,
+        0 100%
+    );
+
+    border-radius: 12px 12px 3px 3px;
+}
+
+
+/* ==========================================
+   EDGE
+=========================================== */
+
+.shape-edge .virtual-nail {
+    width: 54px;
+    height: 160px;
+
+    clip-path: polygon(
+        50% 0,
+        88% 12%,
+        100% 100%,
+        0 100%,
+        12% 12%
+    );
+
+    border-radius: 12px 12px 3px 3px;
+}
+
+
+/* ==========================================
+   SMOOTH SHAPE TRANSITION
+=========================================== */
+
+.virtual-nail {
+    transition:
+        width 0.45s ease,
+        height 0.45s ease,
+        border-radius 0.45s ease,
+        clip-path 0.45s ease,
+        transform 0.45s ease;
+}
+
+
+/* ==========================================
+   SHAPE INFO BOX
+=========================================== */
+
+.shape-info-box {
+    margin-top: 12px;
+    padding: 16px;
+
+    background: rgba(200, 155, 60, 0.08);
+
+    border: 1px solid rgba(200, 155, 60, 0.25);
+
+    border-radius: 14px;
+}
+
+
+.shape-info-box h4 {
+    margin: 0 0 7px;
+
+    color: #b8860b;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 20px;
+}
+
+
+.shape-info-box p {
+    margin: 0;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: #49393e;
+}
+
+
+/* ==========================================
+   PREVIEW HINT
+=========================================== */
+
+.preview-hint {
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #8b7355;
+
+    font-style: italic;
+}
         /* ==========================================
            SHADE OPTIONS
         ========================================== */
@@ -1595,9 +1638,6 @@
     </section>
 
 
-    <!-- ==========================================
-         VIRTUAL NAIL PREVIEW MODAL
-    =========================================== -->
 <!-- ==========================================
      VIRTUAL NAIL SHAPE STUDIO
 =========================================== -->
