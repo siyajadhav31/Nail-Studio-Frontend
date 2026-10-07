@@ -296,6 +296,365 @@
 
 
         /* =================================
+           PREMIUM PAYMENT
+        ================================= */
+
+        .premium-payment-section {
+
+            margin-top: 30px;
+
+            padding: 24px;
+
+            background: #fffaf2;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 16px;
+
+        }
+
+
+        .payment-heading {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .payment-kicker {
+
+            display: block;
+
+            font-size: 11px;
+
+            letter-spacing: 1.5px;
+
+            color: #a67820;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .payment-heading h3 {
+
+            margin: 0;
+
+            font-family:
+                'Cormorant Garamond',
+                serif;
+
+            font-size: 28px;
+
+            color: #49393e;
+
+        }
+
+
+        .payment-heading p {
+
+            margin: 5px 0 0;
+
+            font-size: 12px;
+
+            color: #777;
+
+        }
+
+
+        /* =================================
+           PAYMENT SUMMARY
+        ================================= */
+
+        .payment-summary {
+
+            background: white;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .summary-title {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #49393e;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 8px 0;
+
+            border-bottom: 1px solid #f3eadb;
+
+            font-size: 13px;
+
+        }
+
+
+        .summary-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .summary-row span {
+
+            color: #777;
+
+        }
+
+
+        .summary-row strong {
+
+            color: #49393e;
+
+            text-align: right;
+
+        }
+
+
+        #paymentSummaryStatus {
+
+            color: #9a6a00;
+
+        }
+
+
+        /* =================================
+           PAYMENT OPTIONS
+        ================================= */
+
+        .payment-options {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+        }
+
+
+        .payment-card {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 15px;
+
+            border: 1px solid #e5d4cc;
+
+            border-radius: 12px;
+
+            background: white;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+
+        .payment-card:hover {
+
+            border-color: #c89b3c;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .payment-card.selected {
+
+            border-color: #b8860b;
+
+            background: #fffaf0;
+
+            box-shadow:
+                0 5px 15px
+                rgba(184, 134, 11, 0.10);
+
+        }
+
+
+        .payment-card input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        .payment-card-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fff4d9;
+
+            border-radius: 10px;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .payment-card-content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+            flex: 1;
+
+        }
+
+
+        .payment-card-content strong {
+
+            font-size: 14px;
+
+            color: #49393e;
+
+        }
+
+
+        .payment-card-content span {
+
+            font-size: 11px;
+
+            color: #888;
+
+        }
+
+
+        .payment-card-check {
+
+            width: 22px;
+
+            height: 22px;
+
+            border-radius: 50%;
+
+            border: 1px solid #d5c5aa;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: transparent;
+
+            font-size: 13px;
+
+        }
+
+
+        .payment-card.selected
+        .payment-card-check {
+
+            background: #b8860b;
+
+            border-color: #b8860b;
+
+            color: white;
+
+        }
+
+
+        /* =================================
+           PAYMENT NOTE
+        ================================= */
+
+        .payment-note {
+
+            display: flex;
+
+            gap: 8px;
+
+            align-items: flex-start;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #fff;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+
+            color: #777;
+
+        }
+
+
+        .payment-note span {
+
+            color: #b8860b;
+
+            font-size: 15px;
+
+        }
+
+
+        .payment-note p {
+
+            margin: 0;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =================================
            BOOK BUTTON
         ================================= */
 
@@ -328,7 +687,7 @@
 
             transition: 0.3s;
 
-            margin-top: 5px;
+            margin-top: 22px;
 
         }
 
@@ -569,6 +928,20 @@
             .booking-heading h2 {
 
                 font-size: 26px;
+
+            }
+
+
+            .premium-payment-section {
+
+                padding: 18px;
+
+            }
+
+
+            .summary-row {
+
+                font-size: 12px;
 
             }
 
@@ -818,7 +1191,186 @@
                 </div>
 
 
-                <!-- BUTTON -->
+                <!-- =================================
+                     PREMIUM PAYMENT METHOD
+                ================================= -->
+
+                <div class="premium-payment-section">
+
+
+                    <div class="payment-heading">
+
+                        <span class="payment-kicker">
+                            SIMPLE & SECURE
+                        </span>
+
+                        <h3>
+                            💳 Choose Payment Method
+                        </h3>
+
+                        <p>
+                            Select your preferred way to pay for this offer.
+                        </p>
+
+                    </div>
+
+
+                    <!-- OFFER SUMMARY -->
+
+                    <div class="payment-summary">
+
+                        <div class="summary-title">
+                            Offer Summary
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Offer
+                            </span>
+
+                            <strong id="paymentSummaryOffer">
+                                Special Offer
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong id="paymentSummaryDate">
+                                Select date
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Time
+                            </span>
+
+                            <strong id="paymentSummaryTime">
+                                Select time
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Payment Status
+                            </span>
+
+                            <strong id="paymentSummaryStatus">
+                                ⏳ PENDING
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAYMENT OPTIONS -->
+
+                    <div class="payment-options">
+
+
+                        <!-- CASH -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="CASH"
+                                required>
+
+                            <div class="payment-card-icon">
+                                💵
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Pay at Studio
+                                </strong>
+
+                                <span>
+                                    Pay when you arrive for your appointment
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+
+                        <!-- GOOGLE PAY -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="GOOGLE_PAY">
+
+                            <div class="payment-card-icon">
+                                📱
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Google Pay / UPI
+                                </strong>
+
+                                <span>
+                                    Select Google Pay / UPI for this booking
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- PAYMENT NOTE -->
+
+                    <div class="payment-note">
+
+                        <span>
+                            ⓘ
+                        </span>
+
+                        <p>
+                            Google Pay / UPI selection will be marked as
+                            <strong>PAID</strong> for this booking.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     BUTTON
+                ================================= -->
 
                 <button
                     type="submit"
@@ -913,6 +1465,7 @@
             "DOMContentLoaded",
             function () {
 
+
                 console.log(
                     "================================="
                 );
@@ -951,9 +1504,18 @@
                     );
 
 
+                const paymentSummaryOffer =
+                    document.getElementById(
+                        "paymentSummaryOffer"
+                    );
+
+
                 if (selectedOffer) {
 
                     offerName.textContent =
+                        selectedOffer;
+
+                    paymentSummaryOffer.textContent =
                         selectedOffer;
 
                 }
@@ -975,7 +1537,81 @@
                         .split("T")[0];
 
 
-                dateInput.min = today;
+                dateInput.min =
+                    today;
+
+
+                /* =================================
+                   DATE SUMMARY
+                ================================= */
+
+                const paymentSummaryDate =
+                    document.getElementById(
+                        "paymentSummaryDate"
+                    );
+
+
+                dateInput.addEventListener(
+                    "change",
+                    function () {
+
+                        if (!this.value) {
+
+                            paymentSummaryDate.textContent =
+                                "Select date";
+
+                            return;
+
+                        }
+
+
+                        const selectedDate =
+                            new Date(
+                                this.value +
+                                "T00:00:00"
+                            );
+
+
+                        paymentSummaryDate.textContent =
+                            selectedDate.toLocaleDateString(
+                                "en-IN",
+                                {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                }
+                            );
+
+                    }
+                );
+
+
+                /* =================================
+                   TIME SUMMARY
+                ================================= */
+
+                const timeInput =
+                    document.getElementById(
+                        "offerTime"
+                    );
+
+
+                const paymentSummaryTime =
+                    document.getElementById(
+                        "paymentSummaryTime"
+                    );
+
+
+                timeInput.addEventListener(
+                    "change",
+                    function () {
+
+                        paymentSummaryTime.textContent =
+                            this.value ||
+                            "Select time";
+
+                    }
+                );
 
 
                 /* =================================
@@ -996,6 +1632,88 @@
                             this.value
                                 .replace(/\D/g, "")
                                 .slice(0, 10);
+
+                    }
+                );
+
+
+                /* =================================
+                   PAYMENT SELECTION
+                ================================= */
+
+                const paymentCards =
+                    document.querySelectorAll(
+                        ".payment-card"
+                    );
+
+
+                const paymentSummaryStatus =
+                    document.getElementById(
+                        "paymentSummaryStatus"
+                    );
+
+
+                paymentCards.forEach(
+                    function (card) {
+
+                        const radio =
+                            card.querySelector(
+                                'input[name="paymentMethod"]'
+                            );
+
+
+                        radio.addEventListener(
+                            "change",
+                            function () {
+
+
+                                /* Remove old selected */
+
+                                paymentCards.forEach(
+                                    function (item) {
+
+                                        item.classList.remove(
+                                            "selected"
+                                        );
+
+                                    }
+                                );
+
+
+                                /* Add selected */
+
+                                card.classList.add(
+                                    "selected"
+                                );
+
+
+                                /* Update status */
+
+                                if (
+                                    radio.value ===
+                                    "GOOGLE_PAY"
+                                ) {
+
+                                    paymentSummaryStatus.textContent =
+                                        "✅ PAID";
+
+                                    paymentSummaryStatus.style.color =
+                                        "#247a42";
+
+                                }
+
+                                else {
+
+                                    paymentSummaryStatus.textContent =
+                                        "⏳ PENDING";
+
+                                    paymentSummaryStatus.style.color =
+                                        "#9a6a00";
+
+                                }
+
+                            }
+                        );
 
                     }
                 );
@@ -1032,7 +1750,7 @@
                     type
                 ) {
 
-                    bookingStatus.textContent =
+                    bookingStatus.innerHTML =
                         message;
 
                     bookingStatus.className =
@@ -1048,7 +1766,7 @@
 
                 function hideStatus() {
 
-                    bookingStatus.textContent =
+                    bookingStatus.innerHTML =
                         "";
 
                     bookingStatus.className =
@@ -1059,10 +1777,6 @@
 
                 /* =================================
                    WAKE UP RENDER BACKEND
-                   
-                   This runs in background.
-                   It helps wake Render before
-                   customer submits the form.
                 ================================= */
 
                 async function wakeBackend() {
@@ -1092,11 +1806,15 @@
                         await fetch(
                             API_URL,
                             {
-                                method: "GET",
+
+                                method:
+                                    "GET",
 
                                 headers: {
+
                                     "Accept":
                                         "application/json"
+
                                 },
 
                                 credentials:
@@ -1107,6 +1825,7 @@
 
                                 signal:
                                     controller.signal
+
                             }
                         );
 
@@ -1121,6 +1840,7 @@
                         );
 
                     }
+
                     catch (error) {
 
                         console.log(
@@ -1281,6 +2001,28 @@
 
 
                         /* =================================
+                           PAYMENT VALIDATION
+                        ================================= */
+
+                        const selectedPayment =
+                            document.querySelector(
+                                'input[name="paymentMethod"]:checked'
+                            );
+
+
+                        if (!selectedPayment) {
+
+                            showStatus(
+                                "Please select a payment method.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        /* =================================
                            SUNDAY CHECK
                         ================================= */
 
@@ -1303,6 +2045,19 @@
                             return;
 
                         }
+
+
+                        /* =================================
+                           PAYMENT STATUS
+                        ================================= */
+
+                        const paymentStatus =
+                            selectedPayment.value ===
+                            "GOOGLE_PAY"
+
+                                ? "PAID"
+
+                                : "PENDING";
 
 
                         /* =================================
@@ -1334,7 +2089,13 @@
                                 bookingTime,
 
                             bookingType:
-                                "OFFER"
+                                "OFFER",
+
+                            paymentMethod:
+                                selectedPayment.value,
+
+                            paymentStatus:
+                                paymentStatus
 
                         };
 
@@ -1507,6 +2268,7 @@
                                     }
 
                                 }
+
                                 catch (
                                     parseError
                                 ) {
@@ -1546,6 +2308,7 @@
                                     );
 
                             }
+
                             catch (
                                 parseError
                             ) {
@@ -1564,12 +2327,62 @@
 
 
                             /* =================================
+                               PAYMENT TEXT
+                            ================================= */
+
+                            const paymentText =
+                                bookingData.paymentMethod ===
+                                "GOOGLE_PAY"
+
+                                    ? "📱 Google Pay / UPI"
+
+                                    : "💵 Pay at Studio";
+
+
+                            const paymentStatusText =
+                                bookingData.paymentStatus ===
+                                "PAID"
+
+                                    ? "✅ PAID"
+
+                                    : "⏳ PENDING";
+
+
+                            /* =================================
                                SUCCESS
                             ================================= */
 
                             showStatus(
-                                "✨ Appointment booked successfully! Redirecting...",
+
+                                "✨ Appointment booked successfully!" +
+
+                                "<br><br>" +
+
+                                "<strong>Offer:</strong> " +
+                                bookingData.service +
+
+                                "<br>" +
+
+                                "<strong>Date:</strong> " +
+                                bookingData.bookingDate +
+
+                                "<br>" +
+
+                                "<strong>Time:</strong> " +
+                                bookingData.bookingTime +
+
+                                "<br>" +
+
+                                "<strong>Payment Method:</strong> " +
+                                paymentText +
+
+                                "<br>" +
+
+                                "<strong>Payment Status:</strong> " +
+                                paymentStatusText,
+
                                 "success"
+
                             );
 
 
@@ -1595,7 +2408,40 @@
                                 offerName.textContent =
                                     selectedOffer;
 
+                                paymentSummaryOffer.textContent =
+                                    selectedOffer;
+
                             }
+
+
+                            /*
+                             * Reset payment UI
+                             */
+
+                            paymentCards.forEach(
+                                function (card) {
+
+                                    card.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
+
+                            paymentSummaryStatus.textContent =
+                                "⏳ PENDING";
+
+                            paymentSummaryStatus.style.color =
+                                "#9a6a00";
+
+
+                            paymentSummaryDate.textContent =
+                                "Select date";
+
+
+                            paymentSummaryTime.textContent =
+                                "Select time";
 
 
                             /*
@@ -1610,11 +2456,12 @@
                                         "offer.html";
 
                                 },
-                                1200
+                                2500
                             );
 
 
                         }
+
                         catch (error) {
 
                             clearTimeout(
