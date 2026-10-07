@@ -245,47 +245,74 @@ function setMinimumDate() {
 
 function loadSelectedService() {
 
-    const serviceSelect =
-        document.getElementById("service");
-
+    const serviceSelect = document.getElementById("service");
 
     if (!serviceSelect) {
         return;
     }
 
+    const priceBox = document.getElementById("priceBox");
+    const selectedServiceName =
+        document.getElementById("selectedServiceName");
+    const selectedServicePrice =
+        document.getElementById("selectedServicePrice");
 
-    const selectedService =
-        localStorage.getItem(
-            "selectedService"
-        );
+    const urlParams =
+        new URLSearchParams(window.location.search);
 
+    const serviceFromURL =
+        urlParams.get("service");
 
-    if (!selectedService) {
+    const serviceFromStorage =
+        localStorage.getItem("selectedService");
+
+    const serviceToSelect =
+        serviceFromURL || serviceFromStorage;
+
+    if (!serviceToSelect) {
         return;
     }
 
-
     const options =
-        serviceSelect.querySelectorAll(
-            "option"
+        serviceSelect.querySelectorAll("option");
+
+    let foundOption = null;
+
+    options.forEach(function (option) {
+
+        if (option.value === serviceToSelect) {
+            foundOption = option;
+        }
+
+    });
+
+    if (foundOption) {
+
+        foundOption.selected = true;
+
+        const price =
+            foundOption.getAttribute("data-price");
+
+        if (selectedServiceName) {
+            selectedServiceName.textContent =
+                foundOption.value;
+        }
+
+        if (selectedServicePrice) {
+            selectedServicePrice.textContent =
+                "₹" + Number(price || 0).toLocaleString("en-IN");
+        }
+
+        if (priceBox) {
+            priceBox.style.display = "block";
+        }
+
+        localStorage.setItem(
+            "selectedService",
+            foundOption.value
         );
 
-
-    options.forEach(
-        function (option) {
-
-            if (
-                option.value === selectedService ||
-                option.textContent.trim() === selectedService
-            ) {
-
-                option.selected =
-                    true;
-
-            }
-
-        }
-    );
+    }
 
 }
 
