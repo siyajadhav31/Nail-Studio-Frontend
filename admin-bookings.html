@@ -369,7 +369,7 @@
 
             width: 100%;
 
-            min-width: 920px;
+            min-width: 950px;
 
             border-collapse: collapse;
 
@@ -451,7 +451,7 @@
         #bookingTable th:nth-child(1),
         #bookingTable td:nth-child(1) {
 
-            width: 24%;
+            width: 23%;
 
         }
 
@@ -459,7 +459,7 @@
         #bookingTable th:nth-child(2),
         #bookingTable td:nth-child(2) {
 
-            width: 31%;
+            width: 32%;
 
         }
 
@@ -467,7 +467,7 @@
         #bookingTable th:nth-child(3),
         #bookingTable td:nth-child(3) {
 
-            width: 17%;
+            width: 16%;
 
         }
 
@@ -475,7 +475,7 @@
         #bookingTable th:nth-child(4),
         #bookingTable td:nth-child(4) {
 
-            width: 16%;
+            width: 17%;
 
         }
 
@@ -592,6 +592,17 @@
         .shape-name {
 
             color: #7b42b8;
+
+        }
+
+
+        .shade-name {
+
+            color: #b8860b;
+
+            font-size: 11px;
+
+            font-weight: 500;
 
         }
 
@@ -874,7 +885,7 @@
 
 
         /* =====================================================
-           LOADING EMPTY
+           LOADING / EMPTY
         ===================================================== */
 
         .loading {
@@ -1197,6 +1208,8 @@
 
         <div class="admin-container">
 
+
+            <!-- TITLE -->
 
             <div class="admin-title">
 
@@ -1539,18 +1552,53 @@
                             Select a time
                         </option>
 
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                        <option value="7:00 PM">7:00 PM</option>
-                        <option value="8:00 PM">8:00 PM</option>
-                        <option value="9:00 PM">9:00 PM</option>
+                        <option value="10:00 AM">
+                            10:00 AM
+                        </option>
+
+                        <option value="11:00 AM">
+                            11:00 AM
+                        </option>
+
+                        <option value="12:00 PM">
+                            12:00 PM
+                        </option>
+
+                        <option value="1:00 PM">
+                            1:00 PM
+                        </option>
+
+                        <option value="2:00 PM">
+                            2:00 PM
+                        </option>
+
+                        <option value="3:00 PM">
+                            3:00 PM
+                        </option>
+
+                        <option value="4:00 PM">
+                            4:00 PM
+                        </option>
+
+                        <option value="5:00 PM">
+                            5:00 PM
+                        </option>
+
+                        <option value="6:00 PM">
+                            6:00 PM
+                        </option>
+
+                        <option value="7:00 PM">
+                            7:00 PM
+                        </option>
+
+                        <option value="8:00 PM">
+                            8:00 PM
+                        </option>
+
+                        <option value="9:00 PM">
+                            9:00 PM
+                        </option>
 
                     </select>
 
@@ -1637,10 +1685,14 @@
         function checkAdminLogin() {
 
             const adminLoggedIn =
-                localStorage.getItem("adminLoggedIn");
+                localStorage.getItem(
+                    "adminLoggedIn"
+                );
 
             const adminEmail =
-                localStorage.getItem("adminEmail");
+                localStorage.getItem(
+                    "adminEmail"
+                );
 
 
             if (
@@ -2109,6 +2161,8 @@
             }
 
 
+            /* SERVICE */
+
             const amount =
                 getPaymentAmount(booking);
 
@@ -2120,16 +2174,22 @@
             const amountHTML =
                 formattedAmount
                     ? `
+
                         <span class="payment-amount">
+
                             ${escapeHTML(
                                 formattedAmount
                             )}
+
                         </span>
+
                     `
                     : `
+
                         <span class="payment-amount">
                             —
                         </span>
+
                     `;
 
 
@@ -2205,6 +2265,8 @@
                 getBookingType(booking);
 
 
+            /* OFFER */
+
             if (type === "OFFER") {
 
                 const offer =
@@ -2236,12 +2298,19 @@
             }
 
 
+            /* VIRTUAL */
+
             if (type === "VIRTUAL") {
 
                 const shape =
                     booking.shape ||
                     booking.design ||
                     "Shape not specified";
+
+
+                const shade =
+                    booking.shade ||
+                    "Classic Nude";
 
 
                 return `
@@ -2257,7 +2326,16 @@
                         </span>
 
                         <span class="booking-detail-sub">
+
                             Virtual Nail Shape
+
+                        </span>
+
+                        <span class="shade-name">
+
+                            🎨 Shade:
+                            ${escapeHTML(shade)}
+
                         </span>
 
                     </div>
@@ -2266,6 +2344,8 @@
 
             }
 
+
+            /* SERVICE */
 
             const service =
                 booking.service ||
@@ -2369,8 +2449,7 @@
 
                             method: "GET",
 
-                            credentials:
-                                "include",
+                            credentials: "include",
 
                             headers: {
 
@@ -2379,8 +2458,7 @@
 
                             },
 
-                            cache:
-                                "no-store"
+                            cache: "no-store"
 
                         }
                     );
@@ -2706,6 +2784,12 @@
                         "—";
 
 
+                    const bookingId =
+                        Number(
+                            booking.id
+                        );
+
+
                     const row =
                         document.createElement(
                             "tr"
@@ -2727,6 +2811,7 @@
 
                                 </span>
 
+
                                 <span class="customer-email">
 
                                     ${escapeHTML(
@@ -2735,6 +2820,7 @@
                                     )}
 
                                 </span>
+
 
                                 <span class="customer-phone">
 
@@ -2756,6 +2842,7 @@
                             ${getBookingDetailHTML(
                                 booking
                             )}
+
 
                             <span
                                 class="${badgeClass}">
@@ -2780,6 +2867,7 @@
                                     )}
 
                                 </span>
+
 
                                 <span class="booking-time">
 
@@ -2811,9 +2899,7 @@
                                 <button
                                     type="button"
                                     class="edit-btn"
-                                    onclick="openEditModal(${Number(
-                                        booking.id
-                                    )})">
+                                    onclick="openEditModal(${bookingId})">
 
                                     ✏️ Edit
 
@@ -2823,9 +2909,7 @@
                                 <button
                                     type="button"
                                     class="delete-btn"
-                                    onclick="deleteBooking(${Number(
-                                        booking.id
-                                    )})">
+                                    onclick="deleteBooking(${bookingId})">
 
                                     🗑 Delete
 
@@ -3172,6 +3256,48 @@
                         ).value;
 
 
+                    if (!selectedDate) {
+
+                        alert(
+                            "Please select an appointment date."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (!selectedTime) {
+
+                        alert(
+                            "Please select an appointment time."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const selectedDay =
+                        new Date(
+                            selectedDate +
+                            "T00:00:00"
+                        );
+
+
+                    if (
+                        selectedDay.getDay() === 0
+                    ) {
+
+                        alert(
+                            "Sunday is closed. Please select another date."
+                        );
+
+                        return;
+
+                    }
+
+
                     const updatedBooking = {
 
                         name:
@@ -3220,6 +3346,14 @@
                             selectedTime,
 
 
+                        date:
+                            selectedDate,
+
+
+                        time:
+                            selectedTime,
+
+
                         bookingType:
                             bookingType,
 
@@ -3253,7 +3387,7 @@
                             (
                                 selectedStatus === "PAID"
                                     ? "GOOGLE_PAY"
-                                    : "CASH"
+                                    : "PAY_AT_STUDIO"
                             );
 
 
@@ -3279,8 +3413,10 @@
                         updatedBooking.paymentMethod =
                             "";
 
+
                         updatedBooking.paymentStatus =
                             "N/A";
+
 
                         updatedBooking.paymentAmount =
                             0;
@@ -3289,7 +3425,7 @@
 
 
                     console.log(
-                        "UPDATING BOOKING:",
+                        "💅 UPDATING BOOKING:",
                         updatedBooking
                     );
 
@@ -3612,7 +3748,7 @@
 
 
         /* =====================================================
-           START
+           START ADMIN PAGE
         ===================================================== */
 
         document.addEventListener(
