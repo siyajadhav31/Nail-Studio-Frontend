@@ -26,24 +26,16 @@
     <style>
 
         .premium-payment-section {
-
             margin: 22px 0;
-
             padding: 24px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #fffaf2,
-                    #fff8ed
-                );
-
+            background: linear-gradient(
+                145deg,
+                #fffaf2,
+                #fff8ed
+            );
             border: 1px solid #ead5ad;
-
             border-radius: 12px;
-
-            box-shadow:
-                0 8px 25px rgba(120, 85, 25, 0.06);
+            box-shadow: 0 8px 25px rgba(120, 85, 25, 0.06);
         }
 
 
@@ -53,97 +45,60 @@
 
 
         .payment-kicker {
-
             display: block;
-
             margin-bottom: 5px;
-
             color: #b8860b;
-
             font-size: 10px;
-
             font-weight: 600;
-
             letter-spacing: 2px;
         }
 
 
         .payment-heading h3 {
-
             margin: 0 0 5px;
-
             color: #3f3428;
-
-            font-family:
-                "Cormorant Garamond",
-                serif;
-
+            font-family: "Cormorant Garamond", serif;
             font-size: 25px;
-
             font-weight: 600;
         }
 
 
         .payment-heading p {
-
             margin: 0;
-
             color: #777;
-
             font-size: 12px;
         }
 
 
-        /* ==========================================
-           PAYMENT SUMMARY
-        =========================================== */
+        /* PAYMENT SUMMARY */
 
         .payment-summary {
-
             margin-bottom: 18px;
-
             padding: 16px;
-
             background: #ffffff;
-
             border: 1px solid #eadfc9;
-
             border-radius: 9px;
         }
 
 
         .summary-title {
-
             margin-bottom: 12px;
-
             color: #8a6420;
-
             font-size: 11px;
-
             font-weight: 600;
-
             letter-spacing: 1px;
-
             text-transform: uppercase;
         }
 
 
         .summary-row {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             gap: 15px;
-
             padding: 7px 0;
-
             color: #777;
-
             font-size: 12px;
-
             border-bottom: 1px solid #f1eadf;
         }
 
@@ -154,85 +109,55 @@
 
 
         .summary-row strong {
-
             color: #444;
-
             font-weight: 500;
-
             text-align: right;
         }
 
 
         .summary-total {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             margin-top: 10px;
-
             padding-top: 12px;
-
             border-top: 1px solid #ead5ad;
         }
 
 
         .summary-total span {
-
             color: #555;
-
             font-size: 13px;
-
             font-weight: 500;
         }
 
 
         .summary-total strong {
-
             color: #b8860b;
-
             font-size: 22px;
-
             font-weight: 700;
         }
 
 
-        /* ==========================================
-           PAYMENT OPTIONS
-        =========================================== */
+        /* PAYMENT OPTIONS */
 
         .payment-options {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 11px;
         }
 
 
         .payment-card {
-
             position: relative;
-
             display: flex;
-
             align-items: center;
-
             gap: 13px;
-
             padding: 15px;
-
             background: #ffffff;
-
             border: 1px solid #e5d7bd;
-
             border-radius: 9px;
-
             cursor: pointer;
-
             transition:
                 border-color 0.25s ease,
                 background 0.25s ease,
@@ -242,152 +167,98 @@
 
 
         .payment-card:hover {
-
             border-color: #c89b3c;
-
             transform: translateY(-1px);
         }
 
 
         .payment-card input {
-
             position: absolute;
-
             opacity: 0;
-
             pointer-events: none;
         }
 
 
         .payment-card-icon {
-
             width: 43px;
-
             height: 43px;
-
             flex-shrink: 0;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             background: #fff8ed;
-
             border: 1px solid #ead5ad;
-
             border-radius: 8px;
-
             font-size: 21px;
         }
 
 
         .payment-card-content {
-
             flex: 1;
-
             display: flex;
-
             flex-direction: column;
-
             gap: 3px;
         }
 
 
         .payment-card-content strong {
-
             color: #40362c;
-
             font-size: 14px;
-
             font-weight: 600;
         }
 
 
         .payment-card-content span {
-
             color: #888;
-
             font-size: 11px;
-
             line-height: 1.4;
         }
 
 
         .payment-card-check {
-
             width: 23px;
-
             height: 23px;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             border: 1px solid #d8c8aa;
-
             border-radius: 50%;
-
             color: transparent;
-
             font-size: 12px;
-
             font-weight: 700;
-
             transition: 0.25s ease;
         }
 
 
         .payment-card.selected {
-
             border-color: #c89b3c;
-
             background: #fffaf0;
-
-            box-shadow:
-                0 5px 16px rgba(184, 134, 11, 0.10);
+            box-shadow: 0 5px 16px rgba(184, 134, 11, 0.10);
         }
 
 
         .payment-card.selected .payment-card-icon {
-
             background: #fdf2d9;
-
             border-color: #c89b3c;
         }
 
 
         .payment-card.selected .payment-card-check {
-
             background: #c89b3c;
-
             border-color: #c89b3c;
-
             color: #ffffff;
         }
 
 
-        /* ==========================================
-           ONLINE PAYMENT BOX
-        =========================================== */
+        /* ONLINE PAYMENT BOX */
 
         .upi-payment-box {
-
             display: none;
-
             margin-top: 18px;
-
             padding: 20px;
-
             background: #ffffff;
-
             border: 1px solid #ead5ad;
-
             border-radius: 10px;
-
             text-align: center;
         }
 
@@ -398,224 +269,86 @@
 
 
         .upi-payment-title {
-
             margin: 0 0 8px;
-
             color: #40362c;
-
-            font-family:
-                "Cormorant Garamond",
-                serif;
-
+            font-family: "Cormorant Garamond", serif;
             font-size: 22px;
         }
 
 
         .upi-payment-description {
-
             margin: 0 0 15px;
-
             color: #777;
-
             font-size: 12px;
-
             line-height: 1.5;
         }
 
 
-        .demo-payment-box {
-
+        .online-payment-box {
             margin: 18px 0;
-
             padding: 18px;
-
             background: #fff8ed;
-
             border: 1px solid #ead5ad;
-
             border-radius: 9px;
         }
 
 
-        .demo-payment-label {
-
+        .online-payment-label {
             display: block;
-
             margin-bottom: 6px;
-
             color: #8a6420;
-
             font-size: 10px;
-
             font-weight: 600;
-
             letter-spacing: 1.5px;
         }
 
 
-        .demo-payment-amount {
-
+        .online-payment-amount {
             display: block;
-
             margin-bottom: 14px;
-
             color: #b8860b;
-
             font-size: 28px;
-
             font-weight: 700;
         }
 
 
-        .demo-payment-button {
-
+        .online-payment-button {
             width: 100%;
-
             padding: 13px 18px;
-
             border: none;
-
             border-radius: 7px;
-
             background: #c89b3c;
-
             color: #ffffff;
-
             font-family: "Poppins", sans-serif;
-
             font-size: 13px;
-
             font-weight: 600;
-
             cursor: pointer;
-
             transition: 0.25s ease;
         }
 
 
-        .demo-payment-button:hover {
-
+        .online-payment-button:hover {
             background: #b8860b;
-
             transform: translateY(-1px);
         }
 
 
-        .demo-payment-button:disabled {
-
+        .online-payment-button:disabled {
             opacity: 0.65;
-
             cursor: not-allowed;
-
             transform: none;
         }
 
 
-        .demo-payment-note {
-
-            margin: 12px 0 0;
-
-            color: #888;
-
-            font-size: 10px;
-
-            line-height: 1.5;
-        }
-
-
-        .payment-warning {
-
-            display: flex;
-
-            gap: 8px;
-
-            margin-top: 15px;
-
-            padding: 11px;
-
-            background: #faf7f1;
-
-            border-radius: 7px;
-
-            text-align: left;
-        }
-
-
-        .payment-warning-icon {
-            color: #b8860b;
-        }
-
-
-        .payment-warning p {
-
-            margin: 0;
-
-            color: #888;
-
-            font-size: 10px;
-
-            line-height: 1.5;
-        }
-
-
-        /* ==========================================
-           PAYMENT NOTE
-        =========================================== */
-
-        .payment-note {
-
-            display: flex;
-
-            gap: 8px;
-
-            margin-top: 15px;
-
-            padding: 11px 12px;
-
-            background: #faf7f1;
-
-            border-radius: 7px;
-        }
-
-
-        .payment-note span {
-
-            color: #b8860b;
-
-            font-size: 13px;
-        }
-
-
-        .payment-note p {
-
-            margin: 0;
-
-            color: #888;
-
-            font-size: 10px;
-
-            line-height: 1.5;
-        }
-
-
-        /* ==========================================
-           PAYMENT SUCCESS BOX
-        =========================================== */
+        /* SUCCESS BOX */
 
         .payment-success-box {
-
             display: none;
-
             margin-top: 18px;
-
             padding: 20px;
-
             background: #f7fff9;
-
             border: 1px solid #b9dfc5;
-
             border-radius: 10px;
-
             text-align: center;
         }
 
@@ -626,72 +359,73 @@
 
 
         .payment-success-icon {
-
             width: 52px;
-
             height: 52px;
-
             margin: 0 auto 10px;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             border-radius: 50%;
-
             background: #dff5e5;
-
             color: #20863d;
-
             font-size: 26px;
         }
 
 
         .payment-success-box h4 {
-
             margin: 0 0 7px;
-
             color: #26753d;
-
             font-size: 18px;
         }
 
 
         .payment-success-box p {
-
             margin: 4px 0;
-
             color: #666;
-
             font-size: 11px;
-
             line-height: 1.5;
         }
 
 
         .payment-id {
-
             margin-top: 12px !important;
-
             padding: 10px;
-
             background: #ffffff;
-
             border: 1px dashed #9bc8a8;
-
             border-radius: 7px;
-
             color: #26753d !important;
-
             font-weight: 600;
+            word-break: break-all;
         }
 
 
-        /* ==========================================
-           MOBILE
-        =========================================== */
+        /* PAYMENT NOTE */
+
+        .payment-note {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 11px 12px;
+            background: #faf7f1;
+            border-radius: 7px;
+        }
+
+
+        .payment-note span {
+            color: #b8860b;
+            font-size: 13px;
+        }
+
+
+        .payment-note p {
+            margin: 0;
+            color: #888;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+
+        /* MOBILE */
 
         @media (max-width: 600px) {
 
@@ -699,36 +433,27 @@
                 padding: 18px 14px;
             }
 
-
             .payment-heading h3 {
                 font-size: 22px;
             }
-
 
             .payment-card {
                 padding: 13px;
             }
 
-
             .payment-card-icon {
-
                 width: 39px;
-
                 height: 39px;
-
                 font-size: 19px;
             }
-
 
             .payment-card-content strong {
                 font-size: 13px;
             }
 
-
             .payment-card-content span {
                 font-size: 10px;
             }
-
 
             .summary-row {
                 align-items: flex-start;
@@ -810,8 +535,6 @@
         </ul>
 
 
-        <!-- BOOK NOW -->
-
         <a
             href="booking.html"
             class="nav-book-btn"
@@ -842,12 +565,9 @@
     <div class="booking-layout">
 
 
-        <!-- ======================================
-             LEFT SIDE
-        ======================================= -->
+        <!-- LEFT SIDE -->
 
         <div class="booking-container">
-
 
             <span class="booking-subtitle">
                 ✨ Luxury Nail Experience
@@ -864,9 +584,7 @@
             </p>
 
 
-            <!-- ==================================
-                 BOOKING FORM
-            =================================== -->
+            <!-- BOOKING FORM -->
 
             <form id="bookingForm">
 
@@ -894,9 +612,6 @@
 
                 <div class="booking-row">
 
-
-                    <!-- MOBILE -->
-
                     <div class="form-group">
 
                         <label for="phone">
@@ -919,8 +634,6 @@
 
                     </div>
 
-
-                    <!-- EMAIL -->
 
                     <div class="form-group">
 
@@ -945,9 +658,6 @@
 
                 <div class="booking-row">
 
-
-                    <!-- DATE -->
-
                     <div class="form-group">
 
                         <label for="bookingDate">
@@ -963,8 +673,6 @@
 
                     </div>
 
-
-                    <!-- TIME -->
 
                     <div class="form-group">
 
@@ -1001,9 +709,7 @@
                 </div>
 
 
-                <!-- ======================================
-                     SERVICE SELECTION
-                ======================================= -->
+                <!-- SERVICE -->
 
                 <div class="form-group">
 
@@ -1187,9 +893,7 @@
                 </div>
 
 
-                <!-- ======================================
-                     SELECTED SERVICE PRICE
-                ======================================= -->
+                <!-- SELECTED SERVICE PRICE -->
 
                 <div
                     id="priceBox"
@@ -1238,11 +942,7 @@
                         </div>
 
 
-                        <div
-                            style="
-                                text-align:right;
-                            "
-                        >
+                        <div style="text-align:right;">
 
                             <div
                                 id="selectedServicePrice"
@@ -1278,7 +978,6 @@
                 ======================================= -->
 
                 <div class="premium-payment-section">
-
 
                     <div class="payment-heading">
 
@@ -1434,9 +1133,7 @@
                     </div>
 
 
-                    <!-- ======================================
-                         ONLINE PAYMENT BOX
-                    ======================================= -->
+                    <!-- ONLINE PAYMENT BOX -->
 
                     <div
                         id="upiPaymentBox"
@@ -1450,19 +1147,18 @@
 
                         <p class="upi-payment-description">
                             Your selected service amount is shown below.
-                            Click the button to complete the demo online payment.
                         </p>
 
 
-                        <div class="demo-payment-box">
+                        <div class="online-payment-box">
 
-                            <span class="demo-payment-label">
+                            <span class="online-payment-label">
                                 PAYMENT AMOUNT
                             </span>
 
                             <strong
                                 id="upiPaymentAmount"
-                                class="demo-payment-amount"
+                                class="online-payment-amount"
                             >
                                 ₹0
                             </strong>
@@ -1470,32 +1166,11 @@
 
                             <button
                                 type="button"
-                                id="demoPaymentButton"
-                                class="demo-payment-button"
+                                id="onlinePaymentButton"
+                                class="online-payment-button"
                             >
                                 💳 Pay ₹0 Online
                             </button>
-
-
-                            <p class="demo-payment-note">
-                                This is a college-project demo payment.
-                                No real money will be deducted.
-                            </p>
-
-                        </div>
-
-
-                        <div class="payment-warning">
-
-                            <span class="payment-warning-icon">
-                                ⓘ
-                            </span>
-
-                            <p>
-                                <strong>Demo only:</strong>
-                                This payment flow does not connect to
-                                Google Pay, PhonePe or any real UPI service.
-                            </p>
 
                         </div>
 
@@ -1553,8 +1228,7 @@
 
                         <p>
                             You can choose Pay at Studio for a normal booking,
-                            or choose Online Payment to demonstrate the
-                            payment verification flow.
+                            or choose Online Payment for instant payment confirmation.
                         </p>
 
                     </div>
@@ -1562,9 +1236,7 @@
                 </div>
 
 
-                <!-- ======================================
-                     SUBMIT BUTTON
-                ======================================= -->
+                <!-- SUBMIT BUTTON -->
 
                 <button
                     type="submit"
@@ -1577,9 +1249,7 @@
             </form>
 
 
-            <!-- ======================================
-                 BOOKING MESSAGE
-            ======================================= -->
+            <!-- BOOKING MESSAGE -->
 
             <div
                 id="bookingMessage"
@@ -1596,8 +1266,6 @@
 
         <div class="studio-info-box">
 
-
-            <!-- HEADING -->
 
             <div class="studio-heading">
 
@@ -1751,14 +1419,11 @@ document.addEventListener(
 
 
         // ==========================================
-        // BACKEND URLS
+        // BACKEND URL
         // ==========================================
 
         const API_URL =
             "https://nail-studio-backend-k604.onrender.com/api/bookings";
-
-        const PAYMENT_API_URL =
-            "https://nail-studio-backend-k604.onrender.com/api/payment";
 
 
         // ==========================================
@@ -1796,9 +1461,7 @@ document.addEventListener(
             document.getElementById("bookingTime");
 
 
-        // ==========================================
-        // PAYMENT SUMMARY ELEMENTS
-        // ==========================================
+        // PAYMENT SUMMARY
 
         const paymentSummaryService =
             document.getElementById(
@@ -1821,9 +1484,7 @@ document.addEventListener(
             );
 
 
-        // ==========================================
-        // ONLINE PAYMENT ELEMENTS
-        // ==========================================
+        // ONLINE PAYMENT
 
         const upiPaymentBox =
             document.getElementById(
@@ -1835,9 +1496,9 @@ document.addEventListener(
                 "upiPaymentAmount"
             );
 
-        const demoPaymentButton =
+        const onlinePaymentButton =
             document.getElementById(
-                "demoPaymentButton"
+                "onlinePaymentButton"
             );
 
         const paymentSuccessBox =
@@ -1894,7 +1555,7 @@ document.addEventListener(
 
 
         // ==========================================
-        // GET CURRENT SERVICE PRICE
+        // GET SERVICE PRICE
         // ==========================================
 
         function getCurrentServicePrice() {
@@ -1925,19 +1586,19 @@ document.addEventListener(
 
 
         // ==========================================
-        // UPDATE PAYMENT BUTTON
+        // UPDATE ONLINE PAYMENT BUTTON
         // ==========================================
 
         function updatePaymentButton() {
 
-            if (!demoPaymentButton) {
+            if (!onlinePaymentButton) {
                 return;
             }
 
             const price =
                 getCurrentServicePrice();
 
-            demoPaymentButton.textContent =
+            onlinePaymentButton.textContent =
                 "💳 Pay " +
                 formatPrice(price) +
                 " Online";
@@ -1967,7 +1628,7 @@ document.addEventListener(
                 const price =
                     Number(
                         selectedOption.dataset.price
-                    );
+                    ) || 0;
 
                 paymentSummaryService.textContent =
                     selectedOption.value;
@@ -2046,20 +1707,15 @@ document.addEventListener(
 
         function updateUpiPaymentAmount() {
 
-            if (
-                !serviceSelect ||
-                !upiPaymentAmount
-            ) {
-
-                return;
-
-            }
-
             const price =
                 getCurrentServicePrice();
 
-            upiPaymentAmount.textContent =
-                formatPrice(price);
+            if (upiPaymentAmount) {
+
+                upiPaymentAmount.textContent =
+                    formatPrice(price);
+
+            }
 
             updatePaymentButton();
 
@@ -2105,27 +1761,39 @@ document.addEventListener(
 
             }
 
+
             const servicePrice =
                 Number(
                     selectedOption.dataset.price
-                );
+                ) || 0;
 
             const serviceName =
                 selectedOption.value;
 
+
             if (selectedServiceName) {
+
                 selectedServiceName.textContent =
                     serviceName;
+
             }
+
 
             if (selectedServicePrice) {
+
                 selectedServicePrice.textContent =
                     formatPrice(servicePrice);
+
             }
 
+
             if (priceBox) {
-                priceBox.style.display = "block";
+
+                priceBox.style.display =
+                    "block";
+
             }
+
 
             updatePaymentSummary();
             updateUpiPaymentAmount();
@@ -2142,8 +1810,6 @@ document.addEventListener(
             serviceSelect
         ) {
 
-            let found = false;
-
             for (
                 let i = 0;
                 i < serviceSelect.options.length;
@@ -2158,16 +1824,12 @@ document.addEventListener(
                     serviceSelect.selectedIndex =
                         i;
 
-                    found = true;
+                    updateServicePrice();
 
                     break;
 
                 }
 
-            }
-
-            if (found) {
-                updateServicePrice();
             }
 
         }
@@ -2188,6 +1850,14 @@ document.addEventListener(
                     updatePaymentSummary();
 
                     updateUpiPaymentAmount();
+
+                    if (paymentSuccessBox) {
+
+                        paymentSuccessBox.classList.remove(
+                            "show"
+                        );
+
+                    }
 
                 }
             );
@@ -2232,7 +1902,7 @@ document.addEventListener(
 
 
         // ==========================================
-        // SET MINIMUM DATE = TODAY
+        // MINIMUM DATE
         // ==========================================
 
         function setMinimumDate() {
@@ -2290,11 +1960,8 @@ document.addEventListener(
                             "T00:00:00"
                         );
 
-                    const dayOfWeek =
-                        selectedDate.getDay();
-
                     if (
-                        dayOfWeek === 0
+                        selectedDate.getDay() === 0
                     ) {
 
                         alert(
@@ -2314,7 +1981,7 @@ document.addEventListener(
 
 
         // ==========================================
-        // MOBILE NUMBER VALIDATION
+        // MOBILE VALIDATION
         // ==========================================
 
         if (phoneInput) {
@@ -2357,9 +2024,11 @@ document.addEventListener(
                     return;
                 }
 
+
                 radio.addEventListener(
                     "change",
                     function () {
+
 
                         paymentCards.forEach(
                             function (item) {
@@ -2370,6 +2039,7 @@ document.addEventListener(
 
                             }
                         );
+
 
                         if (radio.checked) {
 
@@ -2409,7 +2079,7 @@ document.addEventListener(
 
                         // CASH PAYMENT
 
-                        else if (
+                        if (
                             radio.value === "CASH" &&
                             radio.checked
                         ) {
@@ -2447,79 +2117,49 @@ document.addEventListener(
 
 
         // ==========================================
-        // INITIAL PAYMENT SUMMARY
+        // INITIAL UI
         // ==========================================
 
         updatePaymentSummary();
-
         updateUpiPaymentAmount();
 
 
         // ==========================================
-        // RESET FORM UI
+        // CREATE PAYMENT ID
         // ==========================================
 
-        function resetBookingUI() {
+        function generatePaymentId() {
 
-            bookingForm.reset();
+            const now =
+                new Date();
 
-            if (priceBox) {
-                priceBox.style.display = "none";
-            }
+            const year =
+                now.getFullYear();
 
-            if (selectedServiceName) {
-                selectedServiceName.textContent = "-";
-            }
+            const month =
+                String(
+                    now.getMonth() + 1
+                ).padStart(2, "0");
 
-            if (selectedServicePrice) {
-                selectedServicePrice.textContent = "₹0";
-            }
+            const day =
+                String(
+                    now.getDate()
+                ).padStart(2, "0");
 
-            if (upiPaymentBox) {
+            const random =
+                Math.random()
+                    .toString(36)
+                    .substring(2, 10)
+                    .toUpperCase();
 
-                upiPaymentBox.classList.remove(
-                    "show"
-                );
-
-                delete upiPaymentBox.dataset.bookingId;
-                delete upiPaymentBox.dataset.paymentAmount;
-                delete upiPaymentBox.dataset.service;
-                delete upiPaymentBox.dataset.bookingDate;
-                delete upiPaymentBox.dataset.bookingTime;
-
-            }
-
-            if (paymentSuccessBox) {
-                paymentSuccessBox.classList.remove(
-                    "show"
-                );
-            }
-
-            paymentCards.forEach(
-                function (card) {
-
-                    card.classList.remove(
-                        "selected"
-                    );
-
-                }
+            return (
+                "PAY-" +
+                year +
+                month +
+                day +
+                "-" +
+                random
             );
-
-            if (bookingSubmitBtn) {
-
-                bookingSubmitBtn.disabled =
-                    false;
-
-                bookingSubmitBtn.textContent =
-                    "✅ Confirm Appointment";
-
-            }
-
-            updatePaymentSummary();
-
-            updateUpiPaymentAmount();
-
-            setMinimumDate();
 
         }
 
@@ -2537,9 +2177,7 @@ document.addEventListener(
                     event.preventDefault();
 
 
-                    // ==================================
-                    // FORM VALIDATION
-                    // ==================================
+                    // VALIDATION
 
                     if (
                         !bookingForm.checkValidity()
@@ -2552,9 +2190,7 @@ document.addEventListener(
                     }
 
 
-                    // ==================================
-                    // CHECK SUNDAY
-                    // ==================================
+                    // SUNDAY CHECK
 
                     if (
                         dateInput &&
@@ -2582,14 +2218,13 @@ document.addEventListener(
                     }
 
 
-                    // ==================================
-                    // GET SELECTED SERVICE
-                    // ==================================
+                    // SERVICE
 
                     const selectedOption =
                         serviceSelect.options[
                             serviceSelect.selectedIndex
                         ];
+
 
                     if (
                         !selectedOption ||
@@ -2614,14 +2249,12 @@ document.addEventListener(
                         selectedOption.value;
 
 
-                    // ==================================
-                    // GET EXACT PRICE
-                    // ==================================
+                    // PRICE
 
                     const servicePrice =
                         Number(
                             selectedOption.dataset.price
-                        );
+                        ) || 0;
 
 
                     if (
@@ -2643,14 +2276,13 @@ document.addEventListener(
                     }
 
 
-                    // ==================================
-                    // GET PAYMENT METHOD
-                    // ==================================
+                    // PAYMENT METHOD
 
                     const selectedPayment =
                         document.querySelector(
                             'input[name="paymentMethod"]:checked'
                         );
+
 
                     if (!selectedPayment) {
 
@@ -2673,239 +2305,157 @@ document.addEventListener(
 
 
                     // ==================================
-                    // PAYMENT STATUS
+                    // CASH PAYMENT
                     // ==================================
-
-                    const paymentStatus =
-                        "PENDING";
-
-
-                    // ==================================
-                    // PAYMENT NOTES
-                    // ==================================
-
-                    let paymentNotes = "";
 
                     if (
-                        paymentMethod === "UPI"
+                        paymentMethod === "CASH"
                     ) {
 
-                        paymentNotes =
-                            "Payment Method: Online Payment Demo. Payment verification will be completed after demo payment.";
+                        bookingSubmitBtn.disabled =
+                            true;
 
-                    }
-                    else {
-
-                        paymentNotes =
-                            "Payment Method: Pay at Studio.";
-
-                    }
+                        bookingSubmitBtn.textContent =
+                            "Saving Appointment...";
 
 
-                    // ==================================
-                    // SHOW LOADING
-                    // ==================================
+                        bookingMessage.innerHTML =
+                            "Saving your appointment...";
 
-                    bookingMessage.innerHTML =
-                        "Saving your appointment...";
+                        bookingMessage.className =
+                            "booking-message";
 
-                    bookingMessage.className =
-                        "booking-message";
-
-                    bookingMessage.style.display =
-                        "block";
-
-                    bookingSubmitBtn.disabled =
-                        true;
-
-                    bookingSubmitBtn.textContent =
-                        "Saving Appointment...";
+                        bookingMessage.style.display =
+                            "block";
 
 
-                    // ==================================
-                    // GET FORM VALUES
-                    // ==================================
+                        const bookingData = {
 
-                    const bookingData = {
+                            name:
+                                document
+                                    .getElementById("name")
+                                    .value
+                                    .trim(),
 
-                        name:
-                            document
-                                .getElementById("name")
-                                .value
-                                .trim(),
+                            email:
+                                document
+                                    .getElementById("email")
+                                    .value
+                                    .trim(),
 
-                        email:
-                            document
-                                .getElementById("email")
-                                .value
-                                .trim(),
+                            phone:
+                                document
+                                    .getElementById("phone")
+                                    .value
+                                    .trim(),
 
-                        phone:
-                            document
-                                .getElementById("phone")
-                                .value
-                                .trim(),
+                            service:
+                                selectedService,
 
-                        service:
-                            selectedService,
+                            design:
+                                document
+                                    .getElementById("design")
+                                    .value,
 
-                        design:
-                            document
-                                .getElementById("design")
-                                .value,
+                            bookingDate:
+                                dateInput.value,
 
-                        bookingDate:
-                            document
-                                .getElementById("bookingDate")
-                                .value,
+                            bookingTime:
+                                timeInput.value,
 
-                        bookingTime:
-                            document
-                                .getElementById("bookingTime")
-                                .value,
+                            bookingType:
+                                "SERVICE",
 
-                        bookingType:
-                            "SERVICE",
+                            notes:
+                                "Payment Method: Pay at Studio.",
 
-                        notes:
-                            paymentNotes,
+                            paymentMethod:
+                                "CASH",
 
-                        paymentMethod:
-                            paymentMethod,
+                            paymentStatus:
+                                "PENDING",
 
-                        paymentStatus:
-                            paymentStatus,
+                            paymentAmount:
+                                servicePrice
 
-                        paymentAmount:
-                            servicePrice
-
-                    };
-
-
-                    console.log(
-                        "================================="
-                    );
-
-                    console.log(
-                        "💳 BOOKING PAYMENT DATA"
-                    );
-
-                    console.log(
-                        bookingData
-                    );
-
-                    console.log(
-                        "================================="
-                    );
-
-
-                    // ==================================
-                    // SEND BOOKING TO SPRING BOOT
-                    // ==================================
-
-                    try {
-
-                        const response =
-                            await fetch(
-                                API_URL,
-                                {
-                                    method:
-                                        "POST",
-
-                                    headers: {
-                                        "Content-Type":
-                                            "application/json"
-                                    },
-
-                                    body:
-                                        JSON.stringify(
-                                            bookingData
-                                        )
-                                }
-                            );
-
-
-                        const responseText =
-                            await response.text();
-
-
-                        console.log(
-                            "Booking response:",
-                            responseText
-                        );
-
-
-                        let result =
-                            null;
+                        };
 
 
                         try {
 
-                            result =
-                                JSON.parse(
-                                    responseText
+                            const response =
+                                await fetch(
+                                    API_URL,
+                                    {
+                                        method: "POST",
+
+                                        headers: {
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify(
+                                                bookingData
+                                            )
+                                    }
                                 );
 
-                        }
-                        catch (jsonError) {
 
-                            console.error(
-                                "JSON parsing error:",
-                                jsonError
-                            );
-
-                        }
+                            const responseText =
+                                await response.text();
 
 
-                        // ==================================
-                        // CHECK RESPONSE
-                        // ==================================
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                (
-                                    result &&
-                                    result.message
-                                )
-                                ||
-                                "Unable to confirm booking."
-                            );
-
-                        }
+                            let result =
+                                null;
 
 
-                        // ==================================
-                        // GET SAVED BOOKING
-                        // ==================================
+                            try {
 
-                        let savedBooking =
-                            result;
+                                result =
+                                    JSON.parse(
+                                        responseText
+                                    );
 
+                            }
+                            catch (e) {
 
-                        if (
-                            result &&
-                            result.data
-                        ) {
+                                console.error(
+                                    "JSON error:",
+                                    e
+                                );
 
-                            savedBooking =
-                                result.data;
-
-                        }
-
-
-                        const bookingId =
-                            savedBooking &&
-                            savedBooking.id;
+                            }
 
 
-                        // ==================================
-                        // CASH PAYMENT
-                        // ==================================
+                            if (!response.ok) {
 
-                        if (
-                            paymentMethod === "CASH"
-                        ) {
+                                throw new Error(
+                                    (
+                                        result &&
+                                        result.message
+                                    )
+                                    ||
+                                    "Unable to save booking."
+                                );
+
+                            }
+
+
+                            let savedBooking =
+                                result;
+
+
+                            if (
+                                result &&
+                                result.data
+                            ) {
+
+                                savedBooking =
+                                    result.data;
+
+                            }
+
 
                             bookingMessage.innerHTML =
 
@@ -2917,7 +2467,7 @@ document.addEventListener(
 
                                 "<strong>Booking ID:</strong> " +
                                 (
-                                    bookingId ||
+                                    savedBooking.id ||
                                     "Generated"
                                 ) +
 
@@ -2953,10 +2503,6 @@ document.addEventListener(
                                 "<strong>Payment Status:</strong> " +
                                 "⏳ PENDING" +
 
-                                "<br><br>" +
-
-                                "You can pay at the studio during your appointment." +
-
                                 "</small>";
 
 
@@ -2967,55 +2513,247 @@ document.addEventListener(
                                 "block";
 
 
-                            resetBookingUI();
+                            bookingForm.reset();
+
+
+                            if (priceBox) {
+                                priceBox.style.display =
+                                    "none";
+                            }
+
+
+                            selectedServiceName.textContent =
+                                "-";
+
+                            selectedServicePrice.textContent =
+                                "₹0";
+
+
+                            updatePaymentSummary();
+                            updateUpiPaymentAmount();
+
+
+                            bookingSubmitBtn.disabled =
+                                false;
+
+                            bookingSubmitBtn.textContent =
+                                "✅ Confirm Appointment";
+
+
+                            paymentCards.forEach(
+                                function (card) {
+
+                                    card.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
 
                             return;
 
                         }
+                        catch (error) {
+
+                            console.error(
+                                "Booking Error:",
+                                error
+                            );
 
 
-                        // ==================================
-                        // ONLINE PAYMENT
-                        // ==================================
+                            bookingMessage.innerHTML =
+                                "❌ Unable to confirm your booking. Please try again.";
 
-                        if (
-                            paymentMethod === "UPI"
-                        ) {
+                            bookingMessage.className =
+                                "booking-message error";
 
-                            if (!bookingId) {
+                            bookingMessage.style.display =
+                                "block";
 
-                                throw new Error(
-                                    "Booking was saved but Booking ID was not returned by the server."
+
+                            bookingSubmitBtn.disabled =
+                                false;
+
+                            bookingSubmitBtn.textContent =
+                                "✅ Confirm Appointment";
+
+                        }
+
+
+                        return;
+
+                    }
+
+
+                    // ==================================
+                    // ONLINE PAYMENT
+                    // ==================================
+
+                    if (
+                        paymentMethod === "UPI"
+                    ) {
+
+                        bookingSubmitBtn.disabled =
+                            true;
+
+                        bookingSubmitBtn.textContent =
+                            "Saving Appointment...";
+
+
+                        bookingMessage.innerHTML =
+                            "Saving your appointment...";
+
+                        bookingMessage.className =
+                            "booking-message";
+
+                        bookingMessage.style.display =
+                            "block";
+
+
+                        const bookingData = {
+
+                            name:
+                                document
+                                    .getElementById("name")
+                                    .value
+                                    .trim(),
+
+                            email:
+                                document
+                                    .getElementById("email")
+                                    .value
+                                    .trim(),
+
+                            phone:
+                                document
+                                    .getElementById("phone")
+                                    .value
+                                    .trim(),
+
+                            service:
+                                selectedService,
+
+                            design:
+                                document
+                                    .getElementById("design")
+                                    .value,
+
+                            bookingDate:
+                                dateInput.value,
+
+                            bookingTime:
+                                timeInput.value,
+
+                            bookingType:
+                                "SERVICE",
+
+                            notes:
+                                "Payment Method: Online Payment.",
+
+                            paymentMethod:
+                                "UPI",
+
+                            paymentStatus:
+                                "PENDING",
+
+                            paymentAmount:
+                                servicePrice
+
+                        };
+
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    API_URL,
+                                    {
+                                        method: "POST",
+
+                                        headers: {
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify(
+                                                bookingData
+                                            )
+                                    }
+                                );
+
+
+                            const responseText =
+                                await response.text();
+
+
+                            let result =
+                                null;
+
+
+                            try {
+
+                                result =
+                                    JSON.parse(
+                                        responseText
+                                    );
+
+                            }
+                            catch (e) {
+
+                                console.error(
+                                    "JSON error:",
+                                    e
                                 );
 
                             }
 
 
-                            bookingMessage.innerHTML =
+                            if (!response.ok) {
 
-                                "✅ Appointment saved successfully!" +
+                                throw new Error(
+                                    (
+                                        result &&
+                                        result.message
+                                    )
+                                    ||
+                                    "Unable to save booking."
+                                );
 
-                                "<br><br>" +
-
-                                "<small>" +
-
-                                "Your online payment is ready." +
-
-                                "<br>" +
-
-                                "Click <strong>Pay Online</strong> below to complete the demo payment." +
-
-                                "</small>";
+                            }
 
 
-                            bookingMessage.className =
-                                "booking-message success";
-
-                            bookingMessage.style.display =
-                                "block";
+                            let savedBooking =
+                                result;
 
 
-                            // STORE BOOKING INFORMATION
+                            if (
+                                result &&
+                                result.data
+                            ) {
+
+                                savedBooking =
+                                    result.data;
+
+                            }
+
+
+                            const bookingId =
+                                savedBooking &&
+                                savedBooking.id;
+
+
+                            if (!bookingId) {
+
+                                throw new Error(
+                                    "Booking ID was not returned by the server."
+                                );
+
+                            }
+
+
+                            // SAVE BOOKING INFORMATION
 
                             upiPaymentBox.dataset.bookingId =
                                 bookingId;
@@ -3033,14 +2771,42 @@ document.addEventListener(
                                 bookingData.bookingTime;
 
 
-                            // SHOW PAYMENT BOX
+                            bookingMessage.innerHTML =
+
+                                "✅ Appointment saved successfully!" +
+
+                                "<br><br>" +
+
+                                "<small>" +
+
+                                "Your payment amount is " +
+
+                                "<strong>" +
+
+                                formatPrice(
+                                    servicePrice
+                                ) +
+
+                                "</strong>." +
+
+                                "<br>" +
+
+                                "Click <strong>Pay Online</strong> to complete payment." +
+
+                                "</small>";
+
+
+                            bookingMessage.className =
+                                "booking-message success";
+
+                            bookingMessage.style.display =
+                                "block";
+
 
                             upiPaymentBox.classList.add(
                                 "show"
                             );
 
-
-                            // DISABLE MAIN BUTTON
 
                             bookingSubmitBtn.disabled =
                                 true;
@@ -3049,42 +2815,38 @@ document.addEventListener(
                                 "💳 Complete Online Payment";
 
 
-                            // SCROLL TO PAYMENT
-
                             upiPaymentBox.scrollIntoView({
                                 behavior: "smooth",
                                 block: "center"
                             });
 
 
-                            return;
+                        }
+                        catch (error) {
+
+                            console.error(
+                                "Online Booking Error:",
+                                error
+                            );
+
+
+                            bookingMessage.innerHTML =
+                                "❌ Unable to save your appointment. Please try again.";
+
+                            bookingMessage.className =
+                                "booking-message error";
+
+                            bookingMessage.style.display =
+                                "block";
+
+
+                            bookingSubmitBtn.disabled =
+                                false;
+
+                            bookingSubmitBtn.textContent =
+                                "💳 Continue to Online Payment";
 
                         }
-
-                    }
-                    catch (error) {
-
-                        console.error(
-                            "Booking Error:",
-                            error
-                        );
-
-
-                        bookingMessage.innerHTML =
-                            "❌ Unable to confirm your booking. Please try again.";
-
-                        bookingMessage.className =
-                            "booking-message error";
-
-                        bookingMessage.style.display =
-                            "block";
-
-
-                        bookingSubmitBtn.disabled =
-                            false;
-
-                        bookingSubmitBtn.textContent =
-                            "✅ Confirm Appointment";
 
                     }
 
@@ -3095,19 +2857,15 @@ document.addEventListener(
 
 
         // ==========================================
-        // DEMO ONLINE PAYMENT BUTTON
+        // ONLINE PAYMENT BUTTON
         // ==========================================
 
-        if (demoPaymentButton) {
+        if (onlinePaymentButton) {
 
-            demoPaymentButton.addEventListener(
+            onlinePaymentButton.addEventListener(
                 "click",
                 async function () {
 
-
-                    // ==================================
-                    // GET BOOKING ID
-                    // ==================================
 
                     const bookingId =
                         upiPaymentBox.dataset.bookingId;
@@ -3116,7 +2874,7 @@ document.addEventListener(
                     if (!bookingId) {
 
                         bookingMessage.innerHTML =
-                            "❌ Please click Continue to Online Payment first.";
+                            "❌ Please continue with the booking first.";
 
                         bookingMessage.className =
                             "booking-message error";
@@ -3128,10 +2886,6 @@ document.addEventListener(
 
                     }
 
-
-                    // ==================================
-                    // GET AMOUNT
-                    // ==================================
 
                     const paymentAmount =
                         Number(
@@ -3158,14 +2912,12 @@ document.addEventListener(
                     }
 
 
-                    // ==================================
-                    // SHOW PROCESSING
-                    // ==================================
+                    // PROCESSING
 
-                    demoPaymentButton.disabled =
+                    onlinePaymentButton.disabled =
                         true;
 
-                    demoPaymentButton.textContent =
+                    onlinePaymentButton.textContent =
                         "Processing Payment...";
 
 
@@ -3180,62 +2932,50 @@ document.addEventListener(
 
 
                     // ==================================
-                    // CREATE PAYMENT ID
+                    // GENERATE PAYMENT ID
                     // ==================================
 
-                    const demoPaymentId =
-                        "DEMO-PAY-" +
-                        Date.now();
+                    const paymentId =
+                        generatePaymentId();
 
 
                     // ==================================
-                    // PAYMENT DATA
+                    // UPDATE BOOKING AS PAID
                     // ==================================
 
-                    const paymentData = {
+                    const paymentUpdate = {
 
-                        bookingId:
-                            Number(bookingId),
-
-                        paymentId:
-                            demoPaymentId,
+                        paymentMethod:
+                            "UPI",
 
                         paymentStatus:
-                            "SUCCESS"
+                            "PAID",
+
+                        paymentId:
+                            paymentId,
+
+                        paymentAmount:
+                            paymentAmount
 
                     };
 
 
                     console.log(
-                        "================================="
+                        "Online Payment:",
+                        paymentUpdate
                     );
 
-                    console.log(
-                        "💳 ONLINE PAYMENT VERIFICATION"
-                    );
-
-                    console.log(
-                        paymentData
-                    );
-
-                    console.log(
-                        "================================="
-                    );
-
-
-                    // ==================================
-                    // CALL PAYMENT API
-                    // ==================================
 
                     try {
 
                         const paymentResponse =
                             await fetch(
-                                PAYMENT_API_URL +
-                                "/verify",
+                                API_URL +
+                                "/" +
+                                bookingId,
                                 {
                                     method:
-                                        "POST",
+                                        "PUT",
 
                                     headers: {
                                         "Content-Type":
@@ -3244,7 +2984,7 @@ document.addEventListener(
 
                                     body:
                                         JSON.stringify(
-                                            paymentData
+                                            paymentUpdate
                                         )
                                 }
                             );
@@ -3255,7 +2995,7 @@ document.addEventListener(
 
 
                         console.log(
-                            "Payment response:",
+                            "Payment update response:",
                             paymentText
                         );
 
@@ -3272,19 +3012,15 @@ document.addEventListener(
                                 );
 
                         }
-                        catch (jsonError) {
+                        catch (e) {
 
                             console.error(
                                 "Payment JSON error:",
-                                jsonError
+                                e
                             );
 
                         }
 
-
-                        // ==================================
-                        // CHECK RESPONSE
-                        // ==================================
 
                         if (!paymentResponse.ok) {
 
@@ -3294,43 +3030,7 @@ document.addEventListener(
                                     paymentResult.message
                                 )
                                 ||
-                                "Payment verification failed."
-                            );
-
-                        }
-
-
-                        // ==================================
-                        // GET VERIFIED BOOKING
-                        // ==================================
-
-                        let verifiedBooking =
-                            paymentResult;
-
-
-                        if (
-                            paymentResult &&
-                            paymentResult.data
-                        ) {
-
-                            verifiedBooking =
-                                paymentResult.data;
-
-                        }
-
-
-                        // ==================================
-                        // CHECK PAID STATUS
-                        // ==================================
-
-                        if (
-                            !verifiedBooking ||
-                            verifiedBooking.paymentStatus !==
-                            "PAID"
-                        ) {
-
-                            throw new Error(
-                                "Payment was not marked as PAID by the server."
+                                "Unable to update payment."
                             );
 
                         }
@@ -3345,8 +3045,9 @@ document.addEventListener(
                                 paymentAmount
                             );
 
+
                         successPaymentId.textContent =
-                            demoPaymentId;
+                            paymentId;
 
 
                         paymentSuccessBox.classList.add(
@@ -3404,7 +3105,7 @@ document.addEventListener(
                             "<br>" +
 
                             "<strong>Payment ID:</strong> " +
-                            demoPaymentId +
+                            paymentId +
 
                             "<br><br>" +
 
@@ -3420,29 +3121,45 @@ document.addEventListener(
                             "block";
 
 
-                        // HIDE PAYMENT BUTTON AFTER SUCCESS
+                        // HIDE ONLINE PAYMENT BOX
 
-                        demoPaymentButton.style.display =
+                        upiPaymentBox.classList.remove(
+                            "show"
+                        );
+
+
+                        // HIDE PAYMENT BUTTON
+
+                        onlinePaymentButton.style.display =
                             "none";
 
 
-                        // RESET FORM DATA BUT KEEP SUCCESS MESSAGE
+                        // RESET FORM
 
                         bookingForm.reset();
 
 
                         if (priceBox) {
-                            priceBox.style.display = "none";
+
+                            priceBox.style.display =
+                                "none";
+
                         }
 
 
                         if (selectedServiceName) {
-                            selectedServiceName.textContent = "-";
+
+                            selectedServiceName.textContent =
+                                "-";
+
                         }
 
 
                         if (selectedServicePrice) {
-                            selectedServicePrice.textContent = "₹0";
+
+                            selectedServicePrice.textContent =
+                                "₹0";
+
                         }
 
 
@@ -3467,21 +3184,25 @@ document.addEventListener(
                         updatePaymentSummary();
 
 
-                        upiPaymentAmount.textContent =
-                            "₹0";
+                        if (upiPaymentAmount) {
+
+                            upiPaymentAmount.textContent =
+                                "₹0";
+
+                        }
 
 
                     }
                     catch (error) {
 
                         console.error(
-                            "Demo Payment Error:",
+                            "Online Payment Error:",
                             error
                         );
 
 
                         bookingMessage.innerHTML =
-                            "❌ Online payment verification failed. Your booking is saved. Please try again.";
+                            "❌ Payment could not be completed. Please try again.";
 
                         bookingMessage.className =
                             "booking-message error";
@@ -3490,12 +3211,14 @@ document.addEventListener(
                             "block";
 
 
-                        demoPaymentButton.disabled =
+                        onlinePaymentButton.disabled =
                             false;
 
-                        demoPaymentButton.textContent =
+                        onlinePaymentButton.textContent =
                             "💳 Pay " +
-                            formatPrice(paymentAmount) +
+                            formatPrice(
+                                paymentAmount
+                            ) +
                             " Online";
 
                     }
