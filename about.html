@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
     <title>About Us | Nail Studio</title>
 
@@ -17,6 +17,22 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+
+    <!-- AUTHENTICATION -->
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        if (
+            localStorage.getItem("nailStudioLoggedIn") !== "true"
+        ) {
+
+            window.location.replace("login.html");
+
+        }
+
+    </script>
 
 
     <style>
@@ -129,6 +145,46 @@
             box-shadow:
                 0 7px 18px
                 rgba(200, 155, 60, 0.30);
+        }
+
+
+        /* ==========================================
+           LOGOUT BUTTON
+        ========================================== */
+
+        .logout-btn {
+
+            border: 1px solid #c89b3c;
+
+            background: transparent;
+
+            color: #b8860b;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            margin-left: 8px;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .logout-btn:hover {
+
+            background: #c89b3c;
+
+            color: white;
+
         }
 
 
@@ -277,12 +333,6 @@
 
             align-items: center;
         }
-
-
-        /*
-        IMPORTANT:
-        No ::before box is used here.
-        */
 
 
         .about-page-image img {
@@ -658,6 +708,15 @@
             }
 
 
+            .logout-btn {
+                padding: 8px 12px;
+
+                font-size: 11px;
+
+                margin-left: 5px;
+            }
+
+
             .about-page {
                 padding: 50px 20px;
             }
@@ -792,14 +851,27 @@
             </ul>
 
 
+            <!-- BUTTONS -->
+
             <div class="nav-buttons">
 
-                <a href="booking.html"
-                   class="signup">
+                <a
+                    href="booking.html"
+                    class="signup">
 
                     Book Now
 
                 </a>
+
+
+                <button
+                    type="button"
+                    class="logout-btn"
+                    onclick="logoutUser()">
+
+                    Logout
+
+                </button>
 
             </div>
 
@@ -862,8 +934,9 @@
                 </p>
 
 
-                <a href="booking.html"
-                   class="gold-btn">
+                <a
+                    href="booking.html"
+                    class="gold-btn">
 
                     Book Your Appointment
 
@@ -1024,6 +1097,29 @@
     <!-- JAVASCRIPT -->
 
     <script src="js/main.js"></script>
+
+
+    <!-- LOGOUT -->
+
+    <script>
+
+        function logoutUser() {
+
+            localStorage.removeItem(
+                "nailStudioLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "nailStudioUser"
+            );
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+    </script>
 
 
 </body>
