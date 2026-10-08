@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +10,35 @@
 
     <title>Offer Details | Nail Studio</title>
 
+
     <!-- CSS -->
+
     <link rel="stylesheet" href="css/style.css">
 
+
     <!-- GOOGLE FONTS -->
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+
+    <!-- AUTHENTICATION -->
+
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        if (
+            localStorage.getItem("nailStudioLoggedIn") !== "true"
+        ) {
+
+            window.location.replace("login.html");
+
+        }
+
+    </script>
+
 
 
     <style>
@@ -39,6 +60,7 @@
         }
 
 
+
         .offer-details-subtitle {
 
             color: #c89b3c;
@@ -54,6 +76,7 @@
         }
 
 
+
         .offer-details-title {
 
             font-family: 'Cormorant Garamond', serif;
@@ -65,6 +88,7 @@
             margin-bottom: 15px;
 
         }
+
 
 
         .offer-details-intro {
@@ -80,6 +104,7 @@
             line-height: 1.8;
 
         }
+
 
 
         /* ==========================================
@@ -99,6 +124,7 @@
             gap: 25px;
 
         }
+
 
 
         /* ==========================================
@@ -122,6 +148,7 @@
         }
 
 
+
         .detail-card:hover {
 
             transform: translateY(-10px);
@@ -131,6 +158,7 @@
         }
 
 
+
         .detail-icon {
 
             font-size: 40px;
@@ -138,6 +166,7 @@
             margin-bottom: 10px;
 
         }
+
 
 
         .detail-card h3 {
@@ -153,6 +182,7 @@
         }
 
 
+
         .detail-card p {
 
             color: #666;
@@ -164,6 +194,7 @@
             margin-bottom: 20px;
 
         }
+
 
 
         /* ==========================================
@@ -180,11 +211,12 @@
 
             text-decoration: none;
 
-            background: linear-gradient(
-                135deg,
-                #c89b3c,
-                #b8860b
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
 
             color: white;
 
@@ -195,6 +227,7 @@
             transition: 0.3s;
 
         }
+
 
 
         .details-btn:hover {
@@ -208,6 +241,7 @@
         }
 
 
+
         /* ==========================================
            BACK BUTTON
         ========================================== */
@@ -217,6 +251,7 @@
             margin-top: 45px;
 
         }
+
 
 
         .back-offers a {
@@ -230,11 +265,55 @@
         }
 
 
+
         .back-offers a:hover {
 
             text-decoration: underline;
 
         }
+
+
+
+        /* ==========================================
+           LOGOUT BUTTON
+        ========================================== */
+
+        .logout-btn {
+
+            border: 1px solid #c89b3c;
+
+            background: transparent;
+
+            color: #b8860b;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            margin-left: 8px;
+
+            transition: 0.3s ease;
+
+        }
+
+
+
+        .logout-btn:hover {
+
+            background: #c89b3c;
+
+            color: white;
+
+        }
+
 
 
         /* ==========================================
@@ -250,11 +329,13 @@
             }
 
 
+
             .offer-details-title {
 
                 font-size: 42px;
 
             }
+
 
 
             .details-container {
@@ -263,11 +344,24 @@
 
             }
 
+
+
+            .logout-btn {
+
+                padding: 8px 12px;
+
+                font-size: 11px;
+
+                margin-left: 5px;
+
+            }
+
         }
 
     </style>
 
 </head>
+
 
 
 <body>
@@ -281,6 +375,7 @@
 
         <nav class="navbar">
 
+
             <div class="logo">
 
                 💅 Nail Studio
@@ -288,70 +383,134 @@
             </div>
 
 
+
             <ul class="nav-links">
 
+
                 <li>
+
                     <a href="index.html">
+
                         Home
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="about.html">
+
                         About
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="services.html">
+
                         Services
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="offer.html">
+
                         Offers
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="faqs.html">
+
                         FAQs
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="gallery.html">
+
                         Gallery
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="booking.html">
+
                         Booking
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="contact.html">
+
                         Contact
+
                     </a>
+
                 </li>
+
 
             </ul>
 
 
+
+            <!-- BOOK NOW + LOGOUT -->
+
             <div class="nav-buttons">
 
-                <a href="booking.html" class="signup">
+
+                <a
+                    href="booking.html"
+                    class="signup">
+
                     Book Now
+
                 </a>
 
+
+                <button
+                    type="button"
+                    class="logout-btn"
+                    onclick="logoutUser()">
+
+                    Logout
+
+                </button>
+
+
             </div>
+
 
         </nav>
 
     </header>
+
+
 
 
 
@@ -363,12 +522,16 @@
 
 
         <div class="offer-details-subtitle">
+
             ✨ SPECIAL OFFERS
+
         </div>
 
 
         <h1 class="offer-details-title">
+
             Offer Details
+
         </h1>
 
 
@@ -393,13 +556,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     🎉
+
                 </div>
 
+
                 <h3>
+
                     First Visit Offer
+
                 </h3>
+
 
                 <p>
 
@@ -409,6 +579,7 @@
 
                 </p>
 
+
                 <a
                     href="offer-booking.html?offer=First%20Visit%20Offer"
                     class="details-btn">
@@ -417,7 +588,10 @@
 
                 </a>
 
+
             </div>
+
+
 
 
 
@@ -425,13 +599,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     🎂
+
                 </div>
 
+
                 <h3>
+
                     Birthday Offer
+
                 </h3>
+
 
                 <p>
 
@@ -441,6 +622,7 @@
 
                 </p>
 
+
                 <a
                     href="offer-booking.html?offer=Birthday%20Offer"
                     class="details-btn">
@@ -449,7 +631,10 @@
 
                 </a>
 
+
             </div>
+
+
 
 
 
@@ -457,13 +642,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     👯
+
                 </div>
 
+
                 <h3>
+
                     Refer a Friend
+
                 </h3>
+
 
                 <p>
 
@@ -473,6 +665,7 @@
 
                 </p>
 
+
                 <a
                     href="contact.html"
                     class="details-btn">
@@ -481,7 +674,10 @@
 
                 </a>
 
+
             </div>
+
+
 
 
 
@@ -489,13 +685,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     💅
+
                 </div>
 
+
                 <h3>
+
                     Nail Art Combo
+
                 </h3>
+
 
                 <p>
 
@@ -505,6 +708,7 @@
 
                 </p>
 
+
                 <a
                     href="offer-booking.html?offer=Nail%20Art%20Combo"
                     class="details-btn">
@@ -513,7 +717,10 @@
 
                 </a>
 
+
             </div>
+
+
 
 
 
@@ -521,13 +728,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     ✨
+
                 </div>
 
+
                 <h3>
+
                     Festive Special
+
                 </h3>
+
 
                 <p>
 
@@ -537,6 +751,7 @@
 
                 </p>
 
+
                 <a
                     href="offer-booking.html?offer=Festive%20Special"
                     class="details-btn">
@@ -545,7 +760,10 @@
 
                 </a>
 
+
             </div>
+
+
 
 
 
@@ -553,13 +771,20 @@
 
             <div class="detail-card">
 
+
                 <div class="detail-icon">
+
                     👑
+
                 </div>
 
+
                 <h3>
+
                     Loyalty Rewards
+
                 </h3>
+
 
                 <p>
 
@@ -569,6 +794,7 @@
 
                 </p>
 
+
                 <a
                     href="contact.html"
                     class="details-btn">
@@ -576,6 +802,7 @@
                     Know More
 
                 </a>
+
 
             </div>
 
@@ -601,11 +828,14 @@
 
 
 
+
+
     <!-- ==========================================
          FOOTER
     ========================================== -->
 
     <footer>
+
 
         <h2>
 
@@ -617,6 +847,7 @@
 
         </h2>
 
+
         <p>
 
             Luxury Nails |
@@ -625,16 +856,43 @@
 
         </p>
 
+
         <p>
 
             © 2026 Nail Studio
 
         </p>
 
+
     </footer>
+
+
+
+    <!-- ==========================================
+         LOGOUT
+    ========================================== -->
+
+    <script>
+
+        function logoutUser() {
+
+            localStorage.removeItem(
+                "nailStudioLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "nailStudioUser"
+            );
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+    </script>
 
 
 </body>
 
 </html>
-

@@ -13,6 +13,14 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="js/auth.js"></script>
+<script>
+    if (localStorage.getItem("nailStudioLoggedIn") !== "true") {
+        window.location.replace("login.html");
+    }
+</script>
+
+
     <!-- GOOGLE FONTS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
@@ -24,6 +32,35 @@
     =========================================== -->
 
     <style>
+
+
+
+            .logout-btn {
+    border: 1px solid #c89b3c;
+    background: transparent;
+    color: #b8860b;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #c89b3c;
+    color: white;
+}
+
+@media (max-width: 500px) {
+    .logout-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+        margin-left: 5px;
+    }
+}
 
         .premium-payment-section {
             margin: 22px 0;
@@ -550,6 +587,13 @@
         >
             Book Now
         </a>
+
+        <button
+    type="button"
+    class="logout-btn"
+    onclick="logoutUser()">
+    Logout
+</button>
 
     </nav>
 
@@ -3280,6 +3324,14 @@ document.addEventListener(
 ========================================== -->
 
 <script src="js/main.js"></script>
+<script>
+    function logoutUser() {
+        localStorage.removeItem("nailStudioLoggedIn");
+        localStorage.removeItem("nailStudioUser");
+
+        window.location.replace("login.html");
+    }
+</script>
 
 
 </body>

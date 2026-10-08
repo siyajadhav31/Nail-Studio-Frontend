@@ -10,17 +10,99 @@
 
     <title>Our Services | Nail Studio</title>
 
+
     <!-- CSS -->
+
     <link rel="stylesheet" href="css/style.css">
 
+
     <!-- GOOGLE FONTS -->
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
+
+    <!-- AUTHENTICATION -->
+
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        if (
+            localStorage.getItem("nailStudioLoggedIn") !== "true"
+        ) {
+
+            window.location.replace("login.html");
+
+        }
+
+    </script>
+
+
+    <style>
+
+        /* =================================
+           LOGOUT BUTTON
+        ================================= */
+
+        .logout-btn {
+
+            border: 1px solid #c89b3c;
+
+            background: transparent;
+
+            color: #b8860b;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            margin-left: 8px;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .logout-btn:hover {
+
+            background: #c89b3c;
+
+            color: white;
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .logout-btn {
+
+                padding: 8px 12px;
+
+                font-size: 11px;
+
+                margin-left: 5px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
 
     <!-- =================================
@@ -31,64 +113,111 @@
 
         <nav class="navbar">
 
+
             <div class="logo">
+
                 💅 Nail Studio
+
             </div>
+
 
             <ul class="nav-links">
 
+
                 <li>
+
                     <a href="index.html">
+
                         Home
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="about.html">
+
                         About
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="services.html">
+
                         Services
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="offer.html">
+
                         Offers
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="faqs.html">
+
                         FAQs
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="gallery.html">
+
                         Gallery
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="booking.html">
+
                         Booking
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="contact.html">
+
                         Contact
+
                     </a>
+
                 </li>
+
 
             </ul>
 
 
+
             <div class="nav-buttons">
+
 
                 <a
                     href="booking.html"
@@ -98,11 +227,25 @@
 
                 </a>
 
+
+                <button
+                    type="button"
+                    class="logout-btn"
+                    onclick="logoutUser()">
+
+                    Logout
+
+                </button>
+
+
             </div>
+
 
         </nav>
 
     </header>
+
+
 
 
 
@@ -113,6 +256,7 @@
     <section class="services">
 
 
+
         <!-- =================================
              SERVICES HEADER
         ================================= -->
@@ -120,12 +264,18 @@
         <div class="services-header">
 
             <span class="booking-subtitle">
+
                 ✨ OUR SERVICES
+
             </span>
 
+
             <h1 class="services-title">
+
                 Luxury Nail Services
+
             </h1>
+
 
             <p class="services-intro">
 
@@ -139,11 +289,14 @@
 
 
 
+
+
         <!-- =================================
              MAIN SERVICES
         ================================= -->
 
         <div class="cards">
+
 
 
             <!-- =================================
@@ -156,23 +309,36 @@
                     src="images/extensions.jpg"
                     alt="Acrylic Extensions">
 
+
                 <h3>
+
                     💎 Acrylic Extensions + Gel Polish
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹1800
+
                 </p>
 
+
                 <p>
+
                     Acrylic extensions finished with
                     a smooth and glossy gel polish.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     75 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Acrylic%20Extensions%20%2B%20Gel%20Polish&price=1800"
@@ -188,6 +354,8 @@
 
 
 
+
+
             <!-- =================================
                  HANDS GEL POLISH
             ================================= -->
@@ -198,23 +366,36 @@
                     src="images/gel.jpg"
                     alt="Hands Gel Polish">
 
+
                 <h3>
+
                     💅 Hands Gel Polish
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹699
+
                 </p>
 
+
                 <p>
+
                     Beautiful glossy gel polish for
                     perfectly polished hands.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     30 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Hands%20Gel%20Polish&price=699"
@@ -230,6 +411,8 @@
 
 
 
+
+
             <!-- =================================
                  BRIDAL NAILS
             ================================= -->
@@ -240,24 +423,37 @@
                     src="images/bridal.jpg"
                     alt="Bridal Nails">
 
+
                 <h3>
+
                     💍 Bridal Nails
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹2,499
+
                 </p>
 
+
                 <p>
+
                     Elegant and glamorous nail designs
                     specially created for your perfect
                     bridal look.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     90 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Bridal%20Nails&price=2499"
@@ -273,6 +469,8 @@
 
 
 
+
+
             <!-- =================================
                  TEMPORARY NAILS
             ================================= -->
@@ -283,23 +481,36 @@
                     src="images/nail-art.jpg"
                     alt="Temporary Nails">
 
+
                 <h3>
+
                     🌸 Temporary Nails + Gel Polish
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹1199
+
                 </p>
 
+
                 <p>
+
                     Stylish temporary nails finished
                     with premium gel polish.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     50 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Temporary%20Nails%20%2B%20Gel%20Polish&price=1199"
@@ -315,6 +526,8 @@
 
 
 
+
+
             <!-- =================================
                  BURGUNDY NAILS
             ================================= -->
@@ -325,23 +538,36 @@
                     src="images/Burgundy.jpg"
                     alt="Burgundy Nails">
 
+
                 <h3>
+
                     💅 Burgundy Nails
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹1,299
+
                 </p>
 
+
                 <p>
+
                     Rich and elegant burgundy nail designs
                     for a bold and sophisticated look.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     60 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Burgundy%20Nails&price=1299"
@@ -357,6 +583,8 @@
 
 
 
+
+
             <!-- =================================
                  FRENCH NAILS
             ================================= -->
@@ -367,23 +595,36 @@
                     src="images/french.jpg"
                     alt="French Nails">
 
+
                 <h3>
+
                     💅 French Nails
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹999
+
                 </p>
 
+
                 <p>
+
                     Classic and timeless French nail design
                     for a clean, elegant and sophisticated look.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     60 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=French%20Nails&price=999"
@@ -399,6 +640,8 @@
 
 
 
+
+
             <!-- =================================
                  ROUGE NAILS
             ================================= -->
@@ -409,23 +652,36 @@
                     src="images/rouge.jpg"
                     alt="Rouge Nails">
 
+
                 <h3>
+
                     💅 Rouge Nails
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹1,399
+
                 </p>
 
+
                 <p>
+
                     Deep, bold and glamorous rouge nail designs
                     for a luxurious and sophisticated look.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     60 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Rouge%20Nails&price=1399"
@@ -441,6 +697,8 @@
 
 
 
+
+
             <!-- =================================
                  POLKA DOT NAILS
             ================================= -->
@@ -451,23 +709,36 @@
                     src="images/polkadots.jpg"
                     alt="Polka Dot Nails">
 
+
                 <h3>
+
                     💅 Polka Dot Nails
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹1,099
+
                 </p>
 
+
                 <p>
+
                     Fun and stylish polka dot nail designs
                     for a cute, playful and trendy look.
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     60 minutes
+
                 </p>
+
 
                 <a
                     href="booking.html?service=Polka%20Dot%20Nails&price=1099"
@@ -485,6 +756,8 @@
 
 
 
+
+
         <!-- =================================
              ADD-ON SERVICES
         ================================= -->
@@ -492,14 +765,19 @@
         <div class="services-header">
 
             <h2 class="services-title">
+
                 Add-On Services
+
             </h2>
 
         </div>
 
 
 
+
+
         <div class="cards">
+
 
 
             <!-- Glitter Polish -->
@@ -507,18 +785,28 @@
             <div class="card">
 
                 <h3>
+
                     ✨ Glitter Polish on Full Nail
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹30
+
                 </p>
 
+
                 <p>
+
                     Per finger where applicable.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -527,18 +815,28 @@
             <div class="card">
 
                 <h3>
+
                     ✨ Glitter French
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹60
+
                 </p>
 
+
                 <p>
+
                     Per finger.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -547,18 +845,28 @@
             <div class="card">
 
                 <h3>
+
                     🌸 Glitter Ombre
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹60
+
                 </p>
 
+
                 <p>
+
                     Per finger.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -567,18 +875,28 @@
             <div class="card">
 
                 <h3>
+
                     💎 French Chrome
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹80
+
                 </p>
 
+
                 <p>
+
                     Per finger.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -587,18 +905,28 @@
             <div class="card">
 
                 <h3>
+
                     🎨 Brush Art
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹100
+
                 </p>
 
+
                 <p>
+
                     Per-finger starting rate.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -607,18 +935,28 @@
             <div class="card">
 
                 <h3>
+
                     💎 3D Art
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹150
+
                 </p>
 
+
                 <p>
+
                     Per-finger starting rate.
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -627,19 +965,29 @@
             <div class="card">
 
                 <h3>
+
                     ✨ Chrome + French
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹90
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     20–30 minutes
+
                 </p>
 
             </div>
+
+
 
 
 
@@ -648,16 +996,24 @@
             <div class="card">
 
                 <h3>
+
                     🌸 Swirls Light
+
                 </h3>
 
+
                 <p class="service-price">
+
                     ₹60
+
                 </p>
 
+
                 <p>
+
                     <strong>Duration:</strong>
                     25–30 minutes
+
                 </p>
 
             </div>
@@ -668,6 +1024,8 @@
 
 
 
+
+
     <!-- =================================
          CALL TO ACTION
     ================================= -->
@@ -675,13 +1033,19 @@
     <section class="services-cta">
 
         <h2>
+
             Ready for Your Perfect Nails?
+
         </h2>
 
+
         <p>
+
             Choose your favorite service and book
             your luxury nail experience today.
+
         </p>
+
 
         <a
             href="booking.html"
@@ -695,6 +1059,8 @@
 
 
 
+
+
     <!-- =================================
          FOOTER
     ================================= -->
@@ -702,26 +1068,64 @@
     <footer>
 
         <h2>
-            💅 Nail Studio
+
+            <a href="index.html">
+
+                💅 Nail Studio
+
+            </a>
+
         </h2>
 
+
         <p>
+
             Luxury Nails |
             Modern Technology |
             Perfect Experience
+
         </p>
 
+
         <p>
+
             © 2026 Nail Studio
+
         </p>
 
     </footer>
 
 
 
+
+
     <!-- JAVASCRIPT -->
 
     <script src="js/main.js"></script>
+
+
+    <!-- LOGOUT -->
+
+    <script>
+
+        function logoutUser() {
+
+            localStorage.removeItem(
+                "nailStudioLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "nailStudioUser"
+            );
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+    </script>
+
 
 </body>
 
