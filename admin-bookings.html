@@ -369,7 +369,7 @@
 
             width: 100%;
 
-            min-width: 950px;
+            min-width: 1000px;
 
             border-collapse: collapse;
 
@@ -451,7 +451,7 @@
         #bookingTable th:nth-child(1),
         #bookingTable td:nth-child(1) {
 
-            width: 23%;
+            width: 22%;
 
         }
 
@@ -459,7 +459,7 @@
         #bookingTable th:nth-child(2),
         #bookingTable td:nth-child(2) {
 
-            width: 32%;
+            width: 29%;
 
         }
 
@@ -467,7 +467,7 @@
         #bookingTable th:nth-child(3),
         #bookingTable td:nth-child(3) {
 
-            width: 16%;
+            width: 15%;
 
         }
 
@@ -475,7 +475,7 @@
         #bookingTable th:nth-child(4),
         #bookingTable td:nth-child(4) {
 
-            width: 17%;
+            width: 22%;
 
         }
 
@@ -803,6 +803,50 @@
             font-size: 10px;
 
             line-height: 1.35;
+
+        }
+
+
+        /* =====================================================
+           PAYMENT ID
+        ===================================================== */
+
+        .payment-id {
+
+            display: block;
+
+            max-width: 190px;
+
+            padding: 5px 7px;
+
+            border-radius: 5px;
+
+            background: #f8f3ef;
+
+            border: 1px solid #eadfd8;
+
+            color: #6d554d;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 9px;
+
+            font-weight: 500;
+
+            line-height: 1.35;
+
+            word-break: break-all;
+
+        }
+
+
+        .payment-id-label {
+
+            color: #9b857c;
+
+            font-size: 9px;
+
+            font-weight: 500;
 
         }
 
@@ -2102,6 +2146,49 @@
 
 
         /* =====================================================
+           PAYMENT ID
+        ===================================================== */
+
+        function getPaymentId(booking) {
+
+            if (!booking) {
+
+                return "";
+
+            }
+
+
+            const paymentId =
+                booking.paymentId;
+
+
+            if (
+                paymentId === undefined ||
+                paymentId === null
+            ) {
+
+                return "";
+
+            }
+
+
+            const value =
+                String(paymentId).trim();
+
+
+            if (!value) {
+
+                return "";
+
+            }
+
+
+            return value;
+
+        }
+
+
+        /* =====================================================
            PAYMENT HTML
         ===================================================== */
 
@@ -2197,6 +2284,26 @@
                 getPaymentStatus(booking);
 
 
+            const paymentId =
+                getPaymentId(booking);
+
+
+            const paymentIdHTML =
+                paymentId
+                    ? `
+
+                        <span class="payment-id-label">
+                            🆔 Payment ID
+                        </span>
+
+                        <span class="payment-id">
+                            ${escapeHTML(paymentId)}
+                        </span>
+
+                    `
+                    : "";
+
+
             if (status === "PAID") {
 
                 return `
@@ -2219,6 +2326,8 @@
                             )}
 
                         </span>
+
+                        ${paymentIdHTML}
 
                     </div>
 
@@ -2247,6 +2356,8 @@
                         )}
 
                     </span>
+
+                    ${paymentIdHTML}
 
                 </div>
 
@@ -2386,15 +2497,18 @@
                     "loadingMessage"
                 );
 
+
             const emptyMessage =
                 document.getElementById(
                     "emptyMessage"
                 );
 
+
             const bookingTable =
                 document.getElementById(
                     "bookingTable"
                 );
+
 
             const bookingError =
                 document.getElementById(
@@ -2733,8 +2847,10 @@
                     let bookingTypeText =
                         "Service Booking";
 
+
                     let badgeClass =
                         "service-badge";
+
 
                     let bookingIcon =
                         "💅";
@@ -3360,7 +3476,14 @@
 
                         notes:
                             originalBooking.notes ||
-                            ""
+                            "",
+
+
+                        /* KEEP EXISTING PAYMENT ID */
+
+                        paymentId:
+                            originalBooking.paymentId ||
+                            null
 
                     };
 
@@ -3386,7 +3509,7 @@
                             originalBooking.paymentMethod ||
                             (
                                 selectedStatus === "PAID"
-                                    ? "GOOGLE_PAY"
+                                    ? "UPI"
                                     : "PAY_AT_STUDIO"
                             );
 
@@ -3406,6 +3529,19 @@
 
                         }
 
+
+                        /* KEEP PAYMENT ID WHEN PAID */
+
+                        if (
+                            selectedStatus === "PAID" &&
+                            originalBooking.paymentId
+                        ) {
+
+                            updatedBooking.paymentId =
+                                originalBooking.paymentId;
+
+                        }
+
                     }
 
                     else {
@@ -3420,6 +3556,10 @@
 
                         updatedBooking.paymentAmount =
                             0;
+
+
+                        updatedBooking.paymentId =
+                            null;
 
                     }
 
