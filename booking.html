@@ -522,71 +522,6 @@
         }
 
 
-        .utr-group {
-
-            text-align: left;
-        }
-
-
-        .utr-label {
-
-            display: block;
-
-            margin-bottom: 6px;
-
-            color: #40362c;
-
-            font-size: 12px;
-
-            font-weight: 600;
-        }
-
-
-        .utr-input {
-
-            width: 100%;
-
-            box-sizing: border-box;
-
-            padding: 12px;
-
-            border: 1px solid #e5d7bd;
-
-            border-radius: 7px;
-
-            font-family:
-                Poppins,
-                sans-serif;
-
-            font-size: 12px;
-
-            outline: none;
-        }
-
-
-        .utr-input:focus {
-
-            border-color: #c89b3c;
-
-            box-shadow:
-                0 0 0 2px rgba(200, 155, 60, 0.10);
-        }
-
-
-        .utr-help {
-
-            display: block;
-
-            margin-top: 6px;
-
-            color: #888;
-
-            font-size: 10px;
-
-            line-height: 1.5;
-        }
-
-
         .payment-warning {
 
             display: flex;
@@ -1597,7 +1532,7 @@
                         <div class="upi-qr-wrapper">
 
                             <img
-                                src="images/upi-qr.png"
+                                src="images/upi-qr.jpg"
                                 alt="Nail Studio UPI QR Code"
                                 class="upi-qr"
                             >
@@ -1644,43 +1579,6 @@
 
 
 
-                        <!-- UTR -->
-
-                        <div class="utr-group">
-
-                            <label
-                                for="utrNumber"
-                                class="utr-label"
-                            >
-                                UTR / Transaction ID
-                                <span style="color:#b8860b;">
-                                    *
-                                </span>
-                            </label>
-
-
-                            <input
-                                type="text"
-                                id="utrNumber"
-                                name="utrNumber"
-                                class="utr-input"
-                                placeholder="Enter your UTR / Transaction ID"
-                                maxlength="50"
-                            >
-
-
-                            <small class="utr-help">
-
-                                After completing the payment,
-                                enter the UTR or transaction ID
-                                shown in your UPI app.
-
-                            </small>
-
-                        </div>
-
-
-
                         <!-- PAYMENT WARNING -->
 
                         <div class="payment-warning">
@@ -1691,10 +1589,12 @@
 
                             <p>
 
-                                Your payment will be checked by
-                                the studio. The booking will remain
+                                After completing the payment,
+                                click <strong>Confirm Appointment</strong>.
+                                The studio will manually verify the payment.
+                                Your booking will remain
                                 <strong>PENDING</strong>
-                                until the payment is verified.
+                                until verification.
 
                             </p>
 
@@ -1715,9 +1615,9 @@
                         <p>
 
                             For UPI payments, please complete the
-                            payment first and enter the correct
-                            UTR / Transaction ID. Payment will be
-                            verified by the studio.
+                            payment using the QR code above. The studio
+                            will manually verify the payment before
+                            marking it as PAID.
 
                         </p>
 
@@ -2003,11 +1903,6 @@ document.addEventListener(
         const upiPaymentAmount =
             document.getElementById(
                 "upiPaymentAmount"
-            );
-
-        const utrNumber =
-            document.getElementById(
-                "utrNumber"
             );
 
 
@@ -2612,14 +2507,6 @@ document.addEventListener(
 
                             }
 
-
-                            if (utrNumber) {
-
-                                utrNumber.value =
-                                    "";
-
-                            }
-
                         }
 
                     }
@@ -2807,80 +2694,6 @@ document.addEventListener(
 
 
                     // ==================================
-                    // UPI VALIDATION
-                    // ==================================
-
-                    let enteredUtr = "";
-
-
-                    if (
-                        selectedPayment.value === "UPI"
-                    ) {
-
-                        enteredUtr =
-                            utrNumber
-                                ? utrNumber.value.trim()
-                                : "";
-
-
-                        if (!enteredUtr) {
-
-                            bookingMessage.innerHTML =
-                                "❌ Please complete the UPI payment and enter your UTR / Transaction ID.";
-
-
-                            bookingMessage.className =
-                                "booking-message error";
-
-
-                            bookingMessage.style.display =
-                                "block";
-
-
-                            if (utrNumber) {
-
-                                utrNumber.focus();
-
-                            }
-
-
-                            return;
-
-                        }
-
-
-                        if (
-                            enteredUtr.length < 6
-                        ) {
-
-                            bookingMessage.innerHTML =
-                                "❌ Please enter a valid UTR / Transaction ID.";
-
-
-                            bookingMessage.className =
-                                "booking-message error";
-
-
-                            bookingMessage.style.display =
-                                "block";
-
-
-                            if (utrNumber) {
-
-                                utrNumber.focus();
-
-                            }
-
-
-                            return;
-
-                        }
-
-                    }
-
-
-
-                    // ==================================
                     // PAYMENT STATUS
                     // ==================================
 
@@ -2890,12 +2703,38 @@ document.addEventListener(
                      *
                      * UPI payment is NOT automatically PAID.
                      *
-                     * Admin will verify the payment.
+                     * Payment status will remain PENDING.
+                     *
+                     * Studio can manually verify the payment.
                      *
                      */
 
                     const paymentStatus =
                         "PENDING";
+
+
+
+                    // ==================================
+                    // PAYMENT NOTES
+                    // ==================================
+
+                    let paymentNotes = "";
+
+
+                    if (
+                        selectedPayment.value === "UPI"
+                    ) {
+
+                        paymentNotes =
+                            "Payment Method: Google Pay / UPI. Payment submitted by customer. Awaiting manual verification.";
+
+                    }
+                    else {
+
+                        paymentNotes =
+                            "Payment Method: Pay at Studio.";
+
+                    }
 
 
 
@@ -2978,11 +2817,7 @@ document.addEventListener(
 
 
                         notes:
-                            "",
-
-
-                        paymentMethod:
-                            selectedPayment.value,
+                            paymentNotes,
 
 
                         paymentStatus:
@@ -2990,11 +2825,7 @@ document.addEventListener(
 
 
                         paymentAmount:
-                            servicePrice,
-
-
-                        utrNumber:
-                            enteredUtr
+                            servicePrice
 
                     };
 
@@ -3110,12 +2941,13 @@ document.addEventListener(
                         // ==================================
 
                         const paymentText =
-                            bookingData.paymentMethod ===
-                            "CASH"
+                            bookingData.notes.includes(
+                                "Google Pay"
+                            )
 
-                            ? "💵 Pay at Studio"
+                            ? "📱 Google Pay / UPI"
 
-                            : "📱 Google Pay / UPI";
+                            : "💵 Pay at Studio";
 
 
 
@@ -3169,12 +3001,13 @@ document.addEventListener(
                             "<br><br>" +
 
                             (
-                                bookingData.paymentMethod ===
-                                "UPI"
+                                bookingData.notes.includes(
+                                    "Google Pay"
+                                )
 
                                 ?
 
-                                "Your payment details have been submitted. The studio will verify your UTR and confirm the payment."
+                                "Your UPI payment will be manually verified by the studio."
 
                                 :
 
@@ -3237,15 +3070,6 @@ document.addEventListener(
                             upiPaymentBox.classList.remove(
                                 "show"
                             );
-
-                        }
-
-
-
-                        if (utrNumber) {
-
-                            utrNumber.value =
-                                "";
 
                         }
 
