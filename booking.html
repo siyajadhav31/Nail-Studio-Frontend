@@ -1417,7 +1417,6 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-
         // ==========================================
         // BACKEND URL
         // ==========================================
@@ -1611,9 +1610,6 @@ document.addEventListener(
         // ==========================================
 
         function updatePaymentSummary() {
-
-
-            // SERVICE
 
             if (
                 serviceSelect &&
@@ -2028,7 +2024,6 @@ document.addEventListener(
                 radio.addEventListener(
                     "change",
                     function () {
-
 
                         paymentCards.forEach(
                             function (item) {
@@ -2866,7 +2861,6 @@ document.addEventListener(
                 "click",
                 async function () {
 
-
                     const bookingId =
                         upiPaymentBox.dataset.bookingId;
 
@@ -3037,17 +3031,64 @@ document.addEventListener(
 
 
                         // ==================================
+                        // GET PAYMENT ID FROM BACKEND RESPONSE
+                        // ==================================
+
+                        let updatedBooking =
+                            paymentResult;
+
+
+                        if (
+                            paymentResult &&
+                            paymentResult.data
+                        ) {
+
+                            updatedBooking =
+                                paymentResult.data;
+
+                        }
+
+
+                        /*
+                         * IMPORTANT:
+                         * Backend se paymentId milega to
+                         * wahi ID show hogi.
+                         *
+                         * Agar backend response mein paymentId
+                         * nahi aaye to generated ID fallback
+                         * ke liye use hogi.
+                         */
+
+                        const finalPaymentId =
+                            (
+                                updatedBooking &&
+                                updatedBooking.paymentId
+                            )
+                            ||
+                            paymentId;
+
+
+                        const finalPaymentAmount =
+                            (
+                                updatedBooking &&
+                                updatedBooking.paymentAmount
+                            )
+                            ||
+                            paymentAmount;
+
+
+                        // ==================================
                         // SUCCESS
                         // ==================================
 
                         successAmount.textContent =
                             formatPrice(
-                                paymentAmount
+                                finalPaymentAmount
                             );
 
 
                         successPaymentId.textContent =
-                            paymentId;
+                            finalPaymentId;
 
 
                         paymentSuccessBox.classList.add(
@@ -3079,7 +3120,7 @@ document.addEventListener(
 
                             "<strong>Amount Paid:</strong> " +
                             formatPrice(
-                                paymentAmount
+                                finalPaymentAmount
                             ) +
 
                             "<br>" +
@@ -3105,7 +3146,7 @@ document.addEventListener(
                             "<br>" +
 
                             "<strong>Payment ID:</strong> " +
-                            paymentId +
+                            finalPaymentId +
 
                             "<br><br>" +
 
