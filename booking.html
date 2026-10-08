@@ -20,14 +20,10 @@
 
 
     <!-- ==========================================
-         PREMIUM PAYMENT CSS
+         PAYMENT CSS
     =========================================== -->
 
     <style>
-
-        /* ==========================================
-           PREMIUM PAYMENT SECTION
-        =========================================== */
 
         .premium-payment-section {
 
@@ -48,16 +44,12 @@
 
             box-shadow:
                 0 8px 25px rgba(120, 85, 25, 0.06);
-
         }
 
-
-        /* PAYMENT HEADING */
 
         .payment-heading {
 
             margin-bottom: 18px;
-
         }
 
 
@@ -74,7 +66,6 @@
             font-weight: 600;
 
             letter-spacing: 2px;
-
         }
 
 
@@ -91,7 +82,6 @@
             font-size: 25px;
 
             font-weight: 600;
-
         }
 
 
@@ -102,12 +92,11 @@
             color: #777;
 
             font-size: 12px;
-
         }
 
 
         /* ==========================================
-           APPOINTMENT SUMMARY
+           PAYMENT SUMMARY
         =========================================== */
 
         .payment-summary {
@@ -121,7 +110,6 @@
             border: 1px solid #eadfc9;
 
             border-radius: 9px;
-
         }
 
 
@@ -138,7 +126,6 @@
             letter-spacing: 1px;
 
             text-transform: uppercase;
-
         }
 
 
@@ -159,14 +146,12 @@
             font-size: 12px;
 
             border-bottom: 1px solid #f1eadf;
-
         }
 
 
         .summary-row:last-of-type {
 
             border-bottom: none;
-
         }
 
 
@@ -177,7 +162,6 @@
             font-weight: 500;
 
             text-align: right;
-
         }
 
 
@@ -194,7 +178,6 @@
             padding-top: 12px;
 
             border-top: 1px solid #ead5ad;
-
         }
 
 
@@ -205,7 +188,6 @@
             font-size: 13px;
 
             font-weight: 500;
-
         }
 
 
@@ -216,7 +198,6 @@
             font-size: 22px;
 
             font-weight: 700;
-
         }
 
 
@@ -231,7 +212,6 @@
             flex-direction: column;
 
             gap: 11px;
-
         }
 
 
@@ -260,7 +240,6 @@
                 background 0.25s ease,
                 box-shadow 0.25s ease,
                 transform 0.2s ease;
-
         }
 
 
@@ -269,11 +248,8 @@
             border-color: #c89b3c;
 
             transform: translateY(-1px);
-
         }
 
-
-        /* HIDE RADIO */
 
         .payment-card input {
 
@@ -282,11 +258,8 @@
             opacity: 0;
 
             pointer-events: none;
-
         }
 
-
-        /* PAYMENT ICON */
 
         .payment-card-icon {
 
@@ -309,11 +282,8 @@
             border-radius: 8px;
 
             font-size: 21px;
-
         }
 
-
-        /* PAYMENT TEXT */
 
         .payment-card-content {
 
@@ -324,7 +294,6 @@
             flex-direction: column;
 
             gap: 3px;
-
         }
 
 
@@ -335,7 +304,6 @@
             font-size: 14px;
 
             font-weight: 600;
-
         }
 
 
@@ -346,11 +314,8 @@
             font-size: 11px;
 
             line-height: 1.4;
-
         }
 
-
-        /* CHECK */
 
         .payment-card-check {
 
@@ -375,11 +340,8 @@
             font-weight: 700;
 
             transition: 0.25s ease;
-
         }
 
-
-        /* SELECTED CARD */
 
         .payment-card.selected {
 
@@ -389,7 +351,6 @@
 
             box-shadow:
                 0 5px 16px rgba(184, 134, 11, 0.10);
-
         }
 
 
@@ -398,7 +359,6 @@
             background: #fdf2d9;
 
             border-color: #c89b3c;
-
         }
 
 
@@ -409,7 +369,257 @@
             border-color: #c89b3c;
 
             color: #ffffff;
+        }
 
+
+        /* ==========================================
+           UPI PAYMENT BOX
+        =========================================== */
+
+        .upi-payment-box {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 20px;
+
+            background: #ffffff;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+
+        .upi-payment-box.show {
+
+            display: block;
+        }
+
+
+        .upi-payment-title {
+
+            margin: 0 0 8px;
+
+            color: #40362c;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 22px;
+        }
+
+
+        .upi-payment-description {
+
+            margin: 0 0 15px;
+
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .upi-qr-wrapper {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-bottom: 15px;
+        }
+
+
+        .upi-qr {
+
+            width: 210px;
+
+            height: 210px;
+
+            object-fit: contain;
+
+            border: 1px solid #ead5ad;
+
+            padding: 8px;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+        }
+
+
+        .upi-id-box {
+
+            margin-bottom: 18px;
+
+            padding: 12px;
+
+            background: #fff8ed;
+
+            border: 1px solid #ead5ad;
+
+            border-radius: 7px;
+        }
+
+
+        .upi-id-label {
+
+            display: block;
+
+            color: #8a6420;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .upi-id-value {
+
+            color: #40362c;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .upi-amount-box {
+
+            margin-bottom: 18px;
+        }
+
+
+        .upi-amount-label {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 11px;
+        }
+
+
+        .upi-payment-amount {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: #b8860b;
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+
+        .utr-group {
+
+            text-align: left;
+        }
+
+
+        .utr-label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #40362c;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .utr-input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 12px;
+
+            border: 1px solid #e5d7bd;
+
+            border-radius: 7px;
+
+            font-family:
+                Poppins,
+                sans-serif;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+
+        .utr-input:focus {
+
+            border-color: #c89b3c;
+
+            box-shadow:
+                0 0 0 2px rgba(200, 155, 60, 0.10);
+        }
+
+
+        .utr-help {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: #888;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .payment-warning {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 15px;
+
+            padding: 11px;
+
+            background: #faf7f1;
+
+            border-radius: 7px;
+
+            text-align: left;
+        }
+
+
+        .payment-warning-icon {
+
+            color: #b8860b;
+        }
+
+
+        .payment-warning p {
+
+            margin: 0;
+
+            color: #888;
+
+            font-size: 10px;
+
+            line-height: 1.5;
         }
 
 
@@ -430,7 +640,6 @@
             background: #faf7f1;
 
             border-radius: 7px;
-
         }
 
 
@@ -439,7 +648,6 @@
             color: #b8860b;
 
             font-size: 13px;
-
         }
 
 
@@ -452,7 +660,6 @@
             font-size: 10px;
 
             line-height: 1.5;
-
         }
 
 
@@ -465,21 +672,18 @@
             .premium-payment-section {
 
                 padding: 18px 14px;
-
             }
 
 
             .payment-heading h3 {
 
                 font-size: 22px;
-
             }
 
 
             .payment-card {
 
                 padding: 13px;
-
             }
 
 
@@ -490,28 +694,32 @@
                 height: 39px;
 
                 font-size: 19px;
-
             }
 
 
             .payment-card-content strong {
 
                 font-size: 13px;
-
             }
 
 
             .payment-card-content span {
 
                 font-size: 10px;
-
             }
 
 
             .summary-row {
 
                 align-items: flex-start;
+            }
 
+
+            .upi-qr {
+
+                width: 180px;
+
+                height: 180px;
             }
 
         }
@@ -613,6 +821,7 @@
 </header>
 
 
+
 <!-- ==========================================
      BOOKING SECTION
 ========================================== -->
@@ -670,6 +879,7 @@
                 </div>
 
 
+
                 <!-- MOBILE + EMAIL -->
 
                 <div class="booking-row">
@@ -719,6 +929,7 @@
                     </div>
 
                 </div>
+
 
 
                 <!-- DATE + TIME -->
@@ -813,6 +1024,7 @@
                 </div>
 
 
+
                 <!-- ======================================
                      SERVICE SELECTION
                 ======================================= -->
@@ -882,6 +1094,7 @@
                             </option>
 
                         </optgroup>
+
 
 
                         <!-- PREMIUM -->
@@ -961,6 +1174,7 @@
                         </optgroup>
 
 
+
                         <!-- LUXURY -->
 
                         <optgroup label="👑 Luxury Nails">
@@ -1031,71 +1245,73 @@
                         </optgroup>
 
 
+
                         <!-- NAIL STUDIO SERVICES -->
 
-<optgroup label="💎 Nail Studio Services">
+                        <optgroup label="💎 Nail Studio Services">
 
-    <option
-        value="Acrylic Extensions + Gel Polish"
-        data-price="1800"
-    >
-        Acrylic Extensions + Gel Polish — ₹1,800
-    </option>
+                            <option
+                                value="Acrylic Extensions + Gel Polish"
+                                data-price="1800"
+                            >
+                                Acrylic Extensions + Gel Polish — ₹1,800
+                            </option>
 
-    <option
-        value="Hands Gel Polish"
-        data-price="699"
-    >
-        Hands Gel Polish — ₹699
-    </option>
+                            <option
+                                value="Hands Gel Polish"
+                                data-price="699"
+                            >
+                                Hands Gel Polish — ₹699
+                            </option>
 
-    <option
-        value="Bridal Nails"
-        data-price="2499"
-    >
-        Bridal Nails — ₹2,499
-    </option>
+                            <option
+                                value="Bridal Nails"
+                                data-price="2499"
+                            >
+                                Bridal Nails — ₹2,499
+                            </option>
 
-    <option
-        value="Temporary Nails + Gel Polish"
-        data-price="1199"
-    >
-        Temporary Nails + Gel Polish — ₹1,199
-    </option>
+                            <option
+                                value="Temporary Nails + Gel Polish"
+                                data-price="1199"
+                            >
+                                Temporary Nails + Gel Polish — ₹1,199
+                            </option>
 
-    <option
-        value="Burgundy Nails"
-        data-price="1299"
-    >
-        Burgundy Nails — ₹1,299
-    </option>
+                            <option
+                                value="Burgundy Nails"
+                                data-price="1299"
+                            >
+                                Burgundy Nails — ₹1,299
+                            </option>
 
-    <option
-        value="French Nails"
-        data-price="999"
-    >
-        French Nails — ₹999
-    </option>
+                            <option
+                                value="French Nails"
+                                data-price="999"
+                            >
+                                French Nails — ₹999
+                            </option>
 
-    <option
-        value="Rouge Nails"
-        data-price="1399"
-    >
-        Rouge Nails — ₹1,399
-    </option>
+                            <option
+                                value="Rouge Nails"
+                                data-price="1399"
+                            >
+                                Rouge Nails — ₹1,399
+                            </option>
 
-    <option
-        value="Polka Dot Nails"
-        data-price="1099"
-    >
-        Polka Dot Nails — ₹1,099
-    </option>
+                            <option
+                                value="Polka Dot Nails"
+                                data-price="1099"
+                            >
+                                Polka Dot Nails — ₹1,099
+                            </option>
 
-                         </optgroup>
+                        </optgroup>
 
                     </select>
 
                 </div>
+
 
 
                 <!-- ======================================
@@ -1174,6 +1390,7 @@
                 </div>
 
 
+
                 <!-- ======================================
                      BACKEND COMPATIBILITY
                 ======================================= -->
@@ -1186,337 +1403,499 @@
                 >
 
 
-              <!-- ======================================
-     PREMIUM PAYMENT METHOD
-======================================= -->
 
-<div class="premium-payment-section">
+                <!-- ======================================
+                     PAYMENT SECTION
+                ======================================= -->
 
-    <!-- HEADING -->
-    <div class="payment-heading">
-
-        <span class="payment-kicker">
-            SIMPLE & SECURE
-        </span>
-
-        <h3>
-            💳 Choose Payment Method
-        </h3>
-
-        <p>
-            Select your preferred way to pay for your appointment.
-        </p>
-
-    </div>
+                <div class="premium-payment-section">
 
 
-    <!-- APPOINTMENT SUMMARY -->
-    <div class="payment-summary">
+                    <!-- HEADING -->
 
-        <div class="summary-title">
-            Appointment Summary
+                    <div class="payment-heading">
+
+                        <span class="payment-kicker">
+                            SIMPLE & SECURE
+                        </span>
+
+                        <h3>
+                            💳 Choose Payment Method
+                        </h3>
+
+                        <p>
+                            Select your preferred way to pay for your appointment.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- APPOINTMENT SUMMARY -->
+
+                    <div class="payment-summary">
+
+                        <div class="summary-title">
+                            Appointment Summary
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Service
+                            </span>
+
+                            <strong id="paymentSummaryService">
+                                Select a service
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong id="paymentSummaryDate">
+                                Select date
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Time
+                            </span>
+
+                            <strong id="paymentSummaryTime">
+                                Select time
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <strong id="paymentSummaryPrice">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PAYMENT OPTIONS -->
+
+                    <div class="payment-options">
+
+
+                        <!-- PAY AT STUDIO -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="CASH"
+                                required
+                            >
+
+                            <div class="payment-card-icon">
+                                💵
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Pay at Studio
+                                </strong>
+
+                                <span>
+                                    Pay when you arrive for your appointment.
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+
+
+                        <!-- GOOGLE PAY / UPI -->
+
+                        <label class="payment-card">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="UPI"
+                            >
+
+                            <div class="payment-card-icon">
+                                📱
+                            </div>
+
+                            <div class="payment-card-content">
+
+                                <strong>
+                                    Google Pay / UPI
+                                </strong>
+
+                                <span>
+                                    Pay using Google Pay, PhonePe or any UPI app.
+                                </span>
+
+                            </div>
+
+                            <div class="payment-card-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- ======================================
+                         UPI PAYMENT
+                    ======================================= -->
+
+                    <div
+                        id="upiPaymentBox"
+                        class="upi-payment-box"
+                    >
+
+                        <h4 class="upi-payment-title">
+                            📱 Complete Your UPI Payment
+                        </h4>
+
+
+                        <p class="upi-payment-description">
+                            Scan the QR code using Google Pay,
+                            PhonePe or another UPI app.
+                        </p>
+
+
+
+                        <!-- QR CODE -->
+
+                        <div class="upi-qr-wrapper">
+
+                            <img
+                                src="images/upi-qr.png"
+                                alt="Nail Studio UPI QR Code"
+                                class="upi-qr"
+                            >
+
+                        </div>
+
+
+
+                        <!-- UPI ID -->
+
+                        <div class="upi-id-box">
+
+                            <span class="upi-id-label">
+                                UPI ID
+                            </span>
+
+                            <strong
+                                id="studioUpiId"
+                                class="upi-id-value"
+                            >
+                                yourupi@upi
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- PAYMENT AMOUNT -->
+
+                        <div class="upi-amount-box">
+
+                            <span class="upi-amount-label">
+                                Amount to Pay
+                            </span>
+
+                            <strong
+                                id="upiPaymentAmount"
+                                class="upi-payment-amount"
+                            >
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- UTR -->
+
+                        <div class="utr-group">
+
+                            <label
+                                for="utrNumber"
+                                class="utr-label"
+                            >
+                                UTR / Transaction ID
+                                <span style="color:#b8860b;">
+                                    *
+                                </span>
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="utrNumber"
+                                name="utrNumber"
+                                class="utr-input"
+                                placeholder="Enter your UTR / Transaction ID"
+                                maxlength="50"
+                            >
+
+
+                            <small class="utr-help">
+
+                                After completing the payment,
+                                enter the UTR or transaction ID
+                                shown in your UPI app.
+
+                            </small>
+
+                        </div>
+
+
+
+                        <!-- PAYMENT WARNING -->
+
+                        <div class="payment-warning">
+
+                            <span class="payment-warning-icon">
+                                ⓘ
+                            </span>
+
+                            <p>
+
+                                Your payment will be checked by
+                                the studio. The booking will remain
+                                <strong>PENDING</strong>
+                                until the payment is verified.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PAYMENT NOTE -->
+
+                    <div class="payment-note">
+
+                        <span>
+                            ⓘ
+                        </span>
+
+                        <p>
+
+                            For UPI payments, please complete the
+                            payment first and enter the correct
+                            UTR / Transaction ID. Payment will be
+                            verified by the studio.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ======================================
+                     SUBMIT BUTTON
+                ======================================= -->
+
+                <button
+                    type="submit"
+                    class="booking-submit-btn"
+                    id="bookingSubmitBtn"
+                >
+                    ✅ Confirm Appointment
+                </button>
+
+            </form>
+
+
+
+            <!-- ======================================
+                 BOOKING MESSAGE
+            ======================================= -->
+
+            <div
+                id="bookingMessage"
+                class="booking-message"
+            ></div>
+
+
         </div>
 
 
-        <div class="summary-row">
 
-            <span>
-                Service
-            </span>
+        <!-- ======================================
+             RIGHT SIDE - STUDIO INFO
+        ======================================= -->
 
-            <strong id="paymentSummaryService">
-                Select a service
-            </strong>
-
-        </div>
+        <div class="studio-info-box">
 
 
-        <div class="summary-row">
+            <!-- HEADING -->
 
-            <span>
-                Date
-            </span>
-
-            <strong id="paymentSummaryDate">
-                Select date
-            </strong>
-
-        </div>
-
-
-        <div class="summary-row">
-
-            <span>
-                Time
-            </span>
-
-            <strong id="paymentSummaryTime">
-                Select time
-            </strong>
-
-        </div>
-
-
-        <div class="summary-total">
-
-            <span>
-                Total Amount
-            </span>
-
-            <strong id="paymentSummaryPrice">
-                ₹0
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <!-- PAYMENT OPTIONS -->
-    <div class="payment-options">
-
-
-        <!-- PAY AT STUDIO -->
-        <label class="payment-card">
-
-            <input
-                type="radio"
-                name="paymentMethod"
-                value="CASH"
-                required
-            >
-
-            <div class="payment-card-icon">
-                💵
-            </div>
-
-            <div class="payment-card-content">
-
-                <strong>
-                    Pay at Studio
-                </strong>
+            <div class="studio-heading">
 
                 <span>
-                    Pay when you arrive for your appointment
+                    ✨
                 </span>
 
-            </div>
-
-            <div class="payment-card-check">
-                ✓
-            </div>
-
-        </label>
-
-
-        <!-- GOOGLE PAY -->
-        <label class="payment-card">
-
-            <input
-                type="radio"
-                name="paymentMethod"
-                value="GOOGLE_PAY"
-            >
-
-            <div class="payment-card-icon">
-                📱
-            </div>
-
-            <div class="payment-card-content">
-
-                <strong>
-                    Google Pay
-                </strong>
-
-                <span>
-                    Choose GOOGLE_PAY as your preferred payment method
-                </span>
+                <h2>
+                    Studio Info
+                </h2>
 
             </div>
 
-            <div class="payment-card-check">
-                ✓
+
+
+            <!-- LOCATION -->
+
+            <div class="studio-detail">
+
+                <div class="studio-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Location
+                    </h3>
+
+                    <p>
+                        Shop No. 3, Bhavani Plaza,<br>
+                        Ashok Nagar Road, Datar Colony,<br>
+                        Bhandup East, Mumbai – 400042.
+                    </p>
+
+                    <a
+                        href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Get Directions →
+                    </a>
+
+                </div>
+
             </div>
 
-        </label>
-
-    </div>
 
 
-    <!-- PAYMENT NOTE -->
-    <div class="payment-note">
+            <!-- BUSINESS HOURS -->
 
-        <span>
-            ⓘ
-        </span>
+            <div class="studio-detail">
 
-        <p>
-            Google Pay  selection will be marked as
-            <strong>PAID</strong> for this booking.
-        </p>
+                <div class="studio-icon">
+                    ⏰
+                </div>
 
-    </div>
+                <div>
 
-</div>
+                    <h3>
+                        Business Hours
+                    </h3>
 
+                    <p>
+                        Monday – Saturday<br>
+                        11:00 AM – 9:30 PM
+                    </p>
 
-<!-- ======================================
-     SUBMIT BUTTON
-======================================= -->
+                    <span class="closed-text">
+                        Sunday Closed
+                    </span>
 
-<button
-    type="submit"
-    class="booking-submit-btn"
-    id="bookingSubmitBtn"
->
-    ✅ Confirm Appointment
-</button>
+                </div>
 
-</form>
+            </div>
 
 
-<!-- ======================================
-     BOOKING MESSAGE
-======================================= -->
 
-<div
-    id="bookingMessage"
-    class="booking-message"
-></div>
+            <!-- CONTACT -->
 
+            <div class="studio-detail">
 
-</div>
+                <div class="studio-icon">
+                    📞
+                </div>
 
+                <div>
 
-<!-- ======================================
-     RIGHT SIDE - STUDIO INFO
-======================================= -->
+                    <h3>
+                        Contact
+                    </h3>
 
-<div class="studio-info-box">
+                    <p>
+                        +91 7715053174
+                    </p>
 
+                </div>
 
-    <!-- HEADING -->
-    <div class="studio-heading">
-
-        <span>
-            ✨
-        </span>
-
-        <h2>
-            Studio Info
-        </h2>
-
-    </div>
+            </div>
 
 
-    <!-- LOCATION -->
-    <div class="studio-detail">
 
-        <div class="studio-icon">
-            📍
-        </div>
+            <!-- WHATSAPP -->
 
-        <div>
+            <div class="studio-whatsapp">
 
-            <h3>
-                Location
-            </h3>
+                <h3>
+                    💬 WhatsApp Us
+                </h3>
 
-            <p>
-                Shop No. 3, Bhavani Plaza,<br>
-                Ashok Nagar Road, Datar Colony,<br>
-                Bhandup East, Mumbai – 400042.
-            </p>
+                <p>
+                    Have questions about your appointment?
+                    Contact us directly on WhatsApp.
+                </p>
 
-            <a
-                href="https://maps.google.com/?q=Bhavani+Plaza+Ashok+Nagar+Road+Datar+Colony+Bhandup+East+Mumbai+400042"
-                target="_blank"
-                rel="noopener"
-            >
-                Get Directions →
-            </a>
+                <a
+                    href="https://wa.me/917715053174"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Chat on WhatsApp
+                </a>
+
+            </div>
 
         </div>
 
     </div>
-
-
-    <!-- BUSINESS HOURS -->
-    <div class="studio-detail">
-
-        <div class="studio-icon">
-            ⏰
-        </div>
-
-        <div>
-
-            <h3>
-                Business Hours
-            </h3>
-
-            <p>
-                Monday – Saturday<br>
-                11:00 AM – 9:30 PM
-            </p>
-
-            <span class="closed-text">
-                Sunday Closed
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- CONTACT -->
-    <div class="studio-detail">
-
-        <div class="studio-icon">
-            📞
-        </div>
-
-        <div>
-
-            <h3>
-                Contact
-            </h3>
-
-            <p>
-                +91 7715053174
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- WHATSAPP -->
-    <div class="studio-whatsapp">
-
-        <h3>
-            💬 WhatsApp Us
-        </h3>
-
-        <p>
-            Have questions about your appointment?
-            Contact us directly on WhatsApp.
-        </p>
-
-        <a
-            href="https://wa.me/917715053174"
-            target="_blank"
-            rel="noopener"
-        >
-            Chat on WhatsApp
-        </a>
-
-    </div>
-
-</div>
-
-</div>
 
 </section>
+
 
 
 <!-- ==========================================
@@ -1530,6 +1909,7 @@
     </p>
 
 </footer>
+
 
 
 <!-- ==========================================
@@ -1612,6 +1992,26 @@ document.addEventListener(
 
 
         // ==========================================
+        // UPI ELEMENTS
+        // ==========================================
+
+        const upiPaymentBox =
+            document.getElementById(
+                "upiPaymentBox"
+            );
+
+        const upiPaymentAmount =
+            document.getElementById(
+                "upiPaymentAmount"
+            );
+
+        const utrNumber =
+            document.getElementById(
+                "utrNumber"
+            );
+
+
+        // ==========================================
         // GET SERVICE FROM URL
         // ==========================================
 
@@ -1633,6 +2033,7 @@ document.addEventListener(
             const amount =
                 Number(price);
 
+
             if (
                 isNaN(amount) ||
                 amount <= 0
@@ -1642,10 +2043,12 @@ document.addEventListener(
 
             }
 
+
             return "₹" +
                 amount.toLocaleString("en-IN");
 
         }
+
 
 
         // ==========================================
@@ -1667,26 +2070,32 @@ document.addEventListener(
                         serviceSelect.selectedIndex
                     ];
 
+
                 const price =
                     Number(
                         selectedOption.dataset.price
                     );
 
+
                 paymentSummaryService.textContent =
                     selectedOption.value;
+
 
                 paymentSummaryPrice.textContent =
                     formatPrice(price);
 
-            } else {
+            }
+            else {
 
                 paymentSummaryService.textContent =
                     "Select a service";
+
 
                 paymentSummaryPrice.textContent =
                     "₹0";
 
             }
+
 
 
             // DATE
@@ -1702,6 +2111,7 @@ document.addEventListener(
                         "T00:00:00"
                     );
 
+
                 paymentSummaryDate.textContent =
                     date.toLocaleDateString(
                         "en-IN",
@@ -1712,12 +2122,14 @@ document.addEventListener(
                         }
                     );
 
-            } else {
+            }
+            else {
 
                 paymentSummaryDate.textContent =
                     "Select date";
 
             }
+
 
 
             // TIME
@@ -1730,7 +2142,8 @@ document.addEventListener(
                 paymentSummaryTime.textContent =
                     timeInput.value;
 
-            } else {
+            }
+            else {
 
                 paymentSummaryTime.textContent =
                     "Select time";
@@ -1740,6 +2153,55 @@ document.addEventListener(
         }
 
 
+
+        // ==========================================
+        // UPDATE UPI AMOUNT
+        // ==========================================
+
+        function updateUpiPaymentAmount() {
+
+            if (
+                !serviceSelect ||
+                !upiPaymentAmount
+            ) {
+
+                return;
+
+            }
+
+
+            const selectedOption =
+                serviceSelect.options[
+                    serviceSelect.selectedIndex
+                ];
+
+
+            if (
+                !selectedOption ||
+                !selectedOption.value
+            ) {
+
+                upiPaymentAmount.textContent =
+                    "₹0";
+
+                return;
+
+            }
+
+
+            const price =
+                Number(
+                    selectedOption.dataset.price
+                );
+
+
+            upiPaymentAmount.textContent =
+                formatPrice(price);
+
+        }
+
+
+
         // ==========================================
         // UPDATE SERVICE PRICE
         // ==========================================
@@ -1747,13 +2209,17 @@ document.addEventListener(
         function updateServicePrice() {
 
             if (!serviceSelect) {
+
                 return;
+
             }
+
 
             const selectedOption =
                 serviceSelect.options[
                     serviceSelect.selectedIndex
                 ];
+
 
             if (
                 !selectedOption ||
@@ -1761,30 +2227,43 @@ document.addEventListener(
             ) {
 
                 if (priceBox) {
-                    priceBox.style.display = "none";
+
+                    priceBox.style.display =
+                        "none";
+
                 }
+
 
                 if (selectedServiceName) {
-                    selectedServiceName.textContent = "-";
+
+                    selectedServiceName.textContent =
+                        "-";
+
                 }
+
 
                 if (selectedServicePrice) {
-                    selectedServicePrice.textContent = "₹0";
+
+                    selectedServicePrice.textContent =
+                        "₹0";
+
                 }
 
+
                 updatePaymentSummary();
+
+                updateUpiPaymentAmount();
 
                 return;
 
             }
 
 
-            // EXACT PRICE
-
             const servicePrice =
                 Number(
                     selectedOption.dataset.price
                 );
+
 
             const serviceName =
                 selectedOption.value;
@@ -1816,7 +2295,10 @@ document.addEventListener(
 
             updatePaymentSummary();
 
+            updateUpiPaymentAmount();
+
         }
+
 
 
         // ==========================================
@@ -1829,6 +2311,7 @@ document.addEventListener(
         ) {
 
             let found = false;
+
 
             for (
                 let i = 0;
@@ -1852,6 +2335,7 @@ document.addEventListener(
 
             }
 
+
             if (found) {
 
                 updateServicePrice();
@@ -1859,6 +2343,7 @@ document.addEventListener(
             }
 
         }
+
 
 
         // ==========================================
@@ -1875,10 +2360,13 @@ document.addEventListener(
 
                     updatePaymentSummary();
 
+                    updateUpiPaymentAmount();
+
                 }
             );
 
         }
+
 
 
         // ==========================================
@@ -1899,6 +2387,7 @@ document.addEventListener(
         }
 
 
+
         // ==========================================
         // TIME CHANGE
         // ==========================================
@@ -1917,6 +2406,7 @@ document.addEventListener(
         }
 
 
+
         // ==========================================
         // SET MINIMUM DATE = TODAY
         // ==========================================
@@ -1924,24 +2414,31 @@ document.addEventListener(
         function setMinimumDate() {
 
             if (!dateInput) {
+
                 return;
+
             }
+
 
             const today =
                 new Date();
 
+
             const year =
                 today.getFullYear();
+
 
             const month =
                 String(
                     today.getMonth() + 1
                 ).padStart(2, "0");
 
+
             const day =
                 String(
                     today.getDate()
                 ).padStart(2, "0");
+
 
             dateInput.min =
                 year +
@@ -1952,7 +2449,9 @@ document.addEventListener(
 
         }
 
+
         setMinimumDate();
+
 
 
         // ==========================================
@@ -1966,8 +2465,11 @@ document.addEventListener(
                 function () {
 
                     if (!this.value) {
+
                         return;
+
                     }
+
 
                     const selectedDate =
                         new Date(
@@ -1975,8 +2477,10 @@ document.addEventListener(
                             "T00:00:00"
                         );
 
+
                     const dayOfWeek =
                         selectedDate.getDay();
+
 
                     if (
                         dayOfWeek === 0
@@ -1986,8 +2490,10 @@ document.addEventListener(
                             "Sorry! We are closed on Sundays. Please select another date."
                         );
 
+
                         this.value =
                             "";
+
 
                         updatePaymentSummary();
 
@@ -1997,6 +2503,7 @@ document.addEventListener(
             );
 
         }
+
 
 
         // ==========================================
@@ -2021,6 +2528,7 @@ document.addEventListener(
         }
 
 
+
         // ==========================================
         // PAYMENT CARD SELECTION
         // ==========================================
@@ -2030,6 +2538,7 @@ document.addEventListener(
                 ".payment-card"
             );
 
+
         paymentCards.forEach(
             function (card) {
 
@@ -2038,13 +2547,18 @@ document.addEventListener(
                         'input[name="paymentMethod"]'
                     );
 
+
                 if (!radio) {
+
                     return;
+
                 }
+
 
                 radio.addEventListener(
                     "change",
                     function () {
+
 
                         paymentCards.forEach(
                             function (item) {
@@ -2056,11 +2570,55 @@ document.addEventListener(
                             }
                         );
 
+
                         if (radio.checked) {
 
                             card.classList.add(
                                 "selected"
                             );
+
+                        }
+
+
+                        // SHOW / HIDE UPI
+
+                        if (
+                            radio.value === "UPI" &&
+                            radio.checked
+                        ) {
+
+                            if (upiPaymentBox) {
+
+                                upiPaymentBox.classList.add(
+                                    "show"
+                                );
+
+                            }
+
+
+                            updateUpiPaymentAmount();
+
+                        }
+                        else if (
+                            radio.value === "CASH" &&
+                            radio.checked
+                        ) {
+
+                            if (upiPaymentBox) {
+
+                                upiPaymentBox.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+
+                            if (utrNumber) {
+
+                                utrNumber.value =
+                                    "";
+
+                            }
 
                         }
 
@@ -2071,11 +2629,15 @@ document.addEventListener(
         );
 
 
+
         // ==========================================
         // INITIAL PAYMENT SUMMARY
         // ==========================================
 
         updatePaymentSummary();
+
+        updateUpiPaymentAmount();
+
 
 
         // ==========================================
@@ -2106,6 +2668,7 @@ document.addEventListener(
                     }
 
 
+
                     // ==================================
                     // CHECK SUNDAY
                     // ==================================
@@ -2120,6 +2683,7 @@ document.addEventListener(
                                 dateInput.value +
                                 "T00:00:00"
                             );
+
 
                         if (
                             selectedDate.getDay() === 0
@@ -2136,6 +2700,7 @@ document.addEventListener(
                     }
 
 
+
                     // ==================================
                     // GET SELECTED SERVICE
                     // ==================================
@@ -2145,6 +2710,7 @@ document.addEventListener(
                             serviceSelect.selectedIndex
                         ];
 
+
                     if (
                         !selectedOption ||
                         !selectedOption.value
@@ -2153,11 +2719,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a nail service.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -2168,6 +2737,7 @@ document.addEventListener(
                         selectedOption.value;
 
 
+
                     // ==================================
                     // GET EXACT PRICE
                     // ==================================
@@ -2176,6 +2746,7 @@ document.addEventListener(
                         Number(
                             selectedOption.dataset.price
                         );
+
 
 
                     // ==================================
@@ -2190,15 +2761,19 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Unable to determine service price.";
 
+
                         bookingMessage.className =
                             "booking-message error";
+
 
                         bookingMessage.style.display =
                             "block";
 
+
                         return;
 
                     }
+
 
 
                     // ==================================
@@ -2216,31 +2791,112 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a payment method.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
                     }
 
 
+
                     // ==================================
-                    // DETERMINE PAYMENT STATUS
+                    // UPI VALIDATION
                     // ==================================
 
-                    let paymentStatus = "PENDING";
+                    let enteredUtr = "";
+
 
                     if (
-                        selectedPayment.value ===
-                        "GOOGLE_PAY"
+                        selectedPayment.value === "UPI"
                     ) {
 
-                        paymentStatus = "PAID";
+                        enteredUtr =
+                            utrNumber
+                                ? utrNumber.value.trim()
+                                : "";
+
+
+                        if (!enteredUtr) {
+
+                            bookingMessage.innerHTML =
+                                "❌ Please complete the UPI payment and enter your UTR / Transaction ID.";
+
+
+                            bookingMessage.className =
+                                "booking-message error";
+
+
+                            bookingMessage.style.display =
+                                "block";
+
+
+                            if (utrNumber) {
+
+                                utrNumber.focus();
+
+                            }
+
+
+                            return;
+
+                        }
+
+
+                        if (
+                            enteredUtr.length < 6
+                        ) {
+
+                            bookingMessage.innerHTML =
+                                "❌ Please enter a valid UTR / Transaction ID.";
+
+
+                            bookingMessage.className =
+                                "booking-message error";
+
+
+                            bookingMessage.style.display =
+                                "block";
+
+
+                            if (utrNumber) {
+
+                                utrNumber.focus();
+
+                            }
+
+
+                            return;
+
+                        }
 
                     }
+
+
+
+                    // ==================================
+                    // PAYMENT STATUS
+                    // ==================================
+
+                    /*
+                     *
+                     * IMPORTANT:
+                     *
+                     * UPI payment is NOT automatically PAID.
+                     *
+                     * Admin will verify the payment.
+                     *
+                     */
+
+                    const paymentStatus =
+                        "PENDING";
+
 
 
                     // ==================================
@@ -2250,17 +2906,22 @@ document.addEventListener(
                     bookingMessage.innerHTML =
                         "Saving your appointment...";
 
+
                     bookingMessage.className =
                         "booking-message";
+
 
                     bookingMessage.style.display =
                         "block";
 
+
                     bookingSubmitBtn.disabled =
                         true;
 
+
                     bookingSubmitBtn.textContent =
                         "Confirming Appointment...";
+
 
 
                     // ==================================
@@ -2275,11 +2936,13 @@ document.addEventListener(
                                 .value
                                 .trim(),
 
+
                         email:
                             document
                                 .getElementById("email")
                                 .value
                                 .trim(),
+
 
                         phone:
                             document
@@ -2287,57 +2950,75 @@ document.addEventListener(
                                 .value
                                 .trim(),
 
+
                         service:
                             selectedService,
+
 
                         design:
                             document
                                 .getElementById("design")
                                 .value,
 
+
                         bookingDate:
                             document
                                 .getElementById("bookingDate")
                                 .value,
+
 
                         bookingTime:
                             document
                                 .getElementById("bookingTime")
                                 .value,
 
+
                         bookingType:
                             "SERVICE",
+
 
                         notes:
                             "",
 
+
                         paymentMethod:
                             selectedPayment.value,
+
 
                         paymentStatus:
                             paymentStatus,
 
+
                         paymentAmount:
-                            servicePrice
+                            servicePrice,
+
+
+                        utrNumber:
+                            enteredUtr
 
                     };
+
 
 
                     console.log(
                         "================================="
                     );
+
 
                     console.log(
                         "💳 BOOKING PAYMENT DATA"
                     );
 
+
                     console.log(
                         bookingData
                     );
 
+
                     console.log(
                         "================================="
                     );
+
 
 
                     // ==================================
@@ -2404,6 +3085,7 @@ document.addEventListener(
                         }
 
 
+
                         // ==================================
                         // CHECK RESPONSE
                         // ==================================
@@ -2422,8 +3104,9 @@ document.addEventListener(
                         }
 
 
+
                         // ==================================
-                        // SUCCESS PAYMENT TEXT
+                        // PAYMENT TEXT
                         // ==================================
 
                         const paymentText =
@@ -2432,16 +3115,13 @@ document.addEventListener(
 
                             ? "💵 Pay at Studio"
 
-                            : "📱 Google Pay";
+                            : "📱 Google Pay / UPI";
+
 
 
                         const paymentStatusText =
-                            bookingData.paymentStatus ===
-                            "PAID"
+                            "⏳ PENDING";
 
-                            ? "✅ PAID"
-
-                            : "⏳ PENDING";
 
 
                         // ==================================
@@ -2450,7 +3130,7 @@ document.addEventListener(
 
                         bookingMessage.innerHTML =
 
-                            "✅ Your appointment has been confirmed successfully!" +
+                            "✅ Your appointment has been submitted successfully!" +
 
                             "<br><br>" +
 
@@ -2488,16 +3168,31 @@ document.addEventListener(
 
                             "<br><br>" +
 
-                            "Your appointment details have been saved successfully." +
+                            (
+                                bookingData.paymentMethod ===
+                                "UPI"
+
+                                ?
+
+                                "Your payment details have been submitted. The studio will verify your UTR and confirm the payment."
+
+                                :
+
+                                "You can pay at the studio during your appointment."
+
+                            ) +
 
                             "</small>";
+
 
 
                         bookingMessage.className =
                             "booking-message success";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
 
                         // ==================================
@@ -2505,6 +3200,7 @@ document.addEventListener(
                         // ==================================
 
                         bookingForm.reset();
+
 
 
                         if (priceBox) {
@@ -2531,6 +3227,30 @@ document.addEventListener(
                         }
 
 
+
+                        // ==================================
+                        // HIDE UPI
+                        // ==================================
+
+                        if (upiPaymentBox) {
+
+                            upiPaymentBox.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+
+
+                        if (utrNumber) {
+
+                            utrNumber.value =
+                                "";
+
+                        }
+
+
+
                         // ==================================
                         // RESET PAYMENT CARDS
                         // ==================================
@@ -2546,17 +3266,21 @@ document.addEventListener(
                         );
 
 
+
                         // ==================================
                         // RESET PAYMENT SUMMARY
                         // ==================================
 
                         updatePaymentSummary();
 
+                        updateUpiPaymentAmount();
+
                         setMinimumDate();
 
 
+
                         console.log(
-                            "✅ Booking confirmed:",
+                            "✅ Booking submitted:",
                             result
                         );
 
@@ -2568,16 +3292,20 @@ document.addEventListener(
                             error
                         );
 
+
                         bookingMessage.innerHTML =
                             "❌ Unable to confirm your booking. Please try again.";
 
+
                         bookingMessage.className =
                             "booking-message error";
+
 
                         bookingMessage.style.display =
                             "block";
 
                     }
+
 
 
                     // ==================================
@@ -2586,6 +3314,7 @@ document.addEventListener(
 
                     bookingSubmitBtn.disabled =
                         false;
+
 
                     bookingSubmitBtn.textContent =
                         "✅ Confirm Appointment";
@@ -2601,11 +3330,13 @@ document.addEventListener(
 </script>
 
 
+
 <!-- ==========================================
      MAIN JS
 ========================================== -->
 
 <script src="js/main.js"></script>
+
 
 </body>
 
