@@ -24,6 +24,42 @@
 
     <style>
 
+
+
+        .logout-btn {
+
+    border: 1px solid #c89b3c;
+
+    background: transparent;
+
+    color: #b8860b;
+
+    padding: 9px 16px;
+
+    border-radius: 6px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    margin-left: 8px;
+
+    transition: 0.3s ease;
+
+}
+
+.logout-btn:hover {
+
+    background: #c89b3c;
+
+    color: white;
+
+}
+
         /* ==========================================
            QUICK FEATURES
         ========================================== */
@@ -1242,11 +1278,18 @@
 
             <div class="nav-buttons">
 
-                <a href="booking.html" class="signup">
-                    Book Now
-                </a>
+    <a href="booking.html" class="signup">
+        Book Now
+    </a>
 
-            </div>
+    <button
+        type="button"
+        class="logout-btn"
+        onclick="logoutUser()">
+        Logout
+    </button>
+
+</div>
 
         </nav>
 
@@ -2803,6 +2846,25 @@
 
     </footer>
 
+                
+                  <!-- ==========================================
+                         AUTH JS
+    =========================================== -->  
+
+    <script src="js/auth.js"></script>
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            NailStudioAuth.protectPage();
+
+        }
+    );
+
+</script>
 
     <!-- ==========================================
          MAIN JS
@@ -3752,6 +3814,19 @@
         });
 
     </script>
+
+    <script>
+
+    function logoutUser() {
+
+        localStorage.removeItem("nailStudioLoggedIn");
+        localStorage.removeItem("nailStudioUser");
+
+        window.location.replace("login.html");
+
+    }
+
+</script>
 
 
 </body>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Nail Studio</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: "Poppins", sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf8,
+                    #f8eee9
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+        }
+
+
+        .auth-container {
+
+            width: 100%;
+
+            max-width: 460px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            padding: 42px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        .auth-logo {
+
+            text-align: center;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 34px;
+
+            font-weight: 700;
+
+            color: #b8860b;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .auth-title {
+
+            text-align: center;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 34px;
+
+            color: #222;
+
+            margin: 0 0 8px;
+
+        }
+
+
+        .auth-subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            color: #333;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #c89b3c;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(200, 155, 60, 0.12);
+
+        }
+
+
+        .auth-button {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c89b3c,
+                    #b8860b
+                );
+
+            color: white;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            margin-top: 8px;
+
+        }
+
+
+        .auth-button:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 134, 11, 0.25);
+
+        }
+
+
+        .auth-message {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            text-align: center;
+
+        }
+
+
+        .auth-message.error {
+
+            display: block;
+
+            background: #fff0f0;
+
+            color: #c0392b;
+
+        }
+
+
+        .auth-message.success {
+
+            display: block;
+
+            background: #eefaf2;
+
+            color: #218838;
+
+        }
+
+
+        .auth-footer {
+
+            text-align: center;
+
+            margin-top: 24px;
+
+            font-size: 14px;
+
+            color: #777;
+
+        }
+
+
+        .auth-footer a {
+
+            color: #b8860b;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+
+        .auth-footer a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .back-home {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+        }
+
+
+        .back-home a {
+
+            color: #777;
+
+            font-size: 13px;
+
+            text-decoration: none;
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .auth-container {
+
+                padding: 30px 22px;
+
+            }
+
+            .auth-title {
+
+                font-size: 29px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="auth-container">
+
+
+        <div class="auth-logo">
+            💅 Nail Studio
+        </div>
+
+
+        <h1 class="auth-title">
+            Create Account
+        </h1>
+
+
+        <p class="auth-subtitle">
+            Create your account to continue
+        </p>
+
+
+        <div
+            id="registerMessage"
+            class="auth-message">
+        </div>
+
+
+        <form id="registerForm">
+
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-button">
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+
+        <div class="back-home">
+
+            <a href="login.html">
+                ← Back to Login
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="js/auth.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const form =
+                    document.getElementById(
+                        "registerForm"
+                    );
+
+
+                const message =
+                    document.getElementById(
+                        "registerMessage"
+                    );
+
+
+                form.addEventListener(
+                    "submit",
+                    function (event) {
+
+                        event.preventDefault();
+
+
+                        const name =
+                            document.getElementById(
+                                "name"
+                            ).value.trim();
+
+
+                        const email =
+                            document.getElementById(
+                                "email"
+                            ).value.trim();
+
+
+                        const password =
+                            document.getElementById(
+                                "password"
+                            ).value;
+
+
+                        const confirmPassword =
+                            document.getElementById(
+                                "confirmPassword"
+                            ).value;
+
+
+                        message.className =
+                            "auth-message";
+
+
+                        message.textContent =
+                            "";
+
+
+                        if (!name) {
+
+                            message.className =
+                                "auth-message error";
+
+                            message.textContent =
+                                "Please enter your name.";
+
+                            return;
+
+                        }
+
+
+                        if (
+                            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                .test(email)
+                        ) {
+
+                            message.className =
+                                "auth-message error";
+
+                            message.textContent =
+                                "Please enter a valid email address.";
+
+                            return;
+
+                        }
+
+
+                        if (
+                            password.length < 6
+                        ) {
+
+                            message.className =
+                                "auth-message error";
+
+                            message.textContent =
+                                "Password must contain at least 6 characters.";
+
+                            return;
+
+                        }
+
+
+                        if (
+                            password !==
+                            confirmPassword
+                        ) {
+
+                            message.className =
+                                "auth-message error";
+
+                            message.textContent =
+                                "Passwords do not match.";
+
+                            return;
+
+                        }
+
+
+                        const result =
+                            NailStudioAuth.registerUser(
+                                name,
+                                email,
+                                password
+                            );
+
+
+                        if (!result.success) {
+
+                            message.className =
+                                "auth-message error";
+
+                            message.textContent =
+                                result.message;
+
+                            return;
+
+                        }
+
+
+                        message.className =
+                            "auth-message success";
+
+                        message.textContent =
+                            "Account created successfully. Redirecting to login...";
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            1200
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
