@@ -33,6 +33,12 @@
 
     <style>
 
+        .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 
 
             .logout-btn {
@@ -45,7 +51,6 @@
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
-    margin-left: 4px;
     transition: 0.3s ease;
 }
 
@@ -572,28 +577,30 @@
         </ul>
 
 
-        <a
-            href="booking.html"
-            class="nav-book-btn"
-            style="
-                background:#c89b3c;
-                color:white;
-                padding:10px 10px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:13px;
-                font-weight:600;
-            "
-        >
-            Book Now
-        </a>
+       <div class="nav-buttons">
+    <a
+        href="booking.html"
+        class="nav-book-btn"
+        style="
+            background:#c89b3c;
+            color:white;
+            padding:10px 10px;
+            border-radius:5px;
+            text-decoration:none;
+            font-size:13px;
+            font-weight:600;
+        "
+    >
+        Book Now
+    </a>
 
-        <button
-    type="button"
-    class="logout-btn"
-    onclick="logoutUser()">
-    Logout
-</button>
+    <button
+        type="button"
+        class="logout-btn"
+        onclick="logoutUser()">
+        Logout
+    </button>
+</div>
 
     </nav>
 
