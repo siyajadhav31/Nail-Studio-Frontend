@@ -13,13 +13,14 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- AUTH -->
     <script src="js/auth.js"></script>
-<script>
-    if (localStorage.getItem("nailStudioLoggedIn") !== "true") {
-        window.location.replace("login.html");
-    }
-</script>
 
+    <script>
+        if (localStorage.getItem("nailStudioLoggedIn") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
 
     <!-- GOOGLE FONTS -->
     <link
@@ -27,45 +28,100 @@
         rel="stylesheet">
 
 
-    <!-- ==========================================
-         PAYMENT CSS
-    =========================================== -->
-
     <style>
 
+        /* ==========================================
+           NAV BUTTONS
+        ========================================== */
+
         .nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
 
+        .logout-btn {
+            border: 1px solid #c89b3c;
+            background: transparent;
+            color: #b8860b;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+
+        .logout-btn:hover {
+            background: #c89b3c;
+            color: white;
+        }
+
+
+        @media (max-width: 500px) {
 
             .logout-btn {
-    border: 1px solid #c89b3c;
-    background: transparent;
-    color: #b8860b;
-    padding: 9px 16px;
-    border-radius: 6px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
+                padding: 8px 12px;
+                font-size: 11px;
+                margin-left: 5px;
+            }
 
-.logout-btn:hover {
-    background: #c89b3c;
-    color: white;
-}
+        }
 
-@media (max-width: 500px) {
-    .logout-btn {
-        padding: 8px 12px;
-        font-size: 11px;
-        margin-left: 5px;
-    }
-}
+
+        /* ==========================================
+           SELECTED LOOK
+        ========================================== */
+
+        .selected-look-section {
+            margin: 15px 0 20px;
+            padding: 18px;
+            background: #fffaf2;
+            border: 1px solid #ead5ad;
+            border-radius: 9px;
+        }
+
+
+        .selected-look-title {
+            margin-bottom: 12px;
+            color: #8a6420;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+
+        .selected-look-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee3d1;
+            color: #777;
+            font-size: 12px;
+        }
+
+
+        .selected-look-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .selected-look-row strong {
+            color: #444;
+            font-weight: 600;
+            text-align: right;
+        }
+
+
+        /* ==========================================
+           PAYMENT SECTION
+        ========================================== */
 
         .premium-payment-section {
             margin: 22px 0;
@@ -501,6 +557,10 @@
                 align-items: flex-start;
             }
 
+            .selected-look-row {
+                align-items: flex-start;
+            }
+
         }
 
     </style>
@@ -577,30 +637,34 @@
         </ul>
 
 
-       <div class="nav-buttons">
-    <a
-        href="booking.html"
-        class="nav-book-btn"
-        style="
-            background:#c89b3c;
-            color:white;
-            padding:10px 10px;
-            border-radius:5px;
-            text-decoration:none;
-            font-size:13px;
-            font-weight:600;
-        "
-    >
-        Book Now
-    </a>
+        <div class="nav-buttons">
 
-    <button
-        type="button"
-        class="logout-btn"
-        onclick="logoutUser()">
-        Logout
-    </button>
-</div>
+            <a
+                href="booking.html"
+                class="nav-book-btn"
+                style="
+                    background:#c89b3c;
+                    color:white;
+                    padding:10px 10px;
+                    border-radius:5px;
+                    text-decoration:none;
+                    font-size:13px;
+                    font-weight:600;
+                "
+            >
+                Book Now
+            </a>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
+        </div>
 
     </nav>
 
@@ -635,7 +699,51 @@
             </p>
 
 
-            <!-- BOOKING FORM -->
+            <!-- ======================================
+                 SELECTED VIRTUAL LOOK
+            ======================================= -->
+
+            <div
+                class="selected-look-section"
+                id="selectedLookSection"
+            >
+
+                <div class="selected-look-title">
+                    ✨ Selected Virtual Look
+                </div>
+
+
+                <div class="selected-look-row">
+
+                    <span>
+                        Nail Shape
+                    </span>
+
+                    <strong id="selectedShapeDisplay">
+                        Not Selected
+                    </strong>
+
+                </div>
+
+
+                <div class="selected-look-row">
+
+                    <span>
+                        Nail Shade
+                    </span>
+
+                    <strong id="selectedShadeDisplay">
+                        Not Selected
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOOKING FORM
+            ======================================= -->
 
             <form id="bookingForm">
 
@@ -741,17 +849,49 @@
                                 Select a time
                             </option>
 
-                            <option value="11:00 AM">11:00 AM</option>
-                            <option value="12:00 PM">12:00 PM</option>
-                            <option value="1:00 PM">1:00 PM</option>
-                            <option value="2:00 PM">2:00 PM</option>
-                            <option value="3:00 PM">3:00 PM</option>
-                            <option value="4:00 PM">4:00 PM</option>
-                            <option value="5:00 PM">5:00 PM</option>
-                            <option value="6:00 PM">6:00 PM</option>
-                            <option value="7:00 PM">7:00 PM</option>
-                            <option value="8:00 PM">8:00 PM</option>
-                            <option value="9:00 PM">9:00 PM</option>
+                            <option value="11:00 AM">
+                                11:00 AM
+                            </option>
+
+                            <option value="12:00 PM">
+                                12:00 PM
+                            </option>
+
+                            <option value="1:00 PM">
+                                1:00 PM
+                            </option>
+
+                            <option value="2:00 PM">
+                                2:00 PM
+                            </option>
+
+                            <option value="3:00 PM">
+                                3:00 PM
+                            </option>
+
+                            <option value="4:00 PM">
+                                4:00 PM
+                            </option>
+
+                            <option value="5:00 PM">
+                                5:00 PM
+                            </option>
+
+                            <option value="6:00 PM">
+                                6:00 PM
+                            </option>
+
+                            <option value="7:00 PM">
+                                7:00 PM
+                            </option>
+
+                            <option value="8:00 PM">
+                                8:00 PM
+                            </option>
+
+                            <option value="9:00 PM">
+                                9:00 PM
+                            </option>
 
                         </select>
 
@@ -760,7 +900,9 @@
                 </div>
 
 
-                <!-- SERVICE -->
+                <!-- ======================================
+                     SERVICE
+                ======================================= -->
 
                 <div class="form-group">
 
@@ -784,27 +926,45 @@
 
                         <optgroup label="💅 Normal Nails">
 
-                            <option value="Basic Gel Polish" data-price="500">
+                            <option
+                                value="Basic Gel Polish"
+                                data-price="500"
+                            >
                                 Basic Gel Polish — ₹500
                             </option>
 
-                            <option value="Acrylic Overlay (Natural Nails)" data-price="800">
+                            <option
+                                value="Acrylic Overlay (Natural Nails)"
+                                data-price="800"
+                            >
                                 Acrylic Overlay (Natural Nails) — ₹800
                             </option>
 
-                            <option value="Basic Acrylic Extensions" data-price="1200">
+                            <option
+                                value="Basic Acrylic Extensions"
+                                data-price="1200"
+                            >
                                 Basic Acrylic Extensions — ₹1,200
                             </option>
 
-                            <option value="Machine Printed Press-On Nails" data-price="300">
+                            <option
+                                value="Machine Printed Press-On Nails"
+                                data-price="300"
+                            >
                                 Machine Printed Press-On Nails — ₹300
                             </option>
 
-                            <option value="Cut Polish & Basic Nail Art" data-price="400">
+                            <option
+                                value="Cut Polish & Basic Nail Art"
+                                data-price="400"
+                            >
                                 Cut Polish & Basic Nail Art — ₹400
                             </option>
 
-                            <option value="Basic French Manicure" data-price="700">
+                            <option
+                                value="Basic French Manicure"
+                                data-price="700"
+                            >
                                 Basic French Manicure — ₹700
                             </option>
 
@@ -815,43 +975,73 @@
 
                         <optgroup label="✨ Premium Nails">
 
-                            <option value="Soft Gel Extensions" data-price="2000">
+                            <option
+                                value="Soft Gel Extensions"
+                                data-price="2000"
+                            >
                                 Soft Gel Extensions — ₹2,000
                             </option>
 
-                            <option value="BIAB (Builder Gel) Extensions" data-price="2200">
+                            <option
+                                value="BIAB (Builder Gel) Extensions"
+                                data-price="2200"
+                            >
                                 BIAB (Builder Gel) Extensions — ₹2,200
                             </option>
 
-                            <option value="Ombre Gel Extensions" data-price="2500">
+                            <option
+                                value="Ombre Gel Extensions"
+                                data-price="2500"
+                            >
                                 Ombre Gel Extensions — ₹2,500
                             </option>
 
-                            <option value="Chrome Finish Gel Extensions" data-price="2200">
+                            <option
+                                value="Chrome Finish Gel Extensions"
+                                data-price="2200"
+                            >
                                 Chrome Finish Gel Extensions — ₹2,200
                             </option>
 
-                            <option value="Cat-Eye Gel Nails" data-price="2400">
+                            <option
+                                value="Cat-Eye Gel Nails"
+                                data-price="2400"
+                            >
                                 Cat-Eye Gel Nails — ₹2,400
                             </option>
 
-                            <option value="Custom Handmade Press-Ons" data-price="1200">
+                            <option
+                                value="Custom Handmade Press-Ons"
+                                data-price="1200"
+                            >
                                 Custom Handmade Press-Ons — ₹1,200
                             </option>
 
-                            <option value="Rubber Base Gel Overlay" data-price="1800">
+                            <option
+                                value="Rubber Base Gel Overlay"
+                                data-price="1800"
+                            >
                                 Rubber Base Gel Overlay — ₹1,800
                             </option>
 
-                            <option value="Matte Finish Gel Extensions" data-price="2000">
+                            <option
+                                value="Matte Finish Gel Extensions"
+                                data-price="2000"
+                            >
                                 Matte Finish Gel Extensions — ₹2,000
                             </option>
 
-                            <option value="Glitter Inbuilt Acrylic Extensions" data-price="2500">
+                            <option
+                                value="Glitter Inbuilt Acrylic Extensions"
+                                data-price="2500"
+                            >
                                 Glitter Inbuilt Acrylic Extensions — ₹2,500
                             </option>
 
-                            <option value="Minimalist Hand-Painted Art Extensions" data-price="2500">
+                            <option
+                                value="Minimalist Hand-Painted Art Extensions"
+                                data-price="2500"
+                            >
                                 Minimalist Hand-Painted Art Extensions — ₹2,500
                             </option>
 
@@ -862,39 +1052,66 @@
 
                         <optgroup label="👑 Luxury Nails">
 
-                            <option value="Polygel Sculpted Extensions" data-price="3500">
+                            <option
+                                value="Polygel Sculpted Extensions"
+                                data-price="3500"
+                            >
                                 Polygel Sculpted Extensions — ₹3,500
                             </option>
 
-                            <option value="Hard Gel Extensions" data-price="3800">
+                            <option
+                                value="Hard Gel Extensions"
+                                data-price="3800"
+                            >
                                 Hard Gel Extensions — ₹3,800
                             </option>
 
-                            <option value="3D Encapsulated Art Extensions" data-price="4500">
+                            <option
+                                value="3D Encapsulated Art Extensions"
+                                data-price="4500"
+                            >
                                 3D Encapsulated Art Extensions — ₹4,500
                             </option>
 
-                            <option value="Swarovski & Crystal Studded Set" data-price="5000">
+                            <option
+                                value="Swarovski & Crystal Studded Set"
+                                data-price="5000"
+                            >
                                 Swarovski & Crystal Studded Set — ₹5,000
                             </option>
 
-                            <option value="Bridal Luxury Customized Set" data-price="6000">
+                            <option
+                                value="Bridal Luxury Customized Set"
+                                data-price="6000"
+                            >
                                 Bridal Luxury Customized Set — ₹6,000
                             </option>
 
-                            <option value="Glass/Clear Jelly Extensions with Foil" data-price="4000">
+                            <option
+                                value="Glass/Clear Jelly Extensions with Foil"
+                                data-price="4000"
+                            >
                                 Glass/Clear Jelly Extensions with Foil — ₹4,000
                             </option>
 
-                            <option value="Russian Dry Manicure + Polygel Set" data-price="4500">
+                            <option
+                                value="Russian Dry Manicure + Polygel Set"
+                                data-price="4500"
+                            >
                                 Russian Dry Manicure + Polygel Set — ₹4,500
                             </option>
 
-                            <option value="Metallic 3D Sculpted Charms Set" data-price="5000">
+                            <option
+                                value="Metallic 3D Sculpted Charms Set"
+                                data-price="5000"
+                            >
                                 Metallic 3D Sculpted Charms Set — ₹5,000
                             </option>
 
-                            <option value="Hand-Sculpted Floral 3D Art Extensions" data-price="4800">
+                            <option
+                                value="Hand-Sculpted Floral 3D Art Extensions"
+                                data-price="4800"
+                            >
                                 Hand-Sculpted Floral 3D Art Extensions — ₹4,800
                             </option>
 
@@ -905,35 +1122,59 @@
 
                         <optgroup label="💎 Nail Studio Services">
 
-                            <option value="Acrylic Extensions + Gel Polish" data-price="1800">
+                            <option
+                                value="Acrylic Extensions + Gel Polish"
+                                data-price="1800"
+                            >
                                 Acrylic Extensions + Gel Polish — ₹1,800
                             </option>
 
-                            <option value="Hands Gel Polish" data-price="699">
+                            <option
+                                value="Hands Gel Polish"
+                                data-price="699"
+                            >
                                 Hands Gel Polish — ₹699
                             </option>
 
-                            <option value="Bridal Nails" data-price="2499">
+                            <option
+                                value="Bridal Nails"
+                                data-price="2499"
+                            >
                                 Bridal Nails — ₹2,499
                             </option>
 
-                            <option value="Temporary Nails + Gel Polish" data-price="1199">
+                            <option
+                                value="Temporary Nails + Gel Polish"
+                                data-price="1199"
+                            >
                                 Temporary Nails + Gel Polish — ₹1,199
                             </option>
 
-                            <option value="Burgundy Nails" data-price="1299">
+                            <option
+                                value="Burgundy Nails"
+                                data-price="1299"
+                            >
                                 Burgundy Nails — ₹1,299
                             </option>
 
-                            <option value="French Nails" data-price="999">
+                            <option
+                                value="French Nails"
+                                data-price="999"
+                            >
                                 French Nails — ₹999
                             </option>
 
-                            <option value="Rouge Nails" data-price="1399">
+                            <option
+                                value="Rouge Nails"
+                                data-price="1399"
+                            >
                                 Rouge Nails — ₹1,399
                             </option>
 
-                            <option value="Polka Dot Nails" data-price="1099">
+                            <option
+                                value="Polka Dot Nails"
+                                data-price="1099"
+                            >
                                 Polka Dot Nails — ₹1,099
                             </option>
 
@@ -944,7 +1185,9 @@
                 </div>
 
 
-                <!-- SELECTED SERVICE PRICE -->
+                <!-- ======================================
+                     SELECTED SERVICE PRICE
+                ======================================= -->
 
                 <div
                     id="priceBox"
@@ -1014,12 +1257,30 @@
                 </div>
 
 
-                <!-- BACKEND COMPATIBILITY -->
+                <!-- ======================================
+                     BACKEND COMPATIBILITY
+                ======================================= -->
 
                 <input
                     type="hidden"
                     id="design"
                     name="design"
+                    value="Not Selected"
+                >
+
+
+                <input
+                    type="hidden"
+                    id="shape"
+                    name="shape"
+                    value="Not Selected"
+                >
+
+
+                <input
+                    type="hidden"
+                    id="shade"
+                    name="shade"
                     value="Not Selected"
                 >
 
@@ -1064,6 +1325,32 @@
 
                             <strong id="paymentSummaryService">
                                 Select a service
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Nail Shape
+                            </span>
+
+                            <strong id="paymentSummaryShape">
+                                Not Selected
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Nail Shade
+                            </span>
+
+                            <strong id="paymentSummaryShade">
+                                Not Selected
                             </strong>
 
                         </div>
@@ -1279,7 +1566,7 @@
 
                         <p>
                             You can choose Pay at Studio for a normal booking,
-                            or choose Online Payment for instant payment confirmation.
+                            or choose Online Payment for online payment.
                         </p>
 
                     </div>
@@ -1296,6 +1583,7 @@
                 >
                     ✅ Confirm Appointment
                 </button>
+
 
             </form>
 
@@ -1468,17 +1756,18 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        // ==========================================
-        // BACKEND URL
-        // ==========================================
+
+        /* ==========================================
+           BACKEND URL
+        ========================================== */
 
         const API_URL =
             "https://nail-studio-backend-k604.onrender.com/api/bookings";
 
 
-        // ==========================================
-        // GET ELEMENTS
-        // ==========================================
+        /* ==========================================
+           GET ELEMENTS
+        ========================================== */
 
         const dateInput =
             document.getElementById("bookingDate");
@@ -1511,7 +1800,32 @@ document.addEventListener(
             document.getElementById("bookingTime");
 
 
-        // PAYMENT SUMMARY
+        /* ==========================================
+           SHAPE + SHADE ELEMENTS
+        ========================================== */
+
+        const shapeInput =
+            document.getElementById("shape");
+
+        const shadeInput =
+            document.getElementById("shade");
+
+        const selectedShapeDisplay =
+            document.getElementById("selectedShapeDisplay");
+
+        const selectedShadeDisplay =
+            document.getElementById("selectedShadeDisplay");
+
+        const paymentSummaryShape =
+            document.getElementById("paymentSummaryShape");
+
+        const paymentSummaryShade =
+            document.getElementById("paymentSummaryShade");
+
+
+        /* ==========================================
+           PAYMENT SUMMARY
+        ========================================== */
 
         const paymentSummaryService =
             document.getElementById(
@@ -1534,7 +1848,9 @@ document.addEventListener(
             );
 
 
-        // ONLINE PAYMENT
+        /* ==========================================
+           ONLINE PAYMENT
+        ========================================== */
 
         const upiPaymentBox =
             document.getElementById(
@@ -1567,27 +1883,37 @@ document.addEventListener(
             );
 
 
-        // ==========================================
-        // GET SERVICE FROM URL
-        // ==========================================
+        /* ==========================================
+           GET URL PARAMETERS
+        ========================================== */
 
         const urlParams =
             new URLSearchParams(
                 window.location.search
             );
 
+
+        const urlShape =
+            urlParams.get("shape");
+
+
+        const urlShade =
+            urlParams.get("shade");
+
+
         const urlService =
             urlParams.get("service");
 
 
-        // ==========================================
-        // FORMAT PRICE
-        // ==========================================
+        /* ==========================================
+           FORMAT PRICE
+        ========================================== */
 
         function formatPrice(price) {
 
             const amount =
                 Number(price);
+
 
             if (
                 isNaN(amount) ||
@@ -1598,15 +1924,16 @@ document.addEventListener(
 
             }
 
+
             return "₹" +
                 amount.toLocaleString("en-IN");
 
         }
 
 
-        // ==========================================
-        // GET SERVICE PRICE
-        // ==========================================
+        /* ==========================================
+           GET SERVICE PRICE
+        ========================================== */
 
         function getCurrentServicePrice() {
 
@@ -1619,14 +1946,19 @@ document.addEventListener(
 
             }
 
+
             const selectedOption =
                 serviceSelect.options[
                     serviceSelect.selectedIndex
                 ];
 
+
             if (!selectedOption) {
+
                 return 0;
+
             }
+
 
             return Number(
                 selectedOption.dataset.price
@@ -1635,18 +1967,22 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // UPDATE ONLINE PAYMENT BUTTON
-        // ==========================================
+        /* ==========================================
+           UPDATE ONLINE PAYMENT BUTTON
+        ========================================== */
 
         function updatePaymentButton() {
 
             if (!onlinePaymentButton) {
+
                 return;
+
             }
+
 
             const price =
                 getCurrentServicePrice();
+
 
             onlinePaymentButton.textContent =
                 "💳 Pay " +
@@ -1656,11 +1992,14 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // UPDATE PAYMENT SUMMARY
-        // ==========================================
+        /* ==========================================
+           UPDATE PAYMENT SUMMARY
+        ========================================== */
 
         function updatePaymentSummary() {
+
+
+            /* SERVICE */
 
             if (
                 serviceSelect &&
@@ -1672,13 +2011,16 @@ document.addEventListener(
                         serviceSelect.selectedIndex
                     ];
 
+
                 const price =
                     Number(
                         selectedOption.dataset.price
                     ) || 0;
 
+
                 paymentSummaryService.textContent =
                     selectedOption.value;
+
 
                 paymentSummaryPrice.textContent =
                     formatPrice(price);
@@ -1689,13 +2031,54 @@ document.addEventListener(
                 paymentSummaryService.textContent =
                     "Select a service";
 
+
                 paymentSummaryPrice.textContent =
                     "₹0";
 
             }
 
 
-            // DATE
+            /* SHAPE */
+
+            if (
+                shapeInput &&
+                shapeInput.value &&
+                shapeInput.value !== "Not Selected"
+            ) {
+
+                paymentSummaryShape.textContent =
+                    shapeInput.value;
+
+            }
+            else {
+
+                paymentSummaryShape.textContent =
+                    "Not Selected";
+
+            }
+
+
+            /* SHADE */
+
+            if (
+                shadeInput &&
+                shadeInput.value &&
+                shadeInput.value !== "Not Selected"
+            ) {
+
+                paymentSummaryShade.textContent =
+                    shadeInput.value;
+
+            }
+            else {
+
+                paymentSummaryShade.textContent =
+                    "Not Selected";
+
+            }
+
+
+            /* DATE */
 
             if (
                 dateInput &&
@@ -1707,6 +2090,7 @@ document.addEventListener(
                         dateInput.value +
                         "T00:00:00"
                     );
+
 
                 paymentSummaryDate.textContent =
                     date.toLocaleDateString(
@@ -1727,7 +2111,7 @@ document.addEventListener(
             }
 
 
-            // TIME
+            /* TIME */
 
             if (
                 timeInput &&
@@ -1748,14 +2132,15 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // UPDATE ONLINE PAYMENT AMOUNT
-        // ==========================================
+        /* ==========================================
+           UPDATE ONLINE PAYMENT AMOUNT
+        ========================================== */
 
         function updateUpiPaymentAmount() {
 
             const price =
                 getCurrentServicePrice();
+
 
             if (upiPaymentAmount) {
 
@@ -1764,25 +2149,30 @@ document.addEventListener(
 
             }
 
+
             updatePaymentButton();
 
         }
 
 
-        // ==========================================
-        // UPDATE SERVICE PRICE
-        // ==========================================
+        /* ==========================================
+           UPDATE SERVICE PRICE
+        ========================================== */
 
         function updateServicePrice() {
 
             if (!serviceSelect) {
+
                 return;
+
             }
+
 
             const selectedOption =
                 serviceSelect.options[
                     serviceSelect.selectedIndex
                 ];
+
 
             if (
                 !selectedOption ||
@@ -1790,16 +2180,28 @@ document.addEventListener(
             ) {
 
                 if (priceBox) {
-                    priceBox.style.display = "none";
+
+                    priceBox.style.display =
+                        "none";
+
                 }
+
 
                 if (selectedServiceName) {
-                    selectedServiceName.textContent = "-";
+
+                    selectedServiceName.textContent =
+                        "-";
+
                 }
 
+
                 if (selectedServicePrice) {
-                    selectedServicePrice.textContent = "₹0";
+
+                    selectedServicePrice.textContent =
+                        "₹0";
+
                 }
+
 
                 updatePaymentSummary();
                 updateUpiPaymentAmount();
@@ -1813,6 +2215,7 @@ document.addEventListener(
                 Number(
                     selectedOption.dataset.price
                 ) || 0;
+
 
             const serviceName =
                 selectedOption.value;
@@ -1848,9 +2251,75 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // AUTO SELECT SERVICE FROM URL
-        // ==========================================
+        /* ==========================================
+           LOAD SHAPE + SHADE FROM VIRTUAL PREVIEW
+        ========================================== */
+
+        if (
+            urlShape &&
+            shapeInput
+        ) {
+
+            shapeInput.value =
+                urlShape;
+
+            if (selectedShapeDisplay) {
+
+                selectedShapeDisplay.textContent =
+                    urlShape;
+
+            }
+
+        }
+
+
+        if (
+            urlShade &&
+            shadeInput
+        ) {
+
+            shadeInput.value =
+                urlShade;
+
+            if (selectedShadeDisplay) {
+
+                selectedShadeDisplay.textContent =
+                    urlShade;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           INITIAL SHAPE + SHADE DISPLAY
+        ========================================== */
+
+        if (
+            !urlShape &&
+            selectedShapeDisplay
+        ) {
+
+            selectedShapeDisplay.textContent =
+                "Not Selected";
+
+        }
+
+
+        if (
+            !urlShade &&
+            selectedShadeDisplay
+        ) {
+
+            selectedShadeDisplay.textContent =
+                "Not Selected";
+
+        }
+
+
+        /* ==========================================
+           AUTO SELECT SERVICE FROM URL
+        ========================================== */
 
         if (
             urlService &&
@@ -1882,9 +2351,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // SERVICE CHANGE
-        // ==========================================
+        /* ==========================================
+           SERVICE CHANGE
+        ========================================== */
 
         if (serviceSelect) {
 
@@ -1897,6 +2366,7 @@ document.addEventListener(
                     updatePaymentSummary();
 
                     updateUpiPaymentAmount();
+
 
                     if (paymentSuccessBox) {
 
@@ -1912,9 +2382,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // DATE CHANGE
-        // ==========================================
+        /* ==========================================
+           DATE CHANGE
+        ========================================== */
 
         if (dateInput) {
 
@@ -1930,9 +2400,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // TIME CHANGE
-        // ==========================================
+        /* ==========================================
+           TIME CHANGE
+        ========================================== */
 
         if (timeInput) {
 
@@ -1948,31 +2418,38 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // MINIMUM DATE
-        // ==========================================
+        /* ==========================================
+           MINIMUM DATE
+        ========================================== */
 
         function setMinimumDate() {
 
             if (!dateInput) {
+
                 return;
+
             }
+
 
             const today =
                 new Date();
 
+
             const year =
                 today.getFullYear();
+
 
             const month =
                 String(
                     today.getMonth() + 1
                 ).padStart(2, "0");
 
+
             const day =
                 String(
                     today.getDate()
                 ).padStart(2, "0");
+
 
             dateInput.min =
                 year +
@@ -1987,9 +2464,9 @@ document.addEventListener(
         setMinimumDate();
 
 
-        // ==========================================
-        // SUNDAY CLOSED
-        // ==========================================
+        /* ==========================================
+           SUNDAY CLOSED
+        ========================================== */
 
         if (dateInput) {
 
@@ -1998,14 +2475,18 @@ document.addEventListener(
                 function () {
 
                     if (!this.value) {
+
                         return;
+
                     }
+
 
                     const selectedDate =
                         new Date(
                             this.value +
                             "T00:00:00"
                         );
+
 
                     if (
                         selectedDate.getDay() === 0
@@ -2015,7 +2496,9 @@ document.addEventListener(
                             "Sorry! We are closed on Sundays. Please select another date."
                         );
 
+
                         this.value = "";
+
 
                         updatePaymentSummary();
 
@@ -2027,9 +2510,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // MOBILE VALIDATION
-        // ==========================================
+        /* ==========================================
+           MOBILE VALIDATION
+        ========================================== */
 
         if (phoneInput) {
 
@@ -2049,9 +2532,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // PAYMENT CARD SELECTION
-        // ==========================================
+        /* ==========================================
+           PAYMENT CARD SELECTION
+        ========================================== */
 
         const paymentCards =
             document.querySelectorAll(
@@ -2067,14 +2550,18 @@ document.addEventListener(
                         'input[name="paymentMethod"]'
                     );
 
+
                 if (!radio) {
+
                     return;
+
                 }
 
 
                 radio.addEventListener(
                     "change",
                     function () {
+
 
                         paymentCards.forEach(
                             function (item) {
@@ -2096,7 +2583,7 @@ document.addEventListener(
                         }
 
 
-                        // ONLINE PAYMENT
+                        /* ONLINE */
 
                         if (
                             radio.value === "UPI" &&
@@ -2111,7 +2598,9 @@ document.addEventListener(
 
                             }
 
+
                             updateUpiPaymentAmount();
+
 
                             if (bookingSubmitBtn) {
 
@@ -2123,7 +2612,7 @@ document.addEventListener(
                         }
 
 
-                        // CASH PAYMENT
+                        /* CASH */
 
                         if (
                             radio.value === "CASH" &&
@@ -2138,6 +2627,7 @@ document.addEventListener(
 
                             }
 
+
                             if (paymentSuccessBox) {
 
                                 paymentSuccessBox.classList.remove(
@@ -2145,6 +2635,7 @@ document.addEventListener(
                                 );
 
                             }
+
 
                             if (bookingSubmitBtn) {
 
@@ -2162,41 +2653,47 @@ document.addEventListener(
         );
 
 
-        // ==========================================
-        // INITIAL UI
-        // ==========================================
+        /* ==========================================
+           INITIAL UI
+        ========================================== */
 
         updatePaymentSummary();
+
         updateUpiPaymentAmount();
 
 
-        // ==========================================
-        // CREATE PAYMENT ID
-        // ==========================================
+        /* ==========================================
+           CREATE PAYMENT ID
+        ========================================== */
 
         function generatePaymentId() {
 
             const now =
                 new Date();
 
+
             const year =
                 now.getFullYear();
+
 
             const month =
                 String(
                     now.getMonth() + 1
                 ).padStart(2, "0");
 
+
             const day =
                 String(
                     now.getDate()
                 ).padStart(2, "0");
+
 
             const random =
                 Math.random()
                     .toString(36)
                     .substring(2, 10)
                     .toUpperCase();
+
 
             return (
                 "PAY-" +
@@ -2210,9 +2707,9 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // BOOKING FORM SUBMIT
-        // ==========================================
+        /* ==========================================
+           BOOKING FORM SUBMIT
+        ========================================== */
 
         if (bookingForm) {
 
@@ -2223,7 +2720,7 @@ document.addEventListener(
                     event.preventDefault();
 
 
-                    // VALIDATION
+                    /* VALIDATION */
 
                     if (
                         !bookingForm.checkValidity()
@@ -2236,7 +2733,7 @@ document.addEventListener(
                     }
 
 
-                    // SUNDAY CHECK
+                    /* SUNDAY CHECK */
 
                     if (
                         dateInput &&
@@ -2248,6 +2745,7 @@ document.addEventListener(
                                 dateInput.value +
                                 "T00:00:00"
                             );
+
 
                         if (
                             selectedDate.getDay() === 0
@@ -2264,7 +2762,7 @@ document.addEventListener(
                     }
 
 
-                    // SERVICE
+                    /* SERVICE */
 
                     const selectedOption =
                         serviceSelect.options[
@@ -2280,11 +2778,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a nail service.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -2295,7 +2796,7 @@ document.addEventListener(
                         selectedOption.value;
 
 
-                    // PRICE
+                    /* PRICE */
 
                     const servicePrice =
                         Number(
@@ -2311,18 +2812,35 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Unable to determine service price.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
                     }
 
 
-                    // PAYMENT METHOD
+                    /* SHAPE */
+
+                    const selectedShape =
+                        shapeInput.value ||
+                        "Not Selected";
+
+
+                    /* SHADE */
+
+                    const selectedShade =
+                        shadeInput.value ||
+                        "Not Selected";
+
+
+                    /* PAYMENT METHOD */
 
                     const selectedPayment =
                         document.querySelector(
@@ -2335,11 +2853,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please select a payment method.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -2350,9 +2871,9 @@ document.addEventListener(
                         selectedPayment.value;
 
 
-                    // ==================================
-                    // CASH PAYMENT
-                    // ==================================
+                    /* ==================================
+                       CASH PAYMENT
+                    ================================== */
 
                     if (
                         paymentMethod === "CASH"
@@ -2361,6 +2882,7 @@ document.addEventListener(
                         bookingSubmitBtn.disabled =
                             true;
 
+
                         bookingSubmitBtn.textContent =
                             "Saving Appointment...";
 
@@ -2368,8 +2890,10 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "Saving your appointment...";
 
+
                         bookingMessage.className =
                             "booking-message";
+
 
                         bookingMessage.style.display =
                             "block";
@@ -2383,11 +2907,13 @@ document.addEventListener(
                                     .value
                                     .trim(),
 
+
                             email:
                                 document
                                     .getElementById("email")
                                     .value
                                     .trim(),
+
 
                             phone:
                                 document
@@ -2395,31 +2921,48 @@ document.addEventListener(
                                     .value
                                     .trim(),
 
+
                             service:
                                 selectedService,
+
 
                             design:
                                 document
                                     .getElementById("design")
                                     .value,
 
+
+                            shape:
+                                selectedShape,
+
+
+                            shade:
+                                selectedShade,
+
+
                             bookingDate:
                                 dateInput.value,
+
 
                             bookingTime:
                                 timeInput.value,
 
+
                             bookingType:
                                 "SERVICE",
+
 
                             notes:
                                 "Payment Method: Pay at Studio.",
 
+
                             paymentMethod:
                                 "CASH",
 
+
                             paymentStatus:
                                 "PENDING",
+
 
                             paymentAmount:
                                 servicePrice
@@ -2524,6 +3067,16 @@ document.addEventListener(
 
                                 "<br>" +
 
+                                "<strong>Shape:</strong> " +
+                                bookingData.shape +
+
+                                "<br>" +
+
+                                "<strong>Shade:</strong> " +
+                                bookingData.shade +
+
+                                "<br>" +
+
                                 "<strong>Price:</strong> " +
                                 formatPrice(
                                     servicePrice
@@ -2555,6 +3108,7 @@ document.addEventListener(
                             bookingMessage.className =
                                 "booking-message success";
 
+
                             bookingMessage.style.display =
                                 "block";
 
@@ -2563,24 +3117,52 @@ document.addEventListener(
 
 
                             if (priceBox) {
+
                                 priceBox.style.display =
                                     "none";
+
                             }
 
 
                             selectedServiceName.textContent =
                                 "-";
 
+
                             selectedServicePrice.textContent =
                                 "₹0";
 
 
+                            /*
+                             * Shape and Shade ko reset nahi kar rahe,
+                             * kyunki Virtual Preview se selected look
+                             * booking ke liye important hai.
+                             */
+
+
+                            shapeInput.value =
+                                selectedShape;
+
+
+                            shadeInput.value =
+                                selectedShade;
+
+
+                            selectedShapeDisplay.textContent =
+                                selectedShape;
+
+
+                            selectedShadeDisplay.textContent =
+                                selectedShade;
+
+
                             updatePaymentSummary();
+
                             updateUpiPaymentAmount();
 
 
                             bookingSubmitBtn.disabled =
                                 false;
+
 
                             bookingSubmitBtn.textContent =
                                 "✅ Confirm Appointment";
@@ -2611,8 +3193,10 @@ document.addEventListener(
                             bookingMessage.innerHTML =
                                 "❌ Unable to confirm your booking. Please try again.";
 
+
                             bookingMessage.className =
                                 "booking-message error";
+
 
                             bookingMessage.style.display =
                                 "block";
@@ -2620,6 +3204,7 @@ document.addEventListener(
 
                             bookingSubmitBtn.disabled =
                                 false;
+
 
                             bookingSubmitBtn.textContent =
                                 "✅ Confirm Appointment";
@@ -2632,9 +3217,9 @@ document.addEventListener(
                     }
 
 
-                    // ==================================
-                    // ONLINE PAYMENT
-                    // ==================================
+                    /* ==================================
+                       ONLINE PAYMENT
+                    ================================== */
 
                     if (
                         paymentMethod === "UPI"
@@ -2643,6 +3228,7 @@ document.addEventListener(
                         bookingSubmitBtn.disabled =
                             true;
 
+
                         bookingSubmitBtn.textContent =
                             "Saving Appointment...";
 
@@ -2650,8 +3236,10 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "Saving your appointment...";
 
+
                         bookingMessage.className =
                             "booking-message";
+
 
                         bookingMessage.style.display =
                             "block";
@@ -2665,11 +3253,13 @@ document.addEventListener(
                                     .value
                                     .trim(),
 
+
                             email:
                                 document
                                     .getElementById("email")
                                     .value
                                     .trim(),
+
 
                             phone:
                                 document
@@ -2677,31 +3267,48 @@ document.addEventListener(
                                     .value
                                     .trim(),
 
+
                             service:
                                 selectedService,
+
 
                             design:
                                 document
                                     .getElementById("design")
                                     .value,
 
+
+                            shape:
+                                selectedShape,
+
+
+                            shade:
+                                selectedShade,
+
+
                             bookingDate:
                                 dateInput.value,
+
 
                             bookingTime:
                                 timeInput.value,
 
+
                             bookingType:
                                 "SERVICE",
+
 
                             notes:
                                 "Payment Method: Online Payment.",
 
+
                             paymentMethod:
                                 "UPI",
 
+
                             paymentStatus:
                                 "PENDING",
+
 
                             paymentAmount:
                                 servicePrice
@@ -2799,19 +3406,31 @@ document.addEventListener(
                             }
 
 
-                            // SAVE BOOKING INFORMATION
+                            /* SAVE BOOKING INFORMATION */
 
                             upiPaymentBox.dataset.bookingId =
                                 bookingId;
 
+
                             upiPaymentBox.dataset.paymentAmount =
                                 servicePrice;
+
 
                             upiPaymentBox.dataset.service =
                                 selectedService;
 
+
+                            upiPaymentBox.dataset.shape =
+                                selectedShape;
+
+
+                            upiPaymentBox.dataset.shade =
+                                selectedShade;
+
+
                             upiPaymentBox.dataset.bookingDate =
                                 bookingData.bookingDate;
+
 
                             upiPaymentBox.dataset.bookingTime =
                                 bookingData.bookingTime;
@@ -2845,6 +3464,7 @@ document.addEventListener(
                             bookingMessage.className =
                                 "booking-message success";
 
+
                             bookingMessage.style.display =
                                 "block";
 
@@ -2856,6 +3476,7 @@ document.addEventListener(
 
                             bookingSubmitBtn.disabled =
                                 true;
+
 
                             bookingSubmitBtn.textContent =
                                 "💳 Complete Online Payment";
@@ -2879,8 +3500,10 @@ document.addEventListener(
                             bookingMessage.innerHTML =
                                 "❌ Unable to save your appointment. Please try again.";
 
+
                             bookingMessage.className =
                                 "booking-message error";
+
 
                             bookingMessage.style.display =
                                 "block";
@@ -2888,6 +3511,7 @@ document.addEventListener(
 
                             bookingSubmitBtn.disabled =
                                 false;
+
 
                             bookingSubmitBtn.textContent =
                                 "💳 Continue to Online Payment";
@@ -2902,15 +3526,16 @@ document.addEventListener(
         }
 
 
-        // ==========================================
-        // ONLINE PAYMENT BUTTON
-        // ==========================================
+        /* ==========================================
+           ONLINE PAYMENT BUTTON
+        ========================================== */
 
         if (onlinePaymentButton) {
 
             onlinePaymentButton.addEventListener(
                 "click",
                 async function () {
+
 
                     const bookingId =
                         upiPaymentBox.dataset.bookingId;
@@ -2921,11 +3546,14 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Please continue with the booking first.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
@@ -2946,21 +3574,25 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Payment amount is invalid.";
 
+
                         bookingMessage.className =
                             "booking-message error";
 
+
                         bookingMessage.style.display =
                             "block";
+
 
                         return;
 
                     }
 
 
-                    // PROCESSING
+                    /* PROCESSING */
 
                     onlinePaymentButton.disabled =
                         true;
+
 
                     onlinePaymentButton.textContent =
                         "Processing Payment...";
@@ -2969,24 +3601,22 @@ document.addEventListener(
                     bookingMessage.innerHTML =
                         "💳 Processing online payment...";
 
+
                     bookingMessage.className =
                         "booking-message";
+
 
                     bookingMessage.style.display =
                         "block";
 
 
-                    // ==================================
-                    // GENERATE PAYMENT ID
-                    // ==================================
+                    /* GENERATE PAYMENT ID */
 
                     const paymentId =
                         generatePaymentId();
 
 
-                    // ==================================
-                    // UPDATE BOOKING AS PAID
-                    // ==================================
+                    /* UPDATE BOOKING AS PAID */
 
                     const paymentUpdate = {
 
@@ -3081,9 +3711,7 @@ document.addEventListener(
                         }
 
 
-                        // ==================================
-                        // GET PAYMENT ID FROM BACKEND RESPONSE
-                        // ==================================
+                        /* BACKEND RESPONSE */
 
                         let updatedBooking =
                             paymentResult;
@@ -3099,16 +3727,6 @@ document.addEventListener(
 
                         }
 
-
-                        /*
-                         * IMPORTANT:
-                         * Backend se paymentId milega to
-                         * wahi ID show hogi.
-                         *
-                         * Agar backend response mein paymentId
-                         * nahi aaye to generated ID fallback
-                         * ke liye use hogi.
-                         */
 
                         const finalPaymentId =
                             (
@@ -3128,9 +3746,7 @@ document.addEventListener(
                             paymentAmount;
 
 
-                        // ==================================
-                        // SUCCESS
-                        // ==================================
+                        /* SUCCESS */
 
                         successAmount.textContent =
                             formatPrice(
@@ -3165,6 +3781,24 @@ document.addEventListener(
                                 upiPaymentBox.dataset.service
                                 ||
                                 "Nail Service"
+                            ) +
+
+                            "<br>" +
+
+                            "<strong>Shape:</strong> " +
+                            (
+                                upiPaymentBox.dataset.shape
+                                ||
+                                "Not Selected"
+                            ) +
+
+                            "<br>" +
+
+                            "<strong>Shade:</strong> " +
+                            (
+                                upiPaymentBox.dataset.shade
+                                ||
+                                "Not Selected"
                             ) +
 
                             "<br>" +
@@ -3209,24 +3843,25 @@ document.addEventListener(
                         bookingMessage.className =
                             "booking-message success";
 
+
                         bookingMessage.style.display =
                             "block";
 
 
-                        // HIDE ONLINE PAYMENT BOX
+                        /* HIDE ONLINE PAYMENT BOX */
 
                         upiPaymentBox.classList.remove(
                             "show"
                         );
 
 
-                        // HIDE PAYMENT BUTTON
+                        /* HIDE PAYMENT BUTTON */
 
                         onlinePaymentButton.style.display =
                             "none";
 
 
-                        // RESET FORM
+                        /* RESET FORM */
 
                         bookingForm.reset();
 
@@ -3255,6 +3890,29 @@ document.addEventListener(
                         }
 
 
+                        /*
+                         * Keep Shape and Shade visible
+                         * even after form reset.
+                         */
+
+                        shapeInput.value =
+                            upiPaymentBox.dataset.shape ||
+                            selectedShape;
+
+
+                        shadeInput.value =
+                            upiPaymentBox.dataset.shade ||
+                            selectedShade;
+
+
+                        selectedShapeDisplay.textContent =
+                            shapeInput.value;
+
+
+                        selectedShadeDisplay.textContent =
+                            shadeInput.value;
+
+
                         paymentCards.forEach(
                             function (card) {
 
@@ -3268,6 +3926,7 @@ document.addEventListener(
 
                         bookingSubmitBtn.disabled =
                             false;
+
 
                         bookingSubmitBtn.textContent =
                             "✅ Confirm Appointment";
@@ -3296,8 +3955,10 @@ document.addEventListener(
                         bookingMessage.innerHTML =
                             "❌ Payment could not be completed. Please try again.";
 
+
                         bookingMessage.className =
                             "booking-message error";
+
 
                         bookingMessage.style.display =
                             "block";
@@ -3305,6 +3966,7 @@ document.addEventListener(
 
                         onlinePaymentButton.disabled =
                             false;
+
 
                         onlinePaymentButton.textContent =
                             "💳 Pay " +
@@ -3331,13 +3993,26 @@ document.addEventListener(
 ========================================== -->
 
 <script src="js/main.js"></script>
-<script>
-    function logoutUser() {
-        localStorage.removeItem("nailStudioLoggedIn");
-        localStorage.removeItem("nailStudioUser");
 
-        window.location.replace("login.html");
-    }
+
+<script>
+
+function logoutUser() {
+
+    localStorage.removeItem(
+        "nailStudioLoggedIn"
+    );
+
+    localStorage.removeItem(
+        "nailStudioUser"
+    );
+
+    window.location.replace(
+        "login.html"
+    );
+
+}
+
 </script>
 
 
