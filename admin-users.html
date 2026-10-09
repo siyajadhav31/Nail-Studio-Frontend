@@ -1,29 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Registered Users | Nail Studio</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
-
     <style>
-
-        /* ==========================================
-           USER PAGE HEADER
-        ========================================== */
-
         .users-page-header {
             display: flex;
             justify-content: space-between;
@@ -32,11 +23,6 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-
-
-        /* ==========================================
-           USER COUNT
-        ========================================== */
 
         .registered-count {
             font-size: 15px;
@@ -48,11 +34,6 @@
             color: #b8860b;
             font-weight: 600;
         }
-
-
-        /* ==========================================
-           USER SEARCH
-        ========================================== */
 
         .user-search {
             position: relative;
@@ -74,35 +55,22 @@
 
         .user-search input:focus {
             border-color: #c89b3c;
-            box-shadow:
-                0 0 0 3px
-                rgba(200, 155, 60, 0.10);
+            box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.10);
         }
 
         .user-search span {
             position: absolute;
             left: 14px;
             top: 50%;
-            transform:
-                translateY(-50%);
+            transform: translateY(-50%);
             font-size: 16px;
         }
-
-
-        /* ==========================================
-           REFRESH BUTTON
-        ========================================== */
 
         .refresh-btn {
             border: none;
             padding: 11px 18px;
             border-radius: 12px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #c89b3c,
-                    #b8860b
-                );
+            background: linear-gradient(135deg, #c89b3c, #b8860b);
             color: white;
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
@@ -112,17 +80,15 @@
         }
 
         .refresh-btn:hover {
-            transform:
-                translateY(-2px);
-            box-shadow:
-                0 7px 18px
-                rgba(184, 134, 11, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(184, 134, 11, 0.25);
         }
 
-
-        /* ==========================================
-           USER TABLE
-        ========================================== */
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         .users-table-wrapper {
             overflow-x: auto;
@@ -132,6 +98,7 @@
         #usersTable {
             width: 100%;
             border-collapse: collapse;
+            display: none;
         }
 
         #usersTable th {
@@ -142,30 +109,15 @@
             vertical-align: middle;
         }
 
-
-        /* ==========================================
-           USER NAME
-        ========================================== */
-
         .user-name {
             font-weight: 500;
             color: #333;
         }
 
-
-        /* ==========================================
-           USER EMAIL
-        ========================================== */
-
         .user-email {
             color: #666;
             font-size: 13px;
         }
-
-
-        /* ==========================================
-           USER ID
-        ========================================== */
 
         .user-id {
             display: inline-flex;
@@ -181,22 +133,12 @@
             font-weight: 600;
         }
 
-
-        /* ==========================================
-           USER ACTION
-        ========================================== */
-
         .user-action {
             white-space: nowrap;
         }
 
-
-        /* ==========================================
-           EMPTY STATE
-        ========================================== */
-
         .user-empty {
-            padding: 45px 20px;
+            padding: 35px 20px;
             text-align: center;
             color: #777;
             font-size: 14px;
@@ -207,13 +149,26 @@
             margin-bottom: 10px;
         }
 
+        .user-date {
+            color: #666;
+            font-size: 12px;
+            white-space: nowrap;
+        }
 
-        /* ==========================================
-           RESPONSIVE
-        ========================================== */
+        .history-link {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #a47712;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .history-link:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 800px) {
-
             .users-page-header {
                 align-items: stretch;
             }
@@ -225,12 +180,9 @@
             .refresh-btn {
                 width: 100%;
             }
-
         }
 
-
         @media (max-width: 600px) {
-
             .users-page-header {
                 flex-direction: column;
             }
@@ -238,890 +190,425 @@
             .registered-count {
                 text-align: left;
             }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
 
-<!-- ==========================================
-     NAVBAR
-========================================== -->
+            <a href="admin-bookings.html" class="logo">
+                💅 Nail Studio
+            </a>
 
-<header>
+            <ul class="nav-links">
+                <li>
+                    <a href="admin-bookings.html">Customer Bookings</a>
+                </li>
 
-    <nav class="navbar">
+                <li>
+                    <a href="admin-users.html">Registered Users</a>
+                </li>
+            </ul>
 
-        <a href="admin-bookings.html"
-           class="logo">
+        </nav>
+    </header>
 
-            💅 Nail Studio
+    <!-- REGISTERED USERS -->
+    <section class="admin-bookings">
+        <div class="admin-container">
 
-        </a>
+            <div class="admin-title">
+                <span>✨ Nail Studio Administration</span>
 
+                <h1>Registered Users</h1>
 
-        <ul class="nav-links">
+                <p>Manage all registered customers from one place.</p>
+            </div>
 
-            <li>
+            <div class="users-page-header">
 
-                <a href="admin-bookings.html">
-
-                    Customer Bookings
-
-                </a>
-
-            </li>
-
-
-            <li>
-
-                <a href="admin-users.html">
-
+                <div class="registered-count" id="userCount">
                     Registered Users
+                </div>
 
-                </a>
+                <div class="user-search">
+                    <span>🔍</span>
+                    <input
+                        type="text"
+                        id="searchUser"
+                        placeholder="Search by name or email..."
+                        autocomplete="off">
+                </div>
 
-            </li>
-
-        </ul>
-
-    </nav>
-
-</header>
-
-
-
-<!-- ==========================================
-     REGISTERED USERS
-========================================== -->
-
-<section class="admin-bookings">
-
-    <div class="admin-container">
-
-
-        <!-- PAGE TITLE -->
-
-        <div class="admin-title">
-
-            <span>
-
-                ✨ Nail Studio Administration
-
-            </span>
-
-
-            <h1>
-
-                Registered Users
-
-            </h1>
-
-
-            <p>
-
-                Manage all registered customers from one place.
-
-            </p>
-
-        </div>
-
-
-
-        <!-- ==========================================
-             USER CONTROLS
-        ========================================== -->
-
-        <div class="users-page-header">
-
-
-            <!-- USER COUNT -->
-
-            <div
-                class="registered-count"
-                id="userCount">
-
-                Registered Users
+                <button type="button" id="refreshBtn" class="refresh-btn">
+                    ↻ Refresh Users
+                </button>
 
             </div>
 
-
-
-            <!-- SEARCH -->
-
-            <div class="user-search">
-
-                <span>
-
-                    🔍
-
-                </span>
-
-
-                <input
-                    type="text"
-                    id="searchUser"
-                    placeholder="Search by name or email...">
-
-            </div>
-
-
-
-            <!-- REFRESH -->
-
-            <button
-                id="refreshBtn"
-                class="refresh-btn">
-
-                ↻ Refresh Users
-
-            </button>
-
-        </div>
-
-
-
-        <!-- ==========================================
-             USER TABLE
-        ========================================== -->
-
-        <div class="table-container">
-
-
-            <!-- LOADING -->
-
-            <div
-                id="loading"
-                class="loading">
-
-                Loading registered users...
-
-            </div>
-
-
-            <div class="users-table-wrapper">
-
-
-                <table
-                    id="usersTable"
-                    style="display:none;">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-
-                                ID
-
-                            </th>
-
-
-                            <th>
-
-                                Name
-
-                            </th>
-
-
-                            <th>
-
-                                Email
-
-                            </th>
-
-
-                            <th>
-
-                                Action
-
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody
-                        id="usersTableBody">
-
-                    </tbody>
-
-                </table>
-
-
-            </div>
-
-
-
-            <!-- EMPTY -->
-
-            <div
-                id="emptyMessage"
-                class="empty-message"
-                style="display:none;">
-
-                No registered users found.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<script>
-
-
-// ==========================================
-// API URL
-// ==========================================
-
-const API_URL =
-    "https://nail-studio-backend-k604.onrender.com/api/users";
-
-
-const ADMIN_API_URL =
-    "https://nail-studio-backend-k604.onrender.com/api/admin";
-
-
-let usersData = [];
-
-
-
-// ==========================================
-// CHECK ADMIN LOGIN
-// ==========================================
-
-async function checkAdminLogin() {
-
-    try {
-
-        const response =
-            await fetch(
-                `${ADMIN_API_URL}/check`,
-                {
-                    method: "GET",
-                    credentials: "include",
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            console.error(
-                "Admin check failed:",
-                response.status
-            );
-
-
-            window.location.href =
-                "admin-login.html";
-
-
-            return false;
-
-        }
-
-
-        const result =
-            await response.text();
-
-
-        console.log(
-            "Admin Check:",
-            result
-        );
-
-
-        if (
-            result !==
-            "Admin authenticated"
-        ) {
-
-            window.location.href =
-                "admin-login.html";
-
-
-            return false;
-
-        }
-
-
-        return true;
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Admin authentication error:",
-            error
-        );
-
-
-        window.location.href =
-            "admin-login.html";
-
-
-        return false;
-
-    }
-
-}
-
-
-
-// ==========================================
-// LOAD USERS
-// ==========================================
-
-async function loadUsers() {
-
-    const loading =
-        document.getElementById(
-            "loading"
-        );
-
-
-    const table =
-        document.getElementById(
-            "usersTable"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    const tableBody =
-        document.getElementById(
-            "usersTableBody"
-        );
-
-
-    loading.style.display =
-        "block";
-
-
-    table.style.display =
-        "none";
-
-
-    emptyMessage.style.display =
-        "none";
-
-
-    tableBody.innerHTML =
-        "";
-
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL +
-                "/all?_" +
-                new Date().getTime(),
-                {
-                    method: "GET",
-                    credentials: "include",
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Unable to load users. HTTP " +
-                response.status
-            );
-
-        }
-
-
-        usersData =
-            await response.json();
-
-
-        console.log(
-            "Registered Users:",
-            usersData
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        updateUserCount();
-
-
-        displayUsers();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "User loading error:",
-            error
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        table.style.display =
-            "none";
-
-
-        document.getElementById(
-            "userCount"
-        ).innerHTML =
-            "Registered Users";
-
-
-        emptyMessage.style.display =
-            "block";
-
-
-        emptyMessage.innerHTML = `
-
-            <div class="user-empty">
-
-                <div class="user-empty-icon">
-
-                    ⚠️
+            <a href="#" id="historyLink" class="history-link">
+                View Customer Login History
+            </a>
+
+            <div class="table-container">
+
+                <div id="loading" class="loading">
+                    Loading registered users...
+                </div>
+
+                <div id="usersTableWrapper" class="users-table-wrapper">
+
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Registered At</th>
+                                <th>Last Login</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
 
                 </div>
 
-
-                Unable to load users.
-
-                <br>
-
-                Make sure Spring Boot is running
-                and the API is available.
+                <div id="emptyMessage" class="empty-message" style="display:none;"></div>
 
             </div>
+        </div>
+    </section>
 
-        `;
+    <script>
+        // API URLs
+        const API_URL =
+            "https://nail-studio-backend-k604.onrender.com/api/users";
 
-    }
+        const ADMIN_API_URL =
+            "https://nail-studio-backend-k604.onrender.com/api/admin";
 
-}
+        let usersData = [];
 
+        const loading = document.getElementById("loading");
+        const table = document.getElementById("usersTable");
+        const tableBody = document.getElementById("usersTableBody");
+        const emptyMessage = document.getElementById("emptyMessage");
+        const userCount = document.getElementById("userCount");
+        const refreshBtn = document.getElementById("refreshBtn");
+        const searchInput = document.getElementById("searchUser");
 
+        // Safely create text-only table cells
+        function addCell(row, value, className) {
+            const cell = document.createElement("td");
+            const span = document.createElement("span");
 
-// ==========================================
-// UPDATE USER COUNT
-// ==========================================
+            span.textContent = value == null || value === ""
+                ? "—"
+                : String(value);
 
-function updateUserCount() {
+            if (className) {
+                span.className = className;
+            }
 
-    const userCount =
-        document.getElementById(
-            "userCount"
-        );
+            cell.appendChild(span);
+            row.appendChild(cell);
 
+            return cell;
+        }
 
-    userCount.innerHTML = `
+        // Format date values received from the backend
+        function formatDate(value) {
+            if (!value) {
+                return "—";
+            }
 
-        Registered Users
+            const date = new Date(value);
 
-        <span>
+            if (Number.isNaN(date.getTime())) {
+                return String(value).replace("T", " ");
+            }
 
-            (${usersData.length})
+            return date.toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+        }
 
-        </span>
-
-    `;
-
-}
-
-
-
-// ==========================================
-// DISPLAY USERS
-// ==========================================
-
-function displayUsers() {
-
-    const table =
-        document.getElementById(
-            "usersTable"
-        );
-
-
-    const tableBody =
-        document.getElementById(
-            "usersTableBody"
-        );
-
-
-    const emptyMessage =
-        document.getElementById(
-            "emptyMessage"
-        );
-
-
-    const searchInput =
-        document.getElementById(
-            "searchUser"
-        );
-
-
-    const searchText =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    tableBody.innerHTML =
-        "";
-
-
-    const filteredUsers =
-        usersData.filter(
-            function (user) {
-
-                const name =
-                    user.name
-                        ? String(user.name)
-                            .toLowerCase()
-                        : "";
-
-
-                const email =
-                    user.email
-                        ? String(user.email)
-                            .toLowerCase()
-                        : "";
-
-
-                return (
-
-                    name.includes(searchText) ||
-
-                    email.includes(searchText)
-
+        // Check whether admin is logged in
+        async function checkAdminLogin() {
+            try {
+                const response = await fetch(
+                    `${ADMIN_API_URL}/check`,
+                    {
+                        method: "GET",
+                        credentials: "include",
+                        cache: "no-store"
+                    }
                 );
 
+                if (!response.ok) {
+                    console.error(
+                        "Admin check failed:",
+                        response.status,
+                        await response.text()
+                    );
+
+                    window.location.href = "admin-login.html";
+                    return false;
+                }
+
+                const result = (await response.text()).trim();
+
+                if (result !== "Admin authenticated") {
+                    console.error("Unexpected admin check response:", result);
+                    window.location.href = "admin-login.html";
+                    return false;
+                }
+
+                console.log("Admin authenticated");
+                return true;
+
+            } catch (error) {
+                console.error("Admin authentication error:", error);
+
+                loading.textContent =
+                    "Unable to contact the server. Check your internet connection and try again.";
+
+                return false;
+            }
+        }
+
+        // Load registered users from the backend
+        async function loadUsers() {
+            loading.style.display = "block";
+            loading.textContent = "Loading registered users...";
+            table.style.display = "none";
+            emptyMessage.style.display = "none";
+            tableBody.innerHTML = "";
+            refreshBtn.disabled = true;
+
+            try {
+                const response = await fetch(
+                    `${API_URL}/all?_=${Date.now()}`,
+                    {
+                        method: "GET",
+                        credentials: "include",
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    const details = await response.text();
+
+                    throw new Error(
+                        `Unable to load users. HTTP ${response.status}. ${details}`
+                    );
+                }
+
+                const result = await response.json();
+
+                if (!Array.isArray(result)) {
+                    throw new Error("The users API did not return a list.");
+                }
+
+                usersData = result;
+
+                console.log("Registered users:", usersData);
+
+                loading.style.display = "none";
+                updateUserCount();
+                displayUsers();
+
+            } catch (error) {
+                console.error("User loading error:", error);
+
+                loading.style.display = "none";
+                table.style.display = "none";
+
+                userCount.textContent = "Registered Users";
+
+                emptyMessage.style.display = "block";
+                emptyMessage.innerHTML = "";
+
+                const box = document.createElement("div");
+                box.className = "user-empty";
+
+                const icon = document.createElement("div");
+                icon.className = "user-empty-icon";
+                icon.textContent = "⚠️";
+
+                const message = document.createElement("p");
+                message.textContent = error.message;
+
+                const retry = document.createElement("button");
+                retry.type = "button";
+                retry.className = "refresh-btn";
+                retry.textContent = "Try Again";
+                retry.addEventListener("click", loadUsers);
+
+                box.append(icon, message, retry);
+                emptyMessage.appendChild(box);
+
+            } finally {
+                refreshBtn.disabled = false;
+            }
+        }
+
+        // Update total user count
+        function updateUserCount() {
+            userCount.innerHTML = "";
+
+            userCount.appendChild(
+                document.createTextNode("Registered Users ")
+            );
+
+            const count = document.createElement("span");
+            count.textContent = `(${usersData.length})`;
+
+            userCount.appendChild(count);
+        }
+
+        // Display users and apply search
+        function displayUsers() {
+            tableBody.innerHTML = "";
+
+            const searchText = searchInput.value.trim().toLowerCase();
+
+            const filteredUsers = usersData.filter(function (user) {
+                const name = String(user.name || "").toLowerCase();
+                const email = String(user.email || "").toLowerCase();
+
+                return name.includes(searchText) ||
+                    email.includes(searchText);
+            });
+
+            if (filteredUsers.length === 0) {
+                table.style.display = "none";
+                emptyMessage.style.display = "block";
+                emptyMessage.innerHTML = "";
+
+                const box = document.createElement("div");
+                box.className = "user-empty";
+
+                const icon = document.createElement("div");
+                icon.className = "user-empty-icon";
+                icon.textContent = usersData.length === 0 ? "👥" : "🔍";
+
+                const message = document.createElement("p");
+                message.textContent = usersData.length === 0
+                    ? "No registered users found."
+                    : "No users found for your search.";
+
+                box.append(icon, message);
+                emptyMessage.appendChild(box);
+
+                return;
+            }
+
+            emptyMessage.style.display = "none";
+            table.style.display = "table";
+
+            filteredUsers.forEach(function (user) {
+                const row = document.createElement("tr");
+
+                addCell(row, user.id, "user-id");
+                addCell(row, user.name, "user-name");
+                addCell(row, user.email, "user-email");
+                addCell(row, formatDate(user.createdAt), "user-date");
+                addCell(row, formatDate(user.lastLogin), "user-date");
+
+                const actionCell = document.createElement("td");
+                actionCell.className = "user-action";
+
+                const deleteButton = document.createElement("button");
+                deleteButton.type = "button";
+                deleteButton.className = "delete-btn";
+                deleteButton.textContent = "🗑️ Delete";
+
+                deleteButton.addEventListener("click", function () {
+                    deleteUser(user.id, user.name);
+                });
+
+                actionCell.appendChild(deleteButton);
+                row.appendChild(actionCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Delete a registered user
+        async function deleteUser(id, name) {
+            if (!confirm(`Are you sure you want to delete ${name || "this user"}?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `${API_URL}/${encodeURIComponent(id)}`,
+                    {
+                        method: "DELETE",
+                        credentials: "include"
+                    }
+                );
+
+                const resultText = await response.text();
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Delete failed. HTTP ${response.status}. ${resultText}`
+                    );
+                }
+
+                alert("User deleted successfully.");
+                await loadUsers();
+
+            } catch (error) {
+                console.error("Delete user error:", error);
+                alert(error.message || "Unable to delete user.");
+            }
+        }
+
+        // Search users
+        searchInput.addEventListener("input", displayUsers);
+
+        // Refresh users
+        refreshBtn.addEventListener("click", loadUsers);
+
+        // Login history link
+        document.getElementById("historyLink").addEventListener(
+            "click",
+            function (event) {
+                event.preventDefault();
+
+                // Opens the login history API in a new tab for debugging.
+                // The admin session cookie must be available.
+                window.open(
+                    `${API_URL}/login-history`,
+                    "_blank",
+                    "noopener"
+                );
             }
         );
 
-
-
-    if (
-        filteredUsers.length === 0
-    ) {
-
-        table.style.display =
-            "none";
-
-
-        emptyMessage.style.display =
-            "block";
-
-
-        if (
-            usersData.length === 0
-        ) {
-
-            emptyMessage.innerHTML = `
-
-                <div class="user-empty">
-
-                    <div class="user-empty-icon">
-
-                        👥
-
-                    </div>
-
-                    No registered users found.
-
-                </div>
-
-            `;
-
-        }
-
-        else {
-
-            emptyMessage.innerHTML = `
-
-                <div class="user-empty">
-
-                    <div class="user-empty-icon">
-
-                        🔍
-
-                    </div>
-
-                    No users found for your search.
-
-                </div>
-
-            `;
-
-        }
-
-
-        return;
-
-    }
-
-
-
-    emptyMessage.style.display =
-        "none";
-
-
-    table.style.display =
-        "table";
-
-
-
-    filteredUsers.forEach(
-        function (user) {
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-
-            row.innerHTML = `
-
-                <td>
-
-                    <span class="user-id">
-
-                        ${user.id || ""}
-
-                    </span>
-
-                </td>
-
-
-                <td>
-
-                    <span class="user-name">
-
-                        ${user.name || ""}
-
-                    </span>
-
-                </td>
-
-
-                <td>
-
-                    <span class="user-email">
-
-                        ${user.email || ""}
-
-                    </span>
-
-                </td>
-
-
-                <td class="user-action">
-
-                    <div class="action-buttons">
-
-                        <button
-                            class="delete-btn"
-                            onclick="deleteUser(${user.id}, '${escapeName(user.name)}')">
-
-                            🗑️ Delete
-
-                        </button>
-
-                    </div>
-
-                </td>
-
-            `;
-
-
-            tableBody.appendChild(
-                row
-            );
-
-        }
-    );
-
-}
-
-
-
-// ==========================================
-// ESCAPE USER NAME
-// ==========================================
-
-function escapeName(name) {
-
-    return String(name || "")
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '\\"');
-
-}
-
-
-
-// ==========================================
-// DELETE USER
-// ==========================================
-
-async function deleteUser(
-    id,
-    name
-) {
-
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete " +
-            name +
-            "?"
-        );
-
-
-    if (!confirmDelete) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL + "/" + id,
-                {
-                    method: "DELETE",
-                    credentials:
-                        "include"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Delete failed. HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const message =
-            await response.text();
-
-
-        alert(
-            "🗑️ " +
-            message
-        );
-
-
-        loadUsers();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Delete user error:",
-            error
-        );
-
-
-        alert(
-            "❌ Unable to delete user."
-        );
-
-    }
-
-}
-
-
-
-// ==========================================
-// SEARCH USERS
-// ==========================================
-
-document
-    .getElementById("searchUser")
-    .addEventListener(
-        "input",
-        function () {
-
-            displayUsers();
-
-        }
-    );
-
-
-
-// ==========================================
-// REFRESH USERS
-// ==========================================
-
-document
-    .getElementById("refreshBtn")
-    .addEventListener(
-        "click",
-        function () {
-
-            loadUsers();
-
-        }
-    );
-
-
-
-// ==========================================
-// START
-// ==========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
-
-        const isAdmin =
-            await checkAdminLogin();
-
-
-        if (isAdmin) {
-
-            loadUsers();
-
-        }
-
-    }
-);
-
-</script>
-
+        // Start page
+        document.addEventListener("DOMContentLoaded", async function () {
+            const isAdmin = await checkAdminLogin();
+
+            if (isAdmin) {
+                await loadUsers();
+            }
+        });
+    </script>
 
 </body>
-
 </html>
+
