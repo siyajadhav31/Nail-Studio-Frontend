@@ -1,35 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💅 Admin Bookings | Nail Studio</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        * { box-sizing: border-box; }
 
-        /* =====================================================
-           ADMIN PAGE
-        ===================================================== */
-
-        .admin-bookings {
-            padding: 55px 20px;
+        body {
+            margin: 0;
             background: #fffaf8;
-            min-height: 80vh;
+            color: #49393e;
+            font-family: 'Poppins', sans-serif;
         }
 
+        .admin-bookings {
+            padding: 45px 20px;
+            min-height: 80vh;
+        }
 
         .admin-container {
             width: 100%;
@@ -37,68 +30,47 @@
             margin: auto;
         }
 
-
-        /* =====================================================
-           TITLE
-        ===================================================== */
-
         .admin-title {
             text-align: center;
             margin-bottom: 35px;
         }
 
-
         .admin-title span {
             display: inline-block;
             color: #b8860b;
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            font-weight: 500;
             margin-bottom: 8px;
         }
 
-
         .admin-title h1 {
             margin: 0;
-            color: #49393e;
             font-family: 'Cormorant Garamond', serif;
             font-size: 44px;
             font-weight: 700;
         }
 
-
         .admin-title p {
-            margin-top: 8px;
             color: #8c7770;
-            font-family: 'Poppins', sans-serif;
             font-size: 14px;
         }
 
-
-        /* =====================================================
-           DASHBOARD STATS
-        ===================================================== */
-
         .admin-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
-
 
         .admin-stat-card {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 22px;
-            background: #ffffff;
+            background: white;
             border: 1px solid #eadfd8;
             border-radius: 14px;
-            box-shadow:
-                0 5px 20px rgba(80, 50, 30, 0.06);
+            box-shadow: 0 5px 20px rgba(80, 50, 30, 0.06);
         }
-
 
         .stat-icon {
             width: 48px;
@@ -112,28 +84,19 @@
             flex-shrink: 0;
         }
 
-
         .stat-info h3 {
             margin: 0 0 4px;
-            font-family: 'Poppins', sans-serif;
+            color: #8c7770;
             font-size: 12px;
             font-weight: 500;
-            color: #8c7770;
         }
-
 
         .stat-info p {
             margin: 0;
             font-family: 'Cormorant Garamond', serif;
             font-size: 28px;
             font-weight: 700;
-            color: #49393e;
         }
-
-
-        /* =====================================================
-           CONTROLS
-        ===================================================== */
 
         .booking-controls {
             display: flex;
@@ -143,32 +106,34 @@
             margin-bottom: 20px;
         }
 
+        .admin-refresh-btn,
+        .edit-btn,
+        .delete-btn,
+        .update-btn {
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.2s ease;
+        }
 
         .admin-refresh-btn {
-            border: none;
             background: #c89b3c;
-            color: #ffffff;
+            color: white;
             padding: 11px 19px;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            cursor: pointer;
-            transition: 0.25s ease;
         }
 
-
-        .admin-refresh-btn:hover {
+        .admin-refresh-btn:hover,
+        .edit-btn:hover,
+        .update-btn:hover {
             background: #a87919;
-            transform: translateY(-1px);
         }
-
 
         .admin-refresh-btn:disabled {
             opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
+            cursor: wait;
         }
-
 
         .booking-filter {
             display: flex;
@@ -176,30 +141,18 @@
             gap: 10px;
         }
 
-
         .booking-filter label {
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            color: #5d4a42;
         }
-
 
         .booking-filter select {
             min-width: 180px;
             padding: 10px 13px;
             border: 1px solid #dfd0c9;
             border-radius: 8px;
-            background: #ffffff;
-            color: #5d4a42;
+            background: white;
             font-family: 'Poppins', sans-serif;
-            outline: none;
-            cursor: pointer;
         }
-
-
-        /* =====================================================
-           ERROR
-        ===================================================== */
 
         .booking-error {
             display: none;
@@ -209,268 +162,51 @@
             background: #fff0f0;
             border: 1px solid #efb7b7;
             color: #b42323;
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            text-align: center;
+            overflow-wrap: anywhere;
         }
 
-
-        /* =====================================================
-           TABLE CARD
-        ===================================================== */
-
         .table-wrapper {
-            background: #ffffff;
+            background: white;
             border: 1px solid #eadfd8;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow:
-                0 8px 30px rgba(80, 50, 30, 0.07);
+            box-shadow: 0 8px 30px rgba(80, 50, 30, 0.07);
         }
 
-
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-
-        /* =====================================================
-           TABLE
-        ===================================================== */
+        .table-container { width: 100%; overflow-x: auto; }
 
         #bookingTable {
             width: 100%;
-            min-width: 1000px;
+            min-width: 1050px;
             border-collapse: collapse;
-            table-layout: fixed;
         }
 
-
-        #bookingTable thead {
-            background: #49393e;
-        }
-
+        #bookingTable thead { background: #49393e; }
 
         #bookingTable th {
-            padding: 15px 16px;
+            padding: 15px;
             text-align: left;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+            color: white;
             font-size: 12px;
             font-weight: 500;
             white-space: nowrap;
         }
-
 
         #bookingTable td {
-            padding: 17px 16px;
+            padding: 16px 15px;
             border-bottom: 1px solid #eee5e0;
             vertical-align: middle;
-            color: #5d4a42;
-            font-family: 'Poppins', sans-serif;
             font-size: 12px;
-            word-break: break-word;
+            overflow-wrap: anywhere;
         }
 
+        #bookingTable tbody tr:hover { background: #fffaf5; }
+        #bookingTable tbody tr:last-child td { border-bottom: none; }
 
-        #bookingTable tbody tr {
-            transition: 0.2s ease;
-        }
-
-
-        #bookingTable tbody tr:hover {
-            background: #fffaf5;
-        }
-
-
-        #bookingTable tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-
-        /* =====================================================
-           COLUMN WIDTHS
-        ===================================================== */
-
-        #bookingTable th:nth-child(1),
-        #bookingTable td:nth-child(1) {
-            width: 22%;
-        }
-
-
-        #bookingTable th:nth-child(2),
-        #bookingTable td:nth-child(2) {
-            width: 29%;
-        }
-
-
-        #bookingTable th:nth-child(3),
-        #bookingTable td:nth-child(3) {
-            width: 15%;
-        }
-
-
-        #bookingTable th:nth-child(4),
-        #bookingTable td:nth-child(4) {
-            width: 22%;
-        }
-
-
-        #bookingTable th:nth-child(5),
-        #bookingTable td:nth-child(5) {
-            width: 12%;
-        }
-
-
-        /* =====================================================
-           CUSTOMER
-        ===================================================== */
-
-        .customer-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-
-        .customer-name {
-            color: #49393e;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-
-        .customer-email {
-            color: #8c7770;
-            font-size: 11px;
-            word-break: break-all;
-        }
-
-
-        .customer-phone {
-            color: #8c7770;
-            font-size: 11px;
-        }
-
-
-        /* =====================================================
-           BOOKING
-        ===================================================== */
-
-        .booking-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            min-width: 0;
-            margin-bottom: 8px;
-        }
-
-
-        .booking-detail-main {
-            font-weight: 600;
-            line-height: 1.45;
-            white-space: normal;
-            word-break: break-word;
-        }
-
-
-        .booking-detail-sub {
-            font-size: 11px;
-            color: #8c7770;
-        }
-
-
-        .service-name {
-            color: #a66a00;
-        }
-
-
-        .offer-name {
-            color: #9a6a00;
-        }
-
-
-        .shape-name {
-            color: #7b42b8;
-        }
-
-
-        .shade-name {
-            color: #b8860b;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-
-        /* =====================================================
-           BADGES
-        ===================================================== */
-
-        .service-badge,
-        .offer-badge,
-        .virtual-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            padding: 6px 11px;
-            border-radius: 30px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 10px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-
-        .service-badge {
-            background: #fff0d2;
-            color: #a66a00;
-            border: 1px solid #f3d79c;
-        }
-
-
-        .offer-badge {
-            background: #fff4df;
-            color: #9a6a00;
-            border: 1px solid #ead09a;
-        }
-
-
-        .virtual-badge {
-            background: #f1eaff;
-            color: #7b42b8;
-            border: 1px solid #d8c1f5;
-        }
-
-
-        /* =====================================================
-           DATE TIME
-        ===================================================== */
-
-        .date-time-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-
-        .booking-date {
-            color: #49393e;
-            font-weight: 500;
-        }
-
-
-        .booking-time {
-            color: #8c7770;
-            font-size: 11px;
-        }
-
-
-        /* =====================================================
-           PAYMENT
-        ===================================================== */
-
+        .customer-detail,
+        .booking-detail,
+        .date-time-detail,
         .payment-detail {
             display: flex;
             flex-direction: column;
@@ -478,31 +214,56 @@
             gap: 5px;
         }
 
+        .customer-name { font-weight: 600; font-size: 13px; }
+        .customer-email, .customer-phone, .booking-detail-sub,
+        .booking-time, .payment-method {
+            color: #8c7770;
+            font-size: 11px;
+        }
+
+        .customer-email { overflow-wrap: anywhere; }
+        .service-name { color: #a66a00; font-weight: 600; }
+        .offer-name { color: #9a6a00; font-weight: 600; }
+        .shape-name { color: #7b42b8; font-size: 11px; }
+        .shade-name { color: #b8860b; font-size: 11px; }
+
+        .service-badge, .offer-badge {
+            display: inline-flex;
+            width: fit-content;
+            margin-top: 8px;
+            padding: 6px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .service-badge {
+            background: #fff0d2;
+            color: #a66a00;
+            border: 1px solid #f3d79c;
+        }
+
+        .offer-badge {
+            background: #fff4df;
+            color: #9a6a00;
+            border: 1px solid #ead09a;
+        }
 
         .payment-amount {
             font-family: 'Cormorant Garamond', serif;
             font-size: 22px;
             font-weight: 700;
-            color: #49393e;
-            line-height: 1;
+            line-height: 1.1;
         }
 
-
-        .paid-badge,
-        .pending-badge,
-        .no-payment-badge {
+        .paid-badge, .pending-badge, .no-payment-badge {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
             width: fit-content;
             padding: 5px 9px;
             border-radius: 20px;
-            font-family: 'Poppins', sans-serif;
             font-size: 10px;
             font-weight: 600;
-            white-space: nowrap;
         }
-
 
         .paid-badge {
             background: #edf9f1;
@@ -510,13 +271,11 @@
             border: 1px solid #b9e3c5;
         }
 
-
         .pending-badge {
             background: #fff7e6;
             color: #9a6a00;
             border: 1px solid #f1d79a;
         }
-
 
         .no-payment-badge {
             background: #f4f4f4;
@@ -524,45 +283,21 @@
             border: 1px solid #ddd;
         }
 
-
-        .payment-method {
-            color: #8c7770;
-            font-size: 10px;
-            line-height: 1.35;
-        }
-
-
-        /* =====================================================
-           PAYMENT ID
-        ===================================================== */
-
         .payment-id-label {
             color: #9b857c;
             font-size: 9px;
-            font-weight: 500;
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
-
         .payment-id {
-            display: block;
-            max-width: 190px;
+            max-width: 180px;
             padding: 5px 7px;
             border-radius: 5px;
             background: #f8f3ef;
             border: 1px solid #eadfd8;
-            color: #6d554d;
-            font-family: 'Poppins', sans-serif;
             font-size: 9px;
-            font-weight: 500;
-            line-height: 1.35;
-            word-break: break-all;
+            overflow-wrap: anywhere;
         }
-
-
-        /* =====================================================
-           ACTION
-        ===================================================== */
 
         .action-buttons {
             display: flex;
@@ -571,70 +306,23 @@
             flex-wrap: wrap;
         }
 
-
-        .edit-btn,
-        .delete-btn {
-            border: none;
-            border-radius: 6px;
+        .edit-btn, .delete-btn {
             padding: 8px 10px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
+            color: white;
             font-size: 10px;
-            font-weight: 500;
-            transition: 0.25s ease;
             white-space: nowrap;
         }
 
+        .edit-btn { background: #c89b3c; }
+        .delete-btn { background: #dc3545; }
+        .delete-btn:hover { background: #b92332; }
 
-        .edit-btn {
-            background: #c89b3c;
-            color: #ffffff;
-        }
-
-
-        .edit-btn:hover {
-            background: #a87919;
-            transform: translateY(-1px);
-        }
-
-
-        .delete-btn {
-            background: #dc3545;
-            color: #ffffff;
-        }
-
-
-        .delete-btn:hover {
-            background: #b92332;
-            transform: translateY(-1px);
-        }
-
-
-        /* =====================================================
-           LOADING / EMPTY
-        ===================================================== */
-
-        .loading {
-            padding: 40px;
+        .loading, .empty-message {
+            padding: 35px;
             text-align: center;
             color: #8c7770;
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
         }
-
-
-        .empty-message {
-            padding: 40px;
-            text-align: center;
-            color: #8c7770;
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-        }
-
-
-        /* =====================================================
-           MODAL
-        ===================================================== */
 
         .admin-modal {
             display: none;
@@ -647,7 +335,6 @@
             padding: 20px;
         }
 
-
         .admin-modal-content {
             position: relative;
             width: 100%;
@@ -656,2910 +343,761 @@
             overflow-y: auto;
             background: #fffaf8;
             border-radius: 14px;
-            padding: 35px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
-
         .admin-modal-content h2 {
-            margin: 0 0 25px;
-            color: #49393e;
+            margin: 0 0 22px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 30px;
         }
 
-
         .admin-close-modal {
             position: absolute;
-            top: 12px;
+            top: 10px;
             right: 18px;
             font-size: 30px;
             cursor: pointer;
             color: #8b756c;
         }
 
-
-        .edit-form-group {
-            margin-bottom: 18px;
-        }
-
+        .edit-form-group { margin-bottom: 16px; }
 
         .edit-form-group label {
             display: block;
             margin-bottom: 7px;
             color: #5e4b43;
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
         }
-
 
         .edit-form-group input,
         .edit-form-group select {
             width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
+            padding: 11px;
             border: 1px solid #dfd0c9;
             border-radius: 7px;
-            background: #ffffff;
+            background: white;
             font-family: 'Poppins', sans-serif;
-            outline: none;
         }
-
 
         .update-btn {
             width: 100%;
-            border: none;
             background: #c89b3c;
-            color: #ffffff;
+            color: white;
             padding: 13px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
             font-weight: 500;
         }
 
-
-        .update-btn:hover {
-            background: #aa812c;
+        .admin-footer {
+            padding: 20px;
+            text-align: center;
+            color: #8c7770;
+            font-size: 12px;
         }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 1000px) {
-
-            .admin-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
 
         @media (max-width: 650px) {
-
-            .admin-bookings {
-                padding: 35px 12px;
-            }
-
-
-            .admin-title h1 {
-                font-size: 36px;
-            }
-
-
-            .admin-stats {
-                grid-template-columns: 1fr;
-            }
-
-
-            .booking-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-
-            .booking-filter {
-                justify-content: space-between;
-            }
-
-
-            .booking-filter select {
-                flex: 1;
-                min-width: 0;
-            }
-
-
-            .admin-refresh-btn {
-                width: 100%;
-            }
-
-
-            .admin-modal-content {
-                padding: 25px 20px;
-            }
-
+            .admin-bookings { padding: 30px 12px; }
+            .admin-title h1 { font-size: 36px; }
+            .admin-stats { grid-template-columns: 1fr; }
+            .booking-controls { flex-direction: column; align-items: stretch; }
+            .booking-filter { justify-content: space-between; }
+            .booking-filter select { flex: 1; min-width: 0; }
+            .admin-refresh-btn { width: 100%; }
+            .admin-modal-content { padding: 25px 20px; }
         }
-
     </style>
-
 </head>
 
-
 <body>
-
-
-    <!-- =====================================================
-         ADMIN NAVBAR
-    ===================================================== -->
-
     <header>
-
         <nav class="admin-navbar">
-
-            <a
-                href="admin-bookings.html"
-                class="admin-logo">
-
-                💅 Nail Studio
-
-            </a>
-
-
+            <a href="admin-bookings.html" class="admin-logo">💅 Nail Studio</a>
             <div class="admin-nav-right">
-
-                <a
-                    href="admin-bookings.html"
-                    class="admin-nav-link">
-
-                    Customer Bookings
-
-                </a>
-
-
-                <button
-                    id="logoutBtn"
-                    class="logout-btn">
-
-                    Logout
-
-                </button>
-
+                <a href="admin-bookings.html" class="admin-nav-link">Customer Bookings</a>
+                <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
             </div>
-
         </nav>
-
     </header>
 
-
-    <!-- =====================================================
-         ADMIN BOOKINGS
-    ===================================================== -->
-
     <section class="admin-bookings">
-
         <div class="admin-container">
 
-
-            <!-- TITLE -->
-
             <div class="admin-title">
-
-                <span>
-                    💅 Nail Studio Administration
-                </span>
-
-                <h1>
-                    Customer Bookings
-                </h1>
-
-                <p>
-                    Manage all customer appointments from one place.
-                </p>
-
+                <span>💅 Nail Studio Administration</span>
+                <h1>Customer Bookings</h1>
+                <p>Manage all customer appointments from one place.</p>
             </div>
-
-
-            <!-- =================================================
-                 DASHBOARD STATS
-            ================================================= -->
 
             <div class="admin-stats">
-
-
                 <div class="admin-stat-card">
-
-                    <div class="stat-icon">
-                        📋
-                    </div>
-
+                    <div class="stat-icon">📋</div>
                     <div class="stat-info">
-
-                        <h3>
-                            Total Bookings
-                        </h3>
-
-                        <p id="totalBookings">
-                            0
-                        </p>
-
+                        <h3>Total Bookings</h3>
+                        <p id="totalBookings">0</p>
                     </div>
-
                 </div>
 
-
                 <div class="admin-stat-card">
-
-                    <div class="stat-icon">
-                        🎁
-                    </div>
-
+                    <div class="stat-icon">🎁</div>
                     <div class="stat-info">
-
-                        <h3>
-                            Offer Bookings
-                        </h3>
-
-                        <p id="offerBookings">
-                            0
-                        </p>
-
+                        <h3>Offer Bookings</h3>
+                        <p id="offerBookings">0</p>
                     </div>
-
                 </div>
 
-
                 <div class="admin-stat-card">
-
-                    <div class="stat-icon">
-                        💅
-                    </div>
-
+                    <div class="stat-icon">💅</div>
                     <div class="stat-info">
-
-                        <h3>
-                            Service Bookings
-                        </h3>
-
-                        <p id="serviceBookings">
-                            0
-                        </p>
-
+                        <h3>Service Bookings</h3>
+                        <p id="serviceBookings">0</p>
                     </div>
-
                 </div>
-
-
-                <div class="admin-stat-card">
-
-                    <div class="stat-icon">
-                        ✨
-                    </div>
-
-                    <div class="stat-info">
-
-                        <h3>
-                            Virtual Bookings
-                        </h3>
-
-                        <p id="virtualBookings">
-                            0
-                        </p>
-
-                    </div>
-
-                </div>
-
             </div>
-
-
-            <!-- =================================================
-                 CONTROLS
-            ================================================= -->
 
             <div class="booking-controls">
-
-                <button
-                    type="button"
-                    class="admin-refresh-btn"
-                    id="refreshBookings">
-
+                <button type="button" class="admin-refresh-btn" id="refreshBookings">
                     🔄 Refresh Bookings
-
                 </button>
-
 
                 <div class="booking-filter">
-
-                    <label for="bookingFilter">
-                        Show:
-                    </label>
-
+                    <label for="bookingFilter">Show:</label>
                     <select id="bookingFilter">
-
-                        <option value="all">
-                            All Bookings
-                        </option>
-
-                        <option value="offer">
-                            🎁 Offer Bookings
-                        </option>
-
-                        <option value="service">
-                            💅 Service Bookings
-                        </option>
-
-                        <option value="virtual">
-                            ✨ Virtual Bookings
-                        </option>
-
+                        <option value="all">All Bookings</option>
+                        <option value="offer">🎁 Offer Bookings</option>
+                        <option value="service">💅 Service Bookings</option>
                     </select>
-
                 </div>
-
             </div>
 
-
-            <!-- ERROR -->
-
-            <div
-                id="bookingError"
-                class="booking-error">
-            </div>
-
-
-            <!-- =================================================
-                 BOOKING TABLE
-            ================================================= -->
+            <div id="bookingError" class="booking-error"></div>
 
             <div class="table-wrapper">
-
                 <div class="table-container">
+                    <div id="loadingMessage" class="loading">Loading bookings...</div>
 
-
-                    <div
-                        id="loadingMessage"
-                        class="loading">
-
-                        Loading bookings...
-
-                    </div>
-
-
-                    <table
-                        id="bookingTable"
-                        style="display:none;">
-
+                    <table id="bookingTable" style="display:none;">
                         <thead>
-
                             <tr>
-
-                                <th>
-                                    Customer
-                                </th>
-
-                                <th>
-                                    Booking
-                                </th>
-
-                                <th>
-                                    Date & Time
-                                </th>
-
-                                <th>
-                                    Payment
-                                </th>
-
-                                <th>
-                                    Action
-                                </th>
-
+                                <th>Customer</th>
+                                <th>Booking Details</th>
+                                <th>Date &amp; Time</th>
+                                <th>Payment</th>
+                                <th>Action</th>
                             </tr>
-
                         </thead>
-
-
-                        <tbody id="bookingTableBody">
-                        </tbody>
-
+                        <tbody id="bookingTableBody"></tbody>
                     </table>
 
-
-                    <div
-                        id="emptyMessage"
-                        class="empty-message"
-                        style="display:none;">
-
+                    <div id="emptyMessage" class="empty-message" style="display:none;">
                         No bookings found.
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =====================================================
-         EDIT MODAL
-    ===================================================== -->
-
-    <div
-        id="editModal"
-        class="admin-modal">
-
-
+    <div id="editModal" class="admin-modal">
         <div class="admin-modal-content">
-
-
-            <span
-                class="admin-close-modal"
-                id="closeModal">
-
-                &times;
-
-            </span>
-
-
-            <h2>
-                💅 Edit Booking
-            </h2>
-
+            <span class="admin-close-modal" id="closeModal">&times;</span>
+            <h2>💅 Edit Booking</h2>
 
             <form id="editBookingForm">
-
-
                 <div class="edit-form-group">
-
-                    <label for="editName">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="editName"
-                        required>
-
+                    <label for="editName">Full Name</label>
+                    <input type="text" id="editName" required>
                 </div>
 
-
                 <div class="edit-form-group">
-
-                    <label for="editEmail">
-                        Email Address
-                    </label>
-
-                    <input
-                        type="email"
-                        id="editEmail"
-                        required>
-
+                    <label for="editEmail">Email Address</label>
+                    <input type="email" id="editEmail" required>
                 </div>
 
-
                 <div class="edit-form-group">
-
-                    <label for="editPhone">
-                        Phone Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="editPhone"
-                        pattern="[6-9][0-9]{9}"
-                        maxlength="10"
-                        required>
-
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone" maxlength="10" required>
                 </div>
 
-
                 <div class="edit-form-group">
-
-                    <label for="editDate">
-                        Appointment Date
-                    </label>
-
-                    <input
-                        type="date"
-                        id="editDate"
-                        required>
-
+                    <label for="editDate">Appointment Date</label>
+                    <input type="date" id="editDate" required>
                 </div>
 
-
                 <div class="edit-form-group">
-
-                    <label for="editTime">
-                        Appointment Time
-                    </label>
-
-                    <select
-                        id="editTime"
-                        required>
-
-                        <option value="">
-                            Select a time
-                        </option>
-
-                        <option value="10:00 AM">
-                            10:00 AM
-                        </option>
-
-                        <option value="11:00 AM">
-                            11:00 AM
-                        </option>
-
-                        <option value="12:00 PM">
-                            12:00 PM
-                        </option>
-
-                        <option value="1:00 PM">
-                            1:00 PM
-                        </option>
-
-                        <option value="2:00 PM">
-                            2:00 PM
-                        </option>
-
-                        <option value="3:00 PM">
-                            3:00 PM
-                        </option>
-
-                        <option value="4:00 PM">
-                            4:00 PM
-                        </option>
-
-                        <option value="5:00 PM">
-                            5:00 PM
-                        </option>
-
-                        <option value="6:00 PM">
-                            6:00 PM
-                        </option>
-
-                        <option value="7:00 PM">
-                            7:00 PM
-                        </option>
-
-                        <option value="8:00 PM">
-                            8:00 PM
-                        </option>
-
-                        <option value="9:00 PM">
-                            9:00 PM
-                        </option>
-
+                    <label for="editTime">Appointment Time</label>
+                    <select id="editTime" required>
+                        <option value="">Select a time</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>12:00 PM</option>
+                        <option>1:00 PM</option>
+                        <option>2:00 PM</option>
+                        <option>3:00 PM</option>
+                        <option>4:00 PM</option>
+                        <option>5:00 PM</option>
+                        <option>6:00 PM</option>
+                        <option>7:00 PM</option>
+                        <option>8:00 PM</option>
+                        <option>9:00 PM</option>
                     </select>
-
                 </div>
 
-
-                <div
-                    class="edit-form-group"
-                    id="paymentEditGroup">
-
-                    <label for="editPaymentStatus">
-                        Payment Status
-                    </label>
-
+                <div class="edit-form-group" id="paymentEditGroup">
+                    <label for="editPaymentStatus">Payment Status</label>
                     <select id="editPaymentStatus">
-
-                        <option value="PENDING">
-                            ⏳ PENDING
-                        </option>
-
-                        <option value="PAID">
-                            ✅ PAID
-                        </option>
-
+                        <option value="PENDING">⏳ PENDING</option>
+                        <option value="PAID">✅ PAID</option>
                     </select>
-
+                    <small>Only select PAID after confirming that payment was received.</small>
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="update-btn">
-
-                    💅 Update Booking
-
-                </button>
-
+                <button type="submit" class="update-btn">💅 Update Booking</button>
             </form>
-
         </div>
-
     </div>
 
-
-    <!-- =====================================================
-         FOOTER
-    ===================================================== -->
-
     <footer class="admin-footer">
-
-        <p>
-            💅 Nail Studio — Admin Panel
-        </p>
-
+        <p>💅 Nail Studio — Admin Panel</p>
     </footer>
 
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ===================================================== -->
-
     <script>
-
-
-        /* =====================================================
-           API CONFIGURATION
-        ===================================================== */
-
-        const API_BASE_URL =
-            "https://nail-studio-backend-k604.onrender.com";
-
-        const API_URL =
-            API_BASE_URL + "/api/bookings";
-
+        const API_BASE_URL = "https://nail-studio-backend-k604.onrender.com";
+        const API_URL = API_BASE_URL + "/api/bookings";
 
         let bookingsData = [];
-
         let selectedBookingId = null;
 
-
-        /* =====================================================
-           CHECK ADMIN LOGIN
-        ===================================================== */
-
         function checkAdminLogin() {
+            const adminLoggedIn = localStorage.getItem("adminLoggedIn");
+            const adminEmail = localStorage.getItem("adminEmail");
 
-            const adminLoggedIn =
-                localStorage.getItem("adminLoggedIn");
-
-            const adminEmail =
-                localStorage.getItem("adminEmail");
-
-
-            if (
-                adminLoggedIn === "true" &&
-                adminEmail
-            ) {
-
+            if (adminLoggedIn === "true" && adminEmail) {
                 return true;
-
             }
 
-
-            window.location.href =
-                "admin-login.html";
-
+            window.location.href = "admin-login.html";
             return false;
-
         }
-
-
-        /* =====================================================
-           GET BOOKING TYPE
-        ===================================================== */
-
-        function getBookingType(booking) {
-
-            if (!booking) {
-
-                return "SERVICE";
-
-            }
-
-
-            const type =
-                String(
-                    booking.bookingType || ""
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if (type === "VIRTUAL") {
-
-                return "VIRTUAL";
-
-            }
-
-
-            if (type === "OFFER") {
-
-                return "OFFER";
-
-            }
-
-
-            if (type === "SERVICE") {
-
-                return "SERVICE";
-
-            }
-
-
-            if (isOldOfferBooking(booking)) {
-
-                return "OFFER";
-
-            }
-
-
-            return "SERVICE";
-
-        }
-
-
-        /* =====================================================
-           OLD OFFER CHECK
-        ===================================================== */
 
         function isOldOfferBooking(booking) {
+            const service = String(booking?.service || "").trim().toLowerCase();
 
-            if (
-                !booking ||
-                !booking.service
-            ) {
-
-                return false;
-
-            }
-
-
-            const service =
-                String(
-                    booking.service
-                )
-                .trim()
-                .toLowerCase();
-
-
-            return (
-
-                service === "first visit offer" ||
-
-                service === "birthday offer" ||
-
-                service === "nail art combo" ||
-
-                service === "festive special" ||
-
-                service === "loyalty rewards"
-
-            );
-
+            return [
+                "first visit offer",
+                "birthday offer",
+                "nail art combo",
+                "festive special",
+                "loyalty rewards"
+            ].includes(service);
         }
 
+        // Virtual Preview selections are part of a service booking,
+        // not a separate booking category.
+        function getBookingType(booking) {
+            const type = String(booking?.bookingType || "").trim().toUpperCase();
 
-        /* =====================================================
-           TYPE CHECKS
-        ===================================================== */
+            if (type === "OFFER" || isOldOfferBooking(booking)) {
+                return "OFFER";
+            }
+
+            return "SERVICE";
+        }
 
         function isOfferBooking(booking) {
-
-            return (
-                getBookingType(booking) === "OFFER"
-            );
-
+            return getBookingType(booking) === "OFFER";
         }
-
-
-        function isVirtualBooking(booking) {
-
-            return (
-                getBookingType(booking) === "VIRTUAL"
-            );
-
-        }
-
 
         function isServiceBooking(booking) {
-
-            return (
-                getBookingType(booking) === "SERVICE"
-            );
-
+            return getBookingType(booking) === "SERVICE";
         }
-
-
-        /* =====================================================
-           DASHBOARD STATS
-        ===================================================== */
 
         function updateDashboardStats() {
-
-            const total =
-                bookingsData.length;
-
-
-            const offerCount =
-                bookingsData.filter(
-                    isOfferBooking
-                ).length;
-
-
-            const serviceCount =
-                bookingsData.filter(
-                    isServiceBooking
-                ).length;
-
-
-            const virtualCount =
-                bookingsData.filter(
-                    isVirtualBooking
-                ).length;
-
-
-            document.getElementById(
-                "totalBookings"
-            ).textContent = total;
-
-
-            document.getElementById(
-                "offerBookings"
-            ).textContent = offerCount;
-
-
-            document.getElementById(
-                "serviceBookings"
-            ).textContent = serviceCount;
-
-
-            document.getElementById(
-                "virtualBookings"
-            ).textContent = virtualCount;
-
+            document.getElementById("totalBookings").textContent = bookingsData.length;
+            document.getElementById("offerBookings").textContent =
+                bookingsData.filter(isOfferBooking).length;
+            document.getElementById("serviceBookings").textContent =
+                bookingsData.filter(isServiceBooking).length;
         }
-
-
-        /* =====================================================
-           ESCAPE HTML
-        ===================================================== */
 
         function escapeHTML(value) {
-
             return String(value ?? "")
-
                 .replace(/&/g, "&amp;")
-
                 .replace(/</g, "&lt;")
-
                 .replace(/>/g, "&gt;")
-
                 .replace(/"/g, "&quot;")
-
                 .replace(/'/g, "&#039;");
-
         }
-
-
-        /* =====================================================
-           PAYMENT AMOUNT
-        ===================================================== */
 
         function getPaymentAmount(booking) {
-
-            if (!booking) {
-
-                return "";
-
-            }
-
-
-            const possibleAmounts = [
-
-                booking.paymentAmount,
-
-                booking.amount,
-
-                booking.price,
-
-                booking.servicePrice
-
+            const candidates = [
+                booking?.paymentAmount,
+                booking?.amount,
+                booking?.price,
+                booking?.servicePrice
             ];
 
-
-            for (
-                const value of possibleAmounts
-            ) {
-
-                if (
-                    value !== undefined &&
-                    value !== null &&
-                    value !== "" &&
-                    !Number.isNaN(
-                        Number(
-                            String(value)
-                                .replace(/[₹,\s]/g, "")
-                        )
-                    )
-                ) {
-
-                    return Number(
-                        String(value)
-                            .replace(/[₹,\s]/g, "")
-                    );
-
+            for (const value of candidates) {
+                if (value !== null && value !== undefined && value !== "") {
+                    const amount = Number(String(value).replace(/[₹,\s]/g, ""));
+                    if (Number.isFinite(amount)) return amount;
                 }
-
             }
 
-
             return "";
-
         }
-
-
-        /* =====================================================
-           FORMAT INR
-        ===================================================== */
 
         function formatINR(value) {
+            if (value === "" || value === null || value === undefined) return "";
 
-            if (
-                value === "" ||
-                value === null ||
-                value === undefined
-            ) {
+            const amount = Number(value);
+            if (!Number.isFinite(amount)) return "";
 
-                return "";
-
-            }
-
-
-            const number =
-                Number(value);
-
-
-            if (
-                !Number.isFinite(number)
-            ) {
-
-                return "";
-
-            }
-
-
-            return new Intl.NumberFormat(
-                "en-IN",
-                {
-                    style: "currency",
-                    currency: "INR",
-                    maximumFractionDigits: 0
-                }
-            ).format(number);
-
+            return new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+            }).format(amount);
         }
-
-
-        /* =====================================================
-           PAYMENT METHOD
-        ===================================================== */
-
-        function getPaymentMethodText(
-            booking,
-            status
-        ) {
-
-            const method =
-                String(
-                    booking?.paymentMethod || ""
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if (
-                method === "GOOGLE_PAY" ||
-                method === "GOOGLEPAY" ||
-                method === "UPI" ||
-                method === "GOOGLE PAY"
-            ) {
-
-                return "📱 Google Pay / UPI";
-
-            }
-
-
-            if (
-                method === "CASH" ||
-                method === "PAY_AT_STUDIO" ||
-                method === "PAY AT STUDIO"
-            ) {
-
-                return "💵 Pay at Studio";
-
-            }
-
-
-            /*
-             * If payment is PAID but method is missing,
-             * assume online payment for display.
-             */
-
-            if (status === "PAID") {
-
-                return "📱 Google Pay / UPI";
-
-            }
-
-
-            if (status === "PENDING") {
-
-                return "💵 Pay at Studio";
-
-            }
-
-
-            return "—";
-
-        }
-
-
-        /* =====================================================
-           PAYMENT STATUS
-        ===================================================== */
 
         function getPaymentStatus(booking) {
+            const status = String(booking?.paymentStatus || "").trim().toUpperCase();
 
-            const status =
-                String(
-                    booking?.paymentStatus || ""
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if (status === "PAID") {
-
-                return "PAID";
-
-            }
-
-
-            if (status === "PENDING") {
-
-                return "PENDING";
-
-            }
-
+            if (status === "PAID") return "PAID";
+            if (status === "PENDING") return "PENDING";
 
             return "";
-
         }
 
+        function getPaymentMethodText(booking) {
+            const method = String(booking?.paymentMethod || "").trim().toUpperCase();
 
-        /* =====================================================
-           PAYMENT ID
-        ===================================================== */
-
-        function getPaymentId(booking) {
-
-            if (!booking) {
-
-                return "";
-
+            if (["UPI", "GOOGLE_PAY", "GOOGLEPAY", "GOOGLE PAY", "RAZORPAY"].includes(method)) {
+                return "📱 Online Payment / UPI";
             }
 
-
-            const paymentId =
-                booking.paymentId;
-
-
-            if (
-                paymentId === undefined ||
-                paymentId === null
-            ) {
-
-                return "";
-
+            if (["CASH", "PAY_AT_STUDIO", "PAY AT STUDIO"].includes(method)) {
+                return "💵 Pay at Studio";
             }
 
-
-            const value =
-                String(paymentId).trim();
-
-
-            if (!value) {
-
-                return "";
-
-            }
-
-
-            return value;
-
+            return "Method not recorded";
         }
-
-
-        /* =====================================================
-           PAYMENT HTML
-        ===================================================== */
 
         function getPaymentHTML(booking) {
+            const amount = getPaymentAmount(booking);
+            const formattedAmount = formatINR(amount);
+            const status = getPaymentStatus(booking);
+            const paymentId = String(booking?.paymentId || "").trim();
 
-            const type =
-                getBookingType(booking);
+            const amountHTML = formattedAmount
+                ? `<span class="payment-amount">${escapeHTML(formattedAmount)}</span>`
+                : `<span class="payment-amount">—</span>`;
 
+            const statusHTML = status === "PAID"
+                ? `<span class="paid-badge">✅ PAID</span>`
+                : status === "PENDING"
+                    ? `<span class="pending-badge">⏳ PENDING</span>`
+                    : `<span class="no-payment-badge">Status unavailable</span>`;
 
-            /* =================================================
-               VIRTUAL
-            ================================================= */
-
-            if (type === "VIRTUAL") {
-
-                return `
-
-                    <div class="payment-detail">
-
-                        <span class="no-payment-badge">
-                            ✨ N/A
-                        </span>
-
-                        <span class="payment-method">
-                            Virtual Booking
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-
-
-            /* =================================================
-               OFFER
-            ================================================= */
-
-            if (type === "OFFER") {
-
-                return `
-
-                    <div class="payment-detail">
-
-                        <span class="payment-amount">
-                            Free / Offer
-                        </span>
-
-                        <span class="pending-badge">
-                            ⏳ PENDING
-                        </span>
-
-                        <span class="payment-method">
-                            💵 Pay at Studio
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-
-
-            /* =================================================
-               SERVICE
-            ================================================= */
-
-            const amount =
-                getPaymentAmount(booking);
-
-
-            const formattedAmount =
-                formatINR(amount);
-
-
-            const amountHTML =
-                formattedAmount
-                    ? `
-
-                        <span class="payment-amount">
-
-                            ${escapeHTML(
-                                formattedAmount
-                            )}
-
-                        </span>
-
-                    `
-                    : `
-
-                        <span class="payment-amount">
-                            —
-                        </span>
-
-                    `;
-
-
-            const status =
-                getPaymentStatus(booking);
-
-
-            const paymentId =
-                getPaymentId(booking);
-
-
-            /*
-             * IMPORTANT:
-             * Payment ID will be shown for service booking
-             * whenever backend sends paymentId.
-             */
-
-            const paymentIdHTML =
-                paymentId
-                    ? `
-
-                        <span class="payment-id-label">
-                            🧾 Payment ID
-                        </span>
-
-                        <span class="payment-id">
-                            ${escapeHTML(paymentId)}
-                        </span>
-
-                    `
-                    : "";
-
-
-            /* =================================================
-               PAID
-            ================================================= */
-
-            if (status === "PAID") {
-
-                return `
-
-                    <div class="payment-detail">
-
-                        ${amountHTML}
-
-                        <span class="paid-badge">
-                            ✅ PAID
-                        </span>
-
-                        <span class="payment-method">
-
-                            ${escapeHTML(
-                                getPaymentMethodText(
-                                    booking,
-                                    "PAID"
-                                )
-                            )}
-
-                        </span>
-
-                        ${paymentIdHTML}
-
-                    </div>
-
-                `;
-
-            }
-
-
-            /* =================================================
-               PENDING
-            ================================================= */
+            const paymentIdHTML = paymentId
+                ? `<span class="payment-id-label">🧾 Payment ID</span>
+                   <span class="payment-id">${escapeHTML(paymentId)}</span>`
+                : "";
 
             return `
-
                 <div class="payment-detail">
-
                     ${amountHTML}
-
-                    <span class="pending-badge">
-                        ⏳ PENDING
-                    </span>
-
-                    <span class="payment-method">
-
-                        ${escapeHTML(
-                            getPaymentMethodText(
-                                booking,
-                                "PENDING"
-                            )
-                        )}
-
-                    </span>
-
+                    ${statusHTML}
+                    <span class="payment-method">${escapeHTML(getPaymentMethodText(booking))}</span>
                     ${paymentIdHTML}
-
                 </div>
-
             `;
-
         }
-
-
-        /* =====================================================
-           BOOKING DETAIL HTML
-        ===================================================== */
 
         function getBookingDetailHTML(booking) {
-
-            const type =
-                getBookingType(booking);
-
-
-            /* =================================================
-               OFFER
-            ================================================= */
+            const type = getBookingType(booking);
 
             if (type === "OFFER") {
-
-                const offer =
-                    booking.service ||
-                    booking.offer ||
-                    "Special Offer";
-
+                const offer = booking.service || booking.offer || "Special Offer";
 
                 return `
-
                     <div class="booking-detail">
-
-                        <span
-                            class="booking-detail-main offer-name">
-
-                            🎁
-                            ${escapeHTML(offer)}
-
+                        <span class="booking-detail-main offer-name">
+                            🎁 ${escapeHTML(offer)}
                         </span>
-
-                        <span class="booking-detail-sub">
-                            Offer Appointment
-                        </span>
-
+                        <span class="booking-detail-sub">Offer Appointment</span>
                     </div>
-
                 `;
-
             }
 
+            const service = booking.service || "Service";
+            const rawShape = String(booking.shape || "").trim();
+            const rawShade = String(booking.shade || "").trim();
+            const rawDesign = String(booking.design || "").trim();
 
-            /* =================================================
-               VIRTUAL
-            ================================================= */
+            const shape = rawShape && rawShape.toLowerCase() !== "not selected"
+                ? rawShape : "";
 
-            if (type === "VIRTUAL") {
+            const shade = rawShade && rawShade.toLowerCase() !== "not selected"
+                ? rawShade : "";
 
-                const shape =
-                    booking.shape ||
-                    booking.design ||
-                    "Shape not specified";
-
-
-                const shade =
-                    booking.shade ||
-                    "Classic Nude";
-
-
-                return `
-
-                    <div class="booking-detail">
-
-                        <span
-                            class="booking-detail-main shape-name">
-
-                            ✨
-                            ${escapeHTML(shape)}
-
-                        </span>
-
-                        <span class="booking-detail-sub">
-
-                            Virtual Nail Shape
-
-                        </span>
-
-                        <span class="shade-name">
-
-                            🎨 Shade:
-                            ${escapeHTML(shade)}
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-
-
-            /* =================================================
-               SERVICE
-            ================================================= */
-
-            const service =
-                booking.service ||
-                "Service";
-
+            const design = rawDesign && rawDesign.toLowerCase() !== "not selected"
+                ? rawDesign : "";
 
             return `
-
                 <div class="booking-detail">
-
-                    <span
-                        class="booking-detail-main service-name">
-
-                        💅
-                        ${escapeHTML(service)}
-
+                    <span class="booking-detail-main service-name">
+                        💅 ${escapeHTML(service)}
                     </span>
-
-                    <span class="booking-detail-sub">
-                        Service Appointment
-                    </span>
-
+                    <span class="booking-detail-sub">Service Appointment</span>
+                    ${shape ? `<span class="shape-name">✨ Shape: ${escapeHTML(shape)}</span>` : ""}
+                    ${shade ? `<span class="shade-name">🎨 Shade: ${escapeHTML(shade)}</span>` : ""}
+                    ${design ? `<span class="booking-detail-sub">Design: ${escapeHTML(design)}</span>` : ""}
                 </div>
-
             `;
-
         }
-
-
-        /* =====================================================
-           LOAD BOOKINGS
-        ===================================================== */
 
         async function loadBookings() {
+            const loading = document.getElementById("loadingMessage");
+            const empty = document.getElementById("emptyMessage");
+            const table = document.getElementById("bookingTable");
+            const errorBox = document.getElementById("bookingError");
 
-            const loadingMessage =
-                document.getElementById(
-                    "loadingMessage"
-                );
-
-
-            const emptyMessage =
-                document.getElementById(
-                    "emptyMessage"
-                );
-
-
-            const bookingTable =
-                document.getElementById(
-                    "bookingTable"
-                );
-
-
-            const bookingError =
-                document.getElementById(
-                    "bookingError"
-                );
-
-
-            if (loadingMessage) {
-
-                loadingMessage.style.display =
-                    "block";
-
-                loadingMessage.textContent =
-                    "Loading bookings...";
-
-            }
-
-
-            if (emptyMessage) {
-
-                emptyMessage.style.display =
-                    "none";
-
-            }
-
-
-            if (bookingError) {
-
-                bookingError.style.display =
-                    "none";
-
-                bookingError.textContent =
-                    "";
-
-            }
-
+            loading.style.display = "block";
+            loading.textContent = "Loading bookings...";
+            empty.style.display = "none";
+            table.style.display = "none";
+            errorBox.style.display = "none";
+            errorBox.textContent = "";
 
             try {
+                const response = await fetch(API_URL + "?t=" + Date.now(), {
+                    method: "GET",
+                    credentials: "include",
+                    headers: { "Accept": "application/json" },
+                    cache: "no-store"
+                });
 
-                console.log(
-                    "📡 Loading bookings:",
-                    API_URL
-                );
-
-
-                const response =
-                    await fetch(
-                        API_URL +
-                        "?t=" +
-                        Date.now(),
-                        {
-
-                            method: "GET",
-
-                            credentials: "include",
-
-                            headers: {
-
-                                "Accept":
-                                    "application/json"
-
-                            },
-
-                            cache: "no-store"
-
-                        }
-                    );
-
-
-                const responseText =
-                    await response.text();
-
-
-                console.log(
-                    "Bookings response:",
-                    responseText
-                );
-
+                const responseText = await response.text();
 
                 if (!response.ok) {
-
-                    throw new Error(
-                        "Failed to load bookings. Status: " +
-                        response.status
-                    );
-
+                    throw new Error("Failed to load bookings. Status: " + response.status);
                 }
 
-
-                let bookings = [];
-
-
+                let result;
                 try {
-
-                    bookings =
-                        JSON.parse(
-                            responseText
-                        );
-
+                    result = responseText ? JSON.parse(responseText) : [];
+                } catch {
+                    throw new Error("Backend returned invalid booking data.");
                 }
 
-                catch (parseError) {
+                // Support both a direct list and common wrapped responses.
+                let bookings = Array.isArray(result)
+                    ? result
+                    : Array.isArray(result?.data)
+                        ? result.data
+                        : Array.isArray(result?.content)
+                            ? result.content
+                            : [];
 
-                    throw new Error(
-                        "Backend returned invalid booking data."
-                    );
-
-                }
-
-
-                if (!Array.isArray(bookings)) {
-
-                    if (
-                        bookings &&
-                        Array.isArray(
-                            bookings.content
-                        )
-                    ) {
-
-                        bookings =
-                            bookings.content;
-
-                    }
-
-                    else {
-
-                        bookings = [];
-
-                    }
-
-                }
-
-
-                bookingsData =
-                    bookings;
-
-
-                console.log(
-                    "✅ Bookings loaded:",
-                    bookingsData
-                );
-
-
+                bookingsData = bookings;
                 updateDashboardStats();
-
                 displayBookings();
 
+                loading.style.display = "none";
+                table.style.display = "table";
 
-                if (loadingMessage) {
-
-                    loadingMessage.style.display =
-                        "none";
-
+                if (bookingsData.length === 0) {
+                    empty.style.display = "block";
                 }
-
-
-                if (bookingTable) {
-
-                    bookingTable.style.display =
-                        "table";
-
-                }
-
-
-                if (
-                    bookingsData.length === 0 &&
-                    emptyMessage
-                ) {
-
-                    emptyMessage.style.display =
-                        "block";
-
-                }
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "❌ LOAD BOOKINGS ERROR:",
-                    error
-                );
-
-
+            } catch (error) {
+                console.error("LOAD BOOKINGS ERROR:", error);
                 bookingsData = [];
-
-
                 updateDashboardStats();
 
-
-                if (loadingMessage) {
-
-                    loadingMessage.style.display =
-                        "none";
-
-                }
-
-
-                if (bookingTable) {
-
-                    bookingTable.style.display =
-                        "none";
-
-                }
-
-
-                if (emptyMessage) {
-
-                    emptyMessage.style.display =
-                        "none";
-
-                }
-
-
-                if (bookingError) {
-
-                    bookingError.style.display =
-                        "block";
-
-                    bookingError.textContent =
-                        "❌ Unable to load bookings. " +
-                        error.message;
-
-                }
-
+                loading.style.display = "none";
+                table.style.display = "none";
+                empty.style.display = "none";
+                errorBox.style.display = "block";
+                errorBox.textContent = "Unable to load bookings. " + error.message;
             }
-
         }
 
-
-        /* =====================================================
-           DISPLAY BOOKINGS
-        ===================================================== */
-
         function displayBookings() {
-
-            const tableBody =
-                document.getElementById(
-                    "bookingTableBody"
-                );
-
-
-            const emptyMessage =
-                document.getElementById(
-                    "emptyMessage"
-                );
-
-
-            const filterElement =
-                document.getElementById(
-                    "bookingFilter"
-                );
-
-
-            if (!tableBody) {
-
-                return;
-
-            }
-
-
-            const filter =
-                filterElement
-                    ? filterElement.value
-                    : "all";
-
+            const tableBody = document.getElementById("bookingTableBody");
+            const empty = document.getElementById("emptyMessage");
+            const filter = document.getElementById("bookingFilter").value;
 
             tableBody.innerHTML = "";
 
-
-            let filteredBookings =
-                bookingsData.slice();
-
+            let filteredBookings = bookingsData.slice();
 
             if (filter === "offer") {
-
-                filteredBookings =
-                    bookingsData.filter(
-                        isOfferBooking
-                    );
-
+                filteredBookings = bookingsData.filter(isOfferBooking);
+            } else if (filter === "service") {
+                filteredBookings = bookingsData.filter(isServiceBooking);
             }
 
-            else if (filter === "service") {
-
-                filteredBookings =
-                    bookingsData.filter(
-                        isServiceBooking
-                    );
-
-            }
-
-            else if (filter === "virtual") {
-
-                filteredBookings =
-                    bookingsData.filter(
-                        isVirtualBooking
-                    );
-
-            }
-
-
-            if (
-                filteredBookings.length === 0
-            ) {
-
-                if (emptyMessage) {
-
-                    emptyMessage.style.display =
-                        "block";
-
-                }
-
+            if (filteredBookings.length === 0) {
+                empty.style.display = "block";
+                empty.textContent = "No bookings found.";
                 return;
-
             }
 
-
-            if (emptyMessage) {
-
-                emptyMessage.style.display =
-                    "none";
-
-            }
-
-
-            filteredBookings.forEach(
-                function (booking) {
-
-                    const bookingType =
-                        getBookingType(
-                            booking
-                        );
-
-
-                    let bookingTypeText =
-                        "Service Booking";
-
-
-                    let badgeClass =
-                        "service-badge";
-
-
-                    let bookingIcon =
-                        "💅";
-
-
-                    if (
-                        bookingType === "OFFER"
-                    ) {
-
-                        bookingTypeText =
-                            "Offer Booking";
-
-                        badgeClass =
-                            "offer-badge";
-
-                        bookingIcon =
-                            "🎁";
-
-                    }
-
-
-                    else if (
-                        bookingType === "VIRTUAL"
-                    ) {
-
-                        bookingTypeText =
-                            "Virtual Booking";
-
-                        badgeClass =
-                            "virtual-badge";
-
-                        bookingIcon =
-                            "✨";
-
-                    }
-
-
-                    const bookingDate =
-                        booking.bookingDate ||
-                        booking.date ||
-                        "—";
-
-
-                    const bookingTime =
-                        booking.bookingTime ||
-                        booking.time ||
-                        "—";
-
-
-                    const bookingId =
-                        Number(
-                            booking.id
-                        );
-
-
-                    const row =
-                        document.createElement(
-                            "tr"
-                        );
-
-
-                    row.innerHTML = `
-
-                        <td>
-
-                            <div class="customer-detail">
-
-                                <span class="customer-name">
-
-                                    ${escapeHTML(
-                                        booking.name ||
-                                        "—"
-                                    )}
-
-                                </span>
-
-
-                                <span class="customer-email">
-
-                                    ${escapeHTML(
-                                        booking.email ||
-                                        "—"
-                                    )}
-
-                                </span>
-
-
-                                <span class="customer-phone">
-
-                                    📞
-                                    ${escapeHTML(
-                                        booking.phone ||
-                                        "—"
-                                    )}
-
-                                </span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            ${getBookingDetailHTML(
-                                booking
-                            )}
-
-
-                            <span
-                                class="${badgeClass}">
-
-                                ${bookingIcon}
-                                ${bookingTypeText}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="date-time-detail">
-
-                                <span class="booking-date">
-
-                                    📅
-                                    ${escapeHTML(
-                                        bookingDate
-                                    )}
-
-                                </span>
-
-
-                                <span class="booking-time">
-
-                                    🕐
-                                    ${escapeHTML(
-                                        bookingTime
-                                    )}
-
-                                </span>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            ${getPaymentHTML(
-                                booking
-                            )}
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="action-buttons">
-
-                                <button
-                                    type="button"
-                                    class="edit-btn"
-                                    onclick="openEditModal(${bookingId})">
-
-                                    ✏️ Edit
-
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    class="delete-btn"
-                                    onclick="deleteBooking(${bookingId})">
-
-                                    🗑 Delete
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    `;
-
-
-                    tableBody.appendChild(
-                        row
-                    );
-
-                }
-            );
-
+            empty.style.display = "none";
+
+            filteredBookings.forEach(booking => {
+                const type = getBookingType(booking);
+                const bookingDate = booking.bookingDate || booking.date || "—";
+                const bookingTime = booking.bookingTime || booking.time || "—";
+                const bookingId = Number(booking.id);
+
+                const badge = type === "OFFER"
+                    ? `<span class="offer-badge">🎁 Offer Booking</span>`
+                    : `<span class="service-badge">💅 Service Booking</span>`;
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>
+                        <div class="customer-detail">
+                            <span class="customer-name">${escapeHTML(booking.name || "—")}</span>
+                            <span class="customer-email">${escapeHTML(booking.email || "—")}</span>
+                            <span class="customer-phone">📞 ${escapeHTML(booking.phone || "—")}</span>
+                        </div>
+                    </td>
+                    <td>
+                        ${getBookingDetailHTML(booking)}
+                        ${badge}
+                    </td>
+                    <td>
+                        <div class="date-time-detail">
+                            <span>📅 ${escapeHTML(bookingDate)}</span>
+                            <span class="booking-time">🕐 ${escapeHTML(bookingTime)}</span>
+                        </div>
+                    </td>
+                    <td>${getPaymentHTML(booking)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button type="button" class="edit-btn"
+                                onclick="openEditModal(${bookingId})">✏️ Edit</button>
+                            <button type="button" class="delete-btn"
+                                onclick="deleteBooking(${bookingId})">🗑 Delete</button>
+                        </div>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
         }
 
-
-        /* =====================================================
-           FILTER
-        ===================================================== */
-
-        const bookingFilter =
-            document.getElementById(
-                "bookingFilter"
-            );
-
-
-        if (bookingFilter) {
-
-            bookingFilter.addEventListener(
-                "change",
-                function () {
-
-                    displayBookings();
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           REFRESH
-        ===================================================== */
-
-        const refreshBookings =
-            document.getElementById(
-                "refreshBookings"
-            );
-
-
-        if (refreshBookings) {
-
-            refreshBookings.addEventListener(
-                "click",
-                async function () {
-
-                    const button =
-                        this;
-
-
-                    button.disabled =
-                        true;
-
-                    button.textContent =
-                        "⏳ Loading...";
-
-
-                    try {
-
-                        await loadBookings();
-
-                    }
-
-                    finally {
-
-                        button.disabled =
-                            false;
-
-                        button.textContent =
-                            "🔄 Refresh Bookings";
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           OPEN EDIT MODAL
-        ===================================================== */
-
-        function openEditModal(id) {
-
-            const booking =
-                bookingsData.find(
-                    function (item) {
-
-                        return (
-                            Number(item.id) ===
-                            Number(id)
-                        );
-
-                    }
-                );
-
-
-            if (!booking) {
-
-                alert(
-                    "Booking not found."
-                );
-
-                return;
-
-            }
-
-
-            selectedBookingId =
-                id;
-
-
-            document.getElementById(
-                "editName"
-            ).value =
-                booking.name || "";
-
-
-            document.getElementById(
-                "editEmail"
-            ).value =
-                booking.email || "";
-
-
-            document.getElementById(
-                "editPhone"
-            ).value =
-                booking.phone || "";
-
-
-            document.getElementById(
-                "editDate"
-            ).value =
-                booking.bookingDate ||
-                booking.date ||
-                "";
-
-
-            document.getElementById(
-                "editTime"
-            ).value =
-                booking.bookingTime ||
-                booking.time ||
-                "";
-
-
-            const paymentStatus =
-                getPaymentStatus(
-                    booking
-                );
-
-
-            document.getElementById(
-                "editPaymentStatus"
-            ).value =
-                paymentStatus === "PAID"
-                    ? "PAID"
-                    : "PENDING";
-
-
-            const paymentGroup =
-                document.getElementById(
-                    "paymentEditGroup"
-                );
-
-
-            if (paymentGroup) {
-
-                paymentGroup.style.display =
-                    getBookingType(
-                        booking
-                    ) === "VIRTUAL"
-                        ? "none"
-                        : "block";
-
-            }
-
-
-            const editModal =
-                document.getElementById(
-                    "editModal"
-                );
-
-
-            if (editModal) {
-
-                editModal.style.display =
-                    "flex";
-
-            }
-
-        }
-
-
-        /* =====================================================
-           CLOSE MODAL
-        ===================================================== */
-
-        const closeModal =
-            document.getElementById(
-                "closeModal"
-            );
-
-
-        if (closeModal) {
-
-            closeModal.addEventListener(
-                "click",
-                function () {
-
-                    const editModal =
-                        document.getElementById(
-                            "editModal"
-                        );
-
-
-                    if (editModal) {
-
-                        editModal.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        window.addEventListener(
-            "click",
-            function (event) {
-
-                const modal =
-                    document.getElementById(
-                        "editModal"
-                    );
-
-
-                if (
-                    modal &&
-                    event.target === modal
-                ) {
-
-                    modal.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        /* =====================================================
-           UPDATE BOOKING
-        ===================================================== */
-
-        const editBookingForm =
-            document.getElementById(
-                "editBookingForm"
-            );
-
-
-        if (editBookingForm) {
-
-            editBookingForm.addEventListener(
-                "submit",
-                async function (event) {
-
-                    event.preventDefault();
-
-
-                    if (!selectedBookingId) {
-
-                        alert(
-                            "Booking ID not found."
-                        );
-
-                        return;
-
-                    }
-
-
-                    const originalBooking =
-                        bookingsData.find(
-                            function (booking) {
-
-                                return (
-                                    Number(
-                                        booking.id
-                                    ) ===
-                                    Number(
-                                        selectedBookingId
-                                    )
-                                );
-
-                            }
-                        );
-
-
-                    if (!originalBooking) {
-
-                        alert(
-                            "Original booking not found."
-                        );
-
-                        return;
-
-                    }
-
-
-                    const bookingType =
-                        getBookingType(
-                            originalBooking
-                        );
-
-
-                    const selectedDate =
-                        document.getElementById(
-                            "editDate"
-                        ).value;
-
-
-                    const selectedTime =
-                        document.getElementById(
-                            "editTime"
-                        ).value;
-
-
-                    if (!selectedDate) {
-
-                        alert(
-                            "Please select an appointment date."
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (!selectedTime) {
-
-                        alert(
-                            "Please select an appointment time."
-                        );
-
-                        return;
-
-                    }
-
-
-                    const selectedDay =
-                        new Date(
-                            selectedDate +
-                            "T00:00:00"
-                        );
-
-
-                    if (
-                        selectedDay.getDay() === 0
-                    ) {
-
-                        alert(
-                            "Sunday is closed. Please select another date."
-                        );
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * IMPORTANT:
-                     * Existing paymentId is preserved.
-                     */
-
-                    const updatedBooking = {
-
-                        name:
-                            document.getElementById(
-                                "editName"
-                            ).value.trim(),
-
-
-                        email:
-                            document.getElementById(
-                                "editEmail"
-                            ).value.trim(),
-
-
-                        phone:
-                            document.getElementById(
-                                "editPhone"
-                            ).value.trim(),
-
-
-                        service:
-                            originalBooking.service ||
-                            "",
-
-
-                        design:
-                            originalBooking.design ||
-                            "",
-
-
-                        shape:
-                            originalBooking.shape ||
-                            "",
-
-
-                        shade:
-                            originalBooking.shade ||
-                            "",
-
-
-                        bookingDate:
-                            selectedDate,
-
-
-                        bookingTime:
-                            selectedTime,
-
-
-                        date:
-                            selectedDate,
-
-
-                        time:
-                            selectedTime,
-
-
-                        bookingType:
-                            bookingType,
-
-
-                        notes:
-                            originalBooking.notes ||
-                            "",
-
-
-                        /* KEEP PAYMENT ID */
-
-                        paymentId:
-                            originalBooking.paymentId ||
-                            null
-
-                    };
-
-
-                    /* =================================================
-                       PAYMENT
-                    ================================================= */
-
-                    if (
-                        bookingType !==
-                        "VIRTUAL"
-                    ) {
-
-                        const selectedStatus =
-                            document.getElementById(
-                                "editPaymentStatus"
-                            ).value;
-
-
-                        updatedBooking.paymentStatus =
-                            selectedStatus;
-
-
-                        /*
-                         * Keep existing payment method.
-                         * If missing and status is PAID,
-                         * use UPI.
-                         */
-
-                        updatedBooking.paymentMethod =
-                            originalBooking.paymentMethod ||
-                            (
-                                selectedStatus === "PAID"
-                                    ? "UPI"
-                                    : "PAY_AT_STUDIO"
-                            );
-
-
-                        const amount =
-                            getPaymentAmount(
-                                originalBooking
-                            );
-
-
-                        if (
-                            amount !== ""
-                        ) {
-
-                            updatedBooking.paymentAmount =
-                                amount;
-
-                        }
-
-
-                        /*
-                         * NEVER remove existing payment ID.
-                         */
-
-                        if (
-                            originalBooking.paymentId
-                        ) {
-
-                            updatedBooking.paymentId =
-                                originalBooking.paymentId;
-
-                        }
-
-                    }
-
-                    else {
-
-                        updatedBooking.paymentMethod =
-                            "";
-
-
-                        updatedBooking.paymentStatus =
-                            "N/A";
-
-
-                        updatedBooking.paymentAmount =
-                            0;
-
-
-                        updatedBooking.paymentId =
-                            null;
-
-                    }
-
-
-                    console.log(
-                        "💅 UPDATING BOOKING:",
-                        updatedBooking
-                    );
-
-
-                    const submitButton =
-                        editBookingForm.querySelector(
-                            'button[type="submit"]'
-                        );
-
-
-                    const originalButtonText =
-                        submitButton
-                            ? submitButton.innerHTML
-                            : "";
-
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            true;
-
-                        submitButton.innerHTML =
-                            "⏳ Updating...";
-
-                    }
-
-
-                    try {
-
-                        const response =
-                            await fetch(
-                                API_URL +
-                                "/" +
-                                selectedBookingId,
-                                {
-
-                                    method: "PUT",
-
-                                    credentials:
-                                        "include",
-
-                                    headers: {
-
-                                        "Content-Type":
-                                            "application/json",
-
-                                        "Accept":
-                                            "application/json"
-
-                                    },
-
-                                    body:
-                                        JSON.stringify(
-                                            updatedBooking
-                                        )
-
-                                }
-                            );
-
-
-                        const responseText =
-                            await response.text();
-
-
-                        console.log(
-                            "Update response:",
-                            responseText
-                        );
-
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                "Update failed. Status: " +
-                                response.status +
-                                " | " +
-                                responseText
-                            );
-
-                        }
-
-
-                        alert(
-                            "💅 Booking Updated Successfully!"
-                        );
-
-
-                        const editModal =
-                            document.getElementById(
-                                "editModal"
-                            );
-
-
-                        if (editModal) {
-
-                            editModal.style.display =
-                                "none";
-
-                        }
-
-
-                        selectedBookingId =
-                            null;
-
-
-                        await loadBookings();
-
-                    }
-
-
-                    catch (error) {
-
-                        console.error(
-                            "UPDATE ERROR:",
-                            error
-                        );
-
-
-                        alert(
-                            "❌ Failed to update booking.\n\n" +
-                            error.message
-                        );
-
-                    }
-
-
-                    finally {
-
-                        if (submitButton) {
-
-                            submitButton.disabled =
-                                false;
-
-                            submitButton.innerHTML =
-                                originalButtonText;
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           DELETE BOOKING
-        ===================================================== */
-
-        async function deleteBooking(id) {
-
-            const confirmDelete =
-                confirm(
-                    "Are you sure you want to delete this booking?"
-                );
-
-
-            if (!confirmDelete) {
-
-                return;
-
-            }
-
+        document.getElementById("bookingFilter").addEventListener("change", displayBookings);
+
+        document.getElementById("refreshBookings").addEventListener("click", async function () {
+            const button = this;
+            button.disabled = true;
+            button.textContent = "⏳ Loading...";
 
             try {
+                await loadBookings();
+            } finally {
+                button.disabled = false;
+                button.textContent = "🔄 Refresh Bookings";
+            }
+        });
 
-                const response =
-                    await fetch(
-                        API_URL +
-                        "/" +
-                        id,
-                        {
+        function openEditModal(id) {
+            const booking = bookingsData.find(item => Number(item.id) === Number(id));
 
-                            method: "DELETE",
+            if (!booking) {
+                alert("Booking not found.");
+                return;
+            }
 
-                            credentials:
-                                "include",
+            selectedBookingId = id;
 
-                            headers: {
+            document.getElementById("editName").value = booking.name || "";
+            document.getElementById("editEmail").value = booking.email || "";
+            document.getElementById("editPhone").value = booking.phone || "";
+            document.getElementById("editDate").value = booking.bookingDate || booking.date || "";
+            document.getElementById("editTime").value = booking.bookingTime || booking.time || "";
 
-                                "Accept":
-                                    "text/plain"
+            const status = getPaymentStatus(booking);
+            document.getElementById("editPaymentStatus").value = status === "PAID"
+                ? "PAID" : "PENDING";
 
-                            }
+            document.getElementById("paymentEditGroup").style.display =
+                isOfferBooking(booking) ? "none" : "block";
 
-                        }
-                    );
+            document.getElementById("editModal").style.display = "flex";
+        }
 
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+            selectedBookingId = null;
+        }
 
-                const responseText =
-                    await response.text();
+        document.getElementById("closeModal").addEventListener("click", closeEditModal);
 
+        window.addEventListener("click", event => {
+            const modal = document.getElementById("editModal");
+            if (event.target === modal) closeEditModal();
+        });
 
-                console.log(
-                    "Delete response:",
-                    responseText
-                );
+        document.getElementById("editBookingForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
 
+            if (selectedBookingId === null) {
+                alert("Booking ID not found.");
+                return;
+            }
+
+            const original = bookingsData.find(
+                item => Number(item.id) === Number(selectedBookingId)
+            );
+
+            if (!original) {
+                alert("Original booking not found.");
+                return;
+            }
+
+            const selectedDate = document.getElementById("editDate").value;
+            const selectedTime = document.getElementById("editTime").value;
+
+            if (!selectedDate || !selectedTime) {
+                alert("Please select an appointment date and time.");
+                return;
+            }
+
+            const day = new Date(selectedDate + "T00:00:00");
+
+            if (day.getDay() === 0) {
+                alert("Sunday is closed. Please select another date.");
+                return;
+            }
+
+            const phone = document.getElementById("editPhone").value.trim();
+
+            if (!/^[6-9]\d{9}$/.test(phone)) {
+                alert("Please enter a valid 10-digit Indian mobile number.");
+                return;
+            }
+
+            const updatedBooking = {
+                name: document.getElementById("editName").value.trim(),
+                email: document.getElementById("editEmail").value.trim(),
+                phone: phone,
+                service: original.service || "",
+                design: original.design || "",
+                shape: original.shape || "",
+                shade: original.shade || "",
+                bookingDate: selectedDate,
+                bookingTime: selectedTime,
+                date: selectedDate,
+                time: selectedTime,
+                bookingType: getBookingType(original),
+                notes: original.notes || "",
+                paymentMethod: original.paymentMethod || "",
+                paymentStatus: original.paymentStatus || "PENDING",
+                paymentAmount: getPaymentAmount(original) === ""
+                    ? null : getPaymentAmount(original),
+                paymentId: original.paymentId || null,
+                razorpayOrderId: original.razorpayOrderId || null
+            };
+
+            if (!isOfferBooking(original)) {
+                updatedBooking.paymentStatus =
+                    document.getElementById("editPaymentStatus").value;
+            }
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = "⏳ Updating...";
+
+            try {
+                const response = await fetch(API_URL + "/" + selectedBookingId, {
+                    method: "PUT",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(updatedBooking)
+                });
+
+                const responseText = await response.text();
 
                 if (!response.ok) {
-
-                    throw new Error(
-                        "Delete failed. Status: " +
-                        response.status +
-                        " | " +
-                        responseText
-                    );
-
+                    throw new Error("Update failed. Status: " + response.status + " " + responseText);
                 }
 
-
-                alert(
-                    "💅 Booking Deleted Successfully!"
-                );
-
-
+                alert("💅 Booking updated successfully!");
+                closeEditModal();
                 await loadBookings();
-
+            } catch (error) {
+                console.error("UPDATE ERROR:", error);
+                alert("Failed to update booking.\n\n" + error.message);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
             }
+        });
 
+        async function deleteBooking(id) {
+            if (!confirm("Are you sure you want to delete this booking?")) return;
 
-            catch (error) {
+            try {
+                const response = await fetch(API_URL + "/" + id, {
+                    method: "DELETE",
+                    credentials: "include",
+                    headers: { "Accept": "text/plain" }
+                });
 
-                console.error(
-                    "DELETE ERROR:",
-                    error
-                );
+                const responseText = await response.text();
 
-
-                alert(
-                    "❌ Failed to delete booking.\n\n" +
-                    error.message
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           LOGOUT
-        ===================================================== */
-
-        const logoutBtn =
-            document.getElementById(
-                "logoutBtn"
-            );
-
-
-        if (logoutBtn) {
-
-            logoutBtn.addEventListener(
-                "click",
-                async function () {
-
-                    try {
-
-                        await fetch(
-                            API_BASE_URL +
-                            "/api/admin/logout",
-                            {
-
-                                method: "POST",
-
-                                credentials:
-                                    "include"
-
-                            }
-                        );
-
-                    }
-
-                    catch (error) {
-
-                        console.error(
-                            "Logout error:",
-                            error
-                        );
-
-                    }
-
-
-                    localStorage.removeItem(
-                        "loggedIn"
-                    );
-
-                    localStorage.removeItem(
-                        "userToken"
-                    );
-
-                    localStorage.removeItem(
-                        "adminToken"
-                    );
-
-                    localStorage.removeItem(
-                        "virtualBooking"
-                    );
-
-                    localStorage.removeItem(
-                        "selectedService"
-                    );
-
-                    localStorage.removeItem(
-                        "adminLoggedIn"
-                    );
-
-                    localStorage.removeItem(
-                        "adminEmail"
-                    );
-
-
-                    window.location.href =
-                        "admin-login.html";
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           START ADMIN PAGE
-        ===================================================== */
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            async function () {
-
-                console.log(
-                    "💅 ADMIN BOOKINGS PAGE LOADED"
-                );
-
-
-                console.log(
-                    "Backend:",
-                    API_BASE_URL
-                );
-
-
-                console.log(
-                    "Bookings API:",
-                    API_URL
-                );
-
-
-                const isAdmin =
-                    checkAdminLogin();
-
-
-                if (isAdmin) {
-
-                    await loadBookings();
-
+                if (!response.ok) {
+                    throw new Error("Delete failed. Status: " + response.status + " " + responseText);
                 }
 
+                alert("💅 Booking deleted successfully!");
+                await loadBookings();
+            } catch (error) {
+                console.error("DELETE ERROR:", error);
+                alert("Failed to delete booking.\n\n" + error.message);
             }
-        );
+        }
 
+        document.getElementById("logoutBtn").addEventListener("click", async function () {
+            try {
+                await fetch(API_BASE_URL + "/api/admin/logout", {
+                    method: "POST",
+                    credentials: "include"
+                });
+            } catch (error) {
+                console.error("Logout error:", error);
+            }
+
+            [
+                "loggedIn",
+                "userToken",
+                "adminToken",
+                "virtualBooking",
+                "selectedService",
+                "adminLoggedIn",
+                "adminEmail"
+            ].forEach(key => localStorage.removeItem(key));
+
+            window.location.href = "admin-login.html";
+        });
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            console.log("💅 ADMIN BOOKINGS PAGE LOADED");
+            console.log("Backend:", API_BASE_URL);
+
+            if (checkAdminLogin()) {
+                await loadBookings();
+            }
+        });
     </script>
-
 </body>
-
 </html>
