@@ -1,20 +1,121 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Registered Users | Nail Studio</title>
 
     <link rel="stylesheet" href="css/style.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #fffaf8;
+            color: #49393e;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ADMIN NAVBAR */
+        .admin-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 16px 5%;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(80, 50, 30, 0.08);
+        }
+
+        .admin-logo {
+            color: #49393e;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .admin-nav-right {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-nav-link {
+            color: #49393e;
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        .admin-nav-link:hover,
+        .admin-nav-link.active {
+            background: #c89b3c;
+            color: white;
+        }
+
+        .logout-btn {
+            border: none;
+            border-radius: 7px;
+            padding: 10px 15px;
+            background: #49393e;
+            color: white;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+
+        .logout-btn:hover {
+            background: #302329;
+        }
+
+        /* PAGE */
+        .admin-bookings {
+            padding: 45px 20px;
+            min-height: 80vh;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .admin-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .admin-title span {
+            display: inline-block;
+            color: #b8860b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .admin-title h1 {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            font-weight: 700;
+        }
+
+        .admin-title p {
+            color: #8c7770;
+            font-size: 14px;
+        }
+
+        /* SEARCH AND REFRESH */
         .users-page-header {
             display: flex;
             justify-content: space-between;
@@ -50,7 +151,6 @@
             font-size: 13px;
             outline: none;
             transition: 0.3s ease;
-            box-sizing: border-box;
         }
 
         .user-search input:focus {
@@ -90,6 +190,16 @@
             transform: none;
         }
 
+        /* TABLE */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            background: #fff;
+            border: 1px solid #eadfd8;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(80, 50, 30, 0.07);
+        }
+
         .users-table-wrapper {
             overflow-x: auto;
             width: 100%;
@@ -97,16 +207,37 @@
 
         #usersTable {
             width: 100%;
+            min-width: 850px;
             border-collapse: collapse;
             display: none;
         }
 
+        #usersTable thead {
+            background: #49393e;
+        }
+
         #usersTable th {
+            padding: 15px;
+            color: white;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 500;
             white-space: nowrap;
         }
 
         #usersTable td {
+            padding: 16px 15px;
+            border-bottom: 1px solid #eee5e0;
             vertical-align: middle;
+            font-size: 13px;
+        }
+
+        #usersTable tbody tr:hover {
+            background: #fffaf5;
+        }
+
+        #usersTable tbody tr:last-child td {
+            border-bottom: none;
         }
 
         .user-name {
@@ -117,6 +248,7 @@
         .user-email {
             color: #666;
             font-size: 13px;
+            overflow-wrap: anywhere;
         }
 
         .user-id {
@@ -137,7 +269,35 @@
             white-space: nowrap;
         }
 
-        .user-empty {
+        .delete-btn {
+            border: none;
+            border-radius: 7px;
+            padding: 8px 11px;
+            background: #dc3545;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b92332;
+        }
+
+        .delete-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .user-date {
+            color: #666;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        /* MESSAGES */
+        .loading,
+        .empty-message {
             padding: 35px 20px;
             text-align: center;
             color: #777;
@@ -147,12 +307,6 @@
         .user-empty-icon {
             font-size: 35px;
             margin-bottom: 10px;
-        }
-
-        .user-date {
-            color: #666;
-            font-size: 12px;
-            white-space: nowrap;
         }
 
         .history-link {
@@ -168,6 +322,14 @@
             text-decoration: underline;
         }
 
+        .admin-footer {
+            padding: 20px;
+            text-align: center;
+            color: #8c7770;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 800px) {
             .users-page-header {
                 align-items: stretch;
@@ -183,12 +345,32 @@
         }
 
         @media (max-width: 600px) {
+            .admin-navbar {
+                align-items: flex-start;
+            }
+
+            .admin-nav-right {
+                width: 100%;
+            }
+
+            .admin-nav-link {
+                padding: 9px;
+            }
+
             .users-page-header {
                 flex-direction: column;
             }
 
             .registered-count {
                 text-align: left;
+            }
+
+            .admin-bookings {
+                padding: 30px 12px;
+            }
+
+            .admin-title h1 {
+                font-size: 36px;
             }
         }
     </style>
@@ -198,22 +380,27 @@
 
     <!-- NAVBAR -->
     <header>
-        <nav class="navbar">
+        <nav class="admin-navbar">
 
-            <a href="admin-bookings.html" class="logo">
+            <a href="admin-bookings.html" class="admin-logo">
                 💅 Nail Studio
             </a>
 
-            <ul class="nav-links">
-                <li>
-                    <a href="admin-bookings.html">Customer Bookings</a>
-                </li>
+            <div class="admin-nav-right">
 
-                <li>
-                    <a href="admin-users.html">Registered Users</a>
-                </li>
-            </ul>
+                <a href="admin-bookings.html" class="admin-nav-link">
+                    Customer Bookings
+                </a>
 
+                <a href="admin-users.html" class="admin-nav-link active">
+                    Registered Users
+                </a>
+
+                <button type="button" id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
         </nav>
     </header>
 
@@ -223,9 +410,7 @@
 
             <div class="admin-title">
                 <span>✨ Nail Studio Administration</span>
-
                 <h1>Registered Users</h1>
-
                 <p>Manage all registered customers from one place.</p>
             </div>
 
@@ -260,7 +445,7 @@
                     Loading registered users...
                 </div>
 
-                <div id="usersTableWrapper" class="users-table-wrapper">
+                <div class="users-table-wrapper">
 
                     <table id="usersTable">
                         <thead>
@@ -279,21 +464,27 @@
 
                 </div>
 
-                <div id="emptyMessage" class="empty-message" style="display:none;"></div>
+                <div id="emptyMessage" class="empty-message"
+                     style="display:none;"></div>
 
             </div>
         </div>
     </section>
 
-    <script>
-        // API URLs
-        const API_URL =
-            "https://nail-studio-backend-k604.onrender.com/api/users";
+    <footer class="admin-footer">
+        <p>💅 Nail Studio — Admin Panel</p>
+    </footer>
 
-        const ADMIN_API_URL =
-            "https://nail-studio-backend-k604.onrender.com/api/admin";
+    <script>
+        // API URLS
+        const API_BASE_URL =
+            "https://nail-studio-backend-k604.onrender.com";
+
+        const API_URL = API_BASE_URL + "/api/users";
+        const ADMIN_API_URL = API_BASE_URL + "/api/admin";
 
         let usersData = [];
+        let logoutInProgress = false;
 
         const loading = document.getElementById("loading");
         const table = document.getElementById("usersTable");
@@ -302,15 +493,87 @@
         const userCount = document.getElementById("userCount");
         const refreshBtn = document.getElementById("refreshBtn");
         const searchInput = document.getElementById("searchUser");
+        const logoutBtn = document.getElementById("logoutBtn");
 
-        // Safely create text-only table cells
+        // CHECK ADMIN LOGIN
+        async function checkAdminLogin() {
+            try {
+                const response = await fetch(
+                    ADMIN_API_URL + "/check",
+                    {
+                        method: "GET",
+                        credentials: "include",
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    console.error(
+                        "Admin check failed:",
+                        response.status
+                    );
+
+                    window.location.href = "admin-login.html";
+                    return false;
+                }
+
+                const result = (await response.text()).trim();
+
+                if (result !== "Admin authenticated") {
+                    window.location.href = "admin-login.html";
+                    return false;
+                }
+
+                console.log("Admin authenticated");
+                return true;
+
+            } catch (error) {
+                console.error("Admin authentication error:", error);
+
+                loading.textContent =
+                    "Unable to contact the server. Check your connection and try again.";
+
+                return false;
+            }
+        }
+
+        // LOGOUT - SAME AS ADMIN BOOKINGS PAGE
+        logoutBtn.addEventListener("click", async function () {
+
+            if (logoutInProgress) {
+                return;
+            }
+
+            logoutInProgress = true;
+            logoutBtn.disabled = true;
+            logoutBtn.textContent = "Logging out...";
+
+            try {
+                await fetch(ADMIN_API_URL + "/logout", {
+                    method: "POST",
+                    credentials: "include",
+                    cache: "no-store"
+                });
+            } catch (error) {
+                console.error("Logout request error:", error);
+            } finally {
+                // Clear the local admin login information
+                localStorage.removeItem("adminLoggedIn");
+                localStorage.removeItem("adminEmail");
+                localStorage.removeItem("adminToken");
+
+                // Redirect to admin login page
+                window.location.replace("admin-login.html");
+            }
+        });
+
+        // SAFELY CREATE TABLE CELLS
         function addCell(row, value, className) {
             const cell = document.createElement("td");
             const span = document.createElement("span");
 
-            span.textContent = value == null || value === ""
-                ? "—"
-                : String(value);
+            span.textContent =
+                value == null || value === "" ? "—" : String(value);
 
             if (className) {
                 span.className = className;
@@ -322,7 +585,7 @@
             return cell;
         }
 
-        // Format date values received from the backend
+        // FORMAT DATE
         function formatDate(value) {
             if (!value) {
                 return "—";
@@ -343,51 +606,7 @@
             });
         }
 
-        // Check whether admin is logged in
-        async function checkAdminLogin() {
-            try {
-                const response = await fetch(
-                    `${ADMIN_API_URL}/check`,
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        cache: "no-store"
-                    }
-                );
-
-                if (!response.ok) {
-                    console.error(
-                        "Admin check failed:",
-                        response.status,
-                        await response.text()
-                    );
-
-                    window.location.href = "admin-login.html";
-                    return false;
-                }
-
-                const result = (await response.text()).trim();
-
-                if (result !== "Admin authenticated") {
-                    console.error("Unexpected admin check response:", result);
-                    window.location.href = "admin-login.html";
-                    return false;
-                }
-
-                console.log("Admin authenticated");
-                return true;
-
-            } catch (error) {
-                console.error("Admin authentication error:", error);
-
-                loading.textContent =
-                    "Unable to contact the server. Check your internet connection and try again.";
-
-                return false;
-            }
-        }
-
-        // Load registered users from the backend
+        // LOAD REGISTERED USERS
         async function loadUsers() {
             loading.style.display = "block";
             loading.textContent = "Loading registered users...";
@@ -398,10 +617,13 @@
 
             try {
                 const response = await fetch(
-                    `${API_URL}/all?_=${Date.now()}`,
+                    API_URL + "/all?_=" + Date.now(),
                     {
                         method: "GET",
                         credentials: "include",
+                        headers: {
+                            "Accept": "application/json"
+                        },
                         cache: "no-store"
                     }
                 );
@@ -410,14 +632,17 @@
                     const details = await response.text();
 
                     throw new Error(
-                        `Unable to load users. HTTP ${response.status}. ${details}`
+                        "Unable to load users. HTTP " +
+                        response.status + ". " + details
                     );
                 }
 
                 const result = await response.json();
 
                 if (!Array.isArray(result)) {
-                    throw new Error("The users API did not return a list.");
+                    throw new Error(
+                        "The users API did not return a list."
+                    );
                 }
 
                 usersData = result;
@@ -425,6 +650,7 @@
                 console.log("Registered users:", usersData);
 
                 loading.style.display = "none";
+
                 updateUserCount();
                 displayUsers();
 
@@ -433,7 +659,6 @@
 
                 loading.style.display = "none";
                 table.style.display = "none";
-
                 userCount.textContent = "Registered Users";
 
                 emptyMessage.style.display = "block";
@@ -463,7 +688,7 @@
             }
         }
 
-        // Update total user count
+        // UPDATE USER COUNT
         function updateUserCount() {
             userCount.innerHTML = "";
 
@@ -472,16 +697,17 @@
             );
 
             const count = document.createElement("span");
-            count.textContent = `(${usersData.length})`;
+            count.textContent = "(" + usersData.length + ")";
 
             userCount.appendChild(count);
         }
 
-        // Display users and apply search
+        // DISPLAY AND SEARCH USERS
         function displayUsers() {
             tableBody.innerHTML = "";
 
-            const searchText = searchInput.value.trim().toLowerCase();
+            const searchText =
+                searchInput.value.trim().toLowerCase();
 
             const filteredUsers = usersData.filter(function (user) {
                 const name = String(user.name || "").toLowerCase();
@@ -501,12 +727,14 @@
 
                 const icon = document.createElement("div");
                 icon.className = "user-empty-icon";
-                icon.textContent = usersData.length === 0 ? "👥" : "🔍";
+                icon.textContent =
+                    usersData.length === 0 ? "👥" : "🔍";
 
                 const message = document.createElement("p");
-                message.textContent = usersData.length === 0
-                    ? "No registered users found."
-                    : "No users found for your search.";
+                message.textContent =
+                    usersData.length === 0
+                        ? "No registered users found."
+                        : "No users found for your search.";
 
                 box.append(icon, message);
                 emptyMessage.appendChild(box);
@@ -535,7 +763,7 @@
                 deleteButton.textContent = "🗑️ Delete";
 
                 deleteButton.addEventListener("click", function () {
-                    deleteUser(user.id, user.name);
+                    deleteUser(user.id, user.name, deleteButton);
                 });
 
                 actionCell.appendChild(deleteButton);
@@ -545,15 +773,21 @@
             });
         }
 
-        // Delete a registered user
-        async function deleteUser(id, name) {
-            if (!confirm(`Are you sure you want to delete ${name || "this user"}?`)) {
+        // DELETE REGISTERED USER
+        async function deleteUser(id, name, button) {
+            if (!confirm(
+                "Are you sure you want to delete " +
+                (name || "this user") + "?"
+            )) {
                 return;
             }
 
+            button.disabled = true;
+            button.textContent = "Deleting...";
+
             try {
                 const response = await fetch(
-                    `${API_URL}/${encodeURIComponent(id)}`,
+                    API_URL + "/" + encodeURIComponent(id),
                     {
                         method: "DELETE",
                         credentials: "include"
@@ -564,7 +798,8 @@
 
                 if (!response.ok) {
                     throw new Error(
-                        `Delete failed. HTTP ${response.status}. ${resultText}`
+                        "Delete failed. HTTP " +
+                        response.status + ". " + resultText
                     );
                 }
 
@@ -574,33 +809,37 @@
             } catch (error) {
                 console.error("Delete user error:", error);
                 alert(error.message || "Unable to delete user.");
+
+                button.disabled = false;
+                button.textContent = "🗑️ Delete";
             }
         }
 
-        // Search users
+        // SEARCH USERS
         searchInput.addEventListener("input", displayUsers);
 
-        // Refresh users
+        // REFRESH USERS
         refreshBtn.addEventListener("click", loadUsers);
 
-        // Login history link
+        // CUSTOMER LOGIN HISTORY
         document.getElementById("historyLink").addEventListener(
             "click",
             function (event) {
                 event.preventDefault();
 
-                // Opens the login history API in a new tab for debugging.
-                // The admin session cookie must be available.
                 window.open(
-                    `${API_URL}/login-history`,
+                    API_URL + "/login-history",
                     "_blank",
                     "noopener"
                 );
             }
         );
 
-        // Start page
+        // START PAGE
         document.addEventListener("DOMContentLoaded", async function () {
+            console.log("💅 ADMIN USERS PAGE LOADED");
+            console.log("Backend:", API_BASE_URL);
+
             const isAdmin = await checkAdminLogin();
 
             if (isAdmin) {
@@ -611,4 +850,4 @@
 
 </body>
 </html>
-
+```
