@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Registered Users | Nail Studio</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -24,7 +25,6 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* ADMIN NAVBAR */
         .admin-navbar {
             display: flex;
             justify-content: space-between;
@@ -79,14 +79,11 @@
             background: #302329;
         }
 
-        .logout-btn:disabled,
-        .refresh-btn:disabled,
-        .delete-btn:disabled {
+        button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
 
-        /* PAGE */
         .admin-bookings {
             padding: 45px 20px;
             min-height: 80vh;
@@ -122,7 +119,6 @@
             font-size: 14px;
         }
 
-        /* SEARCH AND REFRESH */
         .users-page-header {
             display: flex;
             justify-content: space-between;
@@ -191,7 +187,6 @@
             box-shadow: 0 7px 18px rgba(184, 134, 11, 0.25);
         }
 
-        /* TABLE */
         .table-container {
             width: 100%;
             overflow-x: auto;
@@ -248,7 +243,6 @@
 
         .user-email {
             color: #666;
-            font-size: 13px;
             overflow-wrap: anywhere;
         }
 
@@ -291,7 +285,6 @@
             white-space: nowrap;
         }
 
-        /* MESSAGES */
         .loading,
         .empty-message {
             padding: 35px 20px;
@@ -325,7 +318,6 @@
             font-size: 12px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 800px) {
             .users-page-header {
                 align-items: stretch;
@@ -374,620 +366,674 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <header>
-        <nav class="admin-navbar">
+<header>
+    <nav class="admin-navbar">
 
-            <a href="admin-bookings.html" class="admin-logo">
-                💅 Nail Studio
+        <a href="admin-bookings.html" class="admin-logo">
+            💅 Nail Studio
+        </a>
+
+        <div class="admin-nav-right">
+
+            <a href="admin-bookings.html" class="admin-nav-link">
+                Customer Bookings
             </a>
 
-            <div class="admin-nav-right">
-
-                <a href="admin-bookings.html" class="admin-nav-link">
-                    Customer Bookings
-                </a>
-
-                <a href="admin-users.html" class="admin-nav-link active">
-                    Registered Users
-                </a>
-
-                <button type="button" id="logoutBtn" class="logout-btn">
-                    Logout
-                </button>
-
-            </div>
-        </nav>
-    </header>
-
-    <!-- REGISTERED USERS -->
-    <section class="admin-bookings">
-        <div class="admin-container">
-
-            <div class="admin-title">
-                <span>✨ Nail Studio Administration</span>
-                <h1>Registered Users</h1>
-                <p>Manage all registered customers from one place.</p>
-            </div>
-
-            <div class="users-page-header">
-
-                <div class="registered-count" id="userCount">
-                    Registered Users
-                </div>
-
-                <div class="user-search">
-                    <span>🔍</span>
-                    <input
-                        type="text"
-                        id="searchUser"
-                        placeholder="Search by name or email..."
-                        autocomplete="off">
-                </div>
-
-                <button type="button" id="refreshBtn" class="refresh-btn">
-                    ↻ Refresh Users
-                </button>
-
-            </div>
-
-            <a href="#" id="historyLink" class="history-link">
-                View Customer Login History
+            <a href="admin-users.html" class="admin-nav-link active">
+                Registered Users
             </a>
 
-            <div class="table-container">
+            <button type="button" id="logoutBtn" class="logout-btn">
+                Logout
+            </button>
 
-                <div id="loading" class="loading">
-                    Loading registered users...
-                </div>
-
-                <div class="users-table-wrapper">
-                    <table id="usersTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Registered At</th>
-                                <th>Last Login</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="usersTableBody"></tbody>
-                    </table>
-                </div>
-
-                <div id="emptyMessage" class="empty-message"
-                     style="display: none;"></div>
-
-            </div>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <footer class="admin-footer">
-        <p>💅 Nail Studio — Admin Panel</p>
-    </footer>
+<section class="admin-bookings">
+    <div class="admin-container">
 
-    <script>
-        // BACKEND URL
-        const API_BASE_URL =
-            "https://nail-studio-backend-k604.onrender.com";
+        <div class="admin-title">
+            <span>✨ Nail Studio Administration</span>
+            <h1>Registered Users</h1>
+            <p>Manage all registered customers from one place.</p>
+        </div>
 
-        const API_URL = API_BASE_URL + "/api/users";
-        const ADMIN_API_URL = API_BASE_URL + "/api/admin";
+        <div class="users-page-header">
 
-        let usersData = [];
-        let logoutInProgress = false;
+            <div class="registered-count" id="userCount">
+                Registered Users
+            </div>
 
-        const loading = document.getElementById("loading");
-        const table = document.getElementById("usersTable");
-        const tableBody = document.getElementById("usersTableBody");
-        const emptyMessage = document.getElementById("emptyMessage");
-        const userCount = document.getElementById("userCount");
-        const refreshBtn = document.getElementById("refreshBtn");
-        const searchInput = document.getElementById("searchUser");
-        const logoutBtn = document.getElementById("logoutBtn");
-        const historyLink = document.getElementById("historyLink");
+            <div class="user-search">
+                <span>🔍</span>
+                <input
+                    type="text"
+                    id="searchUser"
+                    placeholder="Search by name or email..."
+                    autocomplete="off">
+            </div>
 
-        // CHECK ADMIN SESSION
-        async function checkAdminLogin() {
-            try {
-                const response = await fetch(
-                    ADMIN_API_URL + "/check",
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        cache: "no-store"
-                    }
-                );
+            <button type="button" id="refreshBtn" class="refresh-btn">
+                ↻ Refresh Users
+            </button>
 
-                const result = (await response.text()).trim();
+        </div>
 
-                if (!response.ok ||
-                    result !== "Admin authenticated") {
+        <a href="#" id="historyLink" class="history-link">
+            View Customer Login History
+        </a>
 
-                    console.error(
-                        "Admin session check failed:",
-                        response.status,
-                        result
-                    );
+        <div class="table-container">
 
-                    loading.textContent =
-                        "Admin session expired. Please log in again.";
+            <div id="loading" class="loading">
+                Checking admin session...
+            </div>
 
-                    window.location.replace("admin-login.html");
-                    return false;
+            <div class="users-table-wrapper">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Registered At</th>
+                            <th>Last Login</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+            </div>
+
+            <div id="emptyMessage" class="empty-message"
+                 style="display:none;"></div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="admin-footer">
+    <p>💅 Nail Studio — Admin Panel</p>
+</footer>
+
+<script>
+"use strict";
+
+// BACKEND URL
+const API_BASE_URL =
+    "https://nail-studio-backend-k604.onrender.com";
+
+const API_URL = API_BASE_URL + "/api/users";
+const ADMIN_API_URL = API_BASE_URL + "/api/admin";
+
+let usersData = [];
+let logoutInProgress = false;
+let redirectingToLogin = false;
+
+const loading = document.getElementById("loading");
+const table = document.getElementById("usersTable");
+const tableBody = document.getElementById("usersTableBody");
+const emptyMessage = document.getElementById("emptyMessage");
+const userCount = document.getElementById("userCount");
+const refreshBtn = document.getElementById("refreshBtn");
+const searchInput = document.getElementById("searchUser");
+const logoutBtn = document.getElementById("logoutBtn");
+const historyLink = document.getElementById("historyLink");
+
+// API response helper
+async function readResponse(response) {
+    const text = await response.text();
+
+    let data = text;
+
+    try {
+        data = text ? JSON.parse(text) : null;
+    } catch (error) {
+        // Keep plain-text responses as text.
+    }
+
+    return { text, data };
+}
+
+// Check server-side admin session
+async function checkAdminLogin() {
+    try {
+        const response = await fetch(
+            ADMIN_API_URL + "/check",
+            {
+                method: "GET",
+                credentials: "include",
+                cache: "no-store",
+                headers: {
+                    "Accept": "text/plain, application/json"
                 }
-
-                console.log("Admin authenticated");
-                return true;
-
-            } catch (error) {
-                console.error("Admin authentication error:", error);
-
-                loading.textContent =
-                    "Unable to contact the server. Check your connection and try again.";
-
-                return false;
             }
-        }
+        );
 
-        // LOGOUT
-        logoutBtn.addEventListener("click", async function () {
-            if (logoutInProgress) {
-                return;
-            }
+        const result = await readResponse(response);
+        const message = typeof result.data === "string"
+            ? result.data.trim()
+            : result.text.trim();
 
-            logoutInProgress = true;
-            logoutBtn.disabled = true;
-            logoutBtn.textContent = "Logging out...";
+        if (!response.ok ||
+            message !== "Admin authenticated") {
 
-            try {
-                const response = await fetch(
-                    ADMIN_API_URL + "/logout",
-                    {
-                        method: "POST",
-                        credentials: "include",
-                        cache: "no-store"
-                    }
-                );
-
-                if (!response.ok) {
-                    console.error(
-                        "Server logout returned:",
-                        response.status
-                    );
-                }
-
-            } catch (error) {
-                console.error("Logout request error:", error);
-
-            } finally {
-                localStorage.removeItem("adminLoggedIn");
-                localStorage.removeItem("adminEmail");
-                localStorage.removeItem("adminToken");
-
-                window.location.replace("admin-login.html");
-            }
-        });
-
-        // CREATE TABLE CELL SAFELY
-        function addCell(row, value, className) {
-            const cell = document.createElement("td");
-            const span = document.createElement("span");
-
-            span.textContent =
-                value == null || value === ""
-                    ? "—"
-                    : String(value);
-
-            if (className) {
-                span.className = className;
-            }
-
-            cell.appendChild(span);
-            row.appendChild(cell);
-
-            return cell;
-        }
-
-        // FORMAT DATE
-        function formatDate(value) {
-            if (!value) {
-                return "—";
-            }
-
-            const date = new Date(value);
-
-            if (Number.isNaN(date.getTime())) {
-                return String(value).replace("T", " ");
-            }
-
-            return date.toLocaleString("en-IN", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit"
-            });
-        }
-
-        // LOAD REGISTERED USERS
-        async function loadUsers() {
-            loading.style.display = "block";
-            loading.textContent = "Loading registered users...";
-            table.style.display = "none";
-            emptyMessage.style.display = "none";
-            tableBody.replaceChildren();
-            refreshBtn.disabled = true;
-
-            try {
-                const response = await fetch(
-                    API_URL + "/all?_" + "=" + Date.now(),
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        headers: {
-                            "Accept": "application/json"
-                        },
-                        cache: "no-store"
-                    }
-                );
-
-                const responseText = await response.text();
-
-                if (!response.ok) {
-                    throw new Error(
-                        "Unable to load users. HTTP " +
-                        response.status + ": " + responseText
-                    );
-                }
-
-                let result;
-
-                try {
-                    result = JSON.parse(responseText);
-                } catch (error) {
-                    throw new Error(
-                        "The users API returned an invalid response."
-                    );
-                }
-
-                if (!Array.isArray(result)) {
-                    throw new Error(
-                        "The users API did not return a list."
-                    );
-                }
-
-                usersData = result;
-
-                console.log("Registered users:", usersData);
-
-                loading.style.display = "none";
-
-                updateUserCount();
-                displayUsers();
-
-            } catch (error) {
-                console.error("User loading error:", error);
-
-                loading.style.display = "none";
-                table.style.display = "none";
-                userCount.textContent = "Registered Users";
-
-                emptyMessage.style.display = "block";
-                emptyMessage.replaceChildren();
-
-                const box = document.createElement("div");
-                box.className = "user-empty";
-
-                const icon = document.createElement("div");
-                icon.className = "user-empty-icon";
-                icon.textContent = "⚠️";
-
-                const message = document.createElement("p");
-                message.textContent = error.message;
-
-                const retry = document.createElement("button");
-                retry.type = "button";
-                retry.className = "refresh-btn";
-                retry.textContent = "Try Again";
-                retry.addEventListener("click", loadUsers);
-
-                box.append(icon, message, retry);
-                emptyMessage.appendChild(box);
-
-            } finally {
-                refreshBtn.disabled = false;
-            }
-        }
-
-        // UPDATE USER COUNT
-        function updateUserCount() {
-            userCount.replaceChildren();
-
-            userCount.appendChild(
-                document.createTextNode("Registered Users ")
+            console.error(
+                "Admin session check failed:",
+                response.status,
+                result.text
             );
 
-            const count = document.createElement("span");
-            count.textContent = "(" + usersData.length + ")";
+            loading.textContent =
+                "Admin login required. Redirecting to login...";
 
-            userCount.appendChild(count);
+            redirectingToLogin = true;
+
+            setTimeout(function () {
+                window.location.replace("admin-login.html");
+            }, 800);
+
+            return false;
         }
 
-        // DISPLAY AND SEARCH USERS
-        function displayUsers() {
-            tableBody.replaceChildren();
+        console.log("Admin authenticated");
+        return true;
 
-            const searchText =
-                searchInput.value.trim().toLowerCase();
+    } catch (error) {
+        console.error("Admin session check error:", error);
 
-            const filteredUsers = usersData.filter(function (user) {
-                const name = String(user.name || "").toLowerCase();
-                const email = String(user.email || "").toLowerCase();
+        loading.textContent =
+            "Unable to contact the server. Check your internet connection and try again.";
 
-                return name.includes(searchText) ||
-                    email.includes(searchText);
-            });
+        showRetryButton();
+        return false;
+    }
+}
 
-            if (filteredUsers.length === 0) {
-                table.style.display = "none";
-                emptyMessage.style.display = "block";
-                emptyMessage.replaceChildren();
+// Logout
+logoutBtn.addEventListener("click", async function () {
+    if (logoutInProgress) return;
 
-                const box = document.createElement("div");
-                box.className = "user-empty";
+    logoutInProgress = true;
+    logoutBtn.disabled = true;
+    logoutBtn.textContent = "Logging out...";
 
-                const icon = document.createElement("div");
-                icon.className = "user-empty-icon";
-                icon.textContent =
-                    usersData.length === 0 ? "👥" : "🔍";
-
-                const message = document.createElement("p");
-                message.textContent =
-                    usersData.length === 0
-                        ? "No registered users found."
-                        : "No users found for your search.";
-
-                box.append(icon, message);
-                emptyMessage.appendChild(box);
-
-                return;
+    try {
+        const response = await fetch(
+            ADMIN_API_URL + "/logout",
+            {
+                method: "POST",
+                credentials: "include",
+                cache: "no-store"
             }
+        );
 
-            emptyMessage.style.display = "none";
-            table.style.display = "table";
-
-            filteredUsers.forEach(function (user) {
-                const row = document.createElement("tr");
-
-                addCell(row, user.id, "user-id");
-                addCell(row, user.name, "user-name");
-                addCell(row, user.email, "user-email");
-                addCell(row, formatDate(user.createdAt), "user-date");
-                addCell(row, formatDate(user.lastLogin), "user-date");
-
-                const actionCell = document.createElement("td");
-                actionCell.className = "user-action";
-
-                const deleteButton = document.createElement("button");
-                deleteButton.type = "button";
-                deleteButton.className = "delete-btn";
-                deleteButton.textContent = "🗑️ Delete";
-
-                deleteButton.addEventListener("click", function () {
-                    deleteUser(user.id, user.name, deleteButton);
-                });
-
-                actionCell.appendChild(deleteButton);
-                row.appendChild(actionCell);
-
-                tableBody.appendChild(row);
-            });
+        if (!response.ok) {
+            console.error("Server logout:", response.status);
         }
 
-        // DELETE REGISTERED USER
-        async function deleteUser(id, name, button) {
-            if (!confirm(
-                "Are you sure you want to delete " +
-                (name || "this user") + "?"
-            )) {
-                return;
+    } catch (error) {
+        console.error("Logout request error:", error);
+
+    } finally {
+        localStorage.removeItem("adminLoggedIn");
+        localStorage.removeItem("adminEmail");
+        localStorage.removeItem("adminToken");
+
+        window.location.replace("admin-login.html");
+    }
+});
+
+// Create table cell safely
+function addCell(row, value, className) {
+    const cell = document.createElement("td");
+    const span = document.createElement("span");
+
+    span.textContent =
+        value === null || value === undefined || value === ""
+            ? "—"
+            : String(value);
+
+    if (className) {
+        span.className = className;
+    }
+
+    cell.appendChild(span);
+    row.appendChild(cell);
+
+    return cell;
+}
+
+// Format date
+function formatDate(value) {
+    if (!value) return "—";
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return String(value).replace("T", " ");
+    }
+
+    return date.toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+// Show retry button
+function showRetryButton() {
+    emptyMessage.style.display = "block";
+    emptyMessage.replaceChildren();
+
+    const box = document.createElement("div");
+    const icon = document.createElement("div");
+    const message = document.createElement("p");
+    const retry = document.createElement("button");
+
+    icon.className = "user-empty-icon";
+    icon.textContent = "⚠️";
+
+    message.textContent =
+        "Could not verify the admin session. Please try again.";
+
+    retry.type = "button";
+    retry.className = "refresh-btn";
+    retry.textContent = "Try Again";
+
+    retry.addEventListener("click", async function () {
+        emptyMessage.style.display = "none";
+        loading.style.display = "block";
+        loading.textContent = "Checking admin session...";
+
+        const isAdmin = await checkAdminLogin();
+
+        if (isAdmin) {
+            await loadUsers();
+        }
+    });
+
+    box.append(icon, message, retry);
+    emptyMessage.appendChild(box);
+}
+
+// Load registered users
+async function loadUsers() {
+    if (redirectingToLogin) return;
+
+    loading.style.display = "block";
+    loading.textContent = "Loading registered users...";
+    table.style.display = "none";
+    emptyMessage.style.display = "none";
+    tableBody.replaceChildren();
+    refreshBtn.disabled = true;
+
+    try {
+        const response = await fetch(
+            API_URL + "/all?_=" + Date.now(),
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Accept": "application/json"
+                },
+                cache: "no-store"
             }
+        );
 
-            button.disabled = true;
-            button.textContent = "Deleting...";
+        const result = await readResponse(response);
 
-            try {
-                const response = await fetch(
-                    API_URL + "/" + encodeURIComponent(id),
-                    {
-                        method: "DELETE",
-                        credentials: "include"
-                    }
-                );
-
-                const resultText = await response.text();
-
-                if (!response.ok) {
-                    throw new Error(
-                        "Delete failed. HTTP " +
-                        response.status + ": " + resultText
-                    );
-                }
-
-                alert("User deleted successfully.");
-                await loadUsers();
-
-            } catch (error) {
-                console.error("Delete user error:", error);
-                alert(error.message || "Unable to delete user.");
-
-                button.disabled = false;
-                button.textContent = "🗑️ Delete";
-            }
+        if (response.status === 401 || response.status === 403) {
+            throw new Error(
+                "Admin login required (HTTP " +
+                response.status +
+                "). Your backend session is not being accepted. Log in again; if this continues, the backend session/CORS configuration needs fixing."
+            );
         }
 
-        // SEARCH USERS
-        searchInput.addEventListener("input", displayUsers);
+        if (!response.ok) {
+            const message = result.data &&
+                typeof result.data === "object"
+                ? result.data.message
+                : result.text;
 
-        // REFRESH USERS
-        refreshBtn.addEventListener("click", loadUsers);
+            throw new Error(
+                "Unable to load users. HTTP " +
+                response.status + ": " +
+                (message || "Unknown server error")
+            );
+        }
 
-        // CUSTOMER LOGIN HISTORY
-        historyLink.addEventListener("click", async function (event) {
-            event.preventDefault();
+        const users = result.data;
 
-            try {
-                const response = await fetch(
-                    API_URL + "/login-history",
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        headers: {
-                            "Accept": "application/json"
-                        },
-                        cache: "no-store"
-                    }
-                );
+        if (!Array.isArray(users)) {
+            throw new Error(
+                "The users API did not return a list."
+            );
+        }
 
-                const responseText = await response.text();
+        usersData = users;
 
-                if (!response.ok) {
-                    throw new Error(
-                        "Unable to load login history. HTTP " +
-                        response.status + ": " + responseText
-                    );
-                }
+        console.log("Registered users:", usersData);
 
-                let history;
+        loading.style.display = "none";
+        updateUserCount();
+        displayUsers();
 
-                try {
-                    history = JSON.parse(responseText);
-                } catch (error) {
-                    throw new Error(
-                        "The login history API returned invalid data."
-                    );
-                }
+    } catch (error) {
+        console.error("User loading error:", error);
 
-                const historyWindow = window.open("", "_blank");
+        loading.style.display = "none";
+        table.style.display = "none";
+        userCount.textContent = "Registered Users";
 
-                if (!historyWindow) {
-                    alert("Please allow pop-ups to view login history.");
-                    return;
-                }
+        emptyMessage.style.display = "block";
+        emptyMessage.replaceChildren();
 
-                // Build the history page safely
-                historyWindow.document.title =
-                    "Customer Login History";
+        const box = document.createElement("div");
+        const icon = document.createElement("div");
+        const message = document.createElement("p");
+        const retry = document.createElement("button");
 
-                const style = historyWindow.document.createElement("style");
-                style.textContent = `
-                    body {
-                        font-family: Arial, sans-serif;
-                        padding: 20px;
-                        color: #49393e;
-                    }
+        icon.className = "user-empty-icon";
+        icon.textContent = "⚠️";
 
-                    table {
-                        border-collapse: collapse;
-                        width: 100%;
-                    }
+        message.textContent = error.message;
 
-                    th, td {
-                        padding: 12px;
-                        border: 1px solid #ddd;
-                        text-align: left;
-                    }
+        retry.type = "button";
+        retry.className = "refresh-btn";
+        retry.textContent = "Try Again";
+        retry.addEventListener("click", loadUsers);
 
-                    th {
-                        background: #49393e;
-                        color: white;
-                    }
+        box.append(icon, message, retry);
+        emptyMessage.appendChild(box);
 
-                    tr:nth-child(even) {
-                        background: #fffaf8;
-                    }
-                `;
+    } finally {
+        refreshBtn.disabled = false;
+    }
+}
 
-                historyWindow.document.head.appendChild(style);
+// Update user count
+function updateUserCount() {
+    userCount.replaceChildren();
 
-                const heading = historyWindow.document.createElement("h2");
-                heading.textContent =
-                    "Nail Studio - Customer Login History";
+    userCount.appendChild(
+        document.createTextNode("Registered Users ")
+    );
 
-                historyWindow.document.body.appendChild(heading);
+    const count = document.createElement("span");
+    count.textContent = "(" + usersData.length + ")";
 
-                if (!Array.isArray(history) || history.length === 0) {
-                    const message =
-                        historyWindow.document.createElement("p");
+    userCount.appendChild(count);
+}
 
-                    message.textContent = "No login history found.";
-                    historyWindow.document.body.appendChild(message);
+// Display and search users
+function displayUsers() {
+    tableBody.replaceChildren();
 
-                } else {
-                    const historyTable =
-                        historyWindow.document.createElement("table");
+    const searchText = searchInput.value.trim().toLowerCase();
 
-                    const header =
-                        historyWindow.document.createElement("tr");
+    const filteredUsers = usersData.filter(function (user) {
+        const name = String(user.name || "").toLowerCase();
+        const email = String(user.email || "").toLowerCase();
 
-                    ["ID", "Name", "Email", "Login Time"].forEach(
-                        function (title) {
-                            const th =
-                                historyWindow.document.createElement("th");
+        return name.includes(searchText) ||
+            email.includes(searchText);
+    });
 
-                            th.textContent = title;
-                            header.appendChild(th);
-                        }
-                    );
+    if (filteredUsers.length === 0) {
+        table.style.display = "none";
+        emptyMessage.style.display = "block";
+        emptyMessage.replaceChildren();
 
-                    historyTable.appendChild(header);
+        const box = document.createElement("div");
+        const icon = document.createElement("div");
+        const message = document.createElement("p");
 
-                    history.forEach(function (record) {
-                        const row =
-                            historyWindow.document.createElement("tr");
+        icon.className = "user-empty-icon";
+        icon.textContent = usersData.length === 0 ? "👥" : "🔍";
 
-                        [
-                            record.id,
-                            record.name,
-                            record.email,
-                            formatDate(record.loginTime)
-                        ].forEach(function (value) {
-                            const td =
-                                historyWindow.document.createElement("td");
+        message.textContent = usersData.length === 0
+            ? "No registered users found."
+            : "No users found for your search.";
 
-                            td.textContent =
-                                value == null ? "—" : String(value);
+        box.append(icon, message);
+        emptyMessage.appendChild(box);
 
-                            row.appendChild(td);
-                        });
+        return;
+    }
 
-                        historyTable.appendChild(row);
-                    });
+    emptyMessage.style.display = "none";
+    table.style.display = "table";
 
-                    historyWindow.document.body.appendChild(historyTable);
-                }
+    filteredUsers.forEach(function (user) {
+        const row = document.createElement("tr");
 
-            } catch (error) {
-                console.error("Login history error:", error);
-                alert(error.message || "Unable to load login history.");
-            }
+        addCell(row, user.id, "user-id");
+        addCell(row, user.name, "user-name");
+        addCell(row, user.email, "user-email");
+        addCell(row, formatDate(user.createdAt), "user-date");
+        addCell(row, formatDate(user.lastLogin), "user-date");
+
+        const actionCell = document.createElement("td");
+        actionCell.className = "user-action";
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "delete-btn";
+        deleteButton.textContent = "🗑️ Delete";
+
+        deleteButton.addEventListener("click", function () {
+            deleteUser(user.id, user.name, deleteButton);
         });
 
-        // START PAGE
-        document.addEventListener("DOMContentLoaded", async function () {
-            console.log("💅 ADMIN USERS PAGE LOADED");
-            console.log("Backend:", API_BASE_URL);
+        actionCell.appendChild(deleteButton);
+        row.appendChild(actionCell);
+        tableBody.appendChild(row);
+    });
+}
 
-            const isAdmin = await checkAdminLogin();
+// Delete registered user
+async function deleteUser(id, name, button) {
+    if (!confirm(
+        "Are you sure you want to delete " +
+        (name || "this user") + "?"
+    )) {
+        return;
+    }
 
-            if (isAdmin) {
-                await loadUsers();
+    button.disabled = true;
+    button.textContent = "Deleting...";
+
+    try {
+        const response = await fetch(
+            API_URL + "/" + encodeURIComponent(id),
+            {
+                method: "DELETE",
+                credentials: "include",
+                headers: {
+                    "Accept": "application/json"
+                }
             }
+        );
+
+        const result = await readResponse(response);
+
+        if (response.status === 401 || response.status === 403) {
+            throw new Error(
+                "Admin login required. Please log in again."
+            );
+        }
+
+        if (!response.ok) {
+            throw new Error(
+                "Delete failed. HTTP " +
+                response.status + ": " + result.text
+            );
+        }
+
+        alert("User deleted successfully.");
+        await loadUsers();
+
+    } catch (error) {
+        console.error("Delete user error:", error);
+        alert(error.message || "Unable to delete user.");
+
+        button.disabled = false;
+        button.textContent = "🗑️ Delete";
+    }
+}
+
+// Search users
+searchInput.addEventListener("input", displayUsers);
+
+// Refresh users
+refreshBtn.addEventListener("click", loadUsers);
+
+// Customer login history
+historyLink.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    try {
+        const response = await fetch(
+            API_URL + "/login-history",
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Accept": "application/json"
+                },
+                cache: "no-store"
+            }
+        );
+
+        const result = await readResponse(response);
+
+        if (response.status === 401 || response.status === 403) {
+            throw new Error(
+                "Admin login required. Please log in again."
+            );
+        }
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to load login history. HTTP " +
+                response.status + ": " + result.text
+            );
+        }
+
+        const history = result.data;
+
+        if (!Array.isArray(history)) {
+            throw new Error(
+                "The login history API did not return a list."
+            );
+        }
+
+        const historyWindow = window.open("", "_blank");
+
+        if (!historyWindow) {
+            alert("Please allow pop-ups to view login history.");
+            return;
+        }
+
+        historyWindow.document.title = "Customer Login History";
+
+        const style = historyWindow.document.createElement("style");
+        style.textContent = `
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                color: #49393e;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                padding: 12px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            th {
+                background: #49393e;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background: #fffaf8;
+            }
+        `;
+
+        historyWindow.document.head.appendChild(style);
+
+        const heading = historyWindow.document.createElement("h2");
+        heading.textContent = "Nail Studio - Customer Login History";
+        historyWindow.document.body.appendChild(heading);
+
+        if (history.length === 0) {
+            const message = historyWindow.document.createElement("p");
+            message.textContent = "No login history found.";
+            historyWindow.document.body.appendChild(message);
+            return;
+        }
+
+        const historyTable = historyWindow.document.createElement("table");
+        const header = historyWindow.document.createElement("tr");
+
+        ["ID", "Name", "Email", "Login Time"].forEach(function (title) {
+            const th = historyWindow.document.createElement("th");
+            th.textContent = title;
+            header.appendChild(th);
         });
-    </script>
+
+        historyTable.appendChild(header);
+
+        history.forEach(function (record) {
+            const row = historyWindow.document.createElement("tr");
+
+            [
+                record.id,
+                record.name,
+                record.email,
+                formatDate(record.loginTime)
+            ].forEach(function (value) {
+                const td = historyWindow.document.createElement("td");
+                td.textContent = value == null ? "—" : String(value);
+                row.appendChild(td);
+            });
+
+            historyTable.appendChild(row);
+        });
+
+        historyWindow.document.body.appendChild(historyTable);
+
+    } catch (error) {
+        console.error("Login history error:", error);
+        alert(error.message || "Unable to load login history.");
+    }
+});
+
+// Start page
+document.addEventListener("DOMContentLoaded", async function () {
+    console.log("💅 ADMIN USERS PAGE LOADED");
+    console.log("Backend:", API_BASE_URL);
+
+    const isAdmin = await checkAdminLogin();
+
+    if (isAdmin) {
+        await loadUsers();
+    }
+});
+</script>
 
 </body>
 </html>
+
