@@ -19,59 +19,6 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* NAVBAR */
-        .admin-navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            padding: 18px 5%;
-            background: #fff;
-            border-bottom: 1px solid #eadfd8;
-        }
-
-        .admin-logo {
-            color: #49393e;
-            text-decoration: none;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 30px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .admin-nav-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            gap: 22px;
-        }
-
-        .admin-nav-link {
-            color: #49393e;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.2s ease;
-        }
-
-        .admin-nav-link:hover,
-        .admin-nav-link.active {
-            color: #b8860b;
-        }
-
-        .logout-btn {
-            border: none;
-            border-radius: 7px;
-            background: #49393e;
-            color: white;
-            padding: 9px 15px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .logout-btn:hover { background: #6b5058; }
-
         .admin-bookings {
             padding: 45px 20px;
             min-height: 80vh;
@@ -194,7 +141,9 @@
             gap: 10px;
         }
 
-        .booking-filter label { font-size: 13px; }
+        .booking-filter label {
+            font-size: 13px;
+        }
 
         .booking-filter select {
             min-width: 180px;
@@ -266,12 +215,8 @@
         }
 
         .customer-name { font-weight: 600; font-size: 13px; }
-
-        .customer-email,
-        .customer-phone,
-        .booking-detail-sub,
-        .booking-time,
-        .payment-method {
+        .customer-email, .customer-phone, .booking-detail-sub,
+        .booking-time, .payment-method {
             color: #8c7770;
             font-size: 11px;
         }
@@ -282,8 +227,7 @@
         .shape-name { color: #7b42b8; font-size: 11px; }
         .shade-name { color: #b8860b; font-size: 11px; }
 
-        .service-badge,
-        .offer-badge {
+        .service-badge, .offer-badge {
             display: inline-flex;
             width: fit-content;
             margin-top: 8px;
@@ -312,9 +256,7 @@
             line-height: 1.1;
         }
 
-        .paid-badge,
-        .pending-badge,
-        .no-payment-badge {
+        .paid-badge, .pending-badge, .no-payment-badge {
             display: inline-flex;
             width: fit-content;
             padding: 5px 9px;
@@ -364,8 +306,7 @@
             flex-wrap: wrap;
         }
 
-        .edit-btn,
-        .delete-btn {
+        .edit-btn, .delete-btn {
             padding: 8px 10px;
             color: white;
             font-size: 10px;
@@ -376,8 +317,7 @@
         .delete-btn { background: #dc3545; }
         .delete-btn:hover { background: #b92332; }
 
-        .loading,
-        .empty-message {
+        .loading, .empty-message {
             padding: 35px;
             text-align: center;
             color: #8c7770;
@@ -456,17 +396,7 @@
             font-size: 12px;
         }
 
-        @media (max-width: 750px) {
-            .admin-navbar {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .admin-nav-right {
-                justify-content: flex-start;
-                gap: 15px;
-            }
-
+        @media (max-width: 650px) {
             .admin-bookings { padding: 30px 12px; }
             .admin-title h1 { font-size: 36px; }
             .admin-stats { grid-template-columns: 1fr; }
@@ -480,24 +410,12 @@
 </head>
 
 <body>
-    <!-- NAVBAR -->
     <header>
         <nav class="admin-navbar">
             <a href="admin-bookings.html" class="admin-logo">💅 Nail Studio</a>
-
             <div class="admin-nav-right">
-                <a href="admin-bookings.html" class="admin-nav-link active">
-                    Customer Bookings
-                </a>
-
-                <!-- REGISTERED USERS LINK -->
-                <a href="admin-users.html" class="admin-nav-link">
-                    Registered Users
-                </a>
-
-                <button id="logoutBtn" class="logout-btn" type="button">
-                    Logout
-                </button>
+                <a href="admin-bookings.html" class="admin-nav-link">Customer Bookings</a>
+                <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
             </div>
         </nav>
     </header>
@@ -556,9 +474,7 @@
 
             <div class="table-wrapper">
                 <div class="table-container">
-                    <div id="loadingMessage" class="loading">
-                        Loading bookings...
-                    </div>
+                    <div id="loadingMessage" class="loading">Loading bookings...</div>
 
                     <table id="bookingTable" style="display:none;">
                         <thead>
@@ -581,7 +497,6 @@
         </div>
     </section>
 
-    <!-- EDIT MODAL -->
     <div id="editModal" class="admin-modal">
         <div class="admin-modal-content">
             <span class="admin-close-modal" id="closeModal">&times;</span>
@@ -676,6 +591,8 @@
             ].includes(service);
         }
 
+        // Virtual Preview selections are part of a service booking,
+        // not a separate booking category.
         function getBookingType(booking) {
             const type = String(booking?.bookingType || "").trim().toUpperCase();
 
@@ -817,9 +734,14 @@
             const rawShade = String(booking.shade || "").trim();
             const rawDesign = String(booking.design || "").trim();
 
-            const shape = rawShape && rawShape.toLowerCase() !== "not selected" ? rawShape : "";
-            const shade = rawShade && rawShade.toLowerCase() !== "not selected" ? rawShade : "";
-            const design = rawDesign && rawDesign.toLowerCase() !== "not selected" ? rawDesign : "";
+            const shape = rawShape && rawShape.toLowerCase() !== "not selected"
+                ? rawShape : "";
+
+            const shade = rawShade && rawShade.toLowerCase() !== "not selected"
+                ? rawShade : "";
+
+            const design = rawDesign && rawDesign.toLowerCase() !== "not selected"
+                ? rawDesign : "";
 
             return `
                 <div class="booking-detail">
@@ -862,14 +784,14 @@
                 }
 
                 let result;
-
                 try {
                     result = responseText ? JSON.parse(responseText) : [];
                 } catch {
                     throw new Error("Backend returned invalid booking data.");
                 }
 
-                const bookings = Array.isArray(result)
+                // Support both a direct list and common wrapped responses.
+                let bookings = Array.isArray(result)
                     ? result
                     : Array.isArray(result?.data)
                         ? result.data
@@ -882,13 +804,13 @@
                 displayBookings();
 
                 loading.style.display = "none";
+                table.style.display = "table";
 
                 if (bookingsData.length === 0) {
                     empty.style.display = "block";
                 }
             } catch (error) {
                 console.error("LOAD BOOKINGS ERROR:", error);
-
                 bookingsData = [];
                 updateDashboardStats();
 
@@ -999,8 +921,9 @@
             document.getElementById("editDate").value = booking.bookingDate || booking.date || "";
             document.getElementById("editTime").value = booking.bookingTime || booking.time || "";
 
-            document.getElementById("editPaymentStatus").value =
-                getPaymentStatus(booking) === "PAID" ? "PAID" : "PENDING";
+            const status = getPaymentStatus(booking);
+            document.getElementById("editPaymentStatus").value = status === "PAID"
+                ? "PAID" : "PENDING";
 
             document.getElementById("paymentEditGroup").style.display =
                 isOfferBooking(booking) ? "none" : "block";
@@ -1059,8 +982,6 @@
                 return;
             }
 
-            const paymentAmount = getPaymentAmount(original);
-
             const updatedBooking = {
                 name: document.getElementById("editName").value.trim(),
                 email: document.getElementById("editEmail").value.trim(),
@@ -1077,7 +998,8 @@
                 notes: original.notes || "",
                 paymentMethod: original.paymentMethod || "",
                 paymentStatus: original.paymentStatus || "PENDING",
-                paymentAmount: paymentAmount === "" ? null : paymentAmount,
+                paymentAmount: getPaymentAmount(original) === ""
+                    ? null : getPaymentAmount(original),
                 paymentId: original.paymentId || null,
                 razorpayOrderId: original.razorpayOrderId || null
             };
@@ -1089,7 +1011,6 @@
 
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
-
             submitButton.disabled = true;
             submitButton.textContent = "⏳ Updating...";
 
@@ -1107,9 +1028,7 @@
                 const responseText = await response.text();
 
                 if (!response.ok) {
-                    throw new Error(
-                        "Update failed. Status: " + response.status + " " + responseText
-                    );
+                    throw new Error("Update failed. Status: " + response.status + " " + responseText);
                 }
 
                 alert("💅 Booking updated successfully!");
@@ -1137,9 +1056,7 @@
                 const responseText = await response.text();
 
                 if (!response.ok) {
-                    throw new Error(
-                        "Delete failed. Status: " + response.status + " " + responseText
-                    );
+                    throw new Error("Delete failed. Status: " + response.status + " " + responseText);
                 }
 
                 alert("💅 Booking deleted successfully!");
