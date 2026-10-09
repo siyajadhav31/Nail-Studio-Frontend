@@ -469,7 +469,7 @@
     </footer>
 
     <script>
-        // CORRECT BACKEND URL
+        // BACKEND URL
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
 
@@ -618,12 +618,12 @@
             loading.textContent = "Loading registered users...";
             table.style.display = "none";
             emptyMessage.style.display = "none";
-            tableBody.innerHTML = "";
+            tableBody.replaceChildren();
             refreshBtn.disabled = true;
 
             try {
                 const response = await fetch(
-                    API_URL + "/all?_=" + Date.now(),
+                    API_URL + "/all?_" + "=" + Date.now(),
                     {
                         method: "GET",
                         credentials: "include",
@@ -647,7 +647,7 @@
 
                 try {
                     result = JSON.parse(responseText);
-                } catch {
+                } catch (error) {
                     throw new Error(
                         "The users API returned an invalid response."
                     );
@@ -852,16 +852,24 @@
                     }
                 );
 
-                const text = await response.text();
+                const responseText = await response.text();
 
                 if (!response.ok) {
                     throw new Error(
                         "Unable to load login history. HTTP " +
-                        response.status + ": " + text
+                        response.status + ": " + responseText
                     );
                 }
 
-                const history = JSON.parse(text);
+                let history;
+
+                try {
+                    history = JSON.parse(responseText);
+                } catch (error) {
+                    throw new Error(
+                        "The login history API returned invalid data."
+                    );
+                }
 
                 const historyWindow = window.open("", "_blank");
 
@@ -870,37 +878,76 @@
                     return;
                 }
 
-                historyWindow.document.write(
-                    "<!DOCTYPE html><html><head><title>Customer Login History</title>" +
-                    "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
-                    "<style>body{font-family:Arial,sans-serif;padding:20px;color:#49393e}" +
-                    "table{border-collapse:collapse;width:100%}th,td{padding:12px;border:1px solid #ddd;text-align:left}" +
-                    "th{background:#49393e;color:white}tr:nth-child(even){background:#fffaf8}</style>" +
-                    "</head><body><h2>Nail Studio - Customer Login History</h2>" +
-                    "<div id='historyTable'></div></body></html>"
-                );
+                // Build the history page safely
+                historyWindow.document.title =
+                    "Customer Login History";
 
-                const container =
-                    historyWindow.document.getElementById("historyTable");
+                const style = historyWindow.document.createElement("style");
+                style.textContent = `
+                    body {
+                        font-family: Arial, sans-serif;
+                        padding: 20px;
+                        color: #49393e;
+                    }
+
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+
+                    th, td {
+                        padding: 12px;
+                        border: 1px solid #ddd;
+                        text-align: left;
+                    }
+
+                    th {
+                        background: #49393e;
+                        color: white;
+                    }
+
+                    tr:nth-child(even) {
+                        background: #fffaf8;
+                    }
+                `;
+
+                historyWindow.document.head.appendChild(style);
+
+                const heading = historyWindow.document.createElement("h2");
+                heading.textContent =
+                    "Nail Studio - Customer Login History";
+
+                historyWindow.document.body.appendChild(heading);
 
                 if (!Array.isArray(history) || history.length === 0) {
-                    container.textContent = "No login history found.";
+                    const message =
+                        historyWindow.document.createElement("p");
+
+                    message.textContent = "No login history found.";
+                    historyWindow.document.body.appendChild(message);
+
                 } else {
                     const historyTable =
                         historyWindow.document.createElement("table");
 
-                    const header = historyWindow.document.createElement("tr");
+                    const header =
+                        historyWindow.document.createElement("tr");
 
-                    ["ID", "Name", "Email", "Login Time"].forEach(function (title) {
-                        const th = historyWindow.document.createElement("th");
-                        th.textContent = title;
-                        header.appendChild(th);
-                    });
+                    ["ID", "Name", "Email", "Login Time"].forEach(
+                        function (title) {
+                            const th =
+                                historyWindow.document.createElement("th");
+
+                            th.textContent = title;
+                            header.appendChild(th);
+                        }
+                    );
 
                     historyTable.appendChild(header);
 
                     history.forEach(function (record) {
-                        const row = historyWindow.document.createElement("tr");
+                        const row =
+                            historyWindow.document.createElement("tr");
 
                         [
                             record.id,
@@ -908,18 +955,20 @@
                             record.email,
                             formatDate(record.loginTime)
                         ].forEach(function (value) {
-                            const td = historyWindow.document.createElement("td");
-                            td.textContent = value == null ? "—" : String(value);
+                            const td =
+                                historyWindow.document.createElement("td");
+
+                            td.textContent =
+                                value == null ? "—" : String(value);
+
                             row.appendChild(td);
                         });
 
                         historyTable.appendChild(row);
                     });
 
-                    container.appendChild(historyTable);
+                    historyWindow.document.body.appendChild(historyTable);
                 }
-
-                historyWindow.document.close();
 
             } catch (error) {
                 console.error("Login history error:", error);
