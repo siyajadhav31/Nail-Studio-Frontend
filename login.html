@@ -1,383 +1,304 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Login | Nail Studio</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
 
-<title>Login | Nail Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
-<style>
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background:
-            linear-gradient(
-                135deg,
-                #fffaf8,
-                #fff,
-                #fff5ef
-            );
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .auth-container {
-        width: 100%;
-        max-width: 430px;
-        padding: 20px;
-    }
-
-    .auth-card {
-        background: white;
-        border: 1px solid #f0dfd4;
-        border-radius: 22px;
-        padding: 40px 35px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    }
-
-    .auth-logo {
-        text-align: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 32px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 8px;
-    }
-
-    .auth-logo span {
-        color: #b8860b;
-    }
-
-    .auth-subtitle {
-        text-align: center;
-        color: #888;
-        font-size: 13px;
-        margin-bottom: 30px;
-    }
-
-    .auth-card h2 {
-        text-align: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 34px;
-        color: #333;
-        margin: 0 0 25px;
-    }
-
-    .form-group {
-        margin-bottom: 17px;
-    }
-
-    .form-group label {
-        display: block;
-        font-size: 12px;
-        color: #444;
-        margin-bottom: 7px;
-        font-weight: 500;
-    }
-
-    .form-group input {
-        width: 100%;
-        padding: 12px 13px;
-        border: 1px solid #e5d8d0;
-        border-radius: 8px;
-        outline: none;
-        font-family: 'Poppins', sans-serif;
-        font-size: 13px;
-        transition: 0.3s ease;
-    }
-
-    .form-group input:focus {
-        border-color: #c89b3c;
-        box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.10);
-    }
-
-    .login-btn {
-        width: 100%;
-        border: none;
-        border-radius: 8px;
-        padding: 13px;
-        margin-top: 8px;
-        background: linear-gradient(
-            135deg,
-            #c89b3c,
-            #b8860b
-        );
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-
-    .login-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(184, 134, 11, 0.20);
-    }
-
-    .auth-message {
-        min-height: 20px;
-        text-align: center;
-        font-size: 12px;
-        margin-top: 15px;
-        color: #c0392b;
-    }
-
-    .register-text {
-        text-align: center;
-        font-size: 12px;
-        color: #777;
-        margin-top: 22px;
-    }
-
-    .register-text a {
-        color: #b8860b;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .register-text a:hover {
-        text-decoration: underline;
-    }
-
-    .back-home {
-        display: block;
-        text-align: center;
-        margin-top: 18px;
-        color: #999;
-        text-decoration: none;
-        font-size: 11px;
-    }
-
-    @media (max-width: 500px) {
-
-        .auth-card {
-            padding: 32px 24px;
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fffaf8, #fff, #fff5ef);
+            font-family: "Poppins", sans-serif;
+            padding: 20px;
+        }
 
-</style>
+        .auth-container {
+            width: 100%;
+            max-width: 430px;
+            padding: 20px;
+        }
 
+        .auth-card {
+            background: white;
+            border: 1px solid #f0dfd4;
+            border-radius: 22px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        }
 
+        .auth-logo {
+            text-align: center;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .auth-logo span {
+            color: #b8860b;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 34px;
+            color: #333;
+            margin: 0 0 25px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 7px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #e5d8d0;
+            border-radius: 8px;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+            transition: 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #c89b3c;
+            box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.10);
+        }
+
+        .login-btn {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            padding: 13px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, #c89b3c, #b8860b);
+            color: white;
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.20);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-message {
+            min-height: 20px;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 15px;
+            color: #c0392b;
+            overflow-wrap: anywhere;
+        }
+
+        .register-text {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 22px;
+        }
+
+        .register-text a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #999;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        @media (max-width: 500px) {
+            .auth-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="auth-container">
+        <div class="auth-card">
 
-<div class="auth-container">
-
-    <div class="auth-card">
-
-        <div class="auth-logo">
-            💅 <span>Nail Studio</span>
-        </div>
-
-        <p class="auth-subtitle">
-            Luxury nails designed for you
-        </p>
-
-        <h2>
-            Welcome Back
-        </h2>
-
-        <form id="loginForm">
-
-            <div class="form-group">
-
-                <label for="loginEmail">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Enter your email"
-                    required>
-
+            <div class="auth-logo">
+                💅 <span>Nail Studio</span>
             </div>
 
-            <div class="form-group">
+            <p class="auth-subtitle">
+                Luxury nails designed for you
+            </p>
 
-                <label for="loginPassword">
-                    Password
-                </label>
+            <h2>Welcome Back</h2>
 
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    required>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+                </div>
 
-            </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+                </div>
 
-            <button
-                type="submit"
-                class="login-btn">
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+            </form>
 
-                Login
+            <div id="loginMessage" class="auth-message" role="status" aria-live="polite"></div>
 
-            </button>
+            <p class="register-text">
+                Don't have an account?
+                <a href="register.html">Create Account</a>
+            </p>
 
-        </form>
-
-        <div
-            id="loginMessage"
-            class="auth-message">
+            <a href="index.html" class="back-home">← Back to Home</a>
         </div>
-
-        <p class="register-text">
-
-            Don't have an account?
-
-            <a href="register.html">
-                Create Account
-            </a>
-
-        </p>
-
     </div>
 
-</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginForm");
+            const message = document.getElementById("loginMessage");
+            const submitButton =
+                loginForm.querySelector('button[type="submit"]');
 
+            const API_URL =
+                "https://nail-studio-backend-k604.onrender.com/api/users";
 
-<script>
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            /*
-             * If already logged in,
-             * directly open website.
-             */
-
-            if (
-                localStorage.getItem("nailStudioLoggedIn")
-                === "true"
-            ) {
-
-                window.location.href =
-                    "index.html";
-
-                return;
-
+            function showMessage(text, color) {
+                message.textContent = text;
+                message.style.color = color;
             }
 
+            loginForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
 
-            const loginForm =
-                document.getElementById(
-                    "loginForm"
-                );
+                const email =
+                    document.getElementById("loginEmail").value.trim();
 
+                const password =
+                    document.getElementById("loginPassword").value;
 
-            loginForm.addEventListener(
-                "submit",
-                function (event) {
+                message.textContent = "";
+                submitButton.disabled = true;
+                submitButton.textContent = "Logging in...";
 
-                    event.preventDefault();
+                try {
+                    const response = await fetch(API_URL + "/login", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    });
 
+                    const responseText = await response.text();
+                    let result = {};
 
-                    const email =
-                        document.getElementById(
-                            "loginEmail"
-                        ).value.trim();
+                    try {
+                        result = responseText ? JSON.parse(responseText) : {};
+                    } catch {
+                        result = {};
+                    }
 
-                    const password =
-                        document.getElementById(
-                            "loginPassword"
-                        ).value;
-
-
-                    const savedUser =
-                        JSON.parse(
-                            localStorage.getItem(
-                                "nailStudioUser"
-                            )
+                    if (!response.ok) {
+                        throw new Error(
+                            result.message || "Invalid email or password."
                         );
-
-
-                    const message =
-                        document.getElementById(
-                            "loginMessage"
-                        );
-
-
-                    if (!savedUser) {
-
-                        message.textContent =
-                            "Account not found. Please create an account first.";
-
-                        return;
-
                     }
 
+                    localStorage.setItem("nailStudioLoggedIn", "true");
+                    localStorage.setItem("nailStudioUserName", result.name || "");
+                    localStorage.setItem("nailStudioUserEmail", result.email || email);
 
-                    if (
-                        email.toLowerCase() !==
-                        savedUser.email.toLowerCase()
-                    ) {
+                    showMessage("Login successful. Redirecting...", "#218838");
 
-                        message.textContent =
-                            "Invalid email or password.";
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 700);
 
-                        return;
+                } catch (error) {
+                    console.error("Login error:", error);
 
-                    }
-
-
-                    if (
-                        password !==
-                        savedUser.password
-                    ) {
-
-                        message.textContent =
-                            "Invalid email or password.";
-
-                        return;
-
-                    }
-
-
-                    localStorage.setItem(
-                        "nailStudioLoggedIn",
-                        "true"
+                    showMessage(
+                        error.message === "Failed to fetch"
+                            ? "Cannot connect to the server. Please try again."
+                            : error.message,
+                        "#c0392b"
                     );
 
-
-                    localStorage.setItem(
-                        "nailStudioUserName",
-                        savedUser.name
-                    );
-
-
-                    window.location.href =
-                        "index.html";
-
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = "Login";
                 }
-            );
-
-        }
-    );
-
-</script>
-
+            });
+        });
+    </script>
 </body>
-
 </html>
