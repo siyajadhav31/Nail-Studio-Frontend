@@ -79,6 +79,13 @@
             background: #302329;
         }
 
+        .logout-btn:disabled,
+        .refresh-btn:disabled,
+        .delete-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         /* PAGE */
         .admin-bookings {
             padding: 45px 20px;
@@ -179,15 +186,9 @@
             transition: 0.3s ease;
         }
 
-        .refresh-btn:hover {
+        .refresh-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 7px 18px rgba(184, 134, 11, 0.25);
-        }
-
-        .refresh-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* TABLE */
@@ -280,13 +281,8 @@
             cursor: pointer;
         }
 
-        .delete-btn:hover {
+        .delete-btn:hover:not(:disabled) {
             background: #b92332;
-        }
-
-        .delete-btn:disabled {
-            opacity: 0.6;
-            cursor: wait;
         }
 
         .user-date {
@@ -446,7 +442,6 @@
                 </div>
 
                 <div class="users-table-wrapper">
-
                     <table id="usersTable">
                         <thead>
                             <tr>
@@ -458,14 +453,12 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-
                         <tbody id="usersTableBody"></tbody>
                     </table>
-
                 </div>
 
                 <div id="emptyMessage" class="empty-message"
-                     style="display:none;"></div>
+                     style="display: none;"></div>
 
             </div>
         </div>
@@ -476,7 +469,7 @@
     </footer>
 
     <script>
-        // API URLS
+        // CORRECT BACKEND URL
         const API_BASE_URL =
             "https://nail-studio-backend-k604.onrender.com";
 
@@ -494,8 +487,9 @@
         const refreshBtn = document.getElementById("refreshBtn");
         const searchInput = document.getElementById("searchUser");
         const logoutBtn = document.getElementById("logoutBtn");
+        const historyLink = document.getElementById("historyLink");
 
-        // CHECK ADMIN LOGIN
+        // CHECK ADMIN SESSION
         async function checkAdminLogin() {
             try {
                 const response = await fetch(
@@ -507,20 +501,21 @@
                     }
                 );
 
-                if (!response.ok) {
-                    console.error(
-                        "Admin check failed:",
-                        response.status
-                    );
-
-                    window.location.href = "admin-login.html";
-                    return false;
-                }
-
                 const result = (await response.text()).trim();
 
-                if (result !== "Admin authenticated") {
-                    window.location.href = "admin-login.html";
+                if (!response.ok ||
+                    result !== "Admin authenticated") {
+
+                    console.error(
+                        "Admin session check failed:",
+                        response.status,
+                        result
+                    );
+
+                    loading.textContent =
+                        "Admin session expired. Please log in again.";
+
+                    window.location.replace("admin-login.html");
                     return false;
                 }
 
@@ -537,9 +532,8 @@
             }
         }
 
-        // LOGOUT - SAME AS ADMIN BOOKINGS PAGE
+        // LOGOUT
         logoutBtn.addEventListener("click", async function () {
-
             if (logoutInProgress) {
                 return;
             }
@@ -549,31 +543,43 @@
             logoutBtn.textContent = "Logging out...";
 
             try {
-                await fetch(ADMIN_API_URL + "/logout", {
-                    method: "POST",
-                    credentials: "include",
-                    cache: "no-store"
-                });
+                const response = await fetch(
+                    ADMIN_API_URL + "/logout",
+                    {
+                        method: "POST",
+                        credentials: "include",
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    console.error(
+                        "Server logout returned:",
+                        response.status
+                    );
+                }
+
             } catch (error) {
                 console.error("Logout request error:", error);
+
             } finally {
-                // Clear the local admin login information
                 localStorage.removeItem("adminLoggedIn");
                 localStorage.removeItem("adminEmail");
                 localStorage.removeItem("adminToken");
 
-                // Redirect to admin login page
                 window.location.replace("admin-login.html");
             }
         });
 
-        // SAFELY CREATE TABLE CELLS
+        // CREATE TABLE CELL SAFELY
         function addCell(row, value, className) {
             const cell = document.createElement("td");
             const span = document.createElement("span");
 
             span.textContent =
-                value == null || value === "" ? "—" : String(value);
+                value == null || value === ""
+                    ? "—"
+                    : String(value);
 
             if (className) {
                 span.className = className;
@@ -628,16 +634,24 @@
                     }
                 );
 
-                if (!response.ok) {
-                    const details = await response.text();
+                const responseText = await response.text();
 
+                if (!response.ok) {
                     throw new Error(
                         "Unable to load users. HTTP " +
-                        response.status + ". " + details
+                        response.status + ": " + responseText
                     );
                 }
 
-                const result = await response.json();
+                let result;
+
+                try {
+                    result = JSON.parse(responseText);
+                } catch {
+                    throw new Error(
+                        "The users API returned an invalid response."
+                    );
+                }
 
                 if (!Array.isArray(result)) {
                     throw new Error(
@@ -662,7 +676,7 @@
                 userCount.textContent = "Registered Users";
 
                 emptyMessage.style.display = "block";
-                emptyMessage.innerHTML = "";
+                emptyMessage.replaceChildren();
 
                 const box = document.createElement("div");
                 box.className = "user-empty";
@@ -690,7 +704,7 @@
 
         // UPDATE USER COUNT
         function updateUserCount() {
-            userCount.innerHTML = "";
+            userCount.replaceChildren();
 
             userCount.appendChild(
                 document.createTextNode("Registered Users ")
@@ -704,7 +718,7 @@
 
         // DISPLAY AND SEARCH USERS
         function displayUsers() {
-            tableBody.innerHTML = "";
+            tableBody.replaceChildren();
 
             const searchText =
                 searchInput.value.trim().toLowerCase();
@@ -720,7 +734,7 @@
             if (filteredUsers.length === 0) {
                 table.style.display = "none";
                 emptyMessage.style.display = "block";
-                emptyMessage.innerHTML = "";
+                emptyMessage.replaceChildren();
 
                 const box = document.createElement("div");
                 box.className = "user-empty";
@@ -799,7 +813,7 @@
                 if (!response.ok) {
                     throw new Error(
                         "Delete failed. HTTP " +
-                        response.status + ". " + resultText
+                        response.status + ": " + resultText
                     );
                 }
 
@@ -822,18 +836,96 @@
         refreshBtn.addEventListener("click", loadUsers);
 
         // CUSTOMER LOGIN HISTORY
-        document.getElementById("historyLink").addEventListener(
-            "click",
-            function (event) {
-                event.preventDefault();
+        historyLink.addEventListener("click", async function (event) {
+            event.preventDefault();
 
-                window.open(
+            try {
+                const response = await fetch(
                     API_URL + "/login-history",
-                    "_blank",
-                    "noopener"
+                    {
+                        method: "GET",
+                        credentials: "include",
+                        headers: {
+                            "Accept": "application/json"
+                        },
+                        cache: "no-store"
+                    }
                 );
+
+                const text = await response.text();
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Unable to load login history. HTTP " +
+                        response.status + ": " + text
+                    );
+                }
+
+                const history = JSON.parse(text);
+
+                const historyWindow = window.open("", "_blank");
+
+                if (!historyWindow) {
+                    alert("Please allow pop-ups to view login history.");
+                    return;
+                }
+
+                historyWindow.document.write(
+                    "<!DOCTYPE html><html><head><title>Customer Login History</title>" +
+                    "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
+                    "<style>body{font-family:Arial,sans-serif;padding:20px;color:#49393e}" +
+                    "table{border-collapse:collapse;width:100%}th,td{padding:12px;border:1px solid #ddd;text-align:left}" +
+                    "th{background:#49393e;color:white}tr:nth-child(even){background:#fffaf8}</style>" +
+                    "</head><body><h2>Nail Studio - Customer Login History</h2>" +
+                    "<div id='historyTable'></div></body></html>"
+                );
+
+                const container =
+                    historyWindow.document.getElementById("historyTable");
+
+                if (!Array.isArray(history) || history.length === 0) {
+                    container.textContent = "No login history found.";
+                } else {
+                    const historyTable =
+                        historyWindow.document.createElement("table");
+
+                    const header = historyWindow.document.createElement("tr");
+
+                    ["ID", "Name", "Email", "Login Time"].forEach(function (title) {
+                        const th = historyWindow.document.createElement("th");
+                        th.textContent = title;
+                        header.appendChild(th);
+                    });
+
+                    historyTable.appendChild(header);
+
+                    history.forEach(function (record) {
+                        const row = historyWindow.document.createElement("tr");
+
+                        [
+                            record.id,
+                            record.name,
+                            record.email,
+                            formatDate(record.loginTime)
+                        ].forEach(function (value) {
+                            const td = historyWindow.document.createElement("td");
+                            td.textContent = value == null ? "—" : String(value);
+                            row.appendChild(td);
+                        });
+
+                        historyTable.appendChild(row);
+                    });
+
+                    container.appendChild(historyTable);
+                }
+
+                historyWindow.document.close();
+
+            } catch (error) {
+                console.error("Login history error:", error);
+                alert(error.message || "Unable to load login history.");
             }
-        );
+        });
 
         // START PAGE
         document.addEventListener("DOMContentLoaded", async function () {
