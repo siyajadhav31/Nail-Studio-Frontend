@@ -206,7 +206,12 @@
                 </button>
             </form>
 
-            <div id="loginMessage" class="auth-message" role="status" aria-live="polite"></div>
+            <div
+                id="loginMessage"
+                class="auth-message"
+                role="status"
+                aria-live="polite">
+            </div>
 
             <p class="register-text">
                 Don't have an account?
@@ -221,6 +226,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const loginForm = document.getElementById("loginForm");
             const message = document.getElementById("loginMessage");
+
             const submitButton =
                 loginForm.querySelector('button[type="submit"]');
 
@@ -245,9 +251,16 @@
                 submitButton.disabled = true;
                 submitButton.textContent = "Logging in...";
 
+                // Clear previous client-side login information.
+                localStorage.removeItem("nailStudioLoggedIn");
+                localStorage.removeItem("nailStudioUserName");
+                localStorage.removeItem("nailStudioUserEmail");
+
                 try {
+                    // Step 1: Authenticate customer.
                     const response = await fetch(API_URL + "/login", {
                         method: "POST",
+                        credentials: "include",
                         headers: {
                             "Content-Type": "application/json",
                             "Accept": "application/json"
@@ -262,33 +275,82 @@
                     let result = {};
 
                     try {
-                        result = responseText ? JSON.parse(responseText) : {};
+                        result = responseText
+                            ? JSON.parse(responseText)
+                            : {};
                     } catch {
                         result = {};
                     }
 
                     if (!response.ok) {
                         throw new Error(
-                            result.message || "Invalid email or password."
+                            result.message ||
+                            "Invalid email or password."
                         );
                     }
 
-                    localStorage.setItem("nailStudioLoggedIn", "true");
-                    localStorage.setItem("nailStudioUserName", result.name || "");
-                    localStorage.setItem("nailStudioUserEmail", result.email || email);
+                    // Step 2: Verify the server-side session.
+                    const sessionResponse = await fetch(
+                        API_URL + "/session",
+                        {
+                            method: "GET",
+                            credentials: "include",
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
+                    );
 
-                    showMessage("Login successful. Redirecting...", "#218838");
+                    if (!sessionResponse.ok) {
+                        throw new Error(
+                            "Login was accepted, but the server session could not be verified. Please try again."
+                        );
+                    }
+
+                    const sessionData =
+                        await sessionResponse.json();
+
+                    if (
+                        sessionData.loggedIn !== true ||
+                        !sessionData.email
+                    ) {
+                        throw new Error(
+                            "Customer session is not active. Please log in again."
+                        );
+                    }
+
+                    // Step 3: Save client-side display information
+                    // only after the server session is verified.
+                    localStorage.setItem(
+                        "nailStudioLoggedIn",
+                        "true"
+                    );
+
+                    localStorage.setItem(
+                        "nailStudioUserName",
+                        sessionData.name || result.name || ""
+                    );
+
+                    localStorage.setItem(
+                        "nailStudioUserEmail",
+                        sessionData.email
+                    );
+
+                    showMessage(
+                        "Login successful. Redirecting...",
+                        "#218838"
+                    );
 
                     setTimeout(function () {
                         window.location.href = "index.html";
                     }, 700);
 
                 } catch (error) {
-                    console.error("Login error:", error);
+                    console.error("Login/session error:", error);
 
                     showMessage(
                         error.message === "Failed to fetch"
-                            ? "Cannot connect to the server. Please try again."
+                            ? "Cannot connect to the server. Please check your connection and try again."
                             : error.message,
                         "#c0392b"
                     );
