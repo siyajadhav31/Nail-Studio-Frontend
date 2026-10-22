@@ -134,6 +134,12 @@
             display: none !important;
         }
 
+        .payment-id {
+            color: #8a6420;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
         @media (max-width: 600px) {
             .my-bookings {
                 margin: 20px auto;
@@ -226,7 +232,10 @@ function getStatusClass(status) {
     if (value === "CANCELLED") return "cancelled";
     if (value === "REFUNDED") return "refunded";
 
-    if (value === "PENDING" || value === "NOT_REQUIRED") {
+    if (
+        value === "PENDING" ||
+        value === "NOT_REQUIRED"
+    ) {
         return "pending";
     }
 
@@ -264,13 +273,9 @@ async function readResponse(response) {
     }
 
     if (!response.ok) {
-        const errorMessage =
-            data.message ||
-            data.error ||
-            "Request failed.";
-
         throw new Error(
-            errorMessage + " [HTTP " + response.status + "]"
+            (data.message || data.error || "Request failed.") +
+            " [HTTP " + response.status + "]"
         );
     }
 
@@ -308,6 +313,9 @@ function renderBookings(bookings) {
             bookingStatus !== "COMPLETED";
 
         const amount = Number(booking.paymentAmount || 0);
+
+        const paymentId =
+            booking.paymentId || booking.razorpayPaymentId || "";
 
         const card = document.createElement("section");
         card.className = "booking-card";
@@ -356,6 +364,13 @@ function renderBookings(bookings) {
                     <strong>${escapeHTML(
                         booking.paymentMethod || "Not available"
                     )}</strong>
+                </div>
+
+                <div>
+                    <small>Payment ID</small>
+                    <strong class="payment-id">
+                        ${escapeHTML(paymentId || "Not available")}
+                    </strong>
                 </div>
 
                 <div>
@@ -440,9 +455,7 @@ async function loadMyBookings() {
                 : null;
 
         if (!bookings) {
-            throw new Error(
-                "Unexpected server response. Please check the backend."
-            );
+            throw new Error("Unexpected server response.");
         }
 
         hideMessage();
@@ -468,11 +481,11 @@ bookingList.addEventListener("click", async function(event) {
 
     const id = button.dataset.id;
 
-    const confirmed = window.confirm(
+    if (!window.confirm(
         "Are you sure you want to cancel booking #" + id + "?"
-    );
-
-    if (!confirmed) return;
+    )) {
+        return;
+    }
 
     button.disabled = true;
     button.textContent = "Cancelling...";
@@ -509,7 +522,19 @@ bookingList.addEventListener("click", async function(event) {
 
 retryBtn.addEventListener("click", loadMyBookings);
 
-logoutBtn.addEventListener("click", function() {
+logoutBtn.addEventListener("click", async function() {
+    try {
+        await fetch(
+            "https://nail-studio-backend-k604.onrender.com/api/users/logout",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+    } catch (error) {
+        console.error("Logout request failed:", error);
+    }
+
     localStorage.removeItem("nailStudioLoggedIn");
     localStorage.removeItem("nailStudioUser");
 
