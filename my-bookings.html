@@ -163,9 +163,7 @@
             <li><a href="my-bookings.html" class="active">My Bookings</a></li>
         </ul>
 
-        <button type="button"
-                class="logout-btn"
-                id="logoutBtn">
+        <button type="button" class="logout-btn" id="logoutBtn">
             Logout
         </button>
     </nav>
@@ -210,7 +208,6 @@ const message = document.getElementById("message");
 const retryBtn = document.getElementById("retryBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
-
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, function(char) {
         return {
@@ -223,17 +220,13 @@ function escapeHTML(value) {
     });
 }
 
-
 function getStatusClass(status) {
     const value = String(status || "").toUpperCase();
 
     if (value === "CANCELLED") return "cancelled";
     if (value === "REFUNDED") return "refunded";
 
-    if (
-        value === "PENDING" ||
-        value === "NOT_REQUIRED"
-    ) {
+    if (value === "PENDING" || value === "NOT_REQUIRED") {
         return "pending";
     }
 
@@ -248,17 +241,14 @@ function getStatusClass(status) {
     return "other-status";
 }
 
-
 function showMessage(text) {
     message.textContent = text;
     message.classList.remove("hidden");
 }
 
-
 function hideMessage() {
     message.classList.add("hidden");
 }
-
 
 async function readResponse(response) {
     const text = await response.text();
@@ -277,7 +267,7 @@ async function readResponse(response) {
         const errorMessage =
             data.message ||
             data.error ||
-            "Request failed (HTTP " + response.status + ").";
+            "Request failed.";
 
         throw new Error(
             errorMessage + " [HTTP " + response.status + "]"
@@ -287,7 +277,6 @@ async function readResponse(response) {
     return data;
 }
 
-
 function renderBookings(bookings) {
     bookingList.innerHTML = "";
 
@@ -295,9 +284,7 @@ function renderBookings(bookings) {
         bookingList.innerHTML = `
             <div class="booking-card empty">
                 <h3>No Bookings Found</h3>
-                <p>
-                    No appointments were returned for your account.
-                </p>
+                <p>No appointments were returned for your account.</p>
                 <a href="booking.html" class="book-link">
                     Book an Appointment
                 </a>
@@ -429,7 +416,6 @@ function renderBookings(bookings) {
     });
 }
 
-
 async function loadMyBookings() {
     retryBtn.classList.add("hidden");
     bookingList.innerHTML = "";
@@ -455,7 +441,7 @@ async function loadMyBookings() {
 
         if (!bookings) {
             throw new Error(
-                "The server response was not a booking list. Please check the backend."
+                "Unexpected server response. Please check the backend."
             );
         }
 
@@ -475,7 +461,6 @@ async function loadMyBookings() {
     }
 }
 
-
 bookingList.addEventListener("click", async function(event) {
     const button = event.target.closest(".cancel-btn");
 
@@ -484,9 +469,7 @@ bookingList.addEventListener("click", async function(event) {
     const id = button.dataset.id;
 
     const confirmed = window.confirm(
-        "Are you sure you want to cancel booking #" +
-        id +
-        "?"
+        "Are you sure you want to cancel booking #" + id + "?"
     );
 
     if (!confirmed) return;
@@ -517,20 +500,14 @@ bookingList.addEventListener("click", async function(event) {
     } catch (error) {
         console.error("Cancel booking error:", error);
 
-        window.alert(
-            "Cancellation failed: " + error.message
-        );
+        window.alert("Cancellation failed: " + error.message);
 
         button.disabled = false;
         button.textContent = "Cancel Booking";
     }
 });
 
-
-retryBtn.addEventListener("click", function() {
-    loadMyBookings();
-});
-
+retryBtn.addEventListener("click", loadMyBookings);
 
 logoutBtn.addEventListener("click", function() {
     localStorage.removeItem("nailStudioLoggedIn");
@@ -538,7 +515,6 @@ logoutBtn.addEventListener("click", function() {
 
     window.location.replace("login.html");
 });
-
 
 loadMyBookings();
 </script>
