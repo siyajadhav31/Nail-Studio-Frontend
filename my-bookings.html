@@ -4,194 +4,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Bookings | Nail Studio</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
     <script>
         if (localStorage.getItem("nailStudioLoggedIn") !== "true") {
             window.location.replace("login.html");
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        .my-bookings { max-width: 1100px; margin: 45px auto; padding: 25px; }
-        .my-bookings h1 { font-family: "Cormorant Garamond", serif; color: #8a6420; }
-        .booking-card { background: #fffaf5; border: 1px solid #ead5ad; border-radius: 12px; padding: 22px; margin: 18px 0; }
-        .booking-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 15px; }
-        .booking-grid small { display:block; color:#888; margin-bottom:5px; }
-        .booking-grid strong { color:#493b2c; overflow-wrap:anywhere; }
-        .status { display:inline-block; border-radius:20px; padding:5px 10px; font-size:12px; font-weight:600; }
-        .confirmed { background:#e4f6e9; color:#23723b; }
-        .cancelled { background:#fde8e8; color:#b42332; }
-        .pending { background:#fff0d5; color:#946200; }
-        .refunded { background:#e4f6e9; color:#23723b; }
-        .cancel-btn { margin-top:18px; padding:10px 16px; background:#c93445; color:white; border:0; border-radius:6px; cursor:pointer; font-family:Poppins,sans-serif; }
-        .cancel-btn:disabled { opacity:.6; cursor:not-allowed; }
-        .message { padding:15px; border-radius:8px; background:#fff8ed; color:#6f552b; }
-        .empty { padding:25px; text-align:center; }
-        .book-link { display:inline-block; background:#c89b3c; color:white; padding:10px 16px; text-decoration:none; border-radius:6px; margin-top:12px; }
+        .my-bookings {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 25px;
+        }
+
+        .my-bookings h1 {
+            font-family: "Cormorant Garamond", serif;
+            color: #8a6420;
+            font-size: 36px;
+        }
+
+        .booking-card {
+            background: #fffaf5;
+            border: 1px solid #ead5ad;
+            border-radius: 12px;
+            padding: 22px;
+            margin: 18px 0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+
+        .booking-grid small {
+            display: block;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .booking-grid strong {
+            color: #493b2c;
+            overflow-wrap: anywhere;
+        }
+
+        .status {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .confirmed,
+        .refunded {
+            background: #e4f6e9;
+            color: #23723b;
+        }
+
+        .cancelled {
+            background: #fde8e8;
+            color: #b42332;
+        }
+
+        .pending {
+            background: #fff0d5;
+            color: #946200;
+        }
+
+        .other-status {
+            background: #eee8df;
+            color: #493b2c;
+        }
+
+        .cancel-btn {
+            margin-top: 18px;
+            padding: 10px 16px;
+            background: #c93445;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+        }
+
+        .cancel-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff8ed;
+            color: #6f552b;
+            margin: 20px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .empty {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .book-link,
+        .retry-btn {
+            display: inline-block;
+            background: #c89b3c;
+            color: white;
+            padding: 11px 17px;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            margin-top: 12px;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .my-bookings {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .my-bookings h1 {
+                font-size: 30px;
+            }
+
+            .booking-card {
+                padding: 16px;
+            }
+        }
     </style>
 </head>
+
 <body>
+
 <header>
     <nav class="navbar">
         <div class="logo">💅 Nail Studio</div>
+
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="booking.html">Book Appointment</a></li>
             <li><a href="my-bookings.html" class="active">My Bookings</a></li>
         </ul>
-        <button type="button" class="logout-btn" onclick="logoutUser()">Logout</button>
+
+        <button type="button"
+                class="logout-btn"
+                id="logoutBtn">
+            Logout
+        </button>
     </nav>
 </header>
 
 <main class="my-bookings">
+
     <h1>My Bookings</h1>
+
     <p>View your appointments and cancel an eligible booking.</p>
 
-    <div id="message" class="message">Loading your bookings...</div>
+    <div id="message" class="message" role="status" aria-live="polite">
+        Loading your bookings...
+    </div>
+
+    <button id="retryBtn" class="retry-btn hidden" type="button">
+        Try Again
+    </button>
+
     <div id="bookingList"></div>
 
-    <a href="booking.html" class="book-link">+ Book New Appointment</a>
+    <a href="booking.html" class="book-link">
+        + Book New Appointment
+    </a>
+
 </main>
 
 <footer>
-    <p style="text-align:center;">© 2026 Nail Studio. All Rights Reserved.</p>
+    <p style="text-align:center;">
+        © 2026 Nail Studio. All Rights Reserved.
+    </p>
 </footer>
 
 <script>
-const API_URL = "https://nail-studio-backend-k604.onrender.com/api/bookings";
+"use strict";
+
+const API_URL =
+    "https://nail-studio-backend-k604.onrender.com/api/bookings";
+
 const bookingList = document.getElementById("bookingList");
 const message = document.getElementById("message");
+const retryBtn = document.getElementById("retryBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
 
 function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;",
-        '"': "&quot;", "'": "&#39;"
-    })[char]);
+    return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
 }
 
-function statusClass(status) {
-    status = String(status || "").toUpperCase();
-    if (status === "CANCELLED") return "cancelled";
-    if (status === "REFUNDED") return "refunded";
-    if (status === "PENDING") return "pending";
-    return "confirmed";
+
+function getStatusClass(status) {
+    const value = String(status || "").toUpperCase();
+
+    if (value === "CANCELLED") return "cancelled";
+    if (value === "REFUNDED") return "refunded";
+
+    if (
+        value === "PENDING" ||
+        value === "NOT_REQUIRED"
+    ) {
+        return "pending";
+    }
+
+    if (
+        value === "CONFIRMED" ||
+        value === "COMPLETED" ||
+        value === "PAID"
+    ) {
+        return "confirmed";
+    }
+
+    return "other-status";
 }
 
-function displayDate(value) {
-    if (!value) return "Not available";
-    return escapeHTML(value);
+
+function showMessage(text) {
+    message.textContent = text;
+    message.classList.remove("hidden");
 }
+
+
+function hideMessage() {
+    message.classList.add("hidden");
+}
+
+
+async function readResponse(response) {
+    const text = await response.text();
+
+    let data = {};
+
+    if (text) {
+        try {
+            data = JSON.parse(text);
+        } catch (error) {
+            data = { message: text };
+        }
+    }
+
+    if (!response.ok) {
+        const errorMessage =
+            data.message ||
+            data.error ||
+            "Request failed (HTTP " + response.status + ").";
+
+        throw new Error(
+            errorMessage + " [HTTP " + response.status + "]"
+        );
+    }
+
+    return data;
+}
+
+
+function renderBookings(bookings) {
+    bookingList.innerHTML = "";
+
+    if (!Array.isArray(bookings) || bookings.length === 0) {
+        bookingList.innerHTML = `
+            <div class="booking-card empty">
+                <h3>No Bookings Found</h3>
+                <p>
+                    No appointments were returned for your account.
+                </p>
+                <a href="booking.html" class="book-link">
+                    Book an Appointment
+                </a>
+            </div>
+        `;
+        return;
+    }
+
+    bookings.forEach(function(booking) {
+        const bookingStatus =
+            String(booking.bookingStatus || "CONFIRMED").toUpperCase();
+
+        const paymentStatus =
+            String(booking.paymentStatus || "PENDING").toUpperCase();
+
+        const refundStatus =
+            String(booking.refundStatus || "NOT_REQUIRED").toUpperCase();
+
+        const canCancel =
+            bookingStatus !== "CANCELLED" &&
+            bookingStatus !== "COMPLETED";
+
+        const amount = Number(booking.paymentAmount || 0);
+
+        const card = document.createElement("section");
+        card.className = "booking-card";
+
+        card.innerHTML = `
+            <div class="booking-grid">
+
+                <div>
+                    <small>Booking ID</small>
+                    <strong>${escapeHTML(booking.id)}</strong>
+                </div>
+
+                <div>
+                    <small>Customer</small>
+                    <strong>${escapeHTML(booking.name || "Customer")}</strong>
+                </div>
+
+                <div>
+                    <small>Service</small>
+                    <strong>${escapeHTML(booking.service || "Nail Service")}</strong>
+                </div>
+
+                <div>
+                    <small>Date</small>
+                    <strong>${escapeHTML(
+                        booking.bookingDate || booking.date || "Not available"
+                    )}</strong>
+                </div>
+
+                <div>
+                    <small>Time</small>
+                    <strong>${escapeHTML(
+                        booking.bookingTime || booking.time || "Not available"
+                    )}</strong>
+                </div>
+
+                <div>
+                    <small>Amount</small>
+                    <strong>₹${escapeHTML(
+                        amount.toLocaleString("en-IN")
+                    )}</strong>
+                </div>
+
+                <div>
+                    <small>Payment Method</small>
+                    <strong>${escapeHTML(
+                        booking.paymentMethod || "Not available"
+                    )}</strong>
+                </div>
+
+                <div>
+                    <small>Payment Status</small>
+                    <span class="status ${getStatusClass(paymentStatus)}">
+                        ${escapeHTML(paymentStatus)}
+                    </span>
+                </div>
+
+                <div>
+                    <small>Appointment Status</small>
+                    <span class="status ${getStatusClass(bookingStatus)}">
+                        ${escapeHTML(bookingStatus)}
+                    </span>
+                </div>
+
+                <div>
+                    <small>Refund Status</small>
+                    <span class="status ${getStatusClass(refundStatus)}">
+                        ${escapeHTML(refundStatus)}
+                    </span>
+                </div>
+
+            </div>
+
+            ${
+                bookingStatus === "CANCELLED" &&
+                refundStatus === "PENDING"
+                ? `<p class="message">
+                    Your appointment is cancelled. Your refund is pending
+                    manual processing by the studio.
+                   </p>`
+                : ""
+            }
+
+            ${
+                bookingStatus === "CANCELLED" &&
+                refundStatus === "REFUNDED"
+                ? `<p class="message">
+                    The studio has marked your refund as processed.
+                   </p>`
+                : ""
+            }
+
+            ${
+                canCancel
+                ? `<button
+                    type="button"
+                    class="cancel-btn"
+                    data-id="${escapeHTML(booking.id)}">
+                    Cancel Booking
+                   </button>`
+                : ""
+            }
+        `;
+
+        bookingList.appendChild(card);
+    });
+}
+
 
 async function loadMyBookings() {
-    message.style.display = "block";
-    message.textContent = "Loading your bookings...";
+    retryBtn.classList.add("hidden");
     bookingList.innerHTML = "";
+
+    showMessage("Loading your bookings...");
 
     try {
         const response = await fetch(API_URL + "/mine", {
             method: "GET",
             credentials: "include",
-            headers: { "Accept": "application/json" }
+            headers: {
+                "Accept": "application/json"
+            }
         });
 
-        if (response.status === 401 || response.status === 403) {
-            throw new Error("Your login session may have expired. Please log in again.");
-        }
-        if (!response.ok) {
-            throw new Error("Could not load bookings (HTTP " + response.status + ").");
-        }
+        const result = await readResponse(response);
 
-        const result = await response.json();
-        const bookings = Array.isArray(result) ? result :
-            (Array.isArray(result.data) ? result.data : []);
+        const bookings = Array.isArray(result)
+            ? result
+            : Array.isArray(result.data)
+                ? result.data
+                : null;
 
-        message.style.display = "none";
-
-        if (bookings.length === 0) {
-            bookingList.innerHTML = '<div class="booking-card empty">No bookings found for your account.</div>';
-            return;
+        if (!bookings) {
+            throw new Error(
+                "The server response was not a booking list. Please check the backend."
+            );
         }
 
-        bookings.forEach(booking => {
-            const bookingStatus = String(booking.bookingStatus || "CONFIRMED").toUpperCase();
-            const paymentStatus = String(booking.paymentStatus || "PENDING").toUpperCase();
-            const refundStatus = String(booking.refundStatus || "NOT_REQUIRED").toUpperCase();
-
-            const canCancel = bookingStatus !== "CANCELLED"
-                && bookingStatus !== "COMPLETED";
-
-            const card = document.createElement("section");
-            card.className = "booking-card";
-
-            card.innerHTML = `
-                <div class="booking-grid">
-                    <div><small>Booking ID</small><strong>${escapeHTML(booking.id)}</strong></div>
-                    <div><small>Service</small><strong>${escapeHTML(booking.service || "Nail Service")}</strong></div>
-                    <div><small>Date</small><strong>${displayDate(booking.bookingDate || booking.date)}</strong></div>
-                    <div><small>Time</small><strong>${escapeHTML(booking.bookingTime || booking.time || "Not available")}</strong></div>
-                    <div><small>Amount</small><strong>₹${escapeHTML(Number(booking.paymentAmount || 0).toLocaleString("en-IN"))}</strong></div>
-                    <div><small>Payment</small><strong>${escapeHTML(paymentStatus)}</strong></div>
-                    <div><small>Appointment Status</small><span class="status ${statusClass(bookingStatus)}">${escapeHTML(bookingStatus)}</span></div>
-                    <div><small>Refund Status</small><span class="status ${statusClass(refundStatus)}">${escapeHTML(refundStatus)}</span></div>
-                </div>
-                ${canCancel ? `<button class="cancel-btn" data-id="${escapeHTML(booking.id)}">Cancel Booking</button>` : ""}
-            `;
-
-            bookingList.appendChild(card);
-        });
+        hideMessage();
+        renderBookings(bookings);
 
     } catch (error) {
-        message.style.display = "block";
-        message.textContent = error.message;
-        bookingList.innerHTML = "";
+        console.error("Load bookings error:", error);
+
+        showMessage(
+            "Could not load bookings. " +
+            error.message +
+            " Please check your login session and backend."
+        );
+
+        retryBtn.classList.remove("hidden");
     }
 }
 
-bookingList.addEventListener("click", async event => {
+
+bookingList.addEventListener("click", async function(event) {
     const button = event.target.closest(".cancel-btn");
+
     if (!button) return;
 
     const id = button.dataset.id;
 
-    if (!confirm("Are you sure you want to cancel this appointment?")) return;
+    const confirmed = window.confirm(
+        "Are you sure you want to cancel booking #" +
+        id +
+        "?"
+    );
+
+    if (!confirmed) return;
 
     button.disabled = true;
     button.textContent = "Cancelling...";
 
     try {
-        const response = await fetch(API_URL + "/" + encodeURIComponent(id) + "/cancel", {
-            method: "PUT",
-            credentials: "include",
-            headers: { "Accept": "application/json" }
-        });
+        const response = await fetch(
+            API_URL + "/" + encodeURIComponent(id) + "/cancel",
+            {
+                method: "PUT",
+                credentials: "include",
+                headers: {
+                    "Accept": "application/json"
+                }
+            }
+        );
 
-        const text = await response.text();
-        let result = {};
-        try { result = text ? JSON.parse(text) : {}; } catch (_) {}
+        const result = await readResponse(response);
 
-        if (!response.ok) {
-            throw new Error(result.message || "Cancellation failed (HTTP " + response.status + ").");
-        }
+        window.alert(
+            result.message || "Booking cancellation successful."
+        );
 
-        alert(result.message || "Your appointment cancellation was submitted.");
         await loadMyBookings();
 
     } catch (error) {
-        alert(error.message);
+        console.error("Cancel booking error:", error);
+
+        window.alert(
+            "Cancellation failed: " + error.message
+        );
+
         button.disabled = false;
         button.textContent = "Cancel Booking";
     }
 });
 
-function logoutUser() {
+
+retryBtn.addEventListener("click", function() {
+    loadMyBookings();
+});
+
+
+logoutBtn.addEventListener("click", function() {
     localStorage.removeItem("nailStudioLoggedIn");
     localStorage.removeItem("nailStudioUser");
+
     window.location.replace("login.html");
-}
+});
+
 
 loadMyBookings();
 </script>
+
 </body>
 </html>
