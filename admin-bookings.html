@@ -527,6 +527,48 @@ async function deleteBooking(id, button) {
     }
 }
 
+
+
+async function checkBackendAdminSession() {
+    try {
+        const response = await fetch(
+            API_BASE_URL + "/api/admin/check",
+            {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Accept": "text/plain"
+                },
+                cache: "no-store"
+            }
+        );
+
+        const message = await response.text();
+
+        console.log("Admin session HTTP status:", response.status);
+        console.log("Admin session response:", message);
+
+        if (!response.ok) {
+            alert(
+                "Backend admin session active nahi hai.\n\n" +
+                "HTTP Status: " + response.status +
+                "\nResponse: " + message +
+                "\n\nPlease admin-login flow check karein."
+            );
+            return false;
+        }
+
+        alert("Backend admin session active hai.");
+        return true;
+
+    } catch (error) {
+        console.error("Admin session check failed:", error);
+        alert("Backend session check failed: " + error.message);
+        return false;
+    }
+}
+
+
 async function confirmBookingRefund(id, button) {
     const booking = bookingsData.find(b => Number(b.id) === Number(id));
     if (!booking) return alert("Booking not found.");
