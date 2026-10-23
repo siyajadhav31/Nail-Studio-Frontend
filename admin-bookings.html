@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💅 Admin Bookings | Nail Studio</title>
+
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -36,6 +37,9 @@ button:disabled{opacity:.55;cursor:wait}
 .booking-filter{display:flex;align-items:center;gap:10px}
 .booking-filter select{padding:10px;border:1px solid #dfd0c9;border-radius:7px;background:white}
 .booking-error{display:none;background:#fff0f0;color:#a32121;border:1px solid #efb7b7;border-radius:8px;padding:12px;margin-bottom:15px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}
+.session-status{display:none;border-radius:8px;padding:12px;margin-bottom:15px;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.session-ok{display:block;background:#edf9f1;color:#247a42}
+.session-fail{display:block;background:#fff0f0;color:#a32121}
 .table-wrapper{background:white;border:1px solid #eadfd8;border-radius:12px;overflow:hidden}
 .table-container{overflow-x:auto}
 #bookingTable{width:100%;min-width:1000px;border-collapse:collapse}
@@ -72,7 +76,14 @@ button:disabled{opacity:.55;cursor:wait}
 .edit-form-group input,.edit-form-group select{width:100%;padding:10px;border:1px solid #dfd0c9;border-radius:7px;background:white}
 .update-btn{width:100%;padding:12px}
 .admin-footer{text-align:center;padding:20px;color:#8c7770;font-size:12px}
-@media(max-width:650px){.admin-bookings{padding:25px 12px}.admin-title h1{font-size:34px}.admin-stats{grid-template-columns:1fr}.booking-controls{align-items:stretch;flex-direction:column}.booking-filter{justify-content:space-between}.booking-filter select{flex:1;min-width:0}}
+@media(max-width:650px){
+.admin-bookings{padding:25px 12px}
+.admin-title h1{font-size:34px}
+.admin-stats{grid-template-columns:1fr}
+.booking-controls{align-items:stretch;flex-direction:column}
+.booking-filter{justify-content:space-between}
+.booking-filter select{flex:1;min-width:0}
+}
 </style>
 </head>
 
@@ -90,11 +101,15 @@ button:disabled{opacity:.55;cursor:wait}
 
 <section class="admin-bookings">
 <div class="admin-container">
+
 <div class="admin-title">
 <span>💅 Nail Studio Administration</span>
 <h1>Customer Bookings</h1>
 <p>Manage appointments, payments, cancellations and refunds.</p>
 </div>
+
+<div id="sessionStatus" class="session-status"></div>
+<div id="bookingError" class="booking-error"></div>
 
 <div class="admin-stats">
 <div class="admin-stat-card"><div class="stat-icon">📋</div><div class="stat-info"><h3>Total Bookings</h3><p id="totalBookings">0</p></div></div>
@@ -114,13 +129,13 @@ button:disabled{opacity:.55;cursor:wait}
 </div>
 </div>
 
-<div id="bookingError" class="booking-error"></div>
-
 <div class="table-wrapper">
 <div class="table-container">
-<div id="loadingMessage" class="loading">Loading bookings...</div>
+<div id="loadingMessage" class="loading">Checking admin session...</div>
 <table id="bookingTable" style="display:none">
-<thead><tr><th>Customer</th><th>Booking Details</th><th>Date &amp; Time</th><th>Payment</th><th>Action</th></tr></thead>
+<thead>
+<tr><th>Customer</th><th>Booking Details</th><th>Date &amp; Time</th><th>Payment</th><th>Action</th></tr>
+</thead>
 <tbody id="bookingTableBody"></tbody>
 </table>
 <div id="emptyMessage" class="empty-message" style="display:none">No bookings found.</div>
@@ -146,9 +161,11 @@ button:disabled{opacity:.55;cursor:wait}
 <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option>
 <option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option>
 </select></div>
-<div class="edit-form-group" id="paymentEditGroup"><label for="editPaymentStatus">Payment Status</label>
+<div class="edit-form-group" id="paymentEditGroup">
+<label for="editPaymentStatus">Payment Status</label>
 <select id="editPaymentStatus"><option value="PENDING">PENDING</option><option value="PAID">PAID</option></select>
-<small>Choose PAID only after verifying that payment was received.</small></div>
+<small>Choose PAID only after verifying that payment was received.</small>
+</div>
 <button class="update-btn" type="submit">💅 Update Booking</button>
 </form>
 </div>
@@ -164,12 +181,15 @@ const API_URL = API_BASE_URL + "/api/bookings";
 
 let bookingsData = [];
 let selectedBookingId = null;
+let backendAdminSessionActive = false;
 
 const $ = id => document.getElementById(id);
 
 function checkAdminLogin() {
     if (localStorage.getItem("adminLoggedIn") === "true" &&
-        localStorage.getItem("adminEmail")) return true;
+        localStorage.getItem("adminEmail")) {
+        return true;
+    }
 
     location.href = "admin-login.html";
     return false;
@@ -207,6 +227,12 @@ function showError(message) {
     $("bookingError").textContent = message;
 }
 
+function showSessionStatus(message, success) {
+    const element = $("sessionStatus");
+    element.className = "session-status " + (success ? "session-ok" : "session-fail");
+    element.textContent = message;
+}
+
 function getPaymentAmount(b) {
     for (const value of [b.paymentAmount, b.amount, b.price, b.servicePrice]) {
         if (value !== null && value !== undefined && value !== "") {
@@ -227,6 +253,7 @@ function formatINR(value) {
 function getPaymentHTML(b) {
     const status = normalized(b.paymentStatus);
     const paymentId = b.paymentId || "";
+
     const badge = status === "PAID"
         ? '<span class="paid-badge">✅ PAID</span>'
         : status === "PENDING"
@@ -235,10 +262,12 @@ function getPaymentHTML(b) {
 
     const method = normalized(b.paymentMethod);
     let methodText = "Method not recorded";
-    if (["UPI","GOOGLE_PAY","GOOGLEPAY","GOOGLE PAY","RAZORPAY"].includes(method))
+
+    if (["UPI","GOOGLE_PAY","GOOGLEPAY","GOOGLE PAY","RAZORPAY"].includes(method)) {
         methodText = "📱 Online Payment / UPI";
-    else if (["CASH","PAY_AT_STUDIO","PAY AT STUDIO"].includes(method))
+    } else if (["CASH","PAY_AT_STUDIO","PAY AT STUDIO"].includes(method)) {
         methodText = "💵 Pay at Studio";
+    }
 
     return `<div class="payment-detail">
         <span class="payment-amount">${escapeHTML(formatINR(getPaymentAmount(b)))}</span>
@@ -318,6 +347,7 @@ function displayBookings() {
             : '<span class="service-badge">💅 Service Booking</span>';
 
         const row = document.createElement("tr");
+
         row.innerHTML = `
         <td><div class="customer-detail">
             <span class="customer-name">${escapeHTML(b.name || "—")}</span>
@@ -335,6 +365,7 @@ function displayBookings() {
             <button type="button" class="delete-btn" data-action="delete" data-id="${id}">🗑 Delete</button>
             ${getRefundHTML(b)}
         </div></td>`;
+
         body.appendChild(row);
     });
 }
@@ -342,14 +373,63 @@ function displayBookings() {
 async function readResponse(response) {
     const text = await response.text();
     let data = {};
-    try { data = text ? JSON.parse(text) : {}; }
-    catch { data = { message: text }; }
+
+    try {
+        data = text ? JSON.parse(text) : {};
+    } catch {
+        data = {message:text};
+    }
 
     if (!response.ok) {
         throw new Error(data.message || data.error ||
             `Request failed: HTTP ${response.status}${text ? " — " + text : ""}`);
     }
+
     return data;
+}
+
+async function checkBackendAdminSession(showMessage = true) {
+    try {
+        const response = await fetch(API_BASE_URL + "/api/admin/check", {
+            method:"GET",
+            credentials:"include",
+            headers:{"Accept":"text/plain"},
+            cache:"no-store"
+        });
+
+        const message = await response.text();
+        backendAdminSessionActive = response.ok;
+
+        console.log("Admin session HTTP status:", response.status);
+        console.log("Admin session response:", message);
+
+        if (response.ok) {
+            if (showMessage) {
+                showSessionStatus("Backend admin session active hai.", true);
+            }
+            return true;
+        }
+
+        if (showMessage) {
+            showSessionStatus(
+                "Backend admin session active nahi hai.\nHTTP Status: " +
+                response.status + "\nResponse: " + message +
+                "\n\nDobara admin login karein. Agar error phir aaye, admin-login.html ka login fetch check karna hoga.",
+                false
+            );
+        }
+
+        return false;
+    } catch (error) {
+        backendAdminSessionActive = false;
+        console.error("Admin session check failed:", error);
+
+        if (showMessage) {
+            showSessionStatus("Backend session check failed: " + error.message, false);
+        }
+
+        return false;
+    }
 }
 
 async function loadBookings() {
@@ -368,17 +448,24 @@ async function loadBookings() {
         });
 
         const result = await readResponse(response);
+
         const list = Array.isArray(result) ? result
             : Array.isArray(result.data) ? result.data
             : Array.isArray(result.content) ? result.content : null;
 
-        if (!list) throw new Error("Backend response mein bookings ki list nahi mili.");
+        if (!list) {
+            throw new Error("Backend response mein bookings ki list nahi mili.");
+        }
 
         bookingsData = list;
         updateDashboardStats();
         displayBookings();
+
         $("bookingTable").style.display = "table";
-        if (!list.length) $("emptyMessage").style.display = "block";
+
+        if (!list.length) {
+            $("emptyMessage").style.display = "block";
+        }
     } catch (error) {
         console.error("LOAD BOOKINGS ERROR:", error);
         bookingsData = [];
@@ -394,6 +481,7 @@ $("bookingTable").addEventListener("click", async event => {
     if (!button || button.disabled) return;
 
     const id = Number(button.dataset.id);
+
     if (button.dataset.action === "edit") openEditModal(id);
     if (button.dataset.action === "delete") await deleteBooking(id, button);
     if (button.dataset.action === "refund") await confirmBookingRefund(id, button);
@@ -404,8 +492,10 @@ $("bookingFilter").addEventListener("change", displayBookings);
 $("refreshBookings").addEventListener("click", async function() {
     this.disabled = true;
     this.textContent = "⏳ Loading...";
-    try { await loadBookings(); }
-    finally {
+
+    try {
+        await loadBookings();
+    } finally {
         this.disabled = false;
         this.textContent = "🔄 Refresh Bookings";
     }
@@ -423,19 +513,27 @@ function openEditModal(id) {
 
     const rawTime = String(b.bookingTime || b.time || "");
     const match = rawTime.match(/^(\d{1,2}):(\d{2})/);
+
     if (match) {
         let hour = Number(match[1]);
         const minute = match[2];
+
         if (/PM/i.test(rawTime) && hour < 12) hour += 12;
         if (/AM/i.test(rawTime) && hour === 12) hour = 0;
+
         const h12 = hour % 12 || 12;
         const label = `${h12}:${minute} ${hour >= 12 ? "PM" : "AM"}`;
-        $("editTime").value = Array.from($("editTime").options).some(o => o.value === label) ? label : "";
+
+        $("editTime").value = Array.from($("editTime").options)
+            .some(o => o.value === label) ? label : "";
     } else {
-        $("editTime").value = Array.from($("editTime").options).some(o => o.value === rawTime) ? rawTime : "";
+        $("editTime").value = Array.from($("editTime").options)
+            .some(o => o.value === rawTime) ? rawTime : "";
     }
 
-    $("editPaymentStatus").value = normalized(b.paymentStatus) === "PAID" ? "PAID" : "PENDING";
+    $("editPaymentStatus").value =
+        normalized(b.paymentStatus) === "PAID" ? "PAID" : "PENDING";
+
     $("paymentEditGroup").style.display = isOfferBooking(b) ? "none" : "block";
     $("editModal").style.display = "flex";
 }
@@ -444,25 +542,39 @@ function closeEditModal() {
     $("editModal").style.display = "none";
     selectedBookingId = null;
 }
+
 $("closeModal").addEventListener("click", closeEditModal);
+
 window.addEventListener("click", event => {
     if (event.target === $("editModal")) closeEditModal();
 });
 
 $("editBookingForm").addEventListener("submit", async function(event) {
     event.preventDefault();
+
     if (selectedBookingId === null) return alert("Booking ID not found.");
 
-    const original = bookingsData.find(b => Number(b.id) === Number(selectedBookingId));
+    const original = bookingsData.find(
+        b => Number(b.id) === Number(selectedBookingId)
+    );
+
     if (!original) return alert("Original booking not found.");
 
     const phone = $("editPhone").value.trim();
     const date = $("editDate").value;
     const time = $("editTime").value;
 
-    if (!date || !time) return alert("Please select appointment date and time.");
-    if (new Date(date + "T00:00:00").getDay() === 0) return alert("Sunday is closed. Select another date.");
-    if (!/^[6-9]\d{9}$/.test(phone)) return alert("Enter a valid 10-digit Indian mobile number.");
+    if (!date || !time) {
+        return alert("Please select appointment date and time.");
+    }
+
+    if (new Date(date + "T00:00:00").getDay() === 0) {
+        return alert("Sunday is closed. Select another date.");
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+        return alert("Enter a valid 10-digit Indian mobile number.");
+    }
 
     const updated = {
         ...original,
@@ -472,21 +584,32 @@ $("editBookingForm").addEventListener("submit", async function(event) {
         bookingDate:date,
         bookingTime:time
     };
-    if (!isOfferBooking(original)) updated.paymentStatus = $("editPaymentStatus").value;
+
+    if (!isOfferBooking(original)) {
+        updated.paymentStatus = $("editPaymentStatus").value;
+    }
 
     const button = this.querySelector('button[type="submit"]');
     button.disabled = true;
     button.textContent = "Updating...";
 
     try {
-        const response = await fetch(API_URL + "/" + encodeURIComponent(selectedBookingId), {
-            method:"PUT",
-            credentials:"include",
-            headers:{"Content-Type":"application/json","Accept":"application/json"},
-            body:JSON.stringify(updated)
-        });
+        const response = await fetch(
+            API_URL + "/" + encodeURIComponent(selectedBookingId),
+            {
+                method:"PUT",
+                credentials:"include",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Accept":"application/json"
+                },
+                body:JSON.stringify(updated)
+            }
+        );
+
         await readResponse(response);
         alert("Booking updated successfully.");
+
         closeEditModal();
         await loadBookings();
     } catch (error) {
@@ -502,84 +625,58 @@ async function deleteBooking(id, button) {
     const booking = bookingsData.find(b => Number(b.id) === Number(id));
     if (!booking) return alert("Booking not found.");
 
-    if (!confirm(`Delete booking #${id} for ${booking.name || "this customer"}?\n\nThis action may be permanent.`)) return;
+    if (!confirm(
+        `Delete booking #${id} for ${booking.name || "this customer"}?\n\nThis action may be permanent.`
+    )) return;
 
     button.disabled = true;
     const oldText = button.textContent;
     button.textContent = "Deleting...";
 
     try {
-        const response = await fetch(API_URL + "/" + encodeURIComponent(id), {
-            method:"DELETE",
-            credentials:"include",
-            headers:{"Accept":"application/json"}
-        });
+        const response = await fetch(
+            API_URL + "/" + encodeURIComponent(id),
+            {
+                method:"DELETE",
+                credentials:"include",
+                headers:{"Accept":"application/json"}
+            }
+        );
+
         await readResponse(response);
         alert("Booking deleted successfully.");
         await loadBookings();
     } catch (error) {
         console.error("DELETE ERROR:", error);
-        alert("Booking delete nahi hui.\n\n" + error.message +
-            "\n\nAgar HTTP 404/405 aaye, backend DELETE endpoint check karna hoga. Agar 401/403 aaye, admin authentication check karo.");
+
+        alert(
+            "Booking delete nahi hui.\n\n" + error.message +
+            "\n\nAgar HTTP 404/405 aaye, backend DELETE endpoint check karna hoga. Agar 401/403 aaye, authentication check karo."
+        );
     } finally {
         button.disabled = false;
         button.textContent = oldText;
     }
 }
 
-
-
-async function checkBackendAdminSession() {
-    try {
-        const response = await fetch(
-            API_BASE_URL + "/api/admin/check",
-            {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Accept": "text/plain"
-                },
-                cache: "no-store"
-            }
-        );
-
-        const message = await response.text();
-
-        console.log("Admin session HTTP status:", response.status);
-        console.log("Admin session response:", message);
-
-        if (!response.ok) {
-            alert(
-                "Backend admin session active nahi hai.\n\n" +
-                "HTTP Status: " + response.status +
-                "\nResponse: " + message +
-                "\n\nPlease admin-login flow check karein."
-            );
-            return false;
-        }
-
-        alert("Backend admin session active hai.");
-        return true;
-
-    } catch (error) {
-        console.error("Admin session check failed:", error);
-        alert("Backend session check failed: " + error.message);
-        return false;
-    }
-}
-
-
 async function confirmBookingRefund(id, button) {
     const booking = bookingsData.find(b => Number(b.id) === Number(id));
     if (!booking) return alert("Booking not found.");
 
-    if (normalized(booking.bookingStatus) !== "CANCELLED" ||
+    if (
+        normalized(booking.bookingStatus) !== "CANCELLED" ||
         normalized(booking.paymentStatus) !== "PAID" ||
-        normalized(booking.refundStatus) !== "PENDING") {
-        return alert("Refund confirmation ke liye booking CANCELLED, payment PAID aur refund PENDING hona chahiye.");
+        normalized(booking.refundStatus) !== "PENDING"
+    ) {
+        return alert(
+            "Refund confirmation ke liye booking CANCELLED, payment PAID aur refund PENDING hona chahiye."
+        );
     }
 
-    if (!confirm("Kya customer ko refund manually bhej diya hai?\n\nSirf actual refund bhejne ke baad OK karein. Yeh button paise transfer nahi karta.")) return;
+    if (!confirm(
+        "Kya customer ko refund manually bhej diya hai?\n\n" +
+        "Sirf actual refund bhejne ke baad OK karein. Yeh button paise transfer nahi karta."
+    )) return;
 
     const reference = prompt("Refund/UPI transaction reference (optional):");
     if (reference === null) return;
@@ -589,10 +686,24 @@ async function confirmBookingRefund(id, button) {
     button.textContent = "Processing...";
 
     try {
+        // Confirm session before calling the protected refund endpoint.
+        const sessionActive = await checkBackendAdminSession(false);
+
+        if (!sessionActive) {
+            throw new Error(
+                "Admin session missing hai. Admin logout karke dobara login karein. " +
+                "Agar problem rahe, admin-login.html mein login fetch aur cookie settings check karni hongi."
+            );
+        }
+
         const params = new URLSearchParams();
-        if (reference.trim()) params.set("refundReference", reference.trim());
+
+        if (reference.trim()) {
+            params.set("refundReference", reference.trim());
+        }
 
         const suffix = params.toString() ? "?" + params.toString() : "";
+
         const response = await fetch(
             API_URL + "/" + encodeURIComponent(id) + "/confirm-refund" + suffix,
             {
@@ -603,18 +714,23 @@ async function confirmBookingRefund(id, button) {
         );
 
         const result = await readResponse(response);
-        const smsSent = result.smsSent === true;
+        const emailSent = result.emailSent === true;
 
-        alert("Refund confirmation response received.\n\n" +
+        alert(
+            "Refund confirmation response received.\n\n" +
             "Refund status: " + (result.refundStatus || "Check refreshed booking") +
-            "\nSMS: " + (smsSent ? "Sent successfully" : "Not confirmed as sent") +
-            (result.message ? "\nMessage: " + result.message : ""));
+            "\nEmail: " + (emailSent ? "Sent successfully" : "Not confirmed as sent") +
+            (result.message ? "\nMessage: " + result.message : "")
+        );
 
         await loadBookings();
     } catch (error) {
         console.error("REFUND ERROR:", error);
-        alert("Refund confirm nahi hua.\n\n" + error.message +
-            "\n\nBackend endpoint /api/bookings/{id}/confirm-refund aur Render logs check karne honge.");
+
+        alert(
+            "Refund confirm nahi hua.\n\n" + error.message +
+            "\n\nBackend endpoint /api/bookings/{id}/confirm-refund aur Render logs check karein."
+        );
     } finally {
         button.disabled = false;
         button.textContent = oldText;
@@ -623,22 +739,38 @@ async function confirmBookingRefund(id, button) {
 
 $("logoutBtn").addEventListener("click", async function() {
     this.disabled = true;
+
     try {
-        await fetch(API_BASE_URL + "/api/admin/logout", {
+        const response = await fetch(API_BASE_URL + "/api/admin/logout", {
             method:"POST",
             credentials:"include"
         });
+
+        if (!response.ok) {
+            console.warn("Backend logout returned HTTP", response.status);
+        }
     } catch (error) {
         console.error("Logout error:", error);
     }
+
     localStorage.removeItem("adminLoggedIn");
     localStorage.removeItem("adminEmail");
     localStorage.removeItem("adminToken");
+
     location.href = "admin-login.html";
 });
 
 document.addEventListener("DOMContentLoaded", async function() {
-    if (checkAdminLogin()) await loadBookings();
+    if (!checkAdminLogin()) return;
+
+    const sessionActive = await checkBackendAdminSession(true);
+
+    if (sessionActive) {
+        await loadBookings();
+    } else {
+        $("loadingMessage").textContent =
+            "Admin session active nahi hai. Dobara login karein.";
+    }
 });
 </script>
 </body>
