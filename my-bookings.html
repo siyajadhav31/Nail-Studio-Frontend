@@ -400,8 +400,10 @@ function renderBookings(bookings) {
                 bookingStatus === "CANCELLED" &&
                 refundStatus === "PENDING"
                 ? `<p class="message">
-                    Your appointment is cancelled. Your refund is pending
-                    manual processing by the studio.
+                    <strong>Booking Cancelled Successfully!</strong><br>
+                    Your appointment has been cancelled.
+                    Your refund will be processed within 1 hour.
+                    Please wait while the studio processes your refund.
                    </p>`
                 : ""
             }
@@ -410,7 +412,23 @@ function renderBookings(bookings) {
                 bookingStatus === "CANCELLED" &&
                 refundStatus === "REFUNDED"
                 ? `<p class="message">
-                    The studio has marked your refund as processed.
+                    <strong>Booking Cancelled!</strong><br>
+                    Your refund has been marked as processed by Nail Studio.
+                    Thank you for your patience.
+                   </p>`
+                : ""
+            }
+
+            ${
+                bookingStatus === "CANCELLED" &&
+                (
+                    refundStatus === "NOT_REQUIRED" ||
+                    refundStatus === "NOT APPLICABLE"
+                )
+                ? `<p class="message">
+                    <strong>Booking Cancelled Successfully!</strong><br>
+                    Your appointment has been cancelled.
+                    No refund is pending for this booking.
                    </p>`
                 : ""
             }
