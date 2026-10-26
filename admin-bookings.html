@@ -716,12 +716,20 @@ async function confirmBookingRefund(id, button) {
         const result = await readResponse(response);
         const emailSent = result.emailSent === true;
 
+        console.log("Refund API response:", result);
+
         alert(
             "Refund confirmation response received.\n\n" +
             "Refund status: " + (result.refundStatus || "Check refreshed booking") +
             "\nEmail: " + (emailSent ? "Sent successfully" : "Not confirmed as sent") +
             (result.message ? "\nMessage: " + result.message : "")
         );
+
+        if (!emailSent) {
+    console.warn(
+        "Refund status updated, but email was not confirmed as sent. Check Render logs."
+    );
+}
 
         await loadBookings();
     } catch (error) {
