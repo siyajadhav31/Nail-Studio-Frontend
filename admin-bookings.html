@@ -405,7 +405,7 @@ async function checkBackendAdminSession(showMessage = true) {
 
         if (response.ok) {
             if (showMessage) {
-                showSessionStatus("Backend admin session active hai.", true);
+                showSessionStatus("Backend admin session is active.", true);
             }
             return true;
         }
@@ -414,7 +414,7 @@ async function checkBackendAdminSession(showMessage = true) {
             showSessionStatus(
                 "Backend admin session active nahi hai.\nHTTP Status: " +
                 response.status + "\nResponse: " + message +
-                "\n\nDobara admin login karein. Agar error phir aaye, admin-login.html ka login fetch check karna hoga.",
+                "\n\nPlease log in as admin again. If the error occurs again, check the login fetch request in admin-login.html.",
                 false
             );
         }
@@ -669,13 +669,13 @@ async function confirmBookingRefund(id, button) {
         normalized(booking.refundStatus) !== "PENDING"
     ) {
         return alert(
-            "Refund confirmation ke liye booking CANCELLED, payment PAID aur refund PENDING hona chahiye."
+            "To confirm the refund, the booking must be CANCELLED, the payment must be PAID, and the refund status must be PENDING."
         );
     }
 
     if (!confirm(
-        "Kya customer ko refund manually bhej diya hai?\n\n" +
-        "Sirf actual refund bhejne ke baad OK karein. Yeh button paise transfer nahi karta."
+        "Has the refund been sent to the customer manually?\n\n" +
+"Click OK only after the actual refund has been processed. This button does not transfer money."
     )) return;
 
     const reference = prompt("Refund/UPI transaction reference (optional):");
@@ -691,8 +691,8 @@ async function confirmBookingRefund(id, button) {
 
         if (!sessionActive) {
             throw new Error(
-                "Admin session missing hai. Admin logout karke dobara login karein. " +
-                "Agar problem rahe, admin-login.html mein login fetch aur cookie settings check karni hongi."
+                "Admin session is missing. Please log out and log in again. " +
+"If the problem persists, check the login fetch request and cookie settings in admin-login.html."
             );
         }
 
@@ -777,7 +777,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         await loadBookings();
     } else {
         $("loadingMessage").textContent =
-            "Admin session active nahi hai. Dobara login karein.";
+            "Admin session is not active. Please log in again.";
     }
 });
 </script>
